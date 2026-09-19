@@ -1,0 +1,14 @@
+node_modules/
+.pnpm-store/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+
+# Local agent installations and settings are not the skill source.
+/.agents/
+/.claude/
+/.codex/
+/.cursor/
+/skills-lock.json
