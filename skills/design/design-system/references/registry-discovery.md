@@ -1,8 +1,8 @@
 # Find components before building them
 
-Read this before creating a component that the local system cannot already
-supply, or before importing a registry component. Check each candidate against
-the project's design-system contract before adopting it.
+Search local components first. If a capability is missing, use the registry
+workflow below before creating or importing a component. Check each candidate
+against the project's design-system contract before adopting it.
 
 ## Search the local system, then the registries
 
@@ -87,22 +87,39 @@ and the linked source repositories. These 14 registries cover gaps beyond basic
 controls. The source links are also where to recheck maintenance before adoption.
 This is a discovery shortlist, not a guarantee that every item fits every app.
 
-| Registry and docs                                                              | Search for                                                     | Maintainer or support evidence                                                  | Adaptation concern                                                                                   |
-| ------------------------------------------------------------------------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| [Extend UI](https://ui.extend.ai/ui/docs), `@extend`                           | PDF/document viewers, citations, schema editing, human review  | [Extend source](https://github.com/extend-hq/ui)                                | Use the style-aware endpoint below; inspect document engine dependencies.                            |
-| [AI Elements](https://ai-sdk.dev/elements), `@ai-elements`                     | Conversation, reasoning, tools, artifacts, AI workflows        | [Vercel source](https://github.com/vercel/ai-elements)                          | Match the actual AI SDK/state API; do not install the whole catalog.                                 |
-| [assistant-ui](https://www.assistant-ui.com/), `@assistant-ui`                 | Chat threads, attachments, branching, runtime adapters         | [Maintained library and adapters](https://github.com/assistant-ui/assistant-ui) | This can introduce a runtime, not just copied presentation.                                          |
-| [OpenStatus tables](https://data-table.openstatus.dev/), `@data-table-filters` | Faceted filters, infinite tables, row details                  | [OpenStatus source](https://github.com/openstatusHQ/data-table-filters)         | Choose client or server patterns deliberately; the demo database connection is optional.             |
-| [Bklit UI](https://ui.bklit.com/), `@bklit`                                    | Composable interactive charts                                  | [Bklit source](https://github.com/bklit/bklit-ui)                               | Visx and Motion differ from a project's existing Recharts stack.                                     |
-| [EvilCharts](https://evilcharts.com/docs), `@evilcharts`                       | Recharts compositions and specialized visualizations           | [Community source](https://github.com/legions-developer/evilcharts)             | Match chart roles, labels, themes, and motion to the system.                                         |
-| [dashboardcn](https://dashboardcn.com/), `@dashboardcn`                        | KPI cards, funnels, heatmaps, ranked lists                     | [Small, recently active project](https://github.com/NoahGdev/dashboardcn)       | Verify table/chart dependency versions; maintenance history is short.                                |
-| [mapcn](https://mapcn.dev/), `@mapcn`                                          | Maps, markers, routes, geographic dashboards                   | [Community source](https://github.com/AnmolSaini16/mapcn)                       | MapLibre, tile sources, attribution, and client rendering need integration.                          |
-| [Plate](https://platejs.org/), `@plate`                                        | Rich-text editing, toolbars, editor plugins                    | [Editor packages and source](https://github.com/udecode/plate)                  | Select needed plugins and check item licenses; avoid a full demo editor by default.                  |
-| [Kibo UI](https://www.kibo-ui.com/), `@kibo-ui`                                | Kanban, Gantt, file handling, color pickers, media             | [Shadcnblocks-maintained source](https://github.com/shadcnblocks/kibo)          | Check the selected component's dependencies and recent updates separately.                           |
-| [coss ui](https://coss.com/ui), `@coss`                                        | Number fields, grouped controls, composed application patterns | [Cal.com design-system source](https://github.com/cosscom/coss)                 | Base UI composition; verify directory-specific licenses in this mixed-license repo.                  |
-| [Magic UI](https://magicui.design/), `@magicui`                                | Counters, marquees, text and presentation effects              | [Established community source](https://github.com/magicuidesign/magicui)        | Distinguish free components from paid templates; reduce decorative motion.                           |
-| [React Bits](https://reactbits.dev/), `@react-bits`                            | Specialized animated text, backgrounds, interactive effects    | [Established community source](https://github.com/DavidHDev/react-bits)         | Select TypeScript/Tailwind items; inspect GPU cost, licenses, and reduced motion.                    |
-| [Cult UI](https://www.cult-ui.com/docs), `@cult-ui`                            | Expandable toolbars, onboarding, morphing panels               | [Community source and changelog](https://github.com/nolly-studio/cult-ui)       | Catalog returned HTTP 429 during review; use docs or retry later, without treating it as no matches. |
+### Documents, AI, and tables
+
+| Registry and docs                                                              | Search for                                                    | Maintainer or support evidence                                                  | Adaptation concern                                                                       |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| [Extend UI](https://ui.extend.ai/ui/docs), `@extend`                           | PDF/document viewers, citations, schema editing, human review | [Extend source](https://github.com/extend-hq/ui)                                | Use the style-aware endpoint below; inspect document engine dependencies.                |
+| [AI Elements](https://ai-sdk.dev/elements), `@ai-elements`                     | Conversation, reasoning, tools, artifacts, AI workflows       | [Vercel source](https://github.com/vercel/ai-elements)                          | Match the actual AI SDK/state API; do not install the whole catalog.                     |
+| [assistant-ui](https://www.assistant-ui.com/), `@assistant-ui`                 | Chat threads, attachments, branching, runtime adapters        | [Maintained library and adapters](https://github.com/assistant-ui/assistant-ui) | This can introduce a runtime, not just copied presentation.                              |
+| [OpenStatus tables](https://data-table.openstatus.dev/), `@data-table-filters` | Faceted filters, infinite tables, row details                 | [OpenStatus source](https://github.com/openstatusHQ/data-table-filters)         | Choose client or server patterns deliberately; the demo database connection is optional. |
+
+### Charts and maps
+
+| Registry and docs                                        | Search for                                           | Maintainer or support evidence                                            | Adaptation concern                                                          |
+| -------------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| [Bklit UI](https://ui.bklit.com/), `@bklit`              | Composable interactive charts                        | [Bklit source](https://github.com/bklit/bklit-ui)                         | Visx and Motion differ from a project's existing Recharts stack.            |
+| [EvilCharts](https://evilcharts.com/docs), `@evilcharts` | Recharts compositions and specialized visualizations | [Community source](https://github.com/legions-developer/evilcharts)       | Match chart roles, labels, themes, and motion to the system.                |
+| [dashboardcn](https://dashboardcn.com/), `@dashboardcn`  | KPI cards, funnels, heatmaps, ranked lists           | [Small, recently active project](https://github.com/NoahGdev/dashboardcn) | Verify table/chart dependency versions; maintenance history is short.       |
+| [mapcn](https://mapcn.dev/), `@mapcn`                    | Maps, markers, routes, geographic dashboards         | [Community source](https://github.com/AnmolSaini16/mapcn)                 | MapLibre, tile sources, attribution, and client rendering need integration. |
+
+### Editors and application controls
+
+| Registry and docs                               | Search for                                                     | Maintainer or support evidence                                         | Adaptation concern                                                                  |
+| ----------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [Plate](https://platejs.org/), `@plate`         | Rich-text editing, toolbars, editor plugins                    | [Editor packages and source](https://github.com/udecode/plate)         | Select needed plugins and check item licenses; avoid a full demo editor by default. |
+| [Kibo UI](https://www.kibo-ui.com/), `@kibo-ui` | Kanban, Gantt, file handling, color pickers, media             | [Shadcnblocks-maintained source](https://github.com/shadcnblocks/kibo) | Check the selected component's dependencies and recent updates separately.          |
+| [coss ui](https://coss.com/ui), `@coss`         | Number fields, grouped controls, composed application patterns | [Cal.com design-system source](https://github.com/cosscom/coss)        | Base UI composition; verify directory-specific licenses in this mixed-license repo. |
+
+### Motion and presentation
+
+| Registry and docs                                   | Search for                                                  | Maintainer or support evidence                                            | Adaptation concern                                                                                   |
+| --------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| [Magic UI](https://magicui.design/), `@magicui`     | Counters, marquees, text and presentation effects           | [Established community source](https://github.com/magicuidesign/magicui)  | Distinguish free components from paid templates; reduce decorative motion.                           |
+| [React Bits](https://reactbits.dev/), `@react-bits` | Specialized animated text, backgrounds, interactive effects | [Established community source](https://github.com/DavidHDev/react-bits)   | Select TypeScript/Tailwind items; inspect GPU cost, licenses, and reduced motion.                    |
+| [Cult UI](https://www.cult-ui.com/docs), `@cult-ui` | Expandable toolbars, onboarding, morphing panels            | [Community source and changelog](https://github.com/nolly-studio/cult-ui) | Catalog returned HTTP 429 during review; use docs or retry later, without treating it as no matches. |
 
 ### Maintenance evidence and limits
 

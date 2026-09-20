@@ -5,9 +5,11 @@ description: Establish or revise project architecture and engineering convention
 
 # Establish project conventions
 
-Turn an agreed PRD, spec, or architecture basis into architecture decisions,
-enforceable conventions, and a custom skill for the repository. Establish
-missing requirements through a scoped interview. Use the project's language,
+Read the agreed PRD, spec, or architecture basis. Establish missing requirements
+through a scoped interview before choosing dependent conventions.
+
+Produce architecture decisions, enforceable conventions, and a custom skill for
+the repository. Use the project's language,
 constraints, and existing decisions. Do not copy another project's stack or
 domain rules.
 
@@ -42,6 +44,8 @@ adoption in an existing repo, a targeted convention revision, and an options-onl
 review. An options-only request produces a proposal and leaves project files
 unchanged. Work inside bootstrap stays within its foundation scope.
 
+### Handle basis-only and bootstrap requests
+
 When a caller requests only the missing project basis, follow the project-basis
 reference and return the agreed document without generating conventions yet.
 When bootstrap calls this workflow during planning, complete the interview,
@@ -73,6 +77,8 @@ then investigate decisions that the answers make relevant. Reuse prior answers
 from bootstrap or discovery. Resolve consequential conflicts with the user rather
 than silently replacing an accepted stack, compatibility promise, or constraint.
 
+### Close the decision round
+
 Keep a decision record with the question, alternatives, evidence, answer, remaining
 uncertainty, and affected rules. Mark an area not applicable with its reason rather
 than inventing a policy for it. End when applicable decisions are settled or have
@@ -100,6 +106,8 @@ tests performed. When research delegation is available and permitted, delegate
 independent questions while continuing local inspection and interviews. Otherwise
 research them directly. Required evidence does not depend on a companion skill.
 
+### Test consequential assumptions
+
 Exercise uncertain claims in a small, disposable experiment when they affect the
 decision. Use realistic inputs and relevant failure cases. Report unavailable
 evidence and defer dependent choices; do not label an unverified assumption as
@@ -119,6 +127,8 @@ using the decision areas. Each rule needs a scope, a reason tied to the project,
 an example or canonical implementation where useful, and a way to check it.
 Separate correctness requirements from preferred defaults and permitted exceptions.
 Let configuration own mechanical formatting and compiler settings.
+
+### Plan adoption and resolve open decisions
 
 For an existing repo, inventory conflicting patterns and affected consumers.
 Choose what to retain, migrate, retire, or defer. Preserve compatibility unless
@@ -149,6 +159,8 @@ into several files. Add a short pointer in the selected `AGENTS.md` or `CLAUDE.m
 and make the same canonical skill available to every selected coding agent.
 Use unslop when available while drafting Markdown. Preserve source attribution.
 
+### Implement the agreed enforcement
+
 Apply agreed configuration, examples, and migrations only within the task's scope.
 Reuse existing formatter, compiler, linter, and test facilities before adding
 custom checks. Exercise new enforcement with a valid example, a violation, and
@@ -168,9 +180,14 @@ inspection separately from a fresh-session trial. During bootstrap, use the
 minimal entry point or a disposable example; do not implement product features
 solely to test the skill. Run the repo's required checks for actual changes.
 
-Finish with the custom skill's path, established decisions, research evidence,
-implemented checks, migration status, and verification limits. Describe any
-remaining dependency without claiming the system is fully adopted.
+Report the result in these groups:
+
+- Custom skill path and established decisions.
+- Research evidence and implemented checks.
+- Migration status and remaining dependencies.
+- Verification limits.
+
+Do not claim full adoption while dependencies remain.
 
 Whenever an accepted convention changes, update the local skill, affected
 references, examples, configuration, and checks in the same change. Supersede

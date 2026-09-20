@@ -1,7 +1,8 @@
 # Make motion a system foundation
 
-Read this when creating the system or changing an interaction or motion contract.
-Motion communicates feedback, location, relationships, or progress. An instant
+Name the feedback, location, relationship, or progress the motion must explain.
+Use this reference when creating a system or changing an interaction or motion
+contract. An instant
 response is a valid recipe for frequent actions. Decorative movement needs an
 explicit product purpose and must not compete with the task.
 
@@ -71,11 +72,13 @@ unbounded stagger before the final items become usable.
 
 ## Verify recipes, not just screenshots
 
-Test at normal speed and with reduced motion. Toggle or reverse the animation
-rapidly, provide input during entry and exit, and unmount the component during
-animation. Check keyboard focus and pointer access throughout. Verify JavaScript
-motion against server rendering and preference changes when relevant. Use slow
-playback to locate a discontinuity, then judge the result at normal speed.
+1. Test at normal speed and with reduced motion.
+2. Toggle or reverse rapidly, provide input during entry and exit, and unmount
+   during animation.
+3. Check keyboard focus and pointer access throughout.
+4. Verify JavaScript motion against server rendering and preference changes when
+   relevant.
+5. Use slow playback to locate discontinuities, then judge at normal speed.
 
 Document representative recipes in Storybook when adopted, or link to concrete
 app examples from `DESIGN.md`. Screenshots cover resting states; they cannot prove

@@ -1,6 +1,7 @@
 # Motion design
 
-Contents: purpose and frequency; timing; curves; springs; choreography; reduced motion; diagnosing feel.
+Name what the motion should communicate before choosing timing or easing. Use
+the repair table at the end when diagnosing an existing animation.
 
 ## Choose what deserves to move
 
@@ -19,7 +20,16 @@ Do not infer frequency from input method alone. A keyboard-triggered change may 
 
 ## Distinguish time variables
 
-**Response latency** is the time until the UI first acknowledges input. **Delay** is the time before an animation starts. **Duration** is how long it runs. **Easing** distributes change through that duration. **Spring settling** depends on the simulation and thresholds. **Dwell time** is how long a message remains readable. These are not interchangeable.
+| Term             | Meaning                                           |
+| ---------------- | ------------------------------------------------- |
+| Response latency | Time until the UI first acknowledges input        |
+| Delay            | Time before an animation starts                   |
+| Duration         | How long the animation runs                       |
+| Easing           | How change is distributed through the duration    |
+| Spring settling  | Depends on the simulation and stopping thresholds |
+| Dwell time       | How long a message remains readable               |
+
+These measurements are not interchangeable.
 
 A 150ms entrance does not justify dismissing a confirmation after 150ms. A slow request does not justify delaying the pressed state. Starting the operation must not wait for its animation.
 
@@ -92,6 +102,9 @@ Coordinate with restraint:
 - Use stagger only when order/grouping deserves emphasis. A starting offset of 20–40ms with a capped total delay around 120ms can work for a small group. Do not apply index × delay to an unbounded list.
 - Do not defer focus or useful content until the last stagger ends. If visible controls must wait, reconsider the choreography.
 - Avoid shifting targets under a pointer while people try to select them. Keep exits and replacements stable enough to preserve place.
+
+### Add expression only when it helps
+
 - Anticipation prepares for an action; do not add theatrical anticipation after input that should respond immediately.
 - Follow-through and a little overshoot can express energy. Reserve squash/stretch for appropriate accents; do not distort readable text or every button.
 - Shared-element transitions must preserve an object's identity and destination. Crossfade unrelated content rather than pretending it is the same object.

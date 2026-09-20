@@ -1,7 +1,8 @@
 # Design system
 
-Build a React, Tailwind, and shadcn/ui design system, formalize one that grew
-informally, or keep component changes consistent with an established system.
+Use `$design-system` in Codex or `/design-system` in Claude Code to build a React,
+Tailwind, and shadcn/ui system, formalize an informal one, or keep component changes
+consistent with the existing system.
 The methodology comes from Brad Frost's _Atomic Design_, with visual guidance
 from _Refactoring UI_. Motion is part of the system's foundations and component
 contracts.
@@ -13,8 +14,7 @@ or enforcement. For local layout and interaction design, use `ui-guide`; use
 `ux-guide` for user flows and `ux-writer` for interface copy. These companion
 skills are optional.
 
-The agent can select this skill for matching work. Invoke it explicitly with
-`$design-system` in Codex or `/design-system` in Claude Code. For example:
+The agent can also select this skill for matching work. Example requests:
 
 - "Build a design system for this React app and implement the account settings
   feature using it. Include motion and document the conventions in DESIGN.md."
@@ -38,6 +38,8 @@ Existing projects should get an inventory and an explicit migration status.
 Small projects use `DESIGN.md`. For larger systems, the agent consults you
 before adding Storybook and its required development workflow.
 
+### Reuse before building
+
 Before creating missing components, the skill searches relevant community
 registries with the shadcn CLI. A [shortlist of 14 specialist
 registries](references/registry-discovery.md) covers documents, AI interfaces,
@@ -45,6 +47,8 @@ tables, charts, maps, editors, and motion. The agent adapts imported source to
 local tokens and behavior and writes new components using the project's shadcn
 conventions. The shortlist includes maintenance evidence and known compatibility
 limits.
+
+### Enforcement and verification
 
 Enforcement starts with shared APIs and project guidance. The skill can add
 targeted lint or test checks when justified by recurring violations. Installing

@@ -5,8 +5,9 @@ description: Design, diagnose, and repair web-app user flows. Use for confusing 
 
 # Improve user flows
 
-Find where a person's journey breaks down, design a better path, and verify the
-repair when implementation is requested. Cover the task through completion,
+Identify the person's intended outcome and entry point. Trace where the journey
+breaks, design a better path, and verify the repair when implementation is
+requested. Cover the task through completion,
 including interruptions, recovery, and returning later. Preserve the product's
 visual conventions and vocabulary. This skill works independently of other
 skills and external services.
@@ -61,6 +62,8 @@ switching. Keep comparison information together and essential consequences
 visible. Reduce the effort needed to understand and complete the task. Do not
 optimize for a fixed click count.
 
+### Define the action contract
+
 For each consequential action, specify the trigger, affected object and scope,
 state change, feedback, next actions, preserved work, recovery, and focus
 destination. Distinguish draft, saved, submitted, accepted, and completed when
@@ -97,7 +100,10 @@ Re-run the original task and the relevant failure, backtracking, or interruption
 path. Use behavioral tests or browser checks proportional to risk. Report the
 checks actually performed; a heuristic recommendation remains a hypothesis.
 
-For an audit, report prioritized findings and fixes. For a design, show the
-proposed flow and open decisions. For a repair, report implemented behavior,
-verification evidence, and limitations. Follow the mapping reference's lifetime
-rules for scratch notes; create external tickets only when explicitly requested.
+Match the handoff to the request:
+
+- Audit: prioritized findings and fixes.
+- Design: proposed flow and open decisions.
+- Repair: implemented behavior, verification evidence, and limitations.
+
+Follow the mapping reference's lifetime rules for scratch notes; create external tickets only when explicitly requested.

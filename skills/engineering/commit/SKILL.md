@@ -7,8 +7,9 @@ metadata:
 
 # Commit completed work
 
-Create one commit per logical change. Follow the repository's instructions,
-message format, checks, and release requirements. This skill works with any
+Inspect the repository's instructions and Git state before choosing a commit
+batch. Create one commit per logical change, following its message format,
+checks, and release requirements. This skill works with any
 language or toolchain and does not require a release tool.
 
 ## 1. Establish scope and authorization
@@ -22,6 +23,8 @@ when there is no `HEAD` to compare against.
 If a merge, rebase, cherry-pick, or conflict resolution is in progress, defer
 ordinary checkpoints and follow that operation's instructions. Do not complete
 or abort it as a side effect of batching changes.
+
+### Confirm the existing authorization
 
 Commit when the user requests it or the project has an explicitly enabled policy
 for automatic local checkpoints. An installed skill or a request to change code
@@ -56,6 +59,8 @@ its package manager and tooling. Verify the proposed commit without depending
 on unrelated uncommitted changes. Do not report a whole-tree test as proof of
 an isolated batch if excluded edits affect the result.
 
+### Stage only the selected batch
+
 Inspect the selected content for secrets, private data, unintended generated
 output, and unrelated changes. Stage explicit paths or selected hunks. Avoid
 `git add -A` and `git commit -a` in a mixed tree.
@@ -71,6 +76,8 @@ output, and unrelated changes. Stage explicit paths or selected hunks. Avoid
 - If a file mixes selected and excluded hunks, do not use `--only` for it.
   Stage selected hunks only when the rest of the index is within scope.
   Otherwise leave the batch pending rather than unstaging someone else's work.
+
+### Handle checks and hooks
 
 Inspect hook behavior and honor required hooks and signing. If a check or hook
 fails, fix problems within scope and rerun the affected checks. Review any files
@@ -111,6 +118,8 @@ fits. Default to a lowercase type, an imperative description without a trailing
 period, and a subject under 72 characters. Preserve proper names and identifiers.
 Add a body only when it explains something the subject and diff do not. Wrap
 prose around 72 characters without breaking URLs or identifiers.
+
+### Mark breaking changes and issue references
 
 For a breaking contract change, use `!` before the colon and a `BREAKING CHANGE:`
 footer explaining the impact and migration. The specification accepts either

@@ -1,6 +1,7 @@
 # Microinteractions
 
-Contents: four-part contract; feedback; asynchronous work; repetition; personality.
+Define the trigger, rules, feedback, and loops before adding animation. Check
+asynchronous and repeated use as well as the first successful interaction.
 
 ## Define behavior before animating it
 
@@ -46,10 +47,15 @@ For assistive technology, distinguish state semantics, such as `aria-pressed`, `
 
 Separate interaction state from presentation state. A pending request and an entering spinner are different things. The UI must work if motion takes zero time, is interrupted, or never emits a completion event.
 
+### Acknowledge input and show real progress
+
 - Guard repeated submission when duplication would be harmful. Keep unrelated controls usable. A visual disabled treatment alone is not request deduplication.
 - Keep the control's size and location stable as its contents change. Reserve reasonable space without clipping longer labels.
 - Delay a busy indicator only to avoid a distracting flash on a fast operation; give immediate acknowledgment regardless. As a starting point, try a 150–200ms delay for the indicator, then tune with actual latency. Clear that timer when the operation settles; never postpone useful content or completion to satisfy a minimum animation duration.
 - Use determinate progress only with a meaningful measurement. Distinguish upload bytes from server processing when they are separate stages. Do not invent percentages or simulated processing steps.
+
+### Reconcile, cancel, and recover
+
 - Use optimistic updates for reversible, predictable operations when the application contract supports reconciliation. Preserve the last confirmed value and make failure recoverable. Do not silently treat a network timeout as proof a mutation failed.
 - For overlapping requests, show only results that correspond to the current input or request. Retargeting an animation is not enough to prevent stale data. Use the project's cancellation/versioning pattern.
 - On cancellation, define whether work stops or only the view closes. Aborting a client request is not proof the server rolled back. Let UI feedback reflect what is known.

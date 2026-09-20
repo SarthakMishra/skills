@@ -11,6 +11,8 @@ Components should consume semantic roles such as `bg-primary` and
 `text-primary-foreground` together. Keep raw palette choices inside the theme or
 explicitly documented specialist uses, such as data visualization.
 
+### Match the installed Tailwind version
+
 For Tailwind v4, define theme utilities in CSS with `@theme`; use `@theme
 inline` when mapping theme variables to other CSS variables. Keep mode-specific
 values in the project's theme selectors. This example maps existing variables.
@@ -32,6 +34,8 @@ Reuse shadcn's installed role names, light/dark selectors, and radius convention
 Extend missing semantic roles with the same convention instead of keeping a
 second competing token namespace. Inspect existing `--animate-*`, keyframes,
 animation plugins, and component data attributes when adding motion.
+
+### Keep generated classes detectable
 
 Use complete class strings in variant maps so Tailwind can detect them. Avoid
 interpolation such as `bg-${color}-500`. For genuine dynamic data, use a validated
@@ -96,11 +100,14 @@ repeated consumer overrides create a second, undocumented design system.
    the production component. Keep necessary functionality behind the project's
    existing data and state interfaces. Do not adopt a database or AI runtime solely
    because the demo uses it.
-6. Verify the adapted component with its consumers, themes, keyboard behavior,
-   state boundaries, and content extremes. Record the source item or commit,
-   applicable license notices, and substantial local changes near the code or in
-   existing design documentation. Review future upstream updates as diffs rather
-   than reinstalling over the adapted source.
+
+### Verify the adapted component
+
+Verify consumers, themes, keyboard behavior, state boundaries, and content
+extremes. Record the source item or commit, applicable license notices, and
+substantial local changes near the code or in existing design documentation.
+Review future upstream updates as diffs rather than reinstalling over the
+adapted source.
 
 For example, adapt an imported filter toolbar to use the canonical `Button`,
 `Input`, and `Popover`, the approved compact size, and the disclosure motion
@@ -132,9 +139,12 @@ control library. shadcn conventions evolve; the local version determines details
   different contracts; do not translate them mechanically or introduce another
   control library just to copy its API. Compose existing accessible controls for
   complex interactions instead of recreating their behavior.
-- Add usage and state examples in the project's chosen documentation. A component
-  is complete when it fits the same tokens, API conventions, and behavior checks
-  as installed components, regardless of where its source originated.
+
+Add usage and state examples in the project's chosen documentation. A component
+is complete when it fits the same tokens, API conventions, and behavior checks
+as installed components, regardless of where its source originated.
+
+### Publish only when distribution is requested
 
 Registry publishing is separate from component authoring. Only when distribution
 is requested, add a schema-valid item manifest with file types and paths,

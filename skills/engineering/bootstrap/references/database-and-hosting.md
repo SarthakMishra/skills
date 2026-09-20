@@ -1,8 +1,7 @@
 # Database and hosting
 
-Read this reference when the spec needs persistence or an application deployment
-target. Select an architecture during the interview, then configure and verify it
-locally. Default to local-only work; optionally provision the agreed resources
+Select persistence and hosting during the interview when the spec needs them.
+Then configure and verify the choices locally. Default to local-only work; optionally provision the agreed resources
 after verification. Selecting a provider alone does not authorize remote changes.
 Libraries and local CLIs may need neither a database nor hosting.
 
@@ -14,11 +13,15 @@ An engine or ORM specified by the user takes precedence over these defaults.
 Preserve an explicit choice in the spec and resolve conflicts with the user.
 Add no database to an app that does not need persistence.
 
+### Choose the engine, driver, and host
+
 Choose the database engine, ORM driver, and database host separately. For hosted
 Postgres, recommend [PlanetScale Postgres](https://planetscale.com/docs/postgres)
 by default. Compare a managed Postgres product from the chosen application host
 when available and suitable. Respect a request to self-host Postgres on the
 user's VM. Do not substitute PlanetScale's Vitess/MySQL product for Postgres.
+
+### Check the D1 exception
 
 When recommending D1 for a basic Cloudflare application, explain that
 [D1 uses SQLite semantics](https://developers.cloudflare.com/d1/), not Postgres.
@@ -48,6 +51,8 @@ stateful coordination. Add only the services the spec needs. Use the available
 Cloudflare, Workers, and Wrangler skills or current official docs to verify the
 chosen framework adapter, bindings, local development, and limits.
 
+### Compare alternatives when Workers does not fit
+
 For a complex app or a mismatch with Workers, discuss where each service will
 run with the user before choosing a host. Consider Vercel, Render, AWS, GCP,
 Azure, a self-hosted VM such as DigitalOcean, or another provider that fits the
@@ -76,6 +81,8 @@ Record the selected engine, ORM, driver, application host, database host, intend
 regions, and the reasons behind them. Record only choices relevant to the app.
 Keep runtime and database credentials server-side.
 
+### Configure and exercise a disposable database
+
 For Postgres, configure the selected ORM and supported driver and provide an
 isolated local Postgres development/test path, such as the project's agreed
 container setup. For D1, use local Wrangler bindings and the selected dialect.
@@ -87,6 +94,8 @@ Exercise a connection or harmless query against a disposable local database.
 If migrations exist, apply them to that database and verify they succeed. Never
 fall back to a production connection when local verification fails. Keep remote
 migrations and deployments separate from install, build, check, and smoke tests.
+
+### Record pending remote configuration
 
 Add only the configuration needed for the chosen target, such as Wrangler
 bindings, a supported framework adapter, or the agreed container configuration.
@@ -114,6 +123,8 @@ to make the starter run. Ask the user to handle credentials or account and
 billing steps that require their access. Continue independent local work
 meanwhile.
 
+### Configure the selected database
+
 For managed Postgres, provision the selected provider's Postgres product in the
 agreed region with appropriate access controls and backup settings. For D1,
 provision D1 and configure its binding and migration target. Store credentials
@@ -129,12 +140,16 @@ restore check against an isolated target. Record who owns patches, monitoring,
 and recovery. A running database process alone is not a completed VM setup.
 Use a provider-managed option instead only if the user changes that decision.
 
+### Control deployment and migrations
+
 Before connecting a Git repository to hosting, inspect its automatic deployment
 behavior. Keep releases disabled unless deployment was included in the plan.
 If an initial deployment was agreed, deploy only the verified foundation to the
 specified environment and check its health. Apply remote migrations only to the
 agreed target and only when included in scope. Keep migration and release
 commands separate from routine checks.
+
+### Verify the actual remote state
 
 Read back resource type, account/project, region, access settings, and bindings.
 Verify database connectivity with a harmless query. For a deployed foundation,

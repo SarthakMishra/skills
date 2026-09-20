@@ -1,6 +1,7 @@
 # React and Tailwind implementation
 
-Contents: inspect first; state and identity; styling and tokens; choosing motion tools; performance; implementation checks.
+Read the installed React or Tailwind versions and local component conventions
+before choosing an API. Use only the sections relevant to the project's stack.
 
 ## Inspect before choosing an implementation
 
@@ -13,10 +14,15 @@ Keep the stack's current versions authoritative. Tailwind v4 CSS-first tokens an
 
 ## Keep state coherent
 
+### Preserve state and identity
+
 - Represent mutually exclusive states with a single state value or discriminated union when that simplifies the component. A small reducer can express nontrivial transitions; a finite-state-machine library is optional.
 - Track operation status separately from whether an animated element remains mounted. An operation can succeed while an exit is still playing. Do not hide a failed operation because an animation callback says "done."
 - Preserve stable component identity and keys. Do not use changing/random keys to replay entrances; remounting can erase input and focus. Avoid array indices for reorderable item identity. See [React state preservation](https://react.dev/learn/preserving-and-resetting-state).
 - Read current values in asynchronous callbacks and prevent old requests/timers from updating a newer interaction. Reuse the existing query/mutation layer's contract.
+
+### Handle frames, cleanup, and focus
+
 - Keep gesture-frame values out of broad React render state when an imperative ref or existing motion value fits. Keep semantic state in React.
 - Clean up animations, timers, observers, media-query listeners, and pointer handlers. Effect setup/cleanup must tolerate React development checks.
 - Keep focus changes tied to the interaction, not to an arbitrary timeout. Inspect the component's behavior before adding another focus effect.

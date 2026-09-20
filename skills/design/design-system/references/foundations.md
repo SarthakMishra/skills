@@ -1,6 +1,6 @@
 # Establish the foundations
 
-Use this reference when starting a system or changing its visual foundations.
+Choose a representative feature before defining or changing visual foundations.
 These rules adapt _Refactoring UI_ to a reusable system; the source map is in
 [sources.md](sources.md).
 
@@ -51,6 +51,8 @@ chart data, measured positions, and user-selected colors.
 
 ## Turn visual judgment into conventions
 
+### Hierarchy and sizing
+
 - Assign emphasis through weight, space, and contrast as well as size. Secondary
   text must remain readable; lowering opacity is not a substitute for a tested
   text/background pairing.
@@ -60,6 +62,9 @@ chart data, measured positions, and user-selected colors.
   where the task benefits from it, preserving usable targets and focus indicators.
 - Tune typography and component padding for each size. Scaling
   every dimension proportionally rarely produces useful small and large variants.
+
+### Content, surfaces, and states
+
 - Constrain prose width and choose line height for the actual font and line length.
   Let layouts respond to content; a fixed column count is not a universal rule.
 - Use depth to explain layering and interactivity. Prefer spacing or contrasting

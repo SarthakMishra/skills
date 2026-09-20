@@ -1,7 +1,8 @@
 # Establish conventions
 
-Establish architecture and engineering conventions from an agreed project basis.
-The result is a custom skill for the repository, usually named
+Use `$establish-conventions` in Codex or `/establish-conventions` in Claude Code
+to establish architecture and engineering conventions from an agreed project
+basis. The result is a custom skill for the repository, usually named
 `code-conventions`, that agents use during coding and review and update when
 conventions change.
 
@@ -13,8 +14,7 @@ libraries, and when a custom implementation is justified.
 ## When to use it
 
 The agent can select this skill when establishing or revising conventions, during
-bootstrap, or for a tool or library decision that changes shared patterns. Invoke
-it with `$establish-conventions` in Codex or `/establish-conventions` in Claude Code.
+bootstrap, or for a tool or library decision that changes shared patterns.
 
 ```text
 Establish conventions from SPEC.md and the decisions from our wayfinder session.
@@ -32,6 +32,8 @@ Compare a library with our custom parser against these requirements. Research
 compatibility and maintenance, test the uncertain cases, and propose a decision
 before installing anything.
 ```
+
+## Bring the existing decisions
 
 Bring an existing PRD, spec, or architecture document and decisions from
 `wayfinder`, `grill-me`, or an equivalent discussion. If no adequate basis

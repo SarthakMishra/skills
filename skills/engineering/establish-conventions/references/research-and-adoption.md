@@ -1,13 +1,12 @@
 # Research choices and adopt tools
 
-Use this reference for architecture or convention decisions, new tooling and
-libraries, replacements, or a custom implementation. Research should resolve the
-project's questions, not produce a catalog of technologies.
+Write the requirement and acceptance criteria before researching an architecture
+or convention decision, tool, library, replacement, or custom implementation.
+Research should resolve the project's questions, not produce a technology catalog.
 
 ## Establish the evidence
 
-For each consequential choice, write the requirement and acceptance criteria
-before looking for a preferred solution. Inspect the current implementation,
+For each consequential choice, inspect the current implementation,
 constraints, prior decisions, and installed versions. Separate user requirements,
 language requirements, local conventions, and recommendations.
 
@@ -18,6 +17,8 @@ or integration. Compare more than one viable approach for substantial decisions,
 including keeping the current approach. A single primary source can settle a
 specific syntax question; architecture tradeoffs usually need several kinds of
 evidence. Do not impose a citation count as a substitute for coverage.
+
+### Record evidence beside the decision
 
 Record the exact version or revision, source URL, date checked, relevant finding,
 and limitation. Label conclusions drawn from sources as recommendations. A blog
@@ -55,6 +56,8 @@ For libraries and tools, inspect:
 - Team familiarity, debugging, configuration, upgrades, operations, data portability,
   replacement cost, and any service or licensing costs.
 
+### Compare the cost of custom code
+
 For custom code, identify who will maintain it, the bounded behavior it must
 support, failure cases, test strategy, and when to replace it. Include the costs
 of specifications, interoperability, security updates, and uncommon inputs.
@@ -86,6 +89,8 @@ migration steps, validation, and recovery path. Reuse established authorization.
 Resolve a change to the chosen stack, compatibility, costs, or external resources
 before acting on it. Installing a development package does not authorize creating
 a paid service, deploying code, or migrating production data.
+
+### Apply and verify the accepted choice
 
 For an accepted change, use the project's package manager, update its manifest and
 lockfile together, remove obsolete configuration within scope, and verify actual

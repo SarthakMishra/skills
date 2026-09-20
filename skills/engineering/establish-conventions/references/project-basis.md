@@ -1,9 +1,9 @@
 # Establish the basis for later decisions
 
-Read this when the requested setup, architecture, conventions, or design-system
-work lacks an adequate PRD, spec, or architecture document. Create the missing
-basis through discovery instead of sending the user away to another workflow.
-Keep discovery scoped to the decisions needed for the requested work.
+Find the requirements already available for the requested setup, architecture,
+conventions, or design-system work. If no adequate PRD, spec, or architecture
+document exists, establish one through scoped discovery. Do not send the user
+away to another workflow.
 
 ## Inspect before interviewing
 
@@ -65,6 +65,8 @@ Record scope, accepted decisions, their reasons and sources, success and failure
 criteria, and unresolved items. Each deferral needs an owner, revisit condition,
 and the decisions it blocks. Keep technical proposals labeled as proposals until
 accepted. Use unslop while drafting when available and preserve private material.
+
+### Confirm the basis before dependent work
 
 Review the concrete document with the user. Existing approval of its decisions
 still counts; silence does not establish acceptance. Correct misunderstandings

@@ -1,7 +1,7 @@
 # Principles that change design decisions
 
-Use these principles to investigate a design choice. They do not prove that an
-interface will work. The source map below identifies the books behind the
+Identify the design decision and use the relevant principle below to form a
+testable recommendation. A principle does not prove the interface will work. The source map below identifies the books behind the
 principles; the web-app examples are this skill's applications. You can use the
 reference without access to the books.
 
@@ -17,15 +17,22 @@ A sequence of understandable steps can be easier than one screen full of ambiguo
 
 Norman's action cycle gives a useful inspection sequence: identify the goal, choose a plan, identify an action, execute it, perceive the result, interpret it, and compare it with the goal. If the person stalls before acting, clarify the available actions and their consequences. If they cannot understand the result, improve feedback or explain how the system behaves.
 
-| Concept          | Actionable test                                          | Web-app application                                                               |
-| ---------------- | -------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| Discoverability  | Can people find possible actions and current state?      | Expose the main task and applicable controls without hidden gestures.             |
-| Affordance       | Can the person perform the intended action?              | Make the operation available through appropriate input methods.                   |
-| Signifier        | What tells people the action is possible?                | Make actionable controls distinguishable from static content.                     |
-| Mapping          | Which object and scope does this control affect?         | Keep row actions associated with their row; make workspace-wide actions explicit. |
-| Conceptual model | Can people predict how the system behaves?               | Distinguish editing a draft from publishing it or sending it externally.          |
-| Constraint       | Does the system prevent an invalid action appropriately? | Require a destination before sending; explain why progression is blocked.         |
-| Feedback         | Can people perceive and interpret the result?            | Separate received input, processing, and confirmed completion.                    |
+### Find and operate the action
+
+| Concept         | Actionable test                                     | Web-app application                                                               |
+| --------------- | --------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Discoverability | Can people find possible actions and current state? | Expose the main task and applicable controls without hidden gestures.             |
+| Affordance      | Can the person perform the intended action?         | Make the operation available through appropriate input methods.                   |
+| Signifier       | What tells people the action is possible?           | Make actionable controls distinguishable from static content.                     |
+| Mapping         | Which object and scope does this control affect?    | Keep row actions associated with their row; make workspace-wide actions explicit. |
+
+### Understand constraints and outcomes
+
+| Concept          | Actionable test                                          | Web-app application                                                       |
+| ---------------- | -------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Conceptual model | Can people predict how the system behaves?               | Distinguish editing a draft from publishing it or sending it externally.  |
+| Constraint       | Does the system prevent an invalid action appropriately? | Require a destination before sending; explain why progression is blocked. |
+| Feedback         | Can people perceive and interpret the result?            | Separate received input, processing, and confirmed completion.            |
 
 Feedback should be timely, informative, and proportional. Too many alerts obscure the important ones. Constraints should prevent real errors without adding irrelevant gates. Sources: Norman, chapters 1–2 and 4.
 
@@ -43,18 +50,25 @@ Reduce confusable actions, show the affected object at commitment, preserve work
 
 ## Apply psychology with its limits
 
-| Lens                       | Use it to                                               | Avoid the misleading shortcut                                                                  |
-| -------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| Jakob's law                | Reduce relearning through familiar behavior             | Copying a familiar product despite a different job or audience.                                |
-| Fitts's law                | Improve acquisition of controls across input methods    | Treating visual size alone as usable hit area or deriving a universal pixel size from the law. |
-| Miller / cognitive load    | Externalize memory and group meaningful information     | Limiting every list or navigation to seven items.                                              |
-| Hick's law                 | Reduce competing decisions and improve grouping         | Hiding essential choices in extra layers solely to reduce visible count.                       |
-| Postel's law               | Accept harmless variation and produce reliable results  | Guessing ambiguous dates, amounts, identities, or units; silently coercing meaning.            |
-| Peak–end rule              | Improve stressful moments, useful outcomes, and closure | Adding celebration while leaving the core journey broken.                                      |
-| Aesthetic–usability effect | Separate perceived ease from demonstrated task success  | Treating praise for appearance as evidence of usability.                                       |
-| Von Restorff effect        | Make meaningful differences identifiable                | Making everything compete for attention or relying only on color/motion.                       |
-| Tesler's law               | Move derivable mechanical complexity into the system    | Concealing necessary choices or creating rigid automation with no exception path.              |
-| Doherty threshold          | Treat responsive interaction as part of the experience  | Assuming 400 ms is universal, equating feedback with completion, or introducing fake work.     |
+### Familiarity, choices, and input
+
+| Lens                    | Use it to                                              | Avoid the misleading shortcut                                                                  |
+| ----------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| Jakob's law             | Reduce relearning through familiar behavior            | Copying a familiar product despite a different job or audience.                                |
+| Fitts's law             | Improve acquisition of controls across input methods   | Treating visual size alone as usable hit area or deriving a universal pixel size from the law. |
+| Miller / cognitive load | Externalize memory and group meaningful information    | Limiting every list or navigation to seven items.                                              |
+| Hick's law              | Reduce competing decisions and improve grouping        | Hiding essential choices in extra layers solely to reduce visible count.                       |
+| Postel's law            | Accept harmless variation and produce reliable results | Guessing ambiguous dates, amounts, identities, or units; silently coercing meaning.            |
+
+### Attention, complexity, and response
+
+| Lens                       | Use it to                                               | Avoid the misleading shortcut                                                              |
+| -------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Peak–end rule              | Improve stressful moments, useful outcomes, and closure | Adding celebration while leaving the core journey broken.                                  |
+| Aesthetic–usability effect | Separate perceived ease from demonstrated task success  | Treating praise for appearance as evidence of usability.                                   |
+| Von Restorff effect        | Make meaningful differences identifiable                | Making everything compete for attention or relying only on color/motion.                   |
+| Tesler's law               | Move derivable mechanical complexity into the system    | Concealing necessary choices or creating rigid automation with no exception path.          |
+| Doherty threshold          | Treat responsive interaction as part of the experience  | Assuming 400 ms is universal, equating feedback with completion, or introducing fake work. |
 
 These correspond to chapters 1–10 of _Laws of UX_, second edition. Apply measurements and accessible component requirements appropriate to the actual product; the principle names do not supply a complete specification.
 

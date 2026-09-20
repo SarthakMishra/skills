@@ -1,8 +1,10 @@
 # Sources and adaptations
 
-Read this when selecting research sources or explaining a recommendation. These
-sources inform the workflow; the project's spec, constraints, and actual versions
-determine its conventions. Primary-source review completed on 2026-09-20.
+Choose the source category matching the decision you need to research or explain.
+Use the project's spec, constraints, and actual versions to decide which guidance
+applies. These sources inform the workflow, not universal conventions.
+
+Primary-source review completed on 2026-09-20.
 
 ## Architecture and maintainability
 

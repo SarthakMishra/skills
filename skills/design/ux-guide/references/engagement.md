@@ -1,6 +1,8 @@
 # Engagement through useful interaction
 
-Read for onboarding, activation, weak return use, or making core work more satisfying. Apply _Hooked_ to diagnose behavior, not to force a habit loop onto every product.
+Identify the useful outcome and how often people need it before changing
+onboarding, activation, return use, or core work. Use _Hooked_ to diagnose behavior
+without forcing every product into a habit loop.
 
 ## Establish value and cadence
 
@@ -23,15 +25,22 @@ Reward categories from the book can help generate ideas: connection with people,
 
 ## Design an experience people enjoy
 
+### Help people make progress
+
 | Mechanism  | Concrete opportunity                                    | Keep it useful                                               |
 | ---------- | ------------------------------------------------------- | ------------------------------------------------------------ |
 | Agency     | Edit a preview and see consequences before committing   | Clearly distinguish exploration from live changes.           |
 | Competence | Achieve a first result, then reveal helpful shortcuts   | Keep the discoverable standard path; avoid repeated lessons. |
 | Ownership  | Save views, templates, collections, or a personal setup | Provide good defaults before asking for personalization.     |
 | Discovery  | Offer relevant examples or insights during real work    | Keep them optional; explain why they matter.                 |
-| Momentum   | Preserve progress and offer a relevant next step        | Show honest progress and allow people to stop when finished. |
-| Relief     | Make completion and persistence unmistakable            | Do not refill a completed task with fabricated obligations.  |
-| Connection | Make useful collaboration timely and visible            | Do not require invitations as an unrelated setup gate.       |
+
+### Support continuation and completion
+
+| Mechanism  | Concrete opportunity                             | Keep it useful                                               |
+| ---------- | ------------------------------------------------ | ------------------------------------------------------------ |
+| Momentum   | Preserve progress and offer a relevant next step | Show honest progress and allow people to stop when finished. |
+| Relief     | Make completion and persistence unmistakable     | Do not refill a completed task with fabricated obligations.  |
+| Connection | Make useful collaboration timely and visible     | Do not require invitations as an unrelated setup gate.       |
 
 A weekly planning app might support reviewing unfinished work, making next week's plan, and saving a reusable template. An annual filing tool should favor remembered context and reliable re-entry. A frequently used editor should minimize interruptions and keep input responsive.
 

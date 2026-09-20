@@ -1,7 +1,8 @@
 # Adopt, document, and enforce the system
 
-Use this reference for partial-system adoption, documentation, governance, or
-enforcement changes. Keep the process proportional to the product and contributors.
+Inventory the patterns in scope before adopting a partial system or changing its
+documentation, governance, or enforcement. Keep the process proportional to the
+product and contributors.
 
 ## Formalize an existing project
 
@@ -36,13 +37,18 @@ uniform. Report adoption by the actual inventory, not an invented coverage score
 
 For a small project, write a concise root `DESIGN.md`. If equivalent documentation
 already exists, update it and use a pointer instead of creating competing guidance.
-Include decisions readers cannot infer from a component signature:
+Include decisions readers cannot infer from a component signature.
+
+### Describe the system and its behavior
 
 - Product character, supported themes/densities, and scope of the system.
 - Links to canonical tokens, shared components, variant definitions, and examples.
 - Rules for hierarchy, grouping, layout customization, and component composition.
 - Motion recipes with normal, interrupted, and reduced-motion behavior.
 - Accessibility and content requirements for supported states.
+
+### Explain contributions and migration
+
 - How to choose reuse, extension, feature composition, or a new shared pattern.
 - Search-before-build and shadcn authoring conventions, including how imported
   source is adapted to the project's tokens, controls, and motion.
@@ -52,6 +58,8 @@ Include decisions readers cannot infer from a component signature:
 Link to executable values instead of copying entire token tables into prose.
 Keep rationale and usage guidance beside the canonical code or in this document.
 Update them in the same change that alters the contract.
+
+### Connect agent instructions
 
 To make coding agents follow the system, add a short instruction with the
 correct path to the project's existing `AGENTS.md` or equivalent, preserving

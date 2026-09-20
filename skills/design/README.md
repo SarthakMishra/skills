@@ -1,8 +1,13 @@
 # Design
 
-Use `design-system` for shared foundations and component conventions, `ui-guide`
-for presentation and component behavior, `ux-guide` for the path through the app,
-and `ux-writer` for the words.
+Choose the skill that matches the change:
+
+| Change                                       | Skill           |
+| -------------------------------------------- | --------------- |
+| Shared foundations and component conventions | `design-system` |
+| Presentation and component behavior          | `ui-guide`      |
+| The user's path through the app              | `ux-guide`      |
+| Interface wording                            | `ux-writer`     |
 
 ## Model-invoked
 

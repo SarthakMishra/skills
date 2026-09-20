@@ -5,8 +5,9 @@ description: Build and evolve a design system for React, Tailwind, and shadcn/ui
 
 # Build and enforce a design system
 
-Produce a system used by real product screens: shared foundations, composable
-components, documented decisions, and checks against drift. Use Brad Frost's
+Inspect product requirements and any existing system before choosing shared
+foundations or composable components. Finish with a system used by real product screens,
+documented decisions, and checks against drift. Use Brad Frost's
 Atomic Design as the methodology. React, Tailwind, and shadcn/ui are the
 implementation choices; preserve the project's installed versions and conventions.
 For an audit-only request, use the workflow as inspection criteria and return
@@ -22,6 +23,8 @@ Identify supported themes, platforms, accessibility requirements, product
 character, and who maintains the system. Ask about missing decisions only when
 they would change the work; record provisional choices explicitly.
 
+### Establish missing requirements
+
 For a new system without an adequate project basis, grill the missing product
 and design requirements before selecting foundations. Use
 `establish-conventions` for its project-basis stage when available. Otherwise
@@ -31,6 +34,8 @@ one PRD, spec, or architecture document in the project's existing layout and
 review its decisions with the user. Reuse accepted conversation decisions and
 keep assumptions explicit. An architecture document must include or link the
 product requirements it relies on.
+
+### Respect the requested scope
 
 For bootstrap, establish or adapt a system only when its plan includes that
 work. Honor a skipped setup choice. Reuse the basis and decisions from its
@@ -95,6 +100,8 @@ choosing reuse, adaptation, composition, or new code. Record what was searched a
 why the chosen implementation fits. New components must follow the project's
 shadcn authoring patterns and design-system contract.
 
+### Specify behavior and motion
+
 Define each changed component's purpose, supported variants, content limits,
 responsive behavior, semantics, keyboard and focus behavior, and relevant
 states. Include empty, loading, error, disabled, and selected states where
@@ -117,6 +124,8 @@ Read [adoption-and-enforcement.md](references/adoption-and-enforcement.md) when
 formalizing an existing system, establishing documentation or checks, or changing
 a system contract. It covers migration, `DESIGN.md`, Storybook, and enforcement.
 
+### Choose the documentation workflow
+
 Use `DESIGN.md` by default for smaller projects. For a large component catalog,
 many state combinations, or multiple contributing teams, explain what Storybook
 would cover and consult the user before adding it as a required development
@@ -136,15 +145,15 @@ a full migration while legacy consumers remain in the agreed scope.
 
 ## 5. Verify the affected system
 
-- Run the project's relevant formatting, lint, type, test, and build checks.
-- Render changed components alone and in consuming pages at relevant widths,
-  themes, density, and content extremes. Inspect text zoom and wrapping.
-- Exercise keyboard navigation, focus visibility and restoration, accessible
-  names, pending and failure behavior, and contrast for affected states.
-- Exercise motion at normal speed, rapid reversal, repeated input, and reduced
-  motion. State and focus must remain correct without animation completion.
-- Check documentation examples against production imports. Exercise new
-  enforcement with both a violating example and a permitted example.
+1. Run the project's relevant formatting, lint, type, test, and build checks.
+2. Render changed components alone and in consuming pages at relevant widths,
+   themes, density, and content extremes. Inspect text zoom and wrapping.
+3. Exercise keyboard navigation, focus visibility and restoration, accessible
+   names, pending and failure behavior, and contrast for affected states.
+4. Exercise motion at normal speed, rapid reversal, repeated input, and reduced
+   motion. State and focus must remain correct without animation completion.
+5. Check documentation examples against production imports. Exercise new
+   enforcement with both a violating example and a permitted example.
 
 For broad adoption, account for every in-scope family as retained, migrated,
 retired, or explicitly deferred. For a narrow edit, verify the changed contract

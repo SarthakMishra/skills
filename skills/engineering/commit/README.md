@@ -1,13 +1,13 @@
 # Commit
 
-Create focused Git commits using the repository's message format and checks.
-The skill adapts to any language or repository layout. When no message convention
-exists, it uses Conventional Commits.
+Use `$commit` in Codex or `/commit` in Claude Code to create focused Git commits
+using the repository's message format and checks. The skill supports any language
+or repository layout and falls back to Conventional Commits when needed.
 
 ## When to use it
 
-Use `$commit` in Codex or `/commit` in Claude Code. The agent can also select it
-for a commit request or an authorized automatic checkpoint.
+The agent can also select this skill for a commit request or an authorized
+automatic checkpoint.
 
 ```text
 $commit Commit the parser fix and its tests. Leave the unrelated README edit alone.

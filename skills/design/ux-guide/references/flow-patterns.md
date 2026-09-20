@@ -1,6 +1,8 @@
 # Flow patterns and repair choices
 
-Use the sections relevant to the current journey. Choose by task, context, frequency, and stakes.
+Choose the section matching the current journey: navigation, forms, first use,
+lists, feedback, permissions, or accessible completion. Base the pattern on the
+task, context, frequency, and stakes.
 
 ## Choose a container that fits the job
 
@@ -55,7 +57,12 @@ Give acknowledgment at the action and expose the meaningful result near the chan
 
 Distinguish initial load, background refresh, and mutation. Preserve usable content during refresh when safe, showing staleness when it affects decisions. Use measured progress when available and indeterminate status otherwise. Acknowledged input is not a completed transaction.
 
-For long jobs, specify whether users can leave, inspect status later, cancel, or retry. Canceling a client request does not necessarily cancel server work. A timeout may leave an unknown outcome; reconcile before retrying a consequential action.
+For long jobs, specify:
+
+- Whether users can leave and inspect status later.
+- Whether cancellation stops server work or only the client request.
+- When retry is safe. A timeout may leave an unknown outcome; reconcile before
+  retrying a consequential action.
 
 ## Destruction, settings, and permissions
 

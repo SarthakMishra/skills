@@ -1,6 +1,7 @@
 # Transient flow maps
 
-Contents: storage; app inventory; per-flow format; Mermaid conventions; review and implementation loop.
+Find the current task's scratch folder and existing flow map before creating
+files. Map current behavior separately from the proposed repair.
 
 ## Storage and lifetime
 
@@ -11,7 +12,11 @@ Read project instructions and existing scratch notes first. Reuse the current ef
 
 For a whole-app effort, a suitable slug is `ux-audit`; for an existing feature, reuse its feature slug. A narrow task can use one flow document without a full overview. When no repository exists, use the session's temporary workspace with the same relative structure and say what context the map covers.
 
+### Preserve adjacent specs and tickets
+
 Keep these separate from existing `.scratch/<feature>/spec.md`, `map.md`, and `issues/<NN>-<slug>.md` conventions. Those may already be canonical specs, decision maps, or tickets. Link to them by descriptive title; do not overwrite them, duplicate their content, reset numbering, or treat UX map files as tickets. If implementation tickets are explicitly requested, follow the project's configured tracker; for local Markdown, use individual numbered issue files and its existing status vocabulary.
+
+### Keep transient files under the existing policy
 
 Do not create repository configuration or require a setup skill to use these notes. Respect ignore rules; exclude transient maps from product commits by default without silently editing `.gitignore`. Do not assume all of `.scratch/` is disposable. It may contain the project's issue tracker. Retain active maps until the work or handoff is complete; remove only this task's transient files when cleanup is requested or established convention requires it. Do not automatically publish, archive, or commit scratch notes.
 
@@ -103,11 +108,16 @@ Use flow status `current`, `proposed`, `agreed`, `implemented`, or `verified` ac
 
 ## Mermaid conventions
 
+### Name states and transitions
+
 - Prefer `flowchart TD`. Use a state diagram for a local state lifecycle when that is clearer.
 - Represent user-visible states, screens, and real decisions; use edge labels for actions, events, and meaningful conditions. Do not diagram JSX component hierarchy as a user journey.
 - Give flows stable `F01` identifiers and nodes stable `N01` identifiers within each flow. Identify findings and tests with both. Preserve identifiers for the same concept between current and proposed diagrams; allocate new IDs for new concepts.
 - Quote labels, use short human-facing names, and keep implementation details in the transition table. Use `{}` for decisions, `[]` for states, and labeled edges for outcomes.
 - Use solid edges for specified behavior; dotted edges may denote explicitly labeled unknown or conditional links. Do not use color alone to communicate meaning.
+
+### Keep the map complete and readable
+
 - Include realistic alternate paths, commitment, completion, and return/resume behavior. Do not add impossible recovery just to make the graph tidy.
 - Make diagrams and transition tables agree. Do not use prose to excuse an incorrect edge. A status lookup must branch to the possible authoritative states; do not always route it to processing when it may return completed or failed. Group detail in a named subflow when necessary.
 - Keep diagrams scoped, usually around 5–12 meaningful nodes; split before legibility suffers. Avoid more than five nodes across, use no HTML labels, click directives, or embedded diagram configuration.

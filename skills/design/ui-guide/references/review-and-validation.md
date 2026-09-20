@@ -1,6 +1,7 @@
 # Review and validation
 
-Contents: inspect; diagnose; report; verify; finish.
+Inspect the requested component or area and record the evidence before reporting
+a finding. Use the diagnosis order below to prioritize repairs.
 
 ## Inspect to the requested depth
 
@@ -17,7 +18,9 @@ Useful code searches include `transition`, `animate`, `@keyframes`, `useSpring`,
 3. Does behavior match appearance and intent? Trace trigger, rules, feedback, loops, and modes.
 4. Does motion help? Inspect cause, frequency, timing, direction, origin, and interruption.
 5. Is it cohesive and efficient? Compare shared tokens, geometry, state patterns, and runtime cost.
-6. Is there a worthwhile expressive improvement? Propose it only with a reason tied to the product.
+
+After these checks, consider expressive improvements only when there is a
+reason tied to the product.
 
 Classify separately:
 
@@ -43,11 +46,17 @@ Use actual project locations and values in a real audit. Avoid claiming "before"
 
 Choose checks based on changed behavior; do not run every possible test for every small edit.
 
+### Check layout and content
+
 Inspect default and changed states with narrow and wide content, long strings and numbers, and supported themes. Check 200% zoom and reflow, clear focus and selection, clipping, alignment, overflow, and layout stability.
+
+### Exercise state changes and motion
 
 Test pointer and keyboard activation, rapid double input, opening and closing repeatedly, and interrupted transitions. Check focus restoration, disabled and pending behavior, and slow success, errors, and retry where relevant. Unmount the component during pending work.
 
 Check motion at normal speed, use slow playback to diagnose problems, and verify behavior without animation. Check origins, destinations, total duration, and accidental replay. Cosmetic animation must not delay input or completion.
+
+### Check accessibility and performance
 
 Check accessible names, roles, states, and logical focus order. Keep essential information available and convey status without relying on color. Test reduced motion and alternatives to hover-only or drag-only actions. For touch-oriented controls, aim around 44–48 CSS px targets where practical. WCAG 2.2 AA's target-size criterion is 24×24 CSS px with specified exceptions, not a blanket 44px minimum. See [target-size minimum](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
 

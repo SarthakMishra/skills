@@ -1,6 +1,8 @@
 # Validate the experience
 
-Use evidence appropriate to the claim. Automated checks verify behavior. Observe task sessions to assess comprehension and effort. Analytics can reveal patterns but rarely explain causes alone.
+Re-run the task and failure that motivated the change. Use automated checks
+for behavior and observed task sessions for comprehension and effort. Analytics
+can reveal patterns but rarely explain causes alone.
 
 ## Validate the flow contract
 
@@ -11,7 +13,9 @@ Start with the task and failure that motivated the change. Select applicable che
 - Go back, edit an earlier choice, cancel, close/reopen, or resume after interruption.
 - Simulate relevant slow, failed, stale, partial, or unknown outcomes.
 - Operate the task with keyboard, touch/narrow layout, and relevant assistive technology where available.
-- Check focus, preserved work, selection scope, navigation context, and absence of duplicate side effects.
+
+Across these checks, verify focus, preserved work, selection scope, navigation
+context, and absence of duplicate side effects.
 
 For each check, record flow/node, precondition, action, observable expected outcome, result, and evidence. Mark code inspection separately from exercised behavior. Mermaid parsing only proves diagram syntax; it cannot prove that the product matches the map.
 

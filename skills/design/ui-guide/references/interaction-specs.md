@@ -1,6 +1,8 @@
 # Reviewable interaction specifications
 
-Use a short specification when a stateful component, coordinated sequence, or substantial redesign needs shared understanding. Do not create a file for a one-line style repair.
+Write a short specification when a stateful component, coordinated sequence,
+or substantial redesign needs shared understanding. Keep a one-line style
+repair in the conversation; it does not need a file.
 
 ## Transient file convention
 
@@ -26,8 +28,12 @@ or assumed. Record status separately as proposed, implemented, or verified. Incl
 3. Define each trigger, guard, next state, visible feedback, focus change, announcement, and interruption behavior.
 4. Specify the motion's purpose, target element and property, start and end values, origin, duration, delay, curve or spring, exit, and reduced-motion variant.
 5. Define loops, persistence, timers, cancellation, and cleanup on unmount. Explain how to handle stale callbacks.
-6. List acceptance checks with concrete actions and observable outcomes. Include relevant failures and alternative inputs.
-7. Record what was shown, user decisions, open assumptions, and implementation status.
+
+### Record verification and decisions
+
+1. List acceptance checks with concrete actions and observable outcomes. Include
+   relevant failures and alternative inputs.
+2. Record what was shown, user decisions, open assumptions, and implementation status.
 
 Keep irrelevant fields out. Record exact chosen values where they affect implementation; "make it smooth" is not a motion contract.
 

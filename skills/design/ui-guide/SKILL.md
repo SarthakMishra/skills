@@ -5,8 +5,9 @@ description: Design, build, or review web-app UI and component interactions. Use
 
 # Design interfaces and interactions
 
-Make the interface readable at rest and usable during loading, failure, and
-interruption. Preserve the established design language unless the user requests
+Identify the screen or component and whether the request is a review or an
+implementation. Make it readable at rest and usable during loading, failure,
+and interruption. Preserve the established design language unless the user requests
 a redesign. This skill works independently; React and Tailwind guidance applies
 only when those tools are part of the task.
 
@@ -46,12 +47,19 @@ Preserve content, input, and focus through changes.
 
 Read only the references needed for the decision:
 
+### Design the appearance and behavior
+
+| Decision                                                 | Reference                                                 |
+| -------------------------------------------------------- | --------------------------------------------------------- |
+| Layout, spacing, typography, color, or density           | [visual-design.md](references/visual-design.md)           |
+| Trigger, state, feedback, async work, or repeated use    | [microinteractions.md](references/microinteractions.md)   |
+| Timing, easing, springs, choreography, or reduced motion | [motion-design.md](references/motion-design.md)           |
+| Controls, forms, overlays, tooltips, lists, or dragging  | [component-patterns.md](references/component-patterns.md) |
+
+### Implement, specify, and verify
+
 | Decision                                                           | Reference                                                       |
 | ------------------------------------------------------------------ | --------------------------------------------------------------- |
-| Layout, spacing, typography, color, or density                     | [visual-design.md](references/visual-design.md)                 |
-| Trigger, state, feedback, async work, or repeated use              | [microinteractions.md](references/microinteractions.md)         |
-| Timing, easing, springs, choreography, or reduced motion           | [motion-design.md](references/motion-design.md)                 |
-| Controls, forms, overlays, tooltips, lists, or dragging            | [component-patterns.md](references/component-patterns.md)       |
 | React or Tailwind implementation                                   | [react-tailwind.md](references/react-tailwind.md)               |
 | Branching states, coordinated sequences, or a substantial redesign | [interaction-specs.md](references/interaction-specs.md)         |
 | An audit, acceptance checks, or evaluation of a change             | [review-and-validation.md](references/review-and-validation.md) |

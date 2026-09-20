@@ -5,7 +5,8 @@ description: Write or review product-interface copy, including labels, forms, er
 
 # Write interface copy
 
-Help a person understand where they are, what happened, what they can do, and what
+Read the surrounding controls and current state before drafting a string. Help
+the person understand where they are, what happened, what they can do, and what
 happens next. Copy must match the system's behavior. If words cannot fix the
 interaction, identify the smallest behavioral change needed.
 
@@ -67,6 +68,8 @@ not a template library.
 
 ## Keep consequences precise
 
+### Actions and outcomes
+
 - Lead action labels with a specific verb and recognizable object. Use noun
   labels for destinations and modes. A staged action should reveal the next step.
 - Explain novelty, meaningful constraints, and consequences. Helper text should
@@ -76,6 +79,9 @@ not a template library.
   persistence, delivery, undo, or safe retry.
 - Describe errors without blame and offer a recovery the system supports.
 - State destructive scope, timing, reversibility, and effects on data or access.
+
+### Tone and variable handling
+
 - Use personality where it helps comprehension. Keep errors, legal choices,
   payments, permissions, security, health, and accessibility instructions factual.
   Remove greetings, apologies, and enthusiasm from routine system feedback.

@@ -1,7 +1,7 @@
 # Sources and judgment
 
-The skill combines the methodology below with implementation and enforcement
-guidance for the requested stack. The proposed token names, motion values, and
+Choose sources for the decision at hand: methodology, visual design, motion, or
+implementation. Match implementation guidance to the installed stack. The proposed token names, motion values, and
 workflow adaptations are this skill's recommendations. They are not quotations
 or universal standards.
 

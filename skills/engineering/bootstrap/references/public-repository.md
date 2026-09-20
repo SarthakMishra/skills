@@ -1,32 +1,31 @@
 # Public repository preparation
 
-Use this reference when the agreed repository visibility is public, including
-when the current run ends locally. Complete file and history checks before any
-public push. Apply remote settings only when repository creation or
-administration is authorized, and distinguish prepared settings from settings
+Complete file and history checks before any public push. Use this reference
+when public visibility is agreed, even if this run ends locally. Apply remote
+settings only when repository creation or administration is authorized, and distinguish prepared settings from settings
 verified on GitHub.
 
 ## Review what will become public
 
-- Inspect the exact proposed files, staged changes, and every commit reachable
-  through the branches or tags to be pushed. Review existing history even when
-  the latest tree is clean. A `.gitignore` rule does not remove tracked content.
-- Check source, docs, fixtures, assets, logs, local tracker notes, and agent
-  configuration for credentials, personal/customer data, internal URLs, and
-  private material. Use sanitized examples. Decide whether local issue files and private spec or design documents
-  belong in the publication.
-- Run an established secret scanner such as [Gitleaks](https://github.com/gitleaks/gitleaks)
-  over both proposed files and the history being published. Use its current CLI
-  and redact findings in output. A diff-only scan misses older commits; a Git
-  scan can miss untracked files. Review findings rather than blanket-allowlisting
-  them. A missing scanner or unresolved finding blocks publication, not local
-  preparation.
-- If credentials were exposed, stop publication and arrange revocation or
-  rotation. Remove sensitive material from the outgoing history as well as the
-  current files. Agree on any history rewrite separately; never force-push a
-  shared repository to conceal the finding. Re-scan after removing the exposed material.
-- Confirm the user's license choice and retain notices for imported code and
-  assets. Public visibility does not mean packages should be publishable.
+1. Inspect the exact proposed files, staged changes, and every commit reachable
+   through the branches or tags to be pushed. Review existing history even when
+   the latest tree is clean. A `.gitignore` rule does not remove tracked content.
+2. Check source, docs, fixtures, assets, logs, local tracker notes, and agent
+   configuration for credentials, personal/customer data, internal URLs, and
+   private material. Use sanitized examples. Decide whether local issue files and private spec or design documents
+   belong in the publication.
+3. Run an established secret scanner such as [Gitleaks](https://github.com/gitleaks/gitleaks)
+   over both proposed files and the history being published. Use its current CLI
+   and redact findings in output. A diff-only scan misses older commits; a Git
+   scan can miss untracked files. Review findings rather than blanket-allowlisting
+   them. A missing scanner or unresolved finding blocks publication, not local
+   preparation.
+4. If credentials were exposed, stop publication and arrange revocation or
+   rotation. Remove sensitive material from the outgoing history as well as the
+   current files. Agree on any history rewrite separately; never force-push a
+   shared repository to conceal the finding. Re-scan after removing the exposed material.
+5. Confirm the user's license choice and retain notices for imported code and
+   assets. Public visibility does not mean packages should be publishable.
 
 ## Prepare repository protections
 

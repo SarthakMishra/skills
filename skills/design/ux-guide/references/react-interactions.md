@@ -18,10 +18,15 @@ React state follows component identity and tree position. Keep identity stable w
 
 ## Async behavior
 
+### Keep input and results current
+
 - Track pending work at its real scope; saving one row should not automatically freeze the whole page.
 - Keep controlled input immediate. Defer expensive rendering or debounce network work when appropriate, not the visible keystroke.
 - Associate results with request inputs. Abort obsolete requests or ignore obsolete responses; test out-of-order completion.
 - Do not present prior-query results as matches for the latest query. Decide whether stale content is safe to use and make that state perceivable when it matters.
+
+### Preserve mutation correctness
+
 - Tie save responses to the submitted version. Older acknowledgments must not mark newer edits saved or erase them. Serialize or reconcile overlapping mutations using the actual server version contract.
 - Prevent duplicate consequential effects in both interaction and server semantics. Disabling a button does not guarantee exactly-once behavior.
 - Reconcile uncertain results before retrying operations that may already have happened.

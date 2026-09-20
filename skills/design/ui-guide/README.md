@@ -25,8 +25,9 @@ optional. The agent adds motion only when it helps the interaction.
 1. Point to the screen or component and describe the problem.
 2. Say whether you want a review, a fix, or a proposal before implementation.
 
-Include a screenshot for visual issues. Interaction problems need the running
-app, a recording, or a description of what happens. State what should stay unchanged.
+3. Include a screenshot for visual issues. For interaction problems, provide the
+   running app, a recording, or a description of what happens.
+4. State what should stay unchanged.
 
 ## What you get
 

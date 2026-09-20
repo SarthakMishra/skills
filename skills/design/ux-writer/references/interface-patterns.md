@@ -1,28 +1,27 @@
 # Interface copy pattern library
 
-Use this reference to draft or review copy for a screen or component. The examples are original and illustrative; adapt nouns, policy, behavior, and tone to the actual product.
+Choose the pattern for the screen or component you are drafting or reviewing.
+The examples are original and illustrative. Adapt nouns, policy, behavior, and
+tone to the actual product.
 
 ## Contents
 
-- Navigation, names, and headings
-- Buttons and links
-- Forms and input guidance
-- Empty, first-run, and zero-result states
-- Onboarding and just-in-time education
-- Success, status, and progress
-- Validation and errors
-- Confirmations and destructive actions
-- Permissions, privacy, and security
-- Settings and preferences
-- Search, filters, sorting, and tables
-- Notifications and subscriptions
-- Loading, offline, expired, and conflict states
-- Invitations, roles, and admin controls
-- Account, billing, and upgrade flows
-- Data-heavy and professional interfaces
-- AI and automation interfaces
-- Accessibility, localization, and variables
-- Product-wide copy audits
+- Names and input: [navigation](#navigation-names-and-headings),
+  [buttons and links](#buttons-and-links), [forms](#forms-and-input-guidance).
+- First use and results: [empty states](#empty-first-run-and-zero-result-states),
+  [onboarding](#onboarding-and-just-in-time-education),
+  [success and progress](#success-status-and-progress), [errors](#validation-and-errors).
+- Choices and consequences: [confirmations](#confirmations-and-destructive-actions),
+  [permissions](#permissions-privacy-and-security), [settings](#settings-and-preferences),
+  [search and tables](#search-filters-sorting-and-tables).
+- Ongoing work: [notifications](#notifications-and-subscriptions),
+  [loading and conflicts](#loading-offline-expired-and-conflict-states),
+  [invitations and roles](#invitations-roles-and-admin-controls),
+  [accounts and billing](#account-billing-and-upgrade-flows).
+- Specialist review: [professional data](#data-heavy-and-professional-interfaces),
+  [AI and automation](#ai-and-automation-interfaces),
+  [accessibility and localization](#accessibility-localization-and-variables),
+  [copy audits](#product-wide-copy-audits).
 
 ## Navigation, names, and headings
 
@@ -130,7 +129,8 @@ Distinguish these cases:
 - When filters hide results, explain this and offer to clear the filters.
 - When a search has no results, echo the query and suggest a specific recovery.
 - When permission hides data, explain the access limit without implying the data is absent.
-- When loading fails, report the failure instead of showing "nothing here."
+
+When loading fails, report the failure instead of showing "nothing here."
 
 Bad: `No data.`
 
@@ -242,8 +242,7 @@ A destructive confirmation should include:
 - affected people, access, money, or data;
 - timing and retention;
 - reversibility and available recovery;
-- a specific destructive button;
-- a safe secondary action.
+- a specific destructive button and a safe secondary action.
 
 Bad:
 
@@ -455,9 +454,14 @@ For tool-using agents, state what they can access and when approval is required.
 
 ## Accessibility, localization, and variables
 
+### Keep meaning accessible
+
 - Do not rely on icon, color, direction, position, or punctuation alone.
 - Give icon-only controls accessible names that include their object when repeated.
 - Keep link text meaningful out of context.
+
+### Support language and layout differences
+
 - Use plain sentence structure that survives translation.
 - Avoid assembling sentences from fragments; word order and pluralization vary.
 - Allow expansion in controls and navigation.
@@ -474,17 +478,22 @@ Document variables with examples and fallbacks:
 
 ## Product-wide copy audits
 
-Create an inventory by object and state, then look for system problems:
+Create an inventory by object and state, then inspect each group below.
+
+### Naming, outcomes, and context
 
 1. Multiple names for the same object.
 2. One name used for different objects.
 3. Generic action labels with different outcomes.
 4. Missing empty, failure, permission, partial, or destructive states.
 5. Explanations far from the choice they qualify.
-6. Tone that becomes playful at high-stakes moments.
-7. Copy that promises behavior the product does not implement.
-8. Backend language leaking into the interface.
-9. Repeated helper text that adds no information.
-10. Unspecified variables, plural rules, truncation, or localization.
+
+### Trust, precision, and localization
+
+1. Tone that becomes playful at high-stakes moments.
+2. Copy that promises behavior the product does not implement.
+3. Backend language leaking into the interface.
+4. Repeated helper text that adds no information.
+5. Unspecified variables, plural rules, truncation, or localization.
 
 Recommend changes in terms of comprehension, confidence, action, recovery, and operational risk. Prioritize by severity and frequency, not by stylistic preference.

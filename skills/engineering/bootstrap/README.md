@@ -40,12 +40,16 @@ verified foundation. Local configuration remains the default.
 | Commits      | Explicit requests by default. Offer the `commit` skill and optional automatic local checkpoints.                                    |
 | Publication  | Local by default. Choose private/public visibility and optional remote creation and push during the interview.                      |
 
+### What the interview settles
+
 The interview ends with an agreed stack, directory tree, and verification plan.
 It also selects Claude Code, Codex, or both, with the appropriate instruction
 files, scoped rules where needed, and an adjustable [recommended skill
 set](references/agent-setup.md#recommended-skills-for-every-repo). For public
 repositories, the agent also reviews files and history, scans for secrets, and
 configures repository protections before completing publication.
+
+### Database, hosting, and provisioning
 
 When persistence is needed, recommend D1 with Drizzle for basic Cloudflare apps
 that fit D1, and Postgres with Drizzle otherwise. User choices take precedence.
@@ -107,6 +111,8 @@ particular task uncommitted. Local checkpoints do not enable pushing or releases
 
 ## Companion skills
 
+### Architecture and conventions
+
 Include
 [`establish-conventions`](https://github.com/SarthakMishra/skills/tree/main/skills/engineering/establish-conventions)
 for discovery, architecture, and the custom coding skill. Install it if missing:
@@ -118,6 +124,8 @@ pnpm dlx skills add SarthakMishra/skills --skill establish-conventions
 It is model-invoked and can run within the accepted bootstrap plan. Its interview
 and research process works without optional companion skills.
 
+### Commits
+
 The proposed engineering set includes
 [`commit`](https://github.com/SarthakMishra/skills/tree/main/skills/engineering/commit).
 It works with explicit commit requests even when automatic checkpoints are off.
@@ -126,6 +134,8 @@ If accepted and missing, install it for the selected agents:
 ```sh
 pnpm dlx skills add SarthakMishra/skills --skill commit
 ```
+
+### Optional design-system setup
 
 When frontend design-system setup is selected, include
 [`design-system`](https://github.com/SarthakMishra/skills/tree/main/skills/design/design-system).
@@ -140,6 +150,8 @@ pnpm dlx skills add SarthakMishra/skills --skill design-system
 
 Choose the coding agents agreed during the interview. This model-invoked companion
 can run within the accepted bootstrap plan without a separate explicit invocation.
+
+### Engineering configuration
 
 Install [Matt Pocock's skills](https://github.com/mattpocock/skills) if they are
 not already available:
@@ -166,12 +178,13 @@ remain separate dependencies; their procedures are not bundled here.
 
 ## Recognize a completed bootstrap
 
-You should be able to install with the chosen package manager, run the
-documented checks, build, and exercise the smoke test without production
-credentials. The directory layout should follow your spec's domain terms. The
-handoff names what passed, whether companion setup and the custom coding skill
-are complete, the convention verification, design-system status, commit policy,
-and commits created, and whether the repo remains local or was published. It
-also distinguishes local configuration, provisioned resources, and a verified
-initial deployment. Missing tools, failed checks, and pending remote protections
-are reported explicitly.
+1. Install with the chosen package manager and run the documented checks, build,
+   and smoke test without production credentials.
+2. Check that the directory layout follows your spec's domain terms.
+3. Read the handoff for passed checks, companion setup, the custom coding skill
+   and convention verification, and design-system status.
+4. Check the commit policy, created commits, and whether the repo remains local
+   or was published.
+5. Check the infrastructure state: local configuration, provisioned resources, or
+   a verified initial deployment. Missing tools, failed checks, and pending remote
+   protections must be explicit.

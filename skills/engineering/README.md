@@ -1,5 +1,7 @@
 # Engineering
 
+Choose a skill for the work below. Open its usage guide for invocation and expected results.
+
 ## Model-invoked
 
 The agent can use these for matching requests or an enabled project policy.

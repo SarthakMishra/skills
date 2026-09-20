@@ -1,8 +1,8 @@
 # Create and maintain the project skill
 
-Use this reference when writing, installing, validating, or revising the output.
-The required output is an actual repository-specific, model-invoked skill.
-Architecture notes and research support it; they do not replace it.
+Find the existing project skill before creating one. Use this reference to write,
+install, validate, or revise that repository-specific, model-invoked skill.
+Architecture notes and research support the skill; they do not replace it.
 
 ## Choose the existing owner first
 
@@ -16,6 +16,8 @@ For a new skill, use `code-conventions` and a description naming the actual
 languages, paths, and relevant tasks. Omit `disable-model-invocation` or keep it
 false, and keep Codex `allow_implicit_invocation` enabled when that metadata exists.
 Do not inherit explicit-only controls from a source template.
+
+### Expose one canonical copy to each agent
 
 Use the selected agents' supported project skill locations. A common shared
 source is `.agents/skills/code-conventions/` for Codex, with Claude discovery under
@@ -38,8 +40,9 @@ Keep the local entry point small enough to read on every matching task. Include:
    references. Rows are cumulative, not mutually exclusive.
 5. Canonical implementations and authoritative configuration paths where they
    exist, plus completion checks appropriate to each kind of change.
-6. The maintenance procedure below, including when to return to research and
-   grilling rather than changing a convention unilaterally.
+
+Include the maintenance procedure below. It must explain when to return to
+research and grilling instead of changing a convention unilaterally.
 
 For example, an async API change may require the error, concurrency, and test
 references together. Documentation work needs its own trigger. A small CLI may
@@ -83,6 +86,8 @@ Configuration owns executable values. Research supports claims and alternatives.
 Link between these instead of copying lists of lints, commands, or packages into
 every document. Keep mandatory check commands discoverable from the local skill.
 
+### Connect agent instructions and contributor docs
+
 Add a short pointer in the selected agent instruction file. Adapt this example
 to the real skill name and supported scope:
 
@@ -111,6 +116,8 @@ Prefer supported configuration to custom tools. If a custom check is necessary,
 test a violation and a valid case through the command contributors or CI run.
 Test documented exceptions too. Preserve generated-file exclusions and legitimate
 language-specific patterns. Existing violations need a bounded migration plan.
+
+### Exercise the skill, not just its format
 
 For representative skill trials, verify the agent uses actual local rules rather
 than restating this establishment workflow. Include a cross-cutting change and

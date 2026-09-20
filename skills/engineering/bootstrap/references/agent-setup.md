@@ -1,8 +1,8 @@
 # Agent setup
 
-Use this reference during the interview and when configuring the selected coding
-agents. Ask for Claude Code, Codex, both, or another agent; the agent currently
-running bootstrap is not necessarily the user's only choice. Keep changes in
+Ask which coding agents the project should support: Claude Code, Codex, both,
+or another agent. Use this reference during the interview and configuration.
+The agent running bootstrap is not necessarily the user's only choice. Keep changes in
 the project unless the user requests a global installation.
 
 ## Instruction files and rules
@@ -20,6 +20,8 @@ The Claude import provides compatibility across installations that do not load
 `AGENTS.md` directly. Use a relative in-repo import rather than an absolute path
 to the user's machine.
 
+### Reuse the current instruction owner
+
 Preserve existing instruction files and keep shared guidance in its current
 file. When adding a second agent, give its entry file an explicit route to that
 guidance rather than copying it. Codex instructions can tell the agent to read
@@ -33,6 +35,8 @@ design pointers, checks required before handoff, generated files to leave to
 their tools, and restrictions on migrations, publication, or deployment. Link
 to configuration for discoverable values instead of repeating it. Do not create
 a product roadmap or copy a generic coding manifesto into the instruction file.
+
+### Scope rules and permissions
 
 Add scoped rules only when a subtree has different requirements. Claude can use
 path-scoped `.claude/rules/*.md`; Codex can use nested `AGENTS.md` files. Shared
@@ -69,6 +73,8 @@ will use its issue workflow. Keep stack-specific skills conditional. For
 example, recommend relevant React skills for a React frontend and
 Cloudflare/Workers/Wrangler skills for a Workers target. Do not install UI or
 cloud skills into every CLI or library.
+
+### Add project conventions and selected companions
 
 Use the model-invoked `establish-conventions` skill from
 [SarthakMishra/skills](https://github.com/SarthakMishra/skills) during
@@ -147,6 +153,8 @@ installations; avoid duplicate names and conflicting copies. Check current sourc
 repositories and skill dependencies before selecting names. Install only accepted
 missing skills, including the selected wrappers' required skills and references.
 
+### Install only missing accepted skills
+
 Use the `skills` CLI, available through `pnpm dlx skills`. Inspect its current
 help and preview upstream names with `pnpm dlx skills add mattpocock/skills --list`.
 Install with explicit `--skill` and `--agent` selections; avoid an unfiltered
@@ -167,6 +175,8 @@ machine-local state and credentials from the commit.
 Installing a user-invoked skill does not invoke it. Preserve its invocation
 controls and the explicit companion setup handoff in the main workflow.
 
+### Verify discovery in each agent
+
 Inspect files and links, then use each selected agent's fresh session to verify
 which instructions and skills it sees. Ask it to identify the project's checks
 and spec/domain pointers without changing files. Confirm a selected skill is
@@ -180,6 +190,8 @@ For the custom coding skill, use the convention workflow's trial: a representati
 change, a change needing several references, and a nearby task outside its scope.
 Confirm the agent can find canonical patterns, required checks, and the procedure
 for updating a convention. Verify each selected agent's discovery independently.
+
+### Verify the commit policy
 
 Check the chosen commit policy in a temporary repo. With automatic checkpoints
 enabled, a completed unit should produce a local commit before unrelated work

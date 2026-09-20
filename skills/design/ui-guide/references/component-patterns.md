@@ -1,8 +1,7 @@
 # Component patterns
 
-Contents: controls; forms; overlays; tooltips; lists and data; gestures; loading.
-
-Read the relevant pattern, then adapt it to the existing accessible component and the product's design language.
+Choose the pattern for the control you are changing. Adapt it to the existing
+accessible component and the product's design language.
 
 ## Buttons and toggles
 
@@ -30,10 +29,15 @@ If adding an animated reveal, preserve labels, associations, and keyboard order.
 
 Use the project's established accessible component before building overlay mechanics. Verify which contract it supplies: placement, portal, keyboard navigation, Escape, outside interaction, focus restoration, inert background, and scroll management. A generic popover is not automatically a menu or dialog.
 
+### Open and reverse
+
 - Start an anchored overlay's animation at its trigger. Check placement near viewport edges and after collision flipping.
 - Set focus or selection immediately according to the component pattern; do not wait for the visual entrance.
 - Support close or reversal during entrance. A closing animation must not later remove a newly reopened instance.
 - Keep exiting presentation inert and absent from the tab order. Avoid duplicate active dialogs or invisible layers that intercept clicks.
+
+### Close and adapt safely
+
 - Coordinate modal focus and background inertness through close. Either keep the modal contract until visual removal, or return focus when closing and retain only a nonblocking decorative exit. Do not leave an invisible active focus trap.
 - Make scroll lock, focus return, listeners, and portal cleanup independent of a single animation event. Handle canceled motion and zero-duration variants.
 - For drawers, distinguish content scrolling from drawer dragging. Account for browser navigation gestures, the on-screen keyboard, safe areas, and viewport changes.

@@ -7,12 +7,12 @@ compatibility: Requires shell access, Git, a JavaScript toolchain, and current o
 
 # Bootstrap
 
-Create a working repository from an agreed PRD, spec, or architecture basis. If
-that basis is missing, establish it through grilling and write it down first.
-Settle bootstrap choices with the user before scaffolding. Establish
-architecture and conventions, create the repo-specific coding skill, run the
-build and smoke test, and verify the development commands and engineering skill
-configuration.
+Find the agreed PRD, spec, or architecture basis. If it is missing, grill the
+unresolved requirements and write the basis before scaffolding.
+
+Finish with a working repository, researched architecture and conventions, a
+repo-specific coding skill, and verified development commands and engineering
+skill configuration. Run the build and smoke test before handoff.
 
 Support TypeScript web apps, APIs, CLIs, and libraries. Use React when a
 frontend is needed. Python and Rust bootstrapping are not supported yet; explain
@@ -48,6 +48,8 @@ Record the accepted document path and use it throughout the remaining interview,
 design-system setup, architecture, and custom coding skill. A technology list or
 folder diagram without product requirements is not an adequate basis.
 
+### Decide whether to include design-system work
+
 Locate an established design system when there is a frontend. Offer to use the
 model-invoked `design-system` skill to establish one from an approved shadcn
 preset or adapt the existing system to the foundation. Include this work only
@@ -60,6 +62,8 @@ For selected design-system work, check availability during planning and install
 the skill if missing using [companion skills](README.md#companion-skills). Keep
 automatic invocation enabled. Skipping setup for this run does not disable the
 skill or remove existing design conventions.
+
+### Check the engineering setup dependency
 
 If per-repo engineering skill configuration is still needed, check whether
 `setup-matt-pocock-skills` is available now. If it is missing, explain the
@@ -74,7 +78,10 @@ Wait for answers before asking follow-up questions that depend on them. Discover
 facts from files and tools yourself. Reuse choices already settled in the spec
 or conversation; ask about conflicts rather than restarting the interview.
 
-Cover the decisions that affect this project:
+Cover only unresolved decisions that affect this project. Group the interview
+by the choices below.
+
+### Project and toolchain
 
 - Target directory and project name; app, API, CLI, or library; actual deployables;
   rendering, SEO, offline, and hosting constraints that affect framework choice.
@@ -83,6 +90,9 @@ Cover the decisions that affect this project:
   request for both a monorepo and another manager explicitly before proceeding.
 - Single project or monorepo, framework and rendering mode, and the domain
   boundaries already justified by the spec.
+
+### Agents and optional design setup
+
 - Preferred coding agents: Claude Code, Codex, both, or another agent. Agree on
   project instruction files, the recommended shared skill set, and any necessary
   project-specific skills or rules. Read [agent setup](references/agent-setup.md)
@@ -99,6 +109,9 @@ Cover the decisions that affect this project:
   If skipped, retain existing conventions and the agreed frontend stack without
   adding system documentation or enforcement. Identify any conflict with the
   selected Base UI and Tailwind CSS setup.
+
+### Verification and external operations
+
 - Git hosting, private or public visibility, license when relevant, and whether
   this run includes remote creation and the first push. Recommend private when
   visibility is undecided. Local commit policy, remote creation, and pushing are
@@ -195,6 +208,8 @@ Use the accepted architecture and convention decisions from `establish-conventio
 for module boundaries, code patterns, documentation, and verification configuration.
 Keep examples limited to the foundation or a disposable trial.
 
+### Configure the toolchain and frontend
+
 - Enable strict TypeScript. Align any aliases across TypeScript, the build tool,
   and tests. In a workspace, define explicit package exports and dependencies;
   keep configuration at the root only when multiple packages use it.
@@ -211,6 +226,9 @@ Keep examples limited to the foundation or a disposable trial.
   pointer; follow the skill's consultation requirement before adding Storybook.
   Otherwise preserve existing styles and keep the entry point minimal. Inspect
   generator output for unwanted Radix dependencies or Turborepo configuration.
+
+### Configure checks, secrets, and package visibility
+
 - Provide `dev` where applicable, `build`, `format`, `format:check`, `lint`,
   `typecheck`, `check`, and `test:smoke`. Make `check` run the non-mutating format,
   lint, and type checks. Keep scripts, documentation, CI, and lockfile consistent
@@ -240,6 +258,8 @@ agents. Preserve existing installations and user edits. For a fresh dual-agent
 repo, let companion setup edit the canonical `AGENTS.md` before adding the Claude
 entry file.
 
+### Complete or resume the explicit setup handoff
+
 If setup has already completed for this target, verify its tracker and domain
 docs, optional triage configuration, and agent instruction pointers. Preserve
 valid setup and proceed without another invocation.
@@ -260,6 +280,8 @@ both agents were selected, and verify both can reach the same engineering
 conventions. A local-only bootstrap can still choose GitHub Issues for a future
 remote; record that dependency without creating a remote or tickets implicitly.
 
+### Finish conventions and commit policy
+
 Resume `establish-conventions` to create or update the repo-specific coding
 skill and its references, architecture docs, agreed enforcement, and agent
 pointers. Pass the actual scaffold, design-system choice, and companion setup's
@@ -273,6 +295,8 @@ Apply the agreed [commit policy](references/agent-setup.md#optional-automatic-co
 to the selected instruction file after companion setup. Verify it survives setup
 without duplication and that every selected agent can read it. Installation alone
 must not add an automatic-commit instruction.
+
+### Write the project documentation
 
 Verify setup's output and preserve its conventions. Record agreed domain terms
 in the selected glossary and bootstrap decisions in the selected ADR layout when
@@ -300,6 +324,8 @@ and commit hooks only when the project needs them. Do not write product behavior
 just to obtain a test. Keep verification local and reproducible, without live
 customer data or external service side effects.
 
+### Verify CI and a clean installation
+
 When GitHub is selected, add GitHub Actions running a frozen-lockfile install,
 `check`, `build`, and the smoke test with the same toolchain as local development.
 Use read-only default token permissions, verified full-SHA action pins, and
@@ -311,6 +337,8 @@ dependencies, caches, and local secrets. Fix failures rather than weakening the
 checks. Inspect the final diff and file list for leftover demos, unrelated work,
 or sensitive material. If tooling or network access prevents a check, report the
 specific gap and leave that check incomplete.
+
+### Verify agent and companion behavior
 
 Verify the selected agents' instruction loading and skill discovery using the
 checks in the agent setup reference. Distinguish a configuration inspection from
@@ -346,9 +374,14 @@ when a push occurred. For agreed provisioning, follow
 after the local checks pass. Respect any dependency on remote creation or CI
 without treating that dependency as authorization for an unselected operation.
 
-Report the stack and layout, checks actually passed, agent and companion setup,
-custom coding skill and convention verification, design-system status, local
-commit policy, created commits, remaining Git changes, and infrastructure state
-separately. A prepared workflow is not a passed CI run; a provisioned host is
+Report the result in these groups:
+
+- Stack, layout, and checks actually passed.
+- Agent and companion setup, custom coding skill, and convention verification.
+- Design-system status.
+- Local commit policy, created commits, and remaining Git changes.
+- Infrastructure state.
+
+A prepared workflow is not a passed CI run; a provisioned host is
 not a deployed app. Name any unverified items. Stop at the foundation; product
 implementation remains a separate task.
