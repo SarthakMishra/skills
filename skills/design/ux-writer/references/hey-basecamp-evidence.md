@@ -1,20 +1,21 @@
 # HEY and Basecamp interface evidence
 
-Use this reference to understand the reasoning behind the skill. It records representative observations, not a canonical or exhaustive string library. Product interfaces change; verify current copy when exact present-day wording matters.
+Choose the observed pattern that supports your writing decision. These examples
+explain the skill's reasoning; they are not a canonical or exhaustive string
+library. Verify current copy when exact present-day wording matters.
 
 ## Contents
 
-- Source boundaries
-- Getting Real principles
-- HEY patterns
-- Basecamp patterns
-- Transferable voice model
-- Anti-patterns to avoid
-- Representative sources
+- Establish the evidence: [source boundaries](#source-boundaries) and
+  [Getting Real principles](#getting-real-principles).
+- Inspect product examples: [HEY](#hey-patterns) and [Basecamp](#basecamp-patterns).
+- Adapt the writing: [voice model](#transferable-voice-model) and
+  [anti-patterns](#anti-patterns-to-avoid).
+- Find the [representative sources](#representative-sources).
 
 ## Source boundaries
 
-The principles below were derived from:
+The principles below draw on:
 
 - Basecamp's ["Copywriting is Interface Design"](https://basecamp.com/gettingreal/09.7-copywriting-is-interface-design) chapter.
 - Public [HEY feature explanations](https://www.hey.com/features/) and [Basecamp feature explanations](https://basecamp.com/features) consulted during the original research.
@@ -28,7 +29,7 @@ as historical examples rather than claims about the current interface.
 
 ## Getting Real principles
 
-The chapter treats decisions about labels, quantities, examples, state names, and explanatory length as interface design. Its operative lessons are:
+The chapter treats decisions about labels, quantities, examples, state names, and explanatory length as interface design. Apply these lessons:
 
 1. Every word changes the interaction, just as an icon or layout choice does.
 2. Start with what the reader needs to know in that moment.
@@ -116,7 +117,7 @@ Lesson: a short noun-plus-purpose pair can do more work than a clever label or a
 
 ## Transferable voice model
 
-The shared voice can be modeled without imitation:
+Apply these writing patterns using the target product's vocabulary:
 
 | Quality     | Operational behavior                                                  |
 | ----------- | --------------------------------------------------------------------- |
@@ -126,16 +127,21 @@ The shared voice can be modeled without imitation:
 | Opinionated | Recommend a mental model rather than exposing implementation options. |
 | Explanatory | Teach novelty and consequence next to the control.                    |
 | Calm        | Use plain facts for errors, risk, and routine success.                |
-| Economical  | Stop when the knowledge gap is closed.                                |
+| Economical  | Stop when the person has enough information to act.                   |
 
 Adapt these behaviors to the product's audience. A banking, medical, developer, children's, or government interface will need different terminology and degrees of warmth.
 
 ## Anti-patterns to avoid
 
+### Preserve the target product
+
 - Do not copy 37signals' jokes, contractions, ellipses, or coined nouns merely to sound distinctive.
 - Do not invent a branded vocabulary for ordinary objects.
 - Do not turn every heading into a conversational question; use it when the screen is truly a decision.
 - Do not lengthen every choice into a paragraph. Explain only meaningful differences.
+
+### Preserve consequences and evidence
+
 - Do not use friendly tone to soften or obscure data loss, payment, permission, or legal effect.
 - Do not assume captured interface copy is current, universally successful, or appropriate for another domain.
 - Do not treat public marketing language as interchangeable with in-product instructions.
@@ -163,5 +169,7 @@ Representative Basecamp interface captures:
 - [Invitation role choice](https://mobbin.com/screens/25f84b6c-8d34-4a01-a8d8-9b68fccf89f1)
 - [Invitation success](https://mobbin.com/screens/7605dd73-96bb-4f75-8079-be75cf86e10e)
 - [Automatic Check-in form](https://mobbin.com/screens/285a5f2b-05bd-4f18-9164-d06d2838fb83)
+  Basecamp account and identity changes:
+
 - [Account cancellation](https://mobbin.com/screens/a7702d8d-d6fe-4e9a-b7e2-be87f2277f24)
 - [Merge confirmation](https://mobbin.com/screens/e0b8288f-3acf-435e-b24b-ba36fdfda53a)

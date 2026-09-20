@@ -1,8 +1,8 @@
 # Sources and judgment
 
-Use this reference when explaining a recommendation, resolving conflicting
-guidance, or verifying a version-sensitive detail. It records the sources behind
-the skill. The skill can be used without access to the books or the original
+Find the source for the recommendation you need to explain, reconcile, or verify.
+Use the sections below for book concepts, conflicting guidance, and
+version-sensitive technical details. The skill can be used without access to the books or the original
 research material.
 
 ## Book foundations
@@ -28,23 +28,35 @@ The original research reviewed Emil Kowalski's
 including design engineering, animation construction, vocabulary, review, audit,
 and opportunity-finding material.
 
-Retain its attention to responsive feel, repeated use, trigger-relative origins, sensible tooling, explicit timing, interruption, and concrete before/after explanations. The unified workflow can build, diagnose, and fix directly according to user intent; it does not depend on installing or invoking that collection.
+Apply its guidance on immediate responses, repeated use, motion origins at the trigger, tool choice, explicit timing, interruption, and concrete before/after explanations. The unified workflow can build, diagnose, and fix directly according to user intent; it does not depend on installing or invoking that collection.
 
 ## Resolve disagreements deliberately
 
-| Tension                                                            | Decision in this skill                                                                    |
-| ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| Fixed fast budgets versus context-sensitive durations              | Supply practical starting values; tune for distance, purpose, repetition, and readability |
-| Never animate keyboard input versus motion for orientation         | Keep focus/input immediate; retain only motion that helps without blocking                |
-| Always use custom curves versus built-in easing                    | Reuse coherent tokens; built-ins are valid when they fit                                  |
-| Always animate with transform/opacity versus actual layout change  | Prefer inexpensive properties, but allow necessary measured layout animation              |
-| Mandatory stagger, scale, blur, or bounce versus restraint         | Treat these as tools with costs, not signatures applied everywhere                        |
-| A 12-column grid versus content-sized layout                       | Use a grid where useful; preserve appropriate intrinsic and bounded widths                |
-| Strict modular scales versus practical type sizes                  | Use a small coherent role-based set suited to real content                                |
-| One primary action per screen versus multiple independent tasks    | Establish hierarchy within meaningful task regions; keep equal choices equal              |
-| Hide labels for minimalism or familiarity versus discoverability   | Preserve necessary labels, focus cues, and visible state                                  |
-| Animated loaders that imply progress versus actual operation state | Never fabricate progress or signal completion early                                       |
-| Historical accessibility advice versus present standards           | Verify the applicable standard; distinguish requirements from design targets              |
+### Motion choices
+
+| Tension                                                           | Decision in this skill                                                                    |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Fixed fast budgets versus context-sensitive durations             | Supply practical starting values; tune for distance, purpose, repetition, and readability |
+| Never animate keyboard input versus motion for orientation        | Keep focus/input immediate; retain only motion that helps without blocking                |
+| Always use custom curves versus built-in easing                   | Reuse coherent tokens; built-ins are valid when they fit                                  |
+| Always animate with transform/opacity versus actual layout change | Prefer inexpensive properties, but allow necessary measured layout animation              |
+| Mandatory stagger, scale, blur, or bounce versus restraint        | Treat these as tools with costs, not signatures applied everywhere                        |
+
+### Layout and discoverability
+
+| Tension                                                          | Decision in this skill                                                       |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| A 12-column grid versus content-sized layout                     | Use a grid where useful; preserve appropriate intrinsic and bounded widths   |
+| Strict modular scales versus practical type sizes                | Use a small coherent role-based set suited to real content                   |
+| One primary action per screen versus multiple independent tasks  | Establish hierarchy within meaningful task regions; keep equal choices equal |
+| Hide labels for minimalism or familiarity versus discoverability | Preserve necessary labels, focus cues, and visible state                     |
+
+### Truthful feedback and current requirements
+
+| Tension                                                            | Decision in this skill                                                       |
+| ------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| Animated loaders that imply progress versus actual operation state | Never fabricate progress or signal completion early                          |
+| Historical accessibility advice versus present standards           | Verify the applicable standard; distinguish requirements from design targets |
 
 Book examples are historical examples, not proof of current product behavior. Do not repeat old claims about APCA, browser support, timing perception, or disabled controls without checking their scope. APCA can inform investigation but does not substitute for a WCAG 2.2 contrast conformance calculation. Do not treat "pure black is forbidden" or "all secondary buttons need this style" as universal rules.
 
@@ -56,8 +68,11 @@ For implementation details, inspect the installed stack and consult primary docu
 - [Tailwind: theme variables](https://tailwindcss.com/docs/theme), [state variants](https://tailwindcss.com/docs/hover-focus-and-other-states), [transition properties](https://tailwindcss.com/docs/transition-property)
 - [Motion: transitions](https://motion.dev/docs/react-transitions), [performance](https://motion.dev/docs/performance)
 - [MDN: starting style](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@starting-style)
+
+### Accessibility and interaction contracts
+
 - [W3C: text contrast](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html), [non-text contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html), [target size](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html)
 - [W3C: dragging alternatives](https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html), [animation from interactions](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html), [pause/stop/hide](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html)
 - [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/) for the actual component's keyboard/focus contract
 
-Use authoritative technical sources for changing API and standards details. The skill's numerical motion examples are synthesis defaults, not claimed empirical thresholds or universal accessibility requirements.
+Use authoritative technical sources for changing API and standards details. The skill's numerical motion examples are suggested starting values, not claimed empirical thresholds or universal accessibility requirements.

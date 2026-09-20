@@ -1,5 +1,8 @@
 # UX writer
 
+Use `/ux-writer` in Claude Code or `$ux-writer` in Codex with the string or screen
+you want to improve and the behavior it must describe.
+
 ## What it does
 
 `ux-writer` writes and reviews the words inside a product. It connects labels,
@@ -9,10 +12,9 @@ must describe what the system actually does, including its limits.
 It can fix one string, write a flow's copy, or review terminology across a
 product. It uses the target project's vocabulary and adapts to its audience.
 
-## When to reach for it
+## When to use it
 
-Type `/ux-writer` in Claude Code or `$ux-writer` in Codex, or let the agent reach
-for it when a task fits.
+The agent can also select this skill when a task fits.
 
 | Situation                                                  | What it covers                                                         |
 | ---------------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -36,23 +38,24 @@ or audits get a copy table that separates existing text from proposed text.
 
 ## Common questions
 
-**Will it make everything sound like HEY or Basecamp?**
+### Product voice
 
-It borrows their use of plain language, adjacent explanations, and explicit
-consequences. It follows your product's vocabulary and tone. The source examples
-are evidence of those patterns, not strings to copy into another product.
+It uses plain language, explanations beside controls, and explicit consequences,
+following your product's vocabulary and tone. The source
+examples are evidence of those patterns, not strings to copy into another
+product.
 
-**Can it work from a screenshot?**
+### Screenshots and unknown behavior
 
-Yes, for the visible text and layout. It marks inferred behavior and asks about
-unknown consequences when they would change the copy.
+A screenshot supports visible text and layout review. The skill marks inferred
+behavior and asks about unknown consequences when they would change the copy.
 
-**What if better words cannot fix the problem?**
+### Problems that need a behavior change
 
 It identifies the interaction change needed. It does not promise undo, successful
 delivery, or saved work that the system cannot provide.
 
-## It's working if
+## Check the result
 
 - A control's label predicts what happens when you use it.
 - An error explains what is known and offers a recovery the product supports.

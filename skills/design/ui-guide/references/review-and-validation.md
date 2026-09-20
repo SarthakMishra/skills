@@ -1,14 +1,15 @@
 # Review and validation
 
-Contents: inspect; diagnose; report; verify; finish.
+Inspect the requested component or area and record the evidence before reporting
+a finding. Use the diagnosis order below to prioritize repairs.
 
 ## Inspect to the requested depth
 
-For a narrow task, inspect the component and its immediate context. For a wider audit, sample representative surfaces and then follow observed inconsistencies to their shared source.
+For a narrow task, inspect the component and its immediate context. For a wider audit, sample representative screens and components and then follow observed inconsistencies to their shared source.
 
 Record evidence from the running UI, screenshots/recordings, and relevant code. Note the viewport, theme, input method, and state where a problem appears. A static screenshot cannot establish timing, keyboard behavior, or request handling. A code review can identify risks but cannot prove motion feels good.
 
-Useful code searches include `transition`, `animate`, `@keyframes`, `useSpring`, `layout`, `setTimeout`, `aria-`, `data-state`, and theme tokens. Searches are locators, not automatic failure rules.
+Useful code searches include `transition`, `animate`, `@keyframes`, `useSpring`, `layout`, `setTimeout`, `aria-`, `data-state`, and theme tokens. Inspect search matches before reporting a defect.
 
 ## Diagnose in a useful order
 
@@ -17,13 +18,15 @@ Useful code searches include `transition`, `animate`, `@keyframes`, `useSpring`,
 3. Does behavior match appearance and intent? Trace trigger, rules, feedback, loops, and modes.
 4. Does motion help? Inspect cause, frequency, timing, direction, origin, and interruption.
 5. Is it cohesive and efficient? Compare shared tokens, geometry, state patterns, and runtime cost.
-6. Is there a worthwhile expressive improvement? Propose it only with a reason tied to the product.
+
+After these checks, consider expressive improvements only when there is a
+reason tied to the product.
 
 Classify separately:
 
-- **Defect:** an observed usability, accessibility, state, or rendering problem.
-- **Risk:** credible code evidence but not yet reproduced.
-- **Enhancement:** a design improvement with a contextual tradeoff.
+- A defect is an observed usability, accessibility, state, or rendering problem.
+- A risk has credible code evidence but has not been reproduced.
+- An enhancement is a design improvement with a contextual tradeoff.
 
 Prioritize blocked operation, misleading outcomes, lost input, and inaccessible controls above subtle easing preferences. A 320ms drawer is not automatically a more serious issue than a missing focus indicator. Do not claim a low frame rate from a property name alone.
 
@@ -35,7 +38,7 @@ For several findings, use:
 | --------------------- | ----------------------------------- | ----------------------------------- | ----------------------------- | ---------------------------- |
 | Filter panel, opening | Focus waits for entrance            | Focus on open; visual layer follows | Keyboard use stays responsive | High; reproduced             |
 | Summary card, default | Label competes with value           | Use supporting label role           | Clarifies the scan order      | Medium; screenshot           |
-| Menu, reversal        | Exit callback removes reopened menu | Cancel obsolete removal             | Newest user intent wins       | High; code risk until tested |
+| Menu, reversal        | Exit callback removes reopened menu | Cancel obsolete removal             | Reopened menu stays open      | High; code risk until tested |
 
 Use actual project locations and values in a real audit. Avoid claiming "before" behavior that was not observed. Deduplicate shared-root-cause findings. Leave well-working areas alone.
 
@@ -43,15 +46,21 @@ Use actual project locations and values in a real audit. Avoid claiming "before"
 
 Choose checks based on changed behavior; do not run every possible test for every small edit.
 
-**Visual:** default and changed states; narrow/wide content; long strings and numbers; supported themes; 200% zoom and reflow; clear focus and selection; clipping, alignment, overflow, and layout stability.
+### Check layout and content
 
-**Interaction:** pointer and keyboard activation; rapid double input; open-close-reopen; interrupted transitions; focus restoration; disabled and pending behavior; slow success, error, and retry where relevant; unmount during pending work.
+Inspect default and changed states with narrow and wide content, long strings and numbers, and supported themes. Check 200% zoom and reflow, clear focus and selection, clipping, alignment, overflow, and layout stability.
 
-**Motion:** normal-speed use, slow-motion diagnosis, zero-motion behavior, matched origins/destinations, useful total duration, lack of accidental replay, and no wait added for decoration.
+### Exercise state changes and motion
 
-**Accessibility:** accessible names/roles/states; logical focus order; persistent essential information; non-color status cues; reduced motion; no inaccessible hover-only or drag-only action. For touch-oriented controls, aim around 44–48 CSS px targets where practical. WCAG 2.2 AA's target-size criterion is 24×24 CSS px with specified exceptions, not a blanket 44px minimum. See [target-size minimum](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
+Test pointer and keyboard activation, rapid double input, opening and closing repeatedly, and interrupted transitions. Check focus restoration, disabled and pending behavior, and slow success, errors, and retry where relevant. Unmount the component during pending work.
 
-**Performance:** profile when changes or observed stutter warrant it. Try realistic content and concurrent work. Distinguish layout/paint cost, slow React renders, main-thread contention, and memory-heavy compositing before prescribing a fix.
+Check motion at normal speed, use slow playback to diagnose problems, and verify behavior without animation. Check origins, destinations, total duration, and accidental replay. Cosmetic animation must not delay input or completion.
+
+### Check accessibility and performance
+
+Check accessible names, roles, states, and logical focus order. Keep essential information available and convey status without relying on color. Test reduced motion and alternatives to hover-only or drag-only actions. For touch-oriented controls, aim around 44–48 CSS px targets where practical. WCAG 2.2 AA's target-size criterion is 24×24 CSS px with specified exceptions, not a blanket 44px minimum. See [target-size minimum](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
+
+Profile performance when changes or observed stutter warrant it. Try realistic content and concurrent work. Distinguish layout/paint cost, slow React renders, main-thread contention, and memory-heavy compositing before prescribing a fix.
 
 For autoplaying motion, verify applicable pause/stop controls. Avoid flashing effects; do not rely on a warning to make an unsafe animation acceptable. A component passing these checks is not proof the entire app meets an accessibility standard.
 

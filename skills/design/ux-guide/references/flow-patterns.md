@@ -1,6 +1,8 @@
 # Flow patterns and repair choices
 
-Use the sections relevant to the current journey. Choose by task, context, frequency, and stakes.
+Choose the section matching the current journey: navigation, forms, first use,
+lists, feedback, permissions, or accessible completion. Base the pattern on the
+task, context, frequency, and stakes.
 
 ## Choose a container that fits the job
 
@@ -8,7 +10,7 @@ Use the sections relevant to the current journey. Choose by task, context, frequ
 | ------------------------------------------- | ---------------------------------------- | ----------------------------------------------------------- |
 | Substantial reading, comparison, or editing | A page with a meaningful address         | Parent context is necessary throughout the task.            |
 | Inspect related detail while keeping a list | A side panel or master-detail view       | Narrow screens or extensive editing need a full page.       |
-| Change a local value                        | Inline editing with a clear commit model | Dependencies or consequences need a dedicated surface.      |
+| Change a local value                        | Inline editing with a clear commit model | Dependencies or consequences need a separate page or panel. |
 | Make a short blocking decision              | A dialog                                 | It grows into a nested workflow or a substantial workspace. |
 | Complete dependent decisions                | A staged flow with backtracking          | Users need to compare sections or work out of order.        |
 | Choose secondary actions                    | An action menu                           | Hiding a primary or frequent action impairs discovery.      |
@@ -21,7 +23,7 @@ Separate global destinations, local sections, filters, and object actions. Organ
 
 Support direct links, refresh, new tabs, and Back/Forward for meaningful destinations. Preserve the search, filter, and list-position context when opening an item and returning. Decide whether a view change should create history; each keystroke usually should not. Keep secrets and sensitive drafts out of URLs.
 
-**Bad:** opening a result and returning resets filters and scroll position. **Better:** restore the previous context and handle removed results sensibly.
+If opening a result and returning resets filters and scroll position, restore that context. Define where to return if the result has since been removed.
 
 ## Forms and review
 
@@ -31,7 +33,7 @@ Accept harmless input variation such as spacing where meaning is preserved. Clar
 
 Use explicit submission for a coherent commitment. Use autosave when individual changes can safely persist; define unsaved, saving, saved, and failed states. Distinguish draft persistence from externally visible changes. Review should expose significant assumptions, scope, and consequences, and let people return to edit without losing their work.
 
-**Bad:** failure clears a long form. **Better:** retain values, locate the relevant error, and retry the intended operation.
+After a form submission fails, retain entered values, identify the relevant error, and let the person retry the intended operation.
 
 ## First use, empty states, and return
 
@@ -39,15 +41,15 @@ Distinguish no data, no matches, no permission, failed loading, and completed wo
 
 Teach through a useful first task. Defer optional setup until its benefit is visible. Make sample data identifiable and removable. Allow optional instruction to be skipped and revisited. For re-entry, show where work stands and what remains; avoid replaying onboarding to returning users.
 
-**Bad:** require invitations, profile setup, and a tour before the first result. **Better:** let the person complete a small real task, then introduce relevant enhancements.
+If invitations, profile setup, or a tour block the first useful result, defer them until needed. Let the person complete a small real task first.
 
 ## Search, lists, and bulk actions
 
-Keep query scope, active filters, result state, and selection inspectable. Preserve input during loading and failure. Avoid unexplained reordering while someone is reading or selecting. Prefer stable pagination or load-more for bounded work where position and completion matter; use infinite scrolling only when it serves exploration.
+Keep query scope, active filters, result state, and selection inspectable. Preserve input during loading and failure. Avoid unexplained reordering while someone is reading or selecting. Prefer stable pagination or load-more for bounded work where position and completion matter; use infinite scrolling only when the task calls for open-ended browsing.
 
 Distinguish visible rows, selected rows, and all matching results. Make expansion of selection explicit. Define selection lifetime across pages, filters, and refresh. Show per-item outcomes for partial completion and retry unresolved items without repeating completed side effects.
 
-**Bad:** "Select all" silently changes twenty visible rows into thousands of matches. **Better:** make the scope expansion a deliberate choice and retain the affected count through commitment.
+If "Select all" would expand twenty visible rows into thousands of matches, require an explicit choice to expand the selection. Keep the affected count visible through commitment.
 
 ## Feedback and long-running work
 
@@ -55,7 +57,12 @@ Give acknowledgment at the action and expose the meaningful result near the chan
 
 Distinguish initial load, background refresh, and mutation. Preserve usable content during refresh when safe, showing staleness when it affects decisions. Use measured progress when available and indeterminate status otherwise. Acknowledged input is not a completed transaction.
 
-For long jobs, specify whether users can leave, inspect status later, cancel, or retry. Canceling a client request does not necessarily cancel server work. A timeout may leave an unknown outcome; reconcile before retrying a consequential action.
+For long jobs, specify:
+
+- Whether users can leave and inspect status later.
+- Whether cancellation stops server work or only the client request.
+- When retry is safe. A timeout may leave an unknown outcome; reconcile before
+  retrying a consequential action.
 
 ## Destruction, settings, and permissions
 
@@ -67,6 +74,6 @@ Distinguish personal preferences from workspace-wide settings. Preview broad eff
 
 Keep the same job achievable across viewport sizes and input methods. Avoid hover-only actions, drag-only interaction, color-only state, and hidden controls needed for completion. Provide semantic controls and operable alternatives. Keep inputs, errors, and focused elements clear of sticky controls and onscreen keyboards.
 
-**Bad:** dragging is the only way to reorder tasks. **Better:** add an accessible move action that changes the same underlying order.
+If dragging is the only way to reorder tasks, add an accessible move action that changes the same order.
 
 Verify logical reading and focus order, sufficient target acquisition, zoom/reflow, and recovery after interruption. Do not reduce accessibility to checking the opening screen or the existence of ARIA attributes.

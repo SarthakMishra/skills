@@ -1,6 +1,7 @@
 # React and Tailwind implementation
 
-Contents: inspect first; state and identity; styling and tokens; choosing motion tools; performance; implementation checks.
+Read the installed React or Tailwind versions and local component conventions
+before choosing an API. Use only the sections relevant to the project's stack.
 
 ## Inspect before choosing an implementation
 
@@ -13,13 +14,18 @@ Keep the stack's current versions authoritative. Tailwind v4 CSS-first tokens an
 
 ## Keep state coherent
 
-- Represent mutually exclusive states with a single state value or discriminated union when that simplifies the component. A small reducer can express nontrivial transitions; an FSM library is optional, not a prerequisite for a polished button.
-- Separate domain/request status from presentation presence. An operation can succeed while an exit is still playing. Do not hide a failed operation because an animation callback says "done."
+### Preserve state and identity
+
+- Represent mutually exclusive states with a single state value or discriminated union when that simplifies the component. A small reducer can express nontrivial transitions; a finite-state-machine library is optional.
+- Track operation status separately from whether an animated element remains mounted. An operation can succeed while an exit is still playing. Do not hide a failed operation because an animation callback says "done."
 - Preserve stable component identity and keys. Do not use changing/random keys to replay entrances; remounting can erase input and focus. Avoid array indices for reorderable item identity. See [React state preservation](https://react.dev/learn/preserving-and-resetting-state).
 - Read current values in asynchronous callbacks and prevent old requests/timers from updating a newer interaction. Reuse the existing query/mutation layer's contract.
+
+### Handle frames, cleanup, and focus
+
 - Keep gesture-frame values out of broad React render state when an imperative ref or existing motion value fits. Keep semantic state in React.
 - Clean up animations, timers, observers, media-query listeners, and pointer handlers. Effect setup/cleanup must tolerate React development checks.
-- Keep focus changes tied to the interaction, not to an arbitrary timeout. Inspect the primitive's behavior before adding another focus effect.
+- Keep focus changes tied to the interaction, not to an arbitrary timeout. Inspect the component's behavior before adding another focus effect.
 - Make completion safe when motion is canceled or disabled. Never rely only on transition/animation end events to commit data, unlock controls, or remove interaction blockers.
 
 ## Tailwind: style roles and states
@@ -94,7 +100,7 @@ Keep the accessible name stable for a toggle with `aria-pressed`; the pressed st
 
 | Need                                                 | Usual choice                            | Watch for                                           |
 | ---------------------------------------------------- | --------------------------------------- | --------------------------------------------------- |
-| Two-state hover, press, color, disclosure            | CSS transition                          | Property scope and interruptible reversal           |
+| Hover, press, color, or disclosure with two states   | CSS transition                          | Property scope and interruptible reversal           |
 | Simple entry without custom mounting effects         | CSS with `@starting-style` if supported | Entry support does not solve exit presence          |
 | Deliberate finite sequence or looping indicator      | CSS keyframes                           | Repetition, cancellation, reduced motion            |
 | Programmatic timeline/control without a library      | Web Animations API                      | Cancel/finish handling and durable final styles     |
@@ -110,11 +116,11 @@ For Motion, preserve stable keys and let its presence/layout mechanisms do their
 
 Prefer transforms and opacity for movement when they express the intended layout truthfully. They are often compositor-friendly, but hardware acceleration is not guaranteed by syntax, CSS versus JavaScript, or a library name.
 
-Layout animation can be justified when surrounding content must actually move, as in an accordion. Keep its scope small, avoid layout thrashing, and profile it. A scale transform that crushes text and leaves empty layout space is not an adequate substitute.
+Layout animation can be justified when surrounding content must move, as in an accordion. Keep its scope small, avoid layout thrashing, and profile it. A scale transform that crushes text and leaves empty layout space is not an adequate substitute.
 
 Keep geometry reads separate from writes; avoid measuring every item on every pointer event. For changing dimensions, account for fonts, images, responsive layouts, and content updates. Do not force one fixed measured height forever.
 
-Large blur, backdrop filters, shadows, clipping, huge surfaces, and many promoted layers can cost paint or memory. Do not use blur to conceal an underlying state/race problem. Add `will-change` only for a measured need and remove it when no longer useful.
+Large blur, backdrop filters, shadows, clipping, huge surfaces, and many promoted layers can cost paint or memory. Do not use blur to conceal a state bug or request race. Add `will-change` only for a measured need and remove it when no longer useful.
 
 Motion's independent transform values can have different acceleration characteristics from animating a full transform string. Check the installed library, browser, property, and actual animation; do not promise a rewrite will fix all dropped frames. See [Motion performance](https://motion.dev/docs/performance).
 
@@ -122,4 +128,4 @@ Test under realistic rendering and network work, and on representative hardware 
 
 ## Before finishing
 
-Confirm that the implementation still works with zero animation duration, rapid reversal, component unmount, keyboard input, touch input where relevant, and the relevant loading/failure state. Run the project's existing type/build checks when code changes warrant them. Add focused behavioral tests for meaningful state risks; do not add tests that merely assert a timing token's spelling.
+Confirm that the implementation still works with zero animation duration, rapid reversal, component unmount, keyboard input, touch input where relevant, and the relevant loading/failure state. Run the project's existing type and build checks when code changes warrant them. Add focused behavioral tests for meaningful state risks; do not add tests that only assert a timing token's spelling.

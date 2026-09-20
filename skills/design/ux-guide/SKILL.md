@@ -5,8 +5,9 @@ description: Design, diagnose, and repair web-app user flows. Use for confusing 
 
 # Improve user flows
 
-Find where a person's journey breaks down, design a better path, and verify the
-repair when implementation is requested. Cover the task through completion,
+Identify the person's intended outcome and entry point. Trace where the journey
+breaks, design a better path, and verify the repair when implementation is
+requested. Cover the task through completion,
 including interruptions, recovery, and returning later. Preserve the product's
 visual conventions and vocabulary. This skill works independently of other
 skills and external services.
@@ -30,10 +31,10 @@ components, and requirements. Inspect available screens and actual behavior.
 Identify the person, intended outcome, entry point, usage frequency, input
 methods, permissions, and cost of error. Record constraints and unknowns.
 
-Label evidence as **observed**, **code-supported**, **reported**, or **inferred**.
-Screenshots cannot establish behavior, code cannot prove comprehension, and an
-agent walkthrough is not participant research. Keep usage data, personas,
-business rules, and backend capabilities grounded in evidence. Ask when missing
+Label evidence as observed, code-supported, reported, or inferred. Screenshots
+cannot establish behavior, code cannot prove comprehension, and an agent
+walkthrough is not participant research. Keep usage data, personas, business
+rules, and backend capabilities grounded in evidence. Ask when missing
 information changes the proposal; otherwise state assumptions and proceed.
 
 ## Map the journey
@@ -57,8 +58,11 @@ the difficulty, cause, smallest effective change, and verification. Prioritize
 blocked outcomes, lost work, and consequential mistakes.
 
 Remove unnecessary decisions, repeated entry, hidden dependencies, and context
-switching. Keep comparison information together and essential consequences visible.
-Optimize understandable effort rather than a fixed click count.
+switching. Keep comparison information together and essential consequences
+visible. Reduce the effort needed to understand and complete the task. Do not
+optimize for a fixed click count.
+
+### Define the action contract
 
 For each consequential action, specify the trigger, affected object and scope,
 state change, feedback, next actions, preserved work, recovery, and focus
@@ -76,7 +80,7 @@ Read the reference that matches the decision:
 | Implement React state, navigation, focus, or async behavior | [react-interactions.md](references/react-interactions.md)   |
 | Choose checks or assess evidence                            | [validation.md](references/validation.md)                   |
 
-Match engagement to the user's need and natural cadence. Useful previews,
+Match engagement to the user's need and how often it occurs. Useful previews,
 reusable setup, discovery, and growing competence can make a task satisfying.
 Reliable completion may be all an occasional task needs.
 
@@ -86,17 +90,20 @@ When requested, implement the scoped behavior with the existing router, data
 layer, components, forms, and task runner. Read the React reference for React
 implementation. Justify any new dependency through a concrete task requirement.
 
-Carry flow decisions into acceptance checks. Preserve completion through keyboard,
-touch, assistive technology, narrow viewports, and interrupted sessions. Match
-client feedback to the real server contract and name any missing backend support.
-Update the map when implementation changes an assumption.
+Write acceptance checks for the flow decisions. Preserve completion through
+keyboard, touch, assistive technology, narrow viewports, and interrupted
+sessions. Match client feedback to the real server contract and name any missing
+backend support. Update the map when implementation changes an assumption.
 
 Read the validation reference when planning checks or judging an uncertain design.
 Re-run the original task and the relevant failure, backtracking, or interruption
 path. Use behavioral tests or browser checks proportional to risk. Report the
 checks actually performed; a heuristic recommendation remains a hypothesis.
 
-For an audit, report prioritized findings and fixes. For a design, show the
-proposed flow and open decisions. For a repair, report implemented behavior,
-verification evidence, and limitations. Follow the mapping reference's lifetime
-rules for scratch notes; create external tickets only when explicitly requested.
+Match the handoff to the request:
+
+- Audit: prioritized findings and fixes.
+- Design: proposed flow and open decisions.
+- Repair: implemented behavior, verification evidence, and limitations.
+
+Follow the mapping reference's lifetime rules for scratch notes; create external tickets only when explicitly requested.

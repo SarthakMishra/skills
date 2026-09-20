@@ -5,13 +5,15 @@ description: Write or review product-interface copy, including labels, forms, er
 
 # Write interface copy
 
-Help a person understand where they are, what happened, what they can do, and what
+Read the surrounding controls and current state before drafting a string. Help
+the person understand where they are, what happened, what they can do, and what
 happens next. Copy must match the system's behavior. If words cannot fix the
 interaction, identify the smallest behavioral change needed.
 
-Use plain audience language, concrete verbs, adjacent explanations, and explicit
-consequences. The HEY/Basecamp evidence informs these choices; follow the target
-product's vocabulary and tone. This skill works without another skill or service.
+Use familiar words and concrete verbs. Put explanations beside the actions they
+explain and state the consequences. The HEY/Basecamp evidence informs these
+choices; follow the target product's vocabulary and tone. This skill works
+without another skill or service.
 
 ## Reconstruct the interaction
 
@@ -59,11 +61,14 @@ Read the relevant sections of
 [interface-patterns.md](references/interface-patterns.md) for component rules and
 examples. Read the whole reference for a product-wide audit or copy system.
 
-Read [hey-basecamp-evidence.md](references/hey-basecamp-evidence.md) when establishing
-a source-informed voice direction or explaining those patterns. Keep captured
-strings separate from proposed copy; they are evidence, not a template library.
+Read [hey-basecamp-evidence.md](references/hey-basecamp-evidence.md) when
+establishing a writing style informed by the sources or explaining those
+patterns. Keep captured strings separate from proposed copy; they are evidence,
+not a template library.
 
 ## Keep consequences precise
+
+### Actions and outcomes
 
 - Lead action labels with a specific verb and recognizable object. Use noun
   labels for destinations and modes. A staged action should reveal the next step.
@@ -74,6 +79,9 @@ strings separate from proposed copy; they are evidence, not a template library.
   persistence, delivery, undo, or safe retry.
 - Describe errors without blame and offer a recovery the system supports.
 - State destructive scope, timing, reversibility, and effects on data or access.
+
+### Tone and variable handling
+
 - Use personality where it helps comprehension. Keep errors, legal choices,
   payments, permissions, security, health, and accessibility instructions factual.
   Remove greetings, apologies, and enthusiasm from routine system feedback.
@@ -85,8 +93,8 @@ strings separate from proposed copy; they are evidence, not a template library.
 For a small request, provide one recommended string and a short rationale. For a
 flow or audit, use a compact copy table:
 
-| ID / surface | State or trigger | Component | Final copy | Behavior / rationale |
-| ------------ | ---------------- | --------- | ---------- | -------------------- |
+| ID / location | State or trigger | Component | Final copy | Behavior / rationale |
+| ------------- | ---------------- | --------- | ---------- | -------------------- |
 
 Keep observed and proposed copy distinct. Include constraints, variables, and
 accessibility notes only where relevant. For a critique, identify the issue, what
@@ -94,9 +102,9 @@ the person may misunderstand or fail to do, and the replacement or interaction
 change. Offer alternatives only for a real product or tone tradeoff.
 
 Before finishing, check that the person can identify the object, state, and next
-action; primary and secondary controls have distinct outcomes; and vocabulary
-stays consistent. Empty states should teach a useful first move, errors should
-offer recovery, and success should confirm the actual result.
+action. Check that primary and secondary controls have distinct outcomes and
+that vocabulary stays consistent. Empty states should teach a useful first move,
+errors should offer recovery, and success should confirm the actual result.
 
 Check copy in the rendered interface when available, including keyboard and
 screen-reader meaning, zoom, narrow layouts, and translation expansion. If only
