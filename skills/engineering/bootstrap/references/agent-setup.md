@@ -69,6 +69,11 @@ be used. Keep stack-specific skills conditional. For example, recommend relevant
 React skills for a React frontend and Cloudflare/Workers/Wrangler skills for a
 Workers target. Do not install UI or cloud skills into every CLI or library.
 
+For a React frontend, include the model-invoked `design-system` skill from
+[SarthakMishra/skills](https://github.com/SarthakMishra/skills). It establishes the
+foundation's design conventions and guides later component changes. Check its
+availability before frontend setup; see the [companion installation guidance](../README.md#companion-skills).
+
 ## Install and verify the accepted set
 
 Inventory project, user-level, and plugin-provided skills first. Reuse suitable

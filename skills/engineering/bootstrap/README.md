@@ -15,7 +15,8 @@ libraries. Python and Rust support are deferred.
 ## Bring a spec
 
 Provide a PRD/spec as a file, issue, or settled conversation. Bring an established
-design system for a frontend, or choose a shadcn preset during the interview.
+design system for a frontend, or choose a shadcn preset during the interview and
+use `design-system` to establish the foundation's conventions.
 If the product is still undefined, start with Matt Pocock's `grill-me`,
 `grill-with-docs`, or `wayfinder`; use `to-spec` to capture settled decisions.
 
@@ -31,7 +32,7 @@ foundation. Local configuration remains the default.
 | Tooling      | pnpm by default; Bun or npm for a single project; strict TypeScript, Oxlint, and Oxfmt.                           |
 | Frontend     | React, Tailwind CSS, and shadcn with Base UI. Framework follows rendering and hosting needs.                      |
 | Layout       | One project unless actual deployables or shared consumers justify pnpm workspaces. Turbo needs a concrete reason. |
-| Design       | Preserve the existing system, or agree on a shadcn preset.                                                        |
+| Design       | Use `design-system` to preserve or establish conventions from the agreed system or shadcn preset.                 |
 | Verification | Checks, build, and a repeatable smoke test; GitHub Actions when GitHub is selected.                               |
 | Publication  | Local by default. Choose private/public visibility and optional remote creation and push during the interview.    |
 
@@ -57,6 +58,19 @@ self-hosted Postgres. Git publication, infrastructure creation, and an initial
 deployment are separate choices.
 
 ## Companion skills
+
+For a frontend, include
+[`design-system`](https://github.com/SarthakMishra/skills/tree/main/skills/design/design-system).
+It handles shared tokens, component sourcing and authoring, motion, documentation,
+and enforcement. Bootstrap uses it for the minimal foundation; full product design
+remains a separate task. Install it if missing:
+
+```sh
+pnpm dlx skills add SarthakMishra/skills --skill design-system
+```
+
+Choose the coding agents agreed during the interview. This model-invoked companion
+can run within the accepted bootstrap plan without a separate explicit invocation.
 
 Install [Matt Pocock's skills](https://github.com/mattpocock/skills) if they are
 not already available:

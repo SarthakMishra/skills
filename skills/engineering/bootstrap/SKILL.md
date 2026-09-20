@@ -36,9 +36,12 @@ are [Matt Pocock's skills](https://github.com/mattpocock/skills). Do not invent 
 product or silently invoke these user-invoked workflows. Resume after the spec
 exists.
 
-Locate an established design system when there is a frontend. If none exists,
-choosing an approved shadcn preset is enough for bootstrap. Do not turn that
-choice into a product design exercise.
+Locate an established design system when there is a frontend. Use the
+model-invoked `design-system` skill to establish missing conventions from an
+approved shadcn preset or adapt the existing system to the foundation. Check its
+availability during planning; installation guidance is in
+[companion skills](README.md#companion-skills). Keep this work to the foundation
+and its minimal entry point; product screens and features remain outside bootstrap.
 
 If per-repo engineering skill configuration is still needed, check whether
 `setup-matt-pocock-skills` is available now. If it is missing, explain the
@@ -67,7 +70,8 @@ Cover the decisions that affect this project:
   project-specific skills or rules. Read [agent setup](references/agent-setup.md)
   for the file layout, installation scope, and recommended skills.
 - Existing design system or a shadcn preset, using Base UI and Tailwind CSS for
-  the frontend. Surface any conflict with an existing component library.
+  the frontend. Use `design-system` to plan the missing foundations, motion, and
+  documentation. Surface any conflict with an existing component library.
 - Git hosting, private or public visibility, license when relevant, and whether
   this run includes remote creation and the first push. Recommend private when
   visibility is undecided. Default to local preparation without a commit or push;
@@ -145,7 +149,10 @@ Keep generator commits and remote setup within the agreed publication scope.
 - For a frontend, follow the current [shadcn installation guide](https://ui.shadcn.com/docs/installation)
   and [CLI reference](https://ui.shadcn.com/docs/cli). Select Base UI explicitly,
   preserve existing design tokens, and configure Tailwind and component aliases.
-  Add only the components needed to exercise the foundation. Inspect generator
+  Apply `design-system` to the components needed to exercise the foundation,
+  including registry discovery, shadcn authoring, and adaptation to shared tokens
+  and motion. Establish `DESIGN.md` and an agent-instruction pointer; follow the
+  skill's consultation requirement before adding Storybook. Inspect generator
   output for unwanted Radix dependencies or Turborepo configuration.
 - Provide `dev` where applicable, `build`, `format`, `format:check`, `lint`,
   `typecheck`, `check`, and `test:smoke`. Make `check` run the non-mutating format,
