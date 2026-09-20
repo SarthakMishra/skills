@@ -1,6 +1,6 @@
 # Validate the experience
 
-Use evidence appropriate to the claim. Automated checks show behavior; task sessions reveal comprehension and effort; analytics reveal patterns but rarely explain causes alone.
+Use evidence appropriate to the claim. Automated checks verify behavior. Observe task sessions to assess comprehension and effort. Analytics can reveal patterns but rarely explain causes alone.
 
 ## Validate the flow contract
 
@@ -31,7 +31,7 @@ For a design hypothesis, state what observation could disprove it. A before/afte
 
 ## Measures by question
 
-| Question                       | Outcome                                           | Countercheck                                     |
+| Question                       | Outcome                                           | Check for unwanted effects                       |
 | ------------------------------ | ------------------------------------------------- | ------------------------------------------------ |
 | Can people finish?             | Correct task completion                           | Assistance, incorrect completion, abandonment.   |
 | Is it easier?                  | Time/effort to meaningful outcome                 | Errors, rework, unnecessary steps.               |

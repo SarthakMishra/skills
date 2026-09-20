@@ -9,15 +9,15 @@ Read project instructions and existing scratch notes first. Reuse the current ef
 - `overview.md`: app context, journey inventory, overview diagrams, coverage, and named links to detailed flows.
 - `flows/<flow-id>-<slug>.md`: current and proposed behavior, transitions, findings, decisions, and checks for one journey.
 
-For a whole-app effort, a suitable slug is `ux-audit`; for an existing feature, reuse its feature slug. A narrow task can use one flow document without manufacturing a full overview. When no repository exists, use the session's temporary workspace with the same relative structure and say what context the map covers.
+For a whole-app effort, a suitable slug is `ux-audit`; for an existing feature, reuse its feature slug. A narrow task can use one flow document without a full overview. When no repository exists, use the session's temporary workspace with the same relative structure and say what context the map covers.
 
 Keep these separate from existing `.scratch/<feature>/spec.md`, `map.md`, and `issues/<NN>-<slug>.md` conventions. Those may already be canonical specs, decision maps, or tickets. Link to them by descriptive title; do not overwrite them, duplicate their content, reset numbering, or treat UX map files as tickets. If implementation tickets are explicitly requested, follow the project's configured tracker; for local Markdown, use individual numbered issue files and its existing status vocabulary.
 
-Do not create repository configuration or require a setup skill to use these notes. Respect ignore rules; exclude transient maps from product commits by default without silently editing `.gitignore`. Do not assume all of `.scratch/` is disposable: it may contain the project's issue tracker. Retain active maps until the work or handoff is complete; remove only this task's transient files when cleanup is requested or established convention requires it. Do not automatically publish, archive, or commit scratch notes.
+Do not create repository configuration or require a setup skill to use these notes. Respect ignore rules; exclude transient maps from product commits by default without silently editing `.gitignore`. Do not assume all of `.scratch/` is disposable. It may contain the project's issue tracker. Retain active maps until the work or handoff is complete; remove only this task's transient files when cleanup is requested or established convention requires it. Do not automatically publish, archive, or commit scratch notes.
 
 ## Whole-app inventory
 
-Inventory routes and visible navigation, then group them into **user journeys**. A route list alone is not a flow map. Include direct links, notifications, invited users, returning sessions, role differences, and external handoffs where supported.
+Inventory routes and visible navigation, then group them into user journeys. A route list alone is not a flow map. Include direct links, notifications, invited users, returning sessions, role differences, and external handoffs where supported.
 
 Record:
 
@@ -25,11 +25,11 @@ Record:
 | --------- | ------------------- | ----------------------------- | --------------------- | ----------------------- | -------------------------------------------------- |
 | F01: Name | Who wants what      | App route or external trigger | Observable completion | Named next/return flows | Observed, code-supported, reported, or uninspected |
 
-At app level, diagram how journeys connect, including re-entry and role gates. Split large apps by activity or role; keep an index linking every area. Use one overview per coherent area instead of an unreadable mega-diagram. Cover the whole inspected app at a coarse level and deepen the important paths. Explicitly name missing areas and access limits before calling an audit complete.
+At app level, diagram how journeys connect, including re-entry and role gates. Split large apps by activity or role; keep an index linking every area. Use one overview per coherent area so each diagram remains readable. Cover the inspected app in an overview and document important paths in detail. Explicitly name missing areas and access limits before calling an audit complete.
 
 ## Per-flow document format
 
-Use the following structure, omitting sections only when they genuinely do not apply. Fill concrete values rather than leaving template placeholders.
+Use the following structure, omitting sections only when they do not apply. Fill concrete values rather than leaving template placeholders.
 
 ````markdown
 # F02: Invite a teammate
@@ -118,5 +118,5 @@ Use flow status `current`, `proposed`, `agreed`, `implemented`, or `verified` ac
 1. Show the current map and evidence limits, then the proposed changed path and the few decisions that matter. For large audits, show the overview first and review details in manageable groups.
 2. Render Mermaid in the conversation, not only in a file. Explain why a changed branch addresses a finding. Ask a specific question only when the answer would change behavior; do not ask for blanket approval of obvious repairs already authorized.
 3. Record actual feedback and update the relevant node, transition, and decision. When the user requested a review checkpoint, wait there. Otherwise continue authorized implementation with stated assumptions.
-4. Implement against the transition contract. Link finding → proposed node/transition → acceptance check. Record deviations and backend dependencies as they arise.
-5. Reconcile the map with the implemented flow and mark checks verified only after exercising them. Summarize unresolved paths. Reuse the same documents when resuming the effort; re-check their basis against changed code.
+4. Implement against the transition contract. Link each finding to the proposed node or transition and its acceptance check. Record deviations and backend dependencies as they arise.
+5. Reconcile the map with the implemented flow and mark checks verified only after exercising them. Summarize unresolved paths. Reuse the same documents when resuming the effort; check that they still describe the code.

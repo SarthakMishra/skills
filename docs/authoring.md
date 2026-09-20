@@ -4,6 +4,11 @@ Start with the job the skill should handle and a result you can check. Write the
 instructions needed to produce that result. Use this guide when adding or editing
 skills, their READMEs, or repository instructions.
 
+Use the `unslop` skill whenever drafting or revising any Markdown file in this
+repository, including skills, references, READMEs, and documentation. Apply it
+while writing and review the finished draft for remaining patterns. Preserve
+technical meaning, code examples, and quoted source text.
+
 ## Create only what the skill needs
 
 Keep each skill at `skills/<category>/<skill-name>/SKILL.md`, using the
@@ -59,10 +64,10 @@ Add `agents/openai.yaml` only when policy or picker metadata needs it. See the
 and [Codex policy](https://learn.chatgpt.com/docs/build-skills#optional-metadata).
 
 A workflow can use a model-invoked skill when it is available. If it needs a
-user-invoked skill, tell the person which one to select. Shared reference material
-must not require silently invoking an explicit-only workflow. Give it an accessible
-owner and document any installation dependency; avoid relative links to files
-outside the installed skill.
+user-invoked skill, tell the person which one to select. Put shared reference
+material where readers can access it without invoking an explicit-only workflow.
+Document any installation dependency. Avoid relative links to files outside the
+installed skill.
 
 ## Make triggers specific
 
@@ -121,9 +126,10 @@ files alone does not isolate later instructions that are already in context. A
 separate stage or handoff is worth considering only if the problem persists and
 that separation actually keeps later work out of context.
 
-Add a router only when choosing among user-invoked skills becomes difficult. Its
-job is to recommend a skill; it cannot bypass that skill's explicit invocation
-requirement. A short category index is enough while the choices are easy to scan.
+Add a router only when choosing among user-invoked skills becomes difficult. It
+recommends a skill but cannot bypass that skill's explicit invocation
+requirement. A short category index is enough while the choices are easy to
+scan.
 
 ## Edit for useful instructions
 

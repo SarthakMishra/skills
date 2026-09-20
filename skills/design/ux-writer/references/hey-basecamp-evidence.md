@@ -14,7 +14,7 @@ Use this reference to understand the reasoning behind the skill. It records repr
 
 ## Source boundaries
 
-The principles below were derived from:
+The principles below draw on:
 
 - Basecamp's ["Copywriting is Interface Design"](https://basecamp.com/gettingreal/09.7-copywriting-is-interface-design) chapter.
 - Public [HEY feature explanations](https://www.hey.com/features/) and [Basecamp feature explanations](https://basecamp.com/features) consulted during the original research.
@@ -28,7 +28,7 @@ as historical examples rather than claims about the current interface.
 
 ## Getting Real principles
 
-The chapter treats decisions about labels, quantities, examples, state names, and explanatory length as interface design. Its operative lessons are:
+The chapter treats decisions about labels, quantities, examples, state names, and explanatory length as interface design. Apply these lessons:
 
 1. Every word changes the interaction, just as an icon or layout choice does.
 2. Start with what the reader needs to know in that moment.
@@ -116,7 +116,7 @@ Lesson: a short noun-plus-purpose pair can do more work than a clever label or a
 
 ## Transferable voice model
 
-The shared voice can be modeled without imitation:
+Apply these writing patterns using the target product's vocabulary:
 
 | Quality     | Operational behavior                                                  |
 | ----------- | --------------------------------------------------------------------- |
@@ -126,7 +126,7 @@ The shared voice can be modeled without imitation:
 | Opinionated | Recommend a mental model rather than exposing implementation options. |
 | Explanatory | Teach novelty and consequence next to the control.                    |
 | Calm        | Use plain facts for errors, risk, and routine success.                |
-| Economical  | Stop when the knowledge gap is closed.                                |
+| Economical  | Stop when the person has enough information to act.                   |
 
 Adapt these behaviors to the product's audience. A banking, medical, developer, children's, or government interface will need different terminology and degrees of warmth.
 

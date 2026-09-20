@@ -20,13 +20,13 @@ The Claude import provides compatibility across installations that do not load
 `AGENTS.md` directly. Use a relative in-repo import rather than an absolute path
 to the user's machine.
 
-Preserve existing instruction files and their ownership of shared guidance.
-When adding a second agent, give its entry file an explicit route to that
+Preserve existing instruction files and keep shared guidance in its current
+file. When adding a second agent, give its entry file an explicit route to that
 guidance rather than copying it. Codex instructions can tell the agent to read
-an existing `CLAUDE.md`; Claude's `@` import syntax is not a Codex import feature.
-If both files exist, reconcile conflicting instructions with the user and keep
-each shared rule in one place. Companion setup owns its `Agent skills` block;
-ensure both agents can reach the file it updates.
+an existing `CLAUDE.md`; Claude's `@` import syntax is not a Codex import
+feature. If both files exist, reconcile conflicting instructions with the user
+and keep each shared rule in one place. Companion setup owns its `Agent skills`
+block; check that both agents can read the file it updates.
 
 Record the conventions an agent needs for this repo: domain boundaries, spec and
 design pointers, checks required before handoff, generated files to leave to
@@ -63,11 +63,12 @@ on every task. Let the user adjust the selection during the bootstrap interview.
 | `writing-for-agents`       | Maintain agent instructions and skills.                                                                      |
 | `handoff`                  | Carry decisions and unfinished work into another session.                                                    |
 
-Offer `grill-with-docs`, `to-spec`, `to-tickets`, and `wayfinder` when the project's
-planning workflow needs them; include `triage` only when its issue workflow will
-be used. Keep stack-specific skills conditional. For example, recommend relevant
-React skills for a React frontend and Cloudflare/Workers/Wrangler skills for a
-Workers target. Do not install UI or cloud skills into every CLI or library.
+Offer `grill-with-docs`, `to-spec`, `to-tickets`, and `wayfinder` when the
+project's planning workflow needs them; include `triage` only when the project
+will use its issue workflow. Keep stack-specific skills conditional. For
+example, recommend relevant React skills for a React frontend and
+Cloudflare/Workers/Wrangler skills for a Workers target. Do not install UI or
+cloud skills into every CLI or library.
 
 For a React frontend, include the model-invoked `design-system` skill from
 [SarthakMishra/skills](https://github.com/SarthakMishra/skills). It establishes the
@@ -90,13 +91,13 @@ Prefer a project installation for shared repo conventions. An existing personal
 or plugin installation can satisfy a dependency; document any onboarding
 requirement for collaborators without copying the user's home directory.
 
-Verify the resulting paths against the current
-[Codex skills documentation](https://learn.chatgpt.com/docs/build-skills) and
-[Claude skills documentation](https://code.claude.com/docs/en/skills).
-Codex project skills use `.agents/skills`; Claude project skills use
-`.claude/skills`. Let the installer manage supported shared copies or links.
-Keep references inside each installed skill resolvable and retain source/license
-information. Exclude machine-local state and credentials from the commit.
+Verify the resulting paths against the current [Codex skills
+documentation](https://learn.chatgpt.com/docs/build-skills) and [Claude skills
+documentation](https://code.claude.com/docs/en/skills). Codex project skills use
+`.agents/skills`; Claude project skills use `.claude/skills`. Let the installer
+manage supported shared copies or links. Check that references inside each
+installed skill resolve and retain source and license information. Exclude
+machine-local state and credentials from the commit.
 
 Installing a user-invoked skill does not invoke it. Preserve its invocation
 controls and the explicit companion setup handoff in the main workflow.

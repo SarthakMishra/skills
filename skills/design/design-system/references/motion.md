@@ -43,11 +43,11 @@ For every changed interaction, record:
 - Reduced-motion treatment and how the same information remains available.
 - Focus, pointer, keyboard, and mounting behavior during the transition.
 
-For a popover, anchor the movement to its trigger, use the shared entry and exit
-recipes, and allow closing or reopening mid-transition. Let the accessible control
-manage focus and open state. If an exiting element remains mounted, ensure hidden
-controls are not still reachable. Reduced motion can make the transition instant
-while preserving the same open state and focus behavior.
+For a popover, start movement at its trigger and use the shared entry and exit
+recipes. Allow closing or reopening mid-transition. Let the accessible control
+manage focus and open state. If an exiting element remains mounted, ensure
+hidden controls are not still reachable. Reduced motion can make the transition
+instant while preserving the same open state and focus behavior.
 
 ## Implement reduced motion and interruption
 
@@ -71,10 +71,11 @@ unbounded stagger before the final items become usable.
 
 ## Verify recipes, not just screenshots
 
-Exercise normal speed, rapid toggle/reversal, input during entry and exit, unmount,
-and reduced motion. Check keyboard focus and pointer access throughout. Verify
-JavaScript motion against server rendering and preference changes when relevant.
-Use slow playback to locate a discontinuity, then judge the result at normal speed.
+Test at normal speed and with reduced motion. Toggle or reverse the animation
+rapidly, provide input during entry and exit, and unmount the component during
+animation. Check keyboard focus and pointer access throughout. Verify JavaScript
+motion against server rendering and preference changes when relevant. Use slow
+playback to locate a discontinuity, then judge the result at normal speed.
 
 Document representative recipes in Storybook when adopted, or link to concrete
 app examples from `DESIGN.md`. Screenshots cover resting states; they cannot prove

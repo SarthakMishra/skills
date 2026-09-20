@@ -6,7 +6,7 @@ and `ux-writer` for the words.
 
 ## Model-invoked
 
-The agent can reach for these during a matching task. You can also invoke them
+The agent can use these during a matching task. You can also invoke them
 directly. See the [invocation guide](../../README.md#skills).
 
 - [design-system](design-system/SKILL.md): Build, adopt, and enforce a React, Tailwind, and shadcn/ui design system, including motion. [Usage](design-system/README.md).

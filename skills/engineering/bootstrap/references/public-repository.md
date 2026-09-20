@@ -1,9 +1,10 @@
 # Public repository preparation
 
-Use this branch when the agreed repository visibility is public, including when
-the current run ends locally. Complete file and history checks before any public
-push. Apply remote settings only when repository creation or administration is
-authorized, and distinguish prepared settings from settings verified on GitHub.
+Use this reference when the agreed repository visibility is public, including
+when the current run ends locally. Complete file and history checks before any
+public push. Apply remote settings only when repository creation or
+administration is authorized, and distinguish prepared settings from settings
+verified on GitHub.
 
 ## Review what will become public
 
@@ -12,8 +13,8 @@ authorized, and distinguish prepared settings from settings verified on GitHub.
   the latest tree is clean. A `.gitignore` rule does not remove tracked content.
 - Check source, docs, fixtures, assets, logs, local tracker notes, and agent
   configuration for credentials, personal/customer data, internal URLs, and
-  private material. Use sanitized examples. Decide intentionally whether local
-  issue files and private spec/design documents belong in the publication.
+  private material. Use sanitized examples. Decide whether local issue files and private spec or design documents
+  belong in the publication.
 - Run an established secret scanner such as [Gitleaks](https://github.com/gitleaks/gitleaks)
   over both proposed files and the history being published. Use its current CLI
   and redact findings in output. A diff-only scan misses older commits; a Git
@@ -23,7 +24,7 @@ authorized, and distinguish prepared settings from settings verified on GitHub.
 - If credentials were exposed, stop publication and arrange revocation or
   rotation. Remove sensitive material from the outgoing history as well as the
   current files. Agree on any history rewrite separately; never force-push a
-  shared repository to conceal the finding. Re-scan after remediation.
+  shared repository to conceal the finding. Re-scan after removing the exposed material.
 - Confirm the user's license choice and retain notices for imported code and
   assets. Public visibility does not mean packages should be publishable.
 

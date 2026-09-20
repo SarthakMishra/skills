@@ -1,15 +1,16 @@
 # Sources and judgment
 
 The skill combines the methodology below with implementation and enforcement
-guidance for the requested stack. Its proposed token names, motion values, and
-workflow adaptations are recommendations, not quotations or universal standards.
+guidance for the requested stack. The proposed token names, motion values, and
+workflow adaptations are this skill's recommendations. They are not quotations
+or universal standards.
 
 ## Methodology and visual design
 
 - Brad Frost, [Atomic Design, chapter 2](https://atomicdesign.bradfrost.com/chapter-2/).
   Source for the five composition levels and moving between parts and real pages.
   The model does not require a particular framework or folder taxonomy.
-- [Chapter 3](https://atomicdesign.bradfrost.com/chapter-3/) informs living examples
+- [Chapter 3](https://atomicdesign.bradfrost.com/chapter-3/) informs maintained examples
   and shared source; [chapter 4](https://atomicdesign.bradfrost.com/chapter-4/) informs
   interface inventories; [chapter 5](https://atomicdesign.bradfrost.com/chapter-5/)
   informs contributions, evolution, and deprecation. Adopt these practices within

@@ -6,10 +6,11 @@ These rules adapt _Refactoring UI_ to a reusable system; the source map is in
 
 ## Start with a feature
 
-Select a feature that exposes meaningful constraints, such as an editable settings
-form or a searchable list. Use realistic text and the first-use, populated, and
-failure states. Establish hierarchy and grouping before refining decoration.
-Validate shared choices on another relevant composition before generalizing them.
+Select a feature that tests the system's constraints, such as an editable
+settings form or a searchable list. Use realistic text and the first-use,
+populated, and failure states. Establish hierarchy and grouping before refining
+decoration. Validate shared choices on another relevant composition before
+applying them across the system.
 
 Derive the visual direction from the product and existing brand. Translate words
 like "restrained" or "expressive" into concrete choices for type, density, color,
@@ -52,12 +53,12 @@ chart data, measured positions, and user-selected colors.
   for controls even when surrounding data can be understood without extra labels.
 - Put more space between groups than within a group. Define compact density only
   where the task benefits from it, preserving usable targets and focus indicators.
-- Tune typography and component padding at different sizes deliberately. Scaling
+- Tune typography and component padding for each size. Scaling
   every dimension proportionally rarely produces useful small and large variants.
 - Constrain prose width and choose line height for the actual font and line length.
   Let layouts respond to content; a fixed column count is not a universal rule.
 - Use depth to explain layering and interactivity. Prefer spacing or contrasting
-  surfaces when extra borders merely repeat the same grouping information.
+  surfaces when extra borders repeat the same grouping information.
 - Check palettes in use, including feedback and focus. Retain supported HSL or
   OKLCH conventions; the book's color-space advice is not a reason to rewrite a
   working theme. Meaning needs text, shape, or an icon in addition to color.

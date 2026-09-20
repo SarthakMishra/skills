@@ -10,19 +10,20 @@ Include token definitions, repeated utility combinations, competing components,
 local shadcn modifications, motion recipes, and existing docs or tests. Record
 evidence using real paths and consumers, not hypothetical inconsistencies.
 
-Use a compact table with family, current implementations, relevant consumers,
-differences, chosen canonical implementation, and disposition. Mark each family as
-retain, merge, replace, or retire. Distinguish intentional product differences
-from accidental drift; frequency alone does not make a pattern correct.
+Use a compact table to record each component family, its current implementations
+and consumers, their differences, the chosen implementation, and the planned
+action. Mark each family as retain, merge, replace, or retire. Distinguish
+intentional product differences from accidental drift; frequency alone does not
+make a pattern correct.
 
 1. Choose canonical patterns using usability, accessibility, existing identity,
    behavior, and adoption. Record the choice and any needed API changes.
 2. Map legacy tokens and variants to their replacements. Preserve supported themes
    and behavior. Use temporary aliases or adapters only when consumers need them.
 3. Migrate a representative composition and inspect the result in context. Use its
-   findings to refine the contract before propagating it.
+   findings to refine the contract before migrating other components.
 4. Complete the remaining in-scope consumers in manageable batches. Track old and
-   new paths so deferred work is explicit rather than an invisible second system.
+   new paths so the remaining migration work is visible.
 5. Remove obsolete definitions when consumer searches and relevant checks show
    they are unused. For separately released consumers, deprecate with a replacement
    and migration instructions before removal.
@@ -52,8 +53,9 @@ Link to executable values instead of copying entire token tables into prose.
 Keep rationale and usage guidance beside the canonical code or in this document.
 Update them in the same change that alters the contract.
 
-When establishing agentic enforcement, add a short, path-correct instruction to
-the project's existing `AGENTS.md` or equivalent, preserving unrelated guidance:
+To make coding agents follow the system, add a short instruction with the
+correct path to the project's existing `AGENTS.md` or equivalent, preserving
+unrelated guidance:
 
 > Before creating or changing UI components, read DESIGN.md. Reuse its canonical
 > components, tokens, and motion recipes. Record any required exception and update
@@ -67,10 +69,11 @@ should follow the existing pointer rather than rewriting project instructions.
 ## Offer Storybook when its cost is justified
 
 A large component catalog, many state combinations, or independent contributors
-can justify a dedicated workbench. There is no universal component-count threshold.
-Follow the consultation requirement in `SKILL.md` before adopting Storybook.
-Explain the proposed scope, development dependencies, scripts, and CI cost. A
-pending or declined choice does not block `DESIGN.md` or component implementation.
+can justify a separate component preview environment. There is no universal
+component-count threshold. Follow the consultation requirement in `SKILL.md`
+before adopting Storybook. Explain the proposed scope, development dependencies,
+scripts, and CI cost. A pending or declined choice does not block `DESIGN.md` or
+component implementation.
 
 When approved or already present:
 
@@ -91,9 +94,8 @@ but does not automatically prevent a consuming page from bypassing the system.
 ## Enforce the decisions that can be checked
 
 Start with canonical source, typed component APIs, discoverable guidance, and a
-review of changed consumers. Reuse installed lint rules and test facilities.
-Escalate to a custom rule when an actual recurring violation cannot be caught
-reliably by existing checks.
+review of changed consumers. Reuse installed lint rules and test facilities. Add
+a custom rule when existing checks cannot reliably catch a recurring violation.
 
 | Contract                            | Suitable enforcement                                              | Boundary                                                                |
 | ----------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------- |
@@ -105,15 +107,16 @@ reliably by existing checks.
 | Visual consistency                  | Rendered comparisons in representative pages                      | Review baseline changes; do not accept them automatically               |
 
 Define exactly which paths and values a rule governs before writing it. Tailwind
-contains variants, arbitrary values, CSS variable references, and class composition
-helpers. A grep match is an audit lead, not reliable proof of a violation. Avoid
-blanket bans on numeric utilities, inline styles, arbitrary values, or native
-elements; legitimate layout, dynamic data, and accessible composition need them.
+contains variants, arbitrary values, CSS variable references, and class
+composition helpers. Inspect grep matches before reporting them as violations.
+Avoid blanket bans on numeric utilities, inline styles, arbitrary values, or
+native elements; legitimate layout, dynamic data, and accessible composition
+need them.
 
 If implementing a custom rule, use the installed linter's supported extension
 mechanism and parser. Test an actual violation, an approved token reference, and
-a legitimate exception. Wire it into a command that CI actually runs. Start with
-adopted paths or a recorded legacy baseline so adoption does not demand unrelated
+a legitimate exception. Add it to a command that CI runs. Start with adopted
+paths or a recorded legacy baseline so adoption does not demand unrelated
 rewrites; new violations must not silently expand the baseline.
 
 Record exceptions with location, reason, scope, and a removal or review condition.

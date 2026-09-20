@@ -36,7 +36,7 @@ For existing-system adoption, read
 [adoption-and-enforcement.md](references/adoption-and-enforcement.md) now and
 complete its inventory before selecting canonical patterns.
 
-Finish with the scope, current sources of truth, constraints, and visible gaps.
+Record the scope, authoritative files, constraints, and gaps before continuing.
 
 ## 2. Apply Atomic Design in context
 
@@ -58,9 +58,10 @@ Allow direct composition across levels; avoid wrappers whose only purpose is to
 satisfy the taxonomy.
 
 For creation or foundation changes, read
-[foundations.md](references/foundations.md). Prove the choices in a representative
-feature, then feed problems with content, density, or state back into the shared
-definitions. A single attractive component does not validate the system.
+[foundations.md](references/foundations.md). Prove the choices in a
+representative feature, then revise the shared definitions to address problems
+with content, density, or state. A single attractive component does not validate
+the system.
 
 ## 3. Implement the component contracts
 
@@ -76,10 +77,10 @@ why the chosen implementation fits. New components must follow the project's
 shadcn authoring patterns and design-system contract.
 
 Define each changed component's purpose, supported variants, content limits,
-responsive behavior, semantics, keyboard and focus behavior, and relevant states.
-Include empty, loading, error, disabled, and selected states where applicable.
-Distinguish visual emphasis from meaning: a destructive action may have a quiet
-treatment while retaining an unambiguous label and semantics.
+responsive behavior, semantics, keyboard and focus behavior, and relevant
+states. Include empty, loading, error, disabled, and selected states where
+applicable. Distinguish visual emphasis from meaning. A destructive action may
+use subdued styling while retaining an unambiguous label and semantics.
 
 Motion is part of this contract. For system creation or any interaction or motion
 change, read [motion.md](references/motion.md). Specify the motion recipe or an
@@ -110,9 +111,9 @@ existing agent instructions when establishing enforcement, so future component
 work reaches `DESIGN.md`. A skill installation alone does not enforce a system.
 Use existing lint and test facilities before introducing custom rules.
 
-Finish with discoverable conventions, the chosen enforcement actually wired into
-the project, and any migration gaps or exceptions recorded. Do not claim a full
-migration while legacy consumers remain in the agreed scope.
+Before continuing, check that contributors can find the conventions and run the
+chosen enforcement checks. Record any migration gaps or exceptions. Do not claim
+a full migration while legacy consumers remain in the agreed scope.
 
 ## 5. Verify the affected system
 

@@ -27,22 +27,23 @@ The agent can select this skill for matching work. Invoke it explicitly with
 
 ## What to expect
 
-A useful result connects executable tokens and components to real screens, records
-conventions and exceptions, and reports what was tested. Existing projects should
-get an inventory and an explicit migration status. Small projects use `DESIGN.md`.
-For larger systems, the agent consults you before adding Storybook and its required
-development workflow.
+The resulting screens use the shared tokens and components. Documentation
+records conventions and exceptions, and the handoff reports what was tested.
+Existing projects should get an inventory and an explicit migration status.
+Small projects use `DESIGN.md`. For larger systems, the agent consults you
+before adding Storybook and its required development workflow.
 
 Before creating missing components, the skill searches relevant community
-registries with the shadcn CLI. A [shortlist of 14 specialist registries](references/registry-discovery.md)
-covers documents, AI interfaces, tables, charts, maps, editors, and motion. Imported
-source is adapted to local tokens and behavior; new source follows the project's
-shadcn authoring conventions. The shortlist includes maintenance evidence and
-known compatibility limits.
+registries with the shadcn CLI. A [shortlist of 14 specialist
+registries](references/registry-discovery.md) covers documents, AI interfaces,
+tables, charts, maps, editors, and motion. The agent adapts imported source to
+local tokens and behavior and writes new components using the project's shadcn
+conventions. The shortlist includes maintenance evidence and known compatibility
+limits.
 
 Enforcement starts with shared APIs and project guidance. The skill can add
-targeted lint or test checks when justified by recurring violations. It does not
-install a universal lint plugin or enforce anything merely by being installed.
+targeted lint or test checks when justified by recurring violations. Installing
+the skill alone does not add a lint plugin or enforce these rules.
 
 The agent needs access to the project and its tooling. A running app or preview
 allows visual and interaction checks; unavailable checks must be reported. The

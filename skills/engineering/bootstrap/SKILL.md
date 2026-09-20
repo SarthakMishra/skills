@@ -7,10 +7,9 @@ compatibility: Requires shell access, Git, a JavaScript toolchain, and current o
 
 # Bootstrap
 
-Produce a working repository foundation from an existing PRD or spec. Settle the
-bootstrap choices with the user before writing files. Finish with an exercised
-build and smoke test, consistent development commands, and engineering skill
-configuration.
+Create a working repository from an existing PRD or spec. Settle the bootstrap
+choices with the user before writing files. Run the build and smoke test, check
+the development commands, and configure the engineering skills.
 
 Support TypeScript web apps, APIs, CLIs, and libraries. Use React when a frontend
 is needed. Python and Rust bootstrapping are not supported yet; explain that
@@ -48,11 +47,11 @@ If per-repo engineering skill configuration is still needed, check whether
 dependency and use the installation guidance in this skill's
 [README](README.md#companion-skills). Resolve availability before scaffolding.
 
-## 2. Grill the bootstrap decisions
+## 2. Settle the bootstrap decisions
 
 Use the model-invoked `grilling` skill when available. Otherwise interview in
-rounds: ask the independent unresolved questions, give a recommendation with its
-reason, wait for answers, then ask the questions those answers unlock. Discover
+rounds. Ask independent unresolved questions and explain each recommendation.
+Wait for answers before asking follow-up questions that depend on them. Discover
 facts from files and tools yourself. Reuse choices already settled in the spec
 or conversation; ask about conflicts rather than restarting the interview.
 
@@ -71,7 +70,7 @@ Cover the decisions that affect this project:
   for the file layout, installation scope, and recommended skills.
 - Existing design system or a shadcn preset, using Base UI and Tailwind CSS for
   the frontend. Use `design-system` to plan the missing foundations, motion, and
-  documentation. Surface any conflict with an existing component library.
+  documentation. Identify any conflict with an existing component library.
 - Git hosting, private or public visibility, license when relevant, and whether
   this run includes remote creation and the first push. Recommend private when
   visibility is undecided. Default to local preparation without a commit or push;
@@ -141,7 +140,7 @@ Keep generator commits and remote setup within the agreed publication scope.
 
 - Enable strict TypeScript. Align any aliases across TypeScript, the build tool,
   and tests. In a workspace, define explicit package exports and dependencies;
-  keep shared configuration at the root only where it is actually shared.
+  keep configuration at the root only when multiple packages use it.
 - Configure Oxlint and Oxfmt. Check their coverage for the chosen file types,
   especially Astro and MDX. Use the smallest framework-specific supplement for
   uncovered files and explain it; do not quietly skip them or retain a duplicate
@@ -170,7 +169,7 @@ Keep generator commits and remote setup within the agreed publication scope.
   distribution.
 
 For selected persistence and hosting, follow the local setup and verification
-requirements in the database and hosting reference. Local wiring may include a
+requirements in the database and hosting reference. Local setup may include a
 runtime adapter, safe environment examples, or service configuration. Keep
 deployment, migrations, paid API calls, and external content generation out of
 normal build and check commands.
@@ -196,18 +195,18 @@ work. Resume bootstrap after setup finishes. Do not emulate its templates or
 silently invoke it; it owns the tracker, optional triage labels, domain-doc
 layout, and the `Agent skills` block.
 
-Pass the existing choices into setup so they are not asked again. Let it select
-`AGENTS.md` or `CLAUDE.md` according to the files present and the user's preference.
-Afterward, finish the other agent's entry file when both agents were selected,
-and verify both can reach the same engineering conventions.
-A local-only bootstrap can still choose GitHub Issues for a future remote; record
-that dependency without creating a remote or tickets implicitly.
+Pass the existing choices into setup so it does not ask the same questions
+again. Let it select `AGENTS.md` or `CLAUDE.md` according to the files present
+and the user's preference. Afterward, finish the other agent's entry file when
+both agents were selected, and verify both can reach the same engineering
+conventions. A local-only bootstrap can still choose GitHub Issues for a future
+remote; record that dependency without creating a remote or tickets implicitly.
 
-Verify setup's output and preserve its conventions. Record the agreed domain
-terms and bootstrap decisions in the selected glossary/ADR layout when there is
-substance to record. Workspace membership alone does not require multiple domain
-contexts. Link to the source spec and design system rather than rewriting them.
-Keep private specs and notes out of published docs.
+Verify setup's output and preserve its conventions. Record agreed domain terms
+in the selected glossary and bootstrap decisions in the selected ADR layout when
+there is something to record. Workspace membership alone does not require
+multiple domain contexts. Link to the source spec and design system rather than
+rewriting them. Keep private specs and notes out of published docs.
 
 Write a project README with the actual install, development, check, build, and
 smoke commands. Explain the chosen module boundaries and any required local
@@ -266,5 +265,5 @@ without treating that dependency as authorization for an unselected operation.
 
 Report the stack and layout, checks actually passed, agent and companion setup,
 Git status, and infrastructure state separately. A prepared workflow is not a
-passed CI run; a provisioned host is not a deployed app. Leave unverified items
-explicit. Stop at the foundation; product implementation remains a separate task.
+passed CI run; a provisioned host is not a deployed app. Name any unverified
+items. Stop at the foundation; product implementation remains a separate task.

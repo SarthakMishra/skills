@@ -1,8 +1,8 @@
 # Find components before building them
 
-Read this before creating a component that the local system cannot already supply,
-or before importing a registry component. The search result is a candidate source;
-the project's design-system contract determines what ships.
+Read this before creating a component that the local system cannot already
+supply, or before importing a registry component. Check each candidate against
+the project's design-system contract before adopting it.
 
 ## Search the local system, then the registries
 
@@ -48,16 +48,16 @@ configuration. Add a namespace mapping only when its documented endpoint, style,
 or authentication needs one.
 
 Use `--offset` and `--limit` for additional pages. For a multi-registry search,
-current CLI results are merged and paginated; query a specialist separately if its
-matches are buried. Item names are case-sensitive and may encode framework or
-styling variants. Use the returned `addCommandArgument` rather than guessing names.
-Search catalog URLs; use item URLs for `view` and `add`.
+the current CLI merges and paginates results; query a specialist separately if
+its matches are buried. Item names are case-sensitive and may encode framework
+or styling variants. Use the returned `addCommandArgument` rather than guessing
+names. Search catalog URLs; use item URLs for `view` and `add`.
 
-[Dynamic search](https://ui.shadcn.com/docs/registry/dynamic-search) is a registry
-server capability. Static catalogs are filtered by the CLI; servers returning
-pagination can filter remotely. It does not require building a search service or
-changing the consuming app. On an error, isolate the failing registry and continue
-with the others or its official catalog.
+[Dynamic search](https://ui.shadcn.com/docs/registry/dynamic-search) is a
+registry server capability. The CLI filters static catalogs. Servers that return
+paginated results can filter remotely. It does not require building a search
+service or changing the consuming app. On an error, isolate the failing registry
+and continue with the others or its official catalog.
 
 ## Review before adding
 
@@ -92,13 +92,13 @@ This is a discovery shortlist, not a guarantee that every item fits every app.
 | [Extend UI](https://ui.extend.ai/ui/docs), `@extend`                           | PDF/document viewers, citations, schema editing, human review  | [Extend source](https://github.com/extend-hq/ui)                                | Use the style-aware endpoint below; inspect document engine dependencies.                            |
 | [AI Elements](https://ai-sdk.dev/elements), `@ai-elements`                     | Conversation, reasoning, tools, artifacts, AI workflows        | [Vercel source](https://github.com/vercel/ai-elements)                          | Match the actual AI SDK/state API; do not install the whole catalog.                                 |
 | [assistant-ui](https://www.assistant-ui.com/), `@assistant-ui`                 | Chat threads, attachments, branching, runtime adapters         | [Maintained library and adapters](https://github.com/assistant-ui/assistant-ui) | This can introduce a runtime, not just copied presentation.                                          |
-| [OpenStatus tables](https://data-table.openstatus.dev/), `@data-table-filters` | Faceted filters, infinite tables, row details                  | [OpenStatus source](https://github.com/openstatusHQ/data-table-filters)         | Choose client or server patterns deliberately; demo database wiring is optional.                     |
+| [OpenStatus tables](https://data-table.openstatus.dev/), `@data-table-filters` | Faceted filters, infinite tables, row details                  | [OpenStatus source](https://github.com/openstatusHQ/data-table-filters)         | Choose client or server patterns deliberately; the demo database connection is optional.             |
 | [Bklit UI](https://ui.bklit.com/), `@bklit`                                    | Composable interactive charts                                  | [Bklit source](https://github.com/bklit/bklit-ui)                               | Visx and Motion differ from a project's existing Recharts stack.                                     |
 | [EvilCharts](https://evilcharts.com/docs), `@evilcharts`                       | Recharts compositions and specialized visualizations           | [Community source](https://github.com/legions-developer/evilcharts)             | Match chart roles, labels, themes, and motion to the system.                                         |
 | [dashboardcn](https://dashboardcn.com/), `@dashboardcn`                        | KPI cards, funnels, heatmaps, ranked lists                     | [Small, recently active project](https://github.com/NoahGdev/dashboardcn)       | Verify table/chart dependency versions; maintenance history is short.                                |
 | [mapcn](https://mapcn.dev/), `@mapcn`                                          | Maps, markers, routes, geographic dashboards                   | [Community source](https://github.com/AnmolSaini16/mapcn)                       | MapLibre, tile sources, attribution, and client rendering need integration.                          |
 | [Plate](https://platejs.org/), `@plate`                                        | Rich-text editing, toolbars, editor plugins                    | [Editor packages and source](https://github.com/udecode/plate)                  | Select needed plugins and check item licenses; avoid a full demo editor by default.                  |
-| [Kibo UI](https://www.kibo-ui.com/), `@kibo-ui`                                | Kanban, Gantt, file handling, color pickers, media             | [Shadcnblocks-maintained source](https://github.com/shadcnblocks/kibo)          | Check the selected component's dependencies and freshness separately.                                |
+| [Kibo UI](https://www.kibo-ui.com/), `@kibo-ui`                                | Kanban, Gantt, file handling, color pickers, media             | [Shadcnblocks-maintained source](https://github.com/shadcnblocks/kibo)          | Check the selected component's dependencies and recent updates separately.                           |
 | [coss ui](https://coss.com/ui), `@coss`                                        | Number fields, grouped controls, composed application patterns | [Cal.com design-system source](https://github.com/cosscom/coss)                 | Base UI composition; verify directory-specific licenses in this mixed-license repo.                  |
 | [Magic UI](https://magicui.design/), `@magicui`                                | Counters, marquees, text and presentation effects              | [Established community source](https://github.com/magicuidesign/magicui)        | Distinguish free components from paid templates; reduce decorative motion.                           |
 | [React Bits](https://reactbits.dev/), `@react-bits`                            | Specialized animated text, backgrounds, interactive effects    | [Established community source](https://github.com/DavidHDev/react-bits)         | Select TypeScript/Tailwind items; inspect GPU cost, licenses, and reduced motion.                    |

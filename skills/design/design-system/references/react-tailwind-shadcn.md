@@ -11,10 +11,10 @@ Components should consume semantic roles such as `bg-primary` and
 `text-primary-foreground` together. Keep raw palette choices inside the theme or
 explicitly documented specialist uses, such as data visualization.
 
-For Tailwind v4, define theme utilities in CSS with `@theme`; use `@theme inline`
-when mapping theme variables to other CSS variables. Keep mode-specific values in
-the project's theme selectors. This abbreviated example maps existing variables,
-not a complete theme to paste over the project's CSS:
+For Tailwind v4, define theme utilities in CSS with `@theme`; use `@theme
+inline` when mapping theme variables to other CSS variables. Keep mode-specific
+values in the project's theme selectors. This example maps existing variables.
+It is incomplete and should not replace the project's theme:
 
 ```css
 @theme inline {
@@ -81,7 +81,7 @@ repeated consumer overrides create a second, undocumented design system.
 
 1. Identify the behavior to retain: composition parts, controlled state, keyboard
    handling, focus, refs, ARIA relationships, and public props. Separate these
-   contracts from the demo's styling and application wiring.
+   contracts from the demo's styling and application setup.
 2. Map the component's visual choices to project tokens and variants. Replace
    hardcoded palette values, typography, spacing, radius, elevation, and stacking
    where the contract requires it. Preserve meaningful chart series distinctions
@@ -137,11 +137,12 @@ control library. shadcn conventions evolve; the local version determines details
   as installed components, regardless of where its source originated.
 
 Registry publishing is separate from component authoring. Only when distribution
-is requested, add a schema-valid item manifest with file types and paths, package
-`dependencies`, and component `registryDependencies`. Choose `registry:ui`,
-`registry:component`, or `registry:block` for what is actually distributed, verify
-with `shadcn build`, and exercise installation in a temporary consuming project.
-A local component does not need a registry server or manifest.
+is requested, add a schema-valid item manifest with file types and paths,
+package `dependencies`, and component `registryDependencies`. Choose
+`registry:ui`, `registry:component`, or `registry:block` to match the item being
+distributed. Verify it with `shadcn build` and test installation in a temporary
+consuming project. A local component does not need a registry server or
+manifest.
 
 ## Check changes where they propagate
 

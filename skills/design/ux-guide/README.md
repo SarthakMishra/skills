@@ -10,9 +10,9 @@ A review produces a proposed flow and prioritized findings. When you ask for a
 repair, the skill implements the scoped changes and checks the affected journey.
 It distinguishes what it observed from what it inferred.
 
-## When to reach for it
+## When to use it
 
-Type `/ux-guide` in Claude Code or `$ux-guide` in Codex, or let the agent reach for
+Type `/ux-guide` in Claude Code or `$ux-guide` in Codex, or let the agent select
 it when a task fits.
 
 | Situation                                                 | What it covers                                                                       |
@@ -50,10 +50,10 @@ Otherwise it shows the map and continues work you have already authorized.
 
 **Does the app have to use React?**
 
-No. The flow guidance is framework-independent. React-specific guidance is loaded
-only when the implementation uses React.
+No. The flow guidance is framework-independent. The agent reads React-specific
+guidance only when the implementation uses React.
 
-## It's working if
+## Check the result
 
 - You can see where the existing journey breaks and how the proposal addresses it.
 - Consequential actions explain what changes, what survives failure, and how to recover.
@@ -63,6 +63,7 @@ only when the implementation uses React.
 
 ## Where it fits
 
-Use it whenever the interaction needs work. [ux-writer](../ux-writer/README.md) covers the
-words within that interaction; neither skill requires the other to be installed.
-See the [design index](../README.md) for the current collection.
+Use it to design, review, or repair a user flow.
+[ux-writer](../ux-writer/README.md) covers the words within that interaction;
+neither skill requires the other to be installed. See the [design
+index](../README.md) for the current collection.

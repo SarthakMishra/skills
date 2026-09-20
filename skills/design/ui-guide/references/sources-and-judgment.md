@@ -28,7 +28,7 @@ The original research reviewed Emil Kowalski's
 including design engineering, animation construction, vocabulary, review, audit,
 and opportunity-finding material.
 
-Retain its attention to responsive feel, repeated use, trigger-relative origins, sensible tooling, explicit timing, interruption, and concrete before/after explanations. The unified workflow can build, diagnose, and fix directly according to user intent; it does not depend on installing or invoking that collection.
+Apply its guidance on immediate responses, repeated use, motion origins at the trigger, tool choice, explicit timing, interruption, and concrete before/after explanations. The unified workflow can build, diagnose, and fix directly according to user intent; it does not depend on installing or invoking that collection.
 
 ## Resolve disagreements deliberately
 
@@ -60,4 +60,4 @@ For implementation details, inspect the installed stack and consult primary docu
 - [W3C: dragging alternatives](https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html), [animation from interactions](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html), [pause/stop/hide](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html)
 - [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/) for the actual component's keyboard/focus contract
 
-Use authoritative technical sources for changing API and standards details. The skill's numerical motion examples are synthesis defaults, not claimed empirical thresholds or universal accessibility requirements.
+Use authoritative technical sources for changing API and standards details. The skill's numerical motion examples are suggested starting values, not claimed empirical thresholds or universal accessibility requirements.

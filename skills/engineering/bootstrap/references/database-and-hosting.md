@@ -48,10 +48,11 @@ stateful coordination. Add only the services the spec needs. Use the available
 Cloudflare, Workers, and Wrangler skills or current official docs to verify the
 chosen framework adapter, bindings, local development, and limits.
 
-For a complex app or a mismatch with Workers, discuss the deployment topology
-with the user before choosing it. Consider Vercel, Render, AWS, GCP, Azure, a
-self-hosted VM such as DigitalOcean, or another provider that fits the needs.
-Cloudflare remains an option if it fits. Do not choose by project size alone.
+For a complex app or a mismatch with Workers, discuss where each service will
+run with the user before choosing a host. Consider Vercel, Render, AWS, GCP,
+Azure, a self-hosted VM such as DigitalOcean, or another provider that fits the
+needs. Cloudflare remains an option if it fits. Do not choose by project size
+alone.
 
 Compare only the plausible options against the relevant constraints:
 
@@ -109,12 +110,13 @@ Use the chosen provider's current tools and applicable installed skills. Verify
 the authenticated account before writing, inventory existing resources, and
 resume partial work without creating duplicates. Create only resources in the
 agreed plan. Do not repurpose a production database or replace existing services
-to make the starter run. Credentials and human-only account/billing steps can be
-handed to the user while independent local work continues.
+to make the starter run. Ask the user to handle credentials or account and
+billing steps that require their access. Continue independent local work
+meanwhile.
 
 For managed Postgres, provision the selected provider's Postgres product in the
 agreed region with appropriate access controls and backup settings. For D1,
-provision D1 and wire its actual binding and migration target. Store credentials
+provision D1 and configure its binding and migration target. Store credentials
 through the provider's secret facility; commit safe configuration and resource
 identifiers only where appropriate. Use separate application credentials from
 administrative credentials.

@@ -30,10 +30,10 @@ components, and requirements. Inspect available screens and actual behavior.
 Identify the person, intended outcome, entry point, usage frequency, input
 methods, permissions, and cost of error. Record constraints and unknowns.
 
-Label evidence as **observed**, **code-supported**, **reported**, or **inferred**.
-Screenshots cannot establish behavior, code cannot prove comprehension, and an
-agent walkthrough is not participant research. Keep usage data, personas,
-business rules, and backend capabilities grounded in evidence. Ask when missing
+Label evidence as observed, code-supported, reported, or inferred. Screenshots
+cannot establish behavior, code cannot prove comprehension, and an agent
+walkthrough is not participant research. Keep usage data, personas, business
+rules, and backend capabilities grounded in evidence. Ask when missing
 information changes the proposal; otherwise state assumptions and proceed.
 
 ## Map the journey
@@ -57,8 +57,9 @@ the difficulty, cause, smallest effective change, and verification. Prioritize
 blocked outcomes, lost work, and consequential mistakes.
 
 Remove unnecessary decisions, repeated entry, hidden dependencies, and context
-switching. Keep comparison information together and essential consequences visible.
-Optimize understandable effort rather than a fixed click count.
+switching. Keep comparison information together and essential consequences
+visible. Reduce the effort needed to understand and complete the task. Do not
+optimize for a fixed click count.
 
 For each consequential action, specify the trigger, affected object and scope,
 state change, feedback, next actions, preserved work, recovery, and focus
@@ -76,7 +77,7 @@ Read the reference that matches the decision:
 | Implement React state, navigation, focus, or async behavior | [react-interactions.md](references/react-interactions.md)   |
 | Choose checks or assess evidence                            | [validation.md](references/validation.md)                   |
 
-Match engagement to the user's need and natural cadence. Useful previews,
+Match engagement to the user's need and how often it occurs. Useful previews,
 reusable setup, discovery, and growing competence can make a task satisfying.
 Reliable completion may be all an occasional task needs.
 
@@ -86,10 +87,10 @@ When requested, implement the scoped behavior with the existing router, data
 layer, components, forms, and task runner. Read the React reference for React
 implementation. Justify any new dependency through a concrete task requirement.
 
-Carry flow decisions into acceptance checks. Preserve completion through keyboard,
-touch, assistive technology, narrow viewports, and interrupted sessions. Match
-client feedback to the real server contract and name any missing backend support.
-Update the map when implementation changes an assumption.
+Write acceptance checks for the flow decisions. Preserve completion through
+keyboard, touch, assistive technology, narrow viewports, and interrupted
+sessions. Match client feedback to the real server contract and name any missing
+backend support. Update the map when implementation changes an assumption.
 
 Read the validation reference when planning checks or judging an uncertain design.
 Re-run the original task and the relevant failure, backtracking, or interruption

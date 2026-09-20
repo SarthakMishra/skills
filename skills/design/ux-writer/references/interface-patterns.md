@@ -1,6 +1,6 @@
 # Interface copy pattern library
 
-Use this reference to draft or review a specific surface. The examples are original and illustrative; adapt nouns, policy, behavior, and tone to the actual product.
+Use this reference to draft or review copy for a screen or component. The examples are original and illustrative; adapt nouns, policy, behavior, and tone to the actual product.
 
 ## Contents
 
@@ -32,7 +32,7 @@ Names create the product's mental model. Use familiar nouns by default. Introduc
 - Action labels change state: verbs such as "Create project" or "Record payment."
 - Page titles identify the place or object. They need not repeat the global navigation label.
 - Question headings work well when the page is a single decision.
-- Section headings should help scanning, not merely divide whitespace.
+- Section headings should help scanning, not just divide whitespace.
 
 Bad: `Management Center`
 
@@ -122,14 +122,15 @@ Do not hide a policy in an error that appears only after submission.
 
 ## Empty, first-run, and zero-result states
 
-An empty state is the first page of the feature, not an apology. Distinguish:
+An empty state should explain what the feature does and what to do next.
+Distinguish these cases:
 
-- **First-run empty:** nothing exists yet; teach the purpose and first action.
-- **User-cleared empty:** acknowledge completion; do not re-onboard.
-- **Filtered empty:** explain that filters hide results and offer to clear them.
-- **Search zero:** echo the query and suggest a specific recovery.
-- **Permission empty:** do not imply there is no data if the person cannot see it.
-- **Error empty:** never disguise a failed load as "nothing here."
+- When nothing exists yet, explain the purpose and first action.
+- When the person cleared the content, acknowledge completion without repeating onboarding.
+- When filters hide results, explain this and offer to clear the filters.
+- When a search has no results, echo the query and suggest a specific recovery.
+- When permission hides data, explain the access limit without implying the data is absent.
+- When loading fails, report the failure instead of showing "nothing here."
 
 Bad: `No data.`
 
@@ -200,7 +201,7 @@ Good: `18 of 20 invoices sent`
 
 `Review unsent invoices`
 
-Avoid congratulatory noise for routine saves. A quiet `Changes saved` is often enough. If completion may take time, say so without pretending the state is final.
+Avoid congratulations for routine saves. A quiet `Changes saved` is often enough. If completion may take time, say so without pretending the state is final.
 
 ## Validation and errors
 
@@ -335,7 +336,7 @@ Avoid using copy to compensate for an overloaded table. If people need paragraph
 
 ## Notifications and subscriptions
 
-Answer: what triggers the notification, which channel is used, how often, and who receives it.
+Explain what triggers the notification, which channel sends it, how often it arrives, and who receives it.
 
 Bad: `Notifications: On`
 
@@ -412,7 +413,7 @@ Cancellation copy should be humane but factual. Provide export or migration opti
 
 ## Data-heavy and professional interfaces
 
-Optimize for scanability, exactness, and auditability.
+Make values easy to scan, state them precisely, and show how to verify them.
 
 - Use established domain terms; define uncommon abbreviations once.
 - Put period, currency, tax basis, timezone, and status near the number they qualify.
@@ -434,7 +435,7 @@ Good: `Void journal entry` when the accounting system preserves an audit trail; 
 
 ## AI and automation interfaces
 
-Make agency, inputs, output status, and review responsibility explicit.
+Explain who acts, what data the system uses, whether the output is a draft or final, and who must review it.
 
 Name the action precisely:
 

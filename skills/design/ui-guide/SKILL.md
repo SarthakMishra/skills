@@ -5,9 +5,9 @@ description: Design, build, or review web-app UI and component interactions. Use
 
 # Design interfaces and interactions
 
-Make the interface readable at rest and usable while loading, failing, or being
-interrupted. Preserve the established design language unless the user requests a
-redesign. This skill works independently; React and Tailwind guidance applies
+Make the interface readable at rest and usable during loading, failure, and
+interruption. Preserve the established design language unless the user requests
+a redesign. This skill works independently; React and Tailwind guidance applies
 only when those tools are part of the task.
 
 ## Choose the scope
@@ -67,8 +67,9 @@ starting treatment and a reason. Existing tokens take precedence over reference
 examples. Instant changes are valid, especially for frequent actions.
 
 Finish with a change tied to the problem and checks that would show whether it
-works. Use a compact state contract for branching or async behavior. Keep a narrow
-visual adjustment in the conversation; it does not need a scratch file or diagram.
+works. For branching or async behavior, list the states, allowed transitions,
+and expected feedback. Keep a narrow visual adjustment in the conversation; it
+does not need a scratch file or diagram.
 
 ## 3. Implement when requested
 

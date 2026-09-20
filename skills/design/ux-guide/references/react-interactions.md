@@ -1,6 +1,6 @@
 # React interaction contracts
 
-Specify the behavior first, then use the installed stack's primitives. Inspect versions and established router, data, and form conventions before choosing APIs. These are engineering applications of the UX principles, not book prescriptions.
+Specify the behavior first, then use the installed stack's components and APIs. Inspect versions and established router, data, and form conventions before choosing APIs. These are engineering applications of the UX principles, not book prescriptions.
 
 ## State ownership and lifetime
 
@@ -34,13 +34,13 @@ Use optimistic UI for low-risk, likely-successful actions with reliable reconcil
 
 Wait for authoritative confirmation before claiming payments, publication, invitations, or consequential bulk changes completed. Give immediate acknowledgment while distinguishing request acceptance from completed outcome. A frontend-only simulation must not imply backend guarantees.
 
-For a reversible saved-item toggle: reflect intended selection, coalesce or serialize repeated intent, reconcile authoritative state, and retain a usable failure path without losing focus. If another operation supersedes it, an old response must not replace the latest intent.
+For a reversible saved-item toggle, show the intended selection. Combine repeated changes into the latest requested value or process them in order. Reconcile with the authoritative state and provide recovery without losing focus. If another operation supersedes it, an old response must not replace the latest intent.
 
 ## Browser behavior and focus
 
 Use links for destinations and buttons for actions. Preserve modified clicks, new tabs, native forms, and expected keyboard activation. Coordinate focus, title, and scroll restoration with the router. Substantive navigation needs an appropriate page orientation strategy; a local fetch should not repeatedly reset focus to the top.
 
-For modal interactions, use an existing accessible primitive when available: meaningful initial focus, keyboard containment, a keyboard exit, noninteractive background, and focus restoration to the invoker or a sensible successor. Verify the [WAI-ARIA dialog pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) when building custom behavior.
+For modal interactions, use an existing accessible component when available. Check initial focus, keyboard containment, a keyboard exit, a noninteractive background, and focus restoration to the trigger or a sensible successor. Verify the [WAI-ARIA dialog pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) when building custom behavior.
 
 After deleting a focused row, focus a sensible neighboring item or list action. After invalid submission, expose the relevant field or error summary. Announce meaningful asynchronous status without narrating every render. Preserve a visible or programmatic connection between controls, errors, and outcomes. Reuse accessible controls before creating custom ARIA widgets.
 
@@ -48,9 +48,9 @@ After deleting a focused row, focus a sensible neighboring item or list action. 
 
 For each changed transition, identify the user-visible invariant and relevant failure mode. Examples:
 
-- `F03/N04`: the newest query still owns the results when responses finish out of order.
+- `F03/N04`: the results still correspond to the newest query when responses finish out of order.
 - `F02/N05`: a timeout after a successful invitation does not cause a duplicate resend.
 - `F04/N02`: moving between wizard steps preserves entered values and restores a meaningful focus position.
 - `F01/N06`: closing a panel returns focus while preserving the draft according to its stated lifetime.
 
-Choose checks that resolve actual risks. Use existing project commands and test seams. Do not install a state machine, router, data cache, or test library just to conform to this reference. Report browser and assistive-technology checks as unverified when only code inspection was possible.
+Choose checks that resolve actual risks. Use existing project commands and test entry points. Do not install a state machine, router, data cache, or test library just to conform to this reference. Report browser and assistive-technology checks as unverified when only code inspection was possible.

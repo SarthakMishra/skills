@@ -1,7 +1,7 @@
 # Bootstrap
 
 Use `$bootstrap` in Codex or `/bootstrap` in Claude Code to turn an agreed spec
-into a verified TypeScript repository foundation.
+into a working TypeScript repository with verified tooling.
 
 ```text
 $bootstrap Create a fresh repo at ../my-project from this SPEC.md.
@@ -10,7 +10,7 @@ Interview me about unresolved stack and structure choices first.
 ```
 
 This skill runs only when you select it. It supports web apps, APIs, CLIs, and
-libraries. Python and Rust support are deferred.
+libraries. It does not yet support Python or Rust.
 
 ## Bring a spec
 
@@ -20,7 +20,7 @@ use `design-system` to establish the foundation's conventions.
 If the product is still undefined, start with Matt Pocock's `grill-me`,
 `grill-with-docs`, or `wayfinder`; use `to-spec` to capture settled decisions.
 
-Bootstrap chooses the repository foundation. It does not define the product,
+Bootstrap sets up the repository and tooling. It does not define the product,
 design screens, or implement features. Infrastructure provisioning is optional
 and agreed during the interview, including whether to deploy the verified
 foundation. Local configuration remains the default.
@@ -38,10 +38,10 @@ foundation. Local configuration remains the default.
 
 The interview ends with an agreed stack, directory tree, and verification plan.
 It also selects Claude Code, Codex, or both, with the appropriate instruction
-files, scoped rules where needed, and an adjustable
-[recommended skill set](references/agent-setup.md#recommended-skills-for-every-repo).
-Public repositories receive an additional file/history review, secret scan, and
-repository protection setup before publication is considered complete.
+files, scoped rules where needed, and an adjustable [recommended skill
+set](references/agent-setup.md#recommended-skills-for-every-repo). For public
+repositories, the agent also reviews files and history, scans for secrets, and
+configures repository protections before completing publication.
 
 When persistence is needed, recommend D1 with Drizzle for basic Cloudflare apps
 that fit D1, and Postgres with Drizzle otherwise. User choices take precedence.
@@ -85,10 +85,11 @@ model-invoked `grilling` skill is optional; bootstrap includes an interview
 fallback.
 
 During bootstrap, explicitly select `$setup-matt-pocock-skills` in Codex or
-`/setup-matt-pocock-skills` in Claude Code at the new repo root. It configures the
-issue tracker, optional triage vocabulary, and domain docs. Then resume bootstrap
-with its accepted plan. This handoff respects the companion's user-only
-invocation policy. Existing setup is preserved and verified on a resumed run.
+`/setup-matt-pocock-skills` in Claude Code at the new repo root. It configures
+the issue tracker, optional triage vocabulary, and domain docs. Then resume
+bootstrap with its accepted plan. This handoff respects the companion's
+user-only invocation policy. On a resumed run, bootstrap preserves and verifies
+existing setup.
 
 The interview and companion workflow are informed by
 [Matt Pocock's collection](https://github.com/mattpocock/skills). Those skills
