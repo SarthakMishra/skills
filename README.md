@@ -21,6 +21,16 @@ Choose the skills and agents during installation. Add `--list` to preview the co
 The agent uses these when a task fits. To invoke one directly, use `/skill-name`
 in Claude Code or `$skill-name` in Codex, such as `/ui-guide` or `$ui-guide`.
 
+### Engineering · user-invoked
+
+| Skill                                              | Use it to                                                               |
+| -------------------------------------------------- | ----------------------------------------------------------------------- |
+| [bootstrap](skills/engineering/bootstrap/SKILL.md) | Create a verified TypeScript repository foundation from an agreed spec. |
+
+Select `/bootstrap` in Claude Code or `$bootstrap` in Codex explicitly.
+See the [bootstrap usage guide](skills/engineering/bootstrap/README.md) for
+prerequisites and companion skills.
+
 ## Development
 
 Use Node.js 22.13+ and the pnpm version in `package.json`.
