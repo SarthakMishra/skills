@@ -1,8 +1,9 @@
 # Establish conventions
 
-Establish architecture and engineering conventions from an agreed PRD or spec.
-The result is a custom skill for the repository, usually named `code-conventions`,
-that agents use during coding and review and update when conventions change.
+Establish architecture and engineering conventions from an agreed project basis.
+The result is a custom skill for the repository, usually named
+`code-conventions`, that agents use during coding and review and update when
+conventions change.
 
 The workflow interviews you about unresolved decisions, researches the actual
 stack, compares alternatives, and verifies uncertain choices. It covers code
@@ -32,10 +33,16 @@ compatibility and maintenance, test the uncertain cases, and propose a decision
 before installing anything.
 ```
 
-Bring the existing PRD or spec and decisions from `wayfinder`, `grill-me`, or an
-equivalent discussion. The skill fills engineering gaps; it does not invent the
-product or restart settled decisions. A later revision uses the existing spec and
-the new requirement or evidence. Routine coding uses the generated local skill.
+Bring an existing PRD, spec, or architecture document and decisions from
+`wayfinder`, `grill-me`, or an equivalent discussion. If no adequate basis
+exists, the skill grills the missing requirements and writes the appropriate
+document with you before making dependent choices. It does not invent answers or
+restart settled decisions. A later revision uses the existing basis and the new
+requirement or evidence. Routine coding uses the generated local skill.
+
+Callers such as bootstrap or design-system can request only this discovery
+stage. It returns the accepted document and remaining questions; custom skill
+creation remains a separate stage to resume when requested.
 
 ## What you get
 
@@ -55,10 +62,11 @@ structure, a particular architecture pattern, or a new dependency.
 
 ## During bootstrap
 
-[`bootstrap`](../bootstrap/README.md) uses this skill before scaffolding to resolve
-architecture and convention gaps. It passes the spec and decisions already made,
-then uses the accepted result for setup. After companion setup chooses the agent
-and domain-document layout, the workflow writes or updates the custom skill and
+[`bootstrap`](../bootstrap/README.md) uses this skill before scaffolding to
+resolve architecture and convention gaps, establishing the project basis first
+if needed. It passes the document and decisions already made, then uses the
+accepted result for setup. After companion setup chooses the agent and
+domain-document layout, the workflow writes or updates the custom skill and
 verifies it against the foundation. This does not expand bootstrap into product
 implementation or change its supported languages.
 

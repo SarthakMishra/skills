@@ -11,4 +11,4 @@ The agent can use these for matching requests or an enabled project policy.
 
 Select these workflows explicitly. See the [invocation guide](../../README.md#skills).
 
-- [bootstrap](bootstrap/SKILL.md): Create a verified TypeScript repository foundation from an agreed spec. [Usage](bootstrap/README.md).
+- [bootstrap](bootstrap/SKILL.md): Establish the project basis and create a verified TypeScript foundation. [Usage](bootstrap/README.md).

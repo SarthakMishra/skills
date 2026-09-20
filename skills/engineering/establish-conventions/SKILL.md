@@ -1,13 +1,15 @@
 ---
 name: establish-conventions
-description: Establish or revise project architecture and engineering conventions from an agreed PRD or spec through grilling and primary-source research. Create or maintain a repo-specific coding skill covering organization, documentation, complexity, code patterns, testing, and tooling. Use during bootstrap, when conventions are missing or inconsistent, or when a proposed library, tool, or custom implementation changes project-wide rules. Excludes product discovery and routine coding already covered by local conventions.
+description: Establish or revise project architecture and engineering conventions through grilling and primary-source research. Use an existing PRD, spec, or architecture basis, or establish the missing document through a scoped interview. Create or maintain a repo-specific coding skill covering organization, documentation, complexity, code patterns, testing, and tooling. Use during bootstrap, when conventions are missing or inconsistent, or when a tool or library changes shared rules. Excludes unrelated product brainstorming and routine coding already covered by local conventions.
 ---
 
 # Establish project conventions
 
-Turn an agreed product spec into architecture decisions, enforceable conventions,
-and a custom skill for the repository. Use the project's language, constraints,
-and existing decisions. Do not copy another project's stack or domain rules.
+Turn an agreed PRD, spec, or architecture basis into architecture decisions,
+enforceable conventions, and a custom skill for the repository. Establish
+missing requirements through a scoped interview. Use the project's language,
+constraints, and existing decisions. Do not copy another project's stack or
+domain rules.
 
 The output is a model-invoked project skill, usually `code-conventions`, that
 agents read while coding and reviewing. This workflow establishes and revises
@@ -16,20 +18,22 @@ interview or researching the whole architecture.
 
 ## 1. Establish the basis and scope
 
-Read the PRD or spec, its settled decisions from `wayfinder`, `grill-me`, or the
-equivalent earlier discussion, and relevant project instructions. Inspect existing
-architecture docs, ADRs, domain vocabulary, local skills, source, dependencies,
-toolchain pins, tests, CI, and the current Git state. Existing code is evidence
-of practice, not proof that a convention is correct.
+Read the PRD, spec, or architecture basis, its settled decisions from
+`wayfinder`, `grill-me`, or the equivalent earlier discussion, and relevant
+project instructions. Inspect existing architecture docs, ADRs, domain
+vocabulary, local skills, source, dependencies, toolchain pins, tests, CI, and
+the current Git state. Existing code is evidence of practice, not proof that a
+convention is correct.
 
-For initial establishment, require a spec that identifies the product's job,
-supported users or consumers, behavior, exclusions, and constraints. If only an
-unsettled idea exists, identify what is missing and ask the user to finish product
-discovery or capture its decisions first. Suggest `wayfinder`, `grill-me`, or
-`to-spec` when available; do not invoke these user-only workflows silently or
-invent a product. Continue independent inspection while awaiting the missing basis.
+For initial establishment, use a document that identifies the product's job,
+supported users or consumers, behavior, exclusions, and constraints. If it is
+missing or incomplete, read [project-basis.md](references/project-basis.md),
+grill the unresolved requirements, and draft the appropriate PRD, spec, or
+architecture document. Review its decisions with the user before dependent
+implementation. Do not require a separate user-invoked discovery workflow or
+invent answers.
 
-For a later convention change, use the existing spec and accepted decisions as
+For a later convention change, use the existing basis and accepted decisions as
 the baseline. Obtain only the new requirement or evidence that justifies the
 change. Do not require a fresh discovery session for each revision.
 
@@ -38,11 +42,13 @@ adoption in an existing repo, a targeted convention revision, and an options-onl
 review. An options-only request produces a proposal and leaves project files
 unchanged. Work inside bootstrap stays within its foundation scope.
 
+When a caller requests only the missing project basis, follow the project-basis
+reference and return the agreed document without generating conventions yet.
 When bootstrap calls this workflow during planning, complete the interview,
 research, and proposal first. Return those decisions to its shared plan and mark
-the custom skill and enforcement as pending. Resume their creation and verification
-after scaffolding and companion setup establish the target files and docs layout.
-Do not claim this workflow complete at the planning handoff.
+the custom skill and enforcement as pending. Resume their creation and
+verification after scaffolding and companion setup establish the target files
+and docs layout. Do not claim this workflow complete at the planning handoff.
 
 Finish with a map of requirements, current practices, settled decisions, gaps,
 and conflicts. Identify the existing local skill to update before choosing a new

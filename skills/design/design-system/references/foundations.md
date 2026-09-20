@@ -12,6 +12,11 @@ populated, and failure states. Establish hierarchy and grouping before refining
 decoration. Validate shared choices on another relevant composition before
 applying them across the system.
 
+For selected bootstrap work, use the agreed minimal entry point. Check content,
+density, and state variations in that entry point or a disposable composition
+instead of implementing product screens. Record broader product validation as
+pending; foundation checks do not establish that every future feature will fit.
+
 Derive the visual direction from the product and existing brand. Translate words
 like "restrained" or "expressive" into concrete choices for type, density, color,
 shape, imagery, and motion. Preserve established identity during consolidation.

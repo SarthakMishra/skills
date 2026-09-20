@@ -15,15 +15,34 @@ findings with proposed changes. Do not edit components, documentation, or toolin
 ## 1. Establish the scope and evidence
 
 Read project instructions, `DESIGN.md`, package versions, Tailwind configuration
-or theme CSS, `components.json`, shared components, and existing documentation and
-checks. Inspect representative screens and their actual component consumers.
+or theme CSS, `components.json`, shared components, and existing documentation
+and checks. Inspect representative screens and their actual component consumers.
+Read the project's PRD, spec, or architecture basis for product requirements.
 Identify supported themes, platforms, accessibility requirements, product
 character, and who maintains the system. Ask about missing decisions only when
 they would change the work; record provisional choices explicitly.
 
+For a new system without an adequate project basis, grill the missing product
+and design requirements before selecting foundations. Use
+`establish-conventions` for its project-basis stage when available. Otherwise
+use `grilling` or interview in rounds directly, covering users, core tasks,
+important states, constraints, visual direction, and acceptance criteria. Write
+one PRD, spec, or architecture document in the project's existing layout and
+review its decisions with the user. Reuse accepted conversation decisions and
+keep assumptions explicit. An architecture document must include or link the
+product requirements it relies on.
+
+For bootstrap, establish or adapt a system only when its plan includes that
+work. Honor a skipped setup choice. Reuse the basis and decisions from its
+interview. Keep selected work to the agreed foundation, its minimal entry point,
+and `DESIGN.md`; product screens remain outside that task. A component edit or
+an audit of an existing system does not require creating a new product spec.
+Keep audit-only proposals in the response when file changes are outside scope.
+
 | Request                      | Work to perform                                                                                       |
 | ---------------------------- | ----------------------------------------------------------------------------------------------------- |
 | Start from scratch           | Choose a real feature, establish the foundations it needs, and implement it with reusable components. |
+| Selected bootstrap setup     | Establish the agreed minimal foundation and check variations without implementing product screens.    |
 | Formalize an existing system | Inventory current patterns, decide what to retain or consolidate, and migrate the agreed scope.       |
 | Add or change a component    | Load the existing contract, reuse or extend it, check consumers, and update affected documentation.   |
 | Audit enforcement            | Report violations with evidence and proposed repairs; implement only when requested.                  |

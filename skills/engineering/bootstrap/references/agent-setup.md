@@ -71,11 +71,12 @@ Cloudflare/Workers/Wrangler skills for a Workers target. Do not install UI or
 cloud skills into every CLI or library.
 
 Use the model-invoked `establish-conventions` skill from
-[SarthakMishra/skills](https://github.com/SarthakMishra/skills) during bootstrap.
-It researches architecture and engineering rules from the agreed spec and creates
-or updates the repo-specific coding skill. Check availability before architecture
-planning; see the [companion installation guidance](../README.md#companion-skills).
-Preserve prior interview decisions and companion setup's domain-document layout.
+[SarthakMishra/skills](https://github.com/SarthakMishra/skills) during
+bootstrap. It establishes a missing project basis through grilling, researches
+architecture and engineering rules, and creates or updates the repo-specific
+coding skill. Check availability before discovery or architecture planning; see
+the [companion installation guidance](../README.md#companion-skills). Preserve
+prior interview decisions and companion setup's domain-document layout.
 
 Install the resulting custom skill for the selected agents from one canonical
 project copy. Keep an existing name such as `code-conventions` or `rust-code-style`.
@@ -89,10 +90,15 @@ changes and follows local commit conventions. Accepting this installation is
 separate from enabling the automatic-commit policy below. See the
 [companion installation guidance](../README.md#companion-skills).
 
-For a React frontend, include the model-invoked `design-system` skill from
-[SarthakMishra/skills](https://github.com/SarthakMishra/skills). It establishes the
-foundation's design conventions and guides later component changes. Check its
-availability before frontend setup; see the [companion installation guidance](../README.md#companion-skills).
+When frontend design-system setup is selected, include the model-invoked
+`design-system` skill from
+[SarthakMishra/skills](https://github.com/SarthakMishra/skills). It establishes
+the foundation's design conventions and guides later component changes. Check
+its availability before that work; see the [companion installation
+guidance](../README.md#companion-skills). If setup is skipped, do not require
+this installation or add new design-system enforcement. Preserve existing skills
+and rules. The setup choice does not change the skill's automatic invocation
+policy.
 
 ## Optional automatic commits
 

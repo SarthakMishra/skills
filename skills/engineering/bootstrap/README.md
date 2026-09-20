@@ -1,7 +1,8 @@
 # Bootstrap
 
-Use `$bootstrap` in Codex or `/bootstrap` in Claude Code to turn an agreed spec
-into a working TypeScript repository with verified tooling.
+Use `$bootstrap` in Codex or `/bootstrap` in Claude Code to create a working
+TypeScript repository with verified tooling. Bring an existing project basis or
+start with a grilling session to establish one.
 
 ```text
 $bootstrap Create a fresh repo at ../my-project from this SPEC.md.
@@ -12,31 +13,32 @@ Interview me about unresolved stack and structure choices first.
 This skill runs only when you select it. It supports web apps, APIs, CLIs, and
 libraries. It does not yet support Python or Rust.
 
-## Bring a spec
+## Bring a project basis or establish one
 
-Provide a PRD/spec as a file, issue, or settled conversation. Bring an established
-design system for a frontend, or choose a shadcn preset during the interview and
-use `design-system` to establish the foundation's conventions.
-If the product is still undefined, start with Matt Pocock's `grill-me`,
-`grill-with-docs`, or `wayfinder`; use `to-spec` to capture settled decisions.
+Provide a PRD, spec, or architecture document, or share decisions from an
+earlier conversation such as `grill-me` or `wayfinder`. If no adequate basis
+exists, bootstrap grills the missing requirements and writes one PRD, spec, or
+architecture document before making dependent choices. It reuses settled answers
+and reviews the written decisions with you. An architecture document needs
+product goals and behavioral requirements as well as technical choices.
 
-Bootstrap sets up the repository and tooling. It does not define the product,
-design screens, or implement features. Infrastructure provisioning is optional
-and agreed during the interview, including whether to deploy the verified
-foundation. Local configuration remains the default.
+Bootstrap establishes the missing brief and sets up the repository and tooling.
+It does not implement product screens or features. Infrastructure provisioning
+is optional and agreed during the interview, including whether to deploy the
+verified foundation. Local configuration remains the default.
 
 ## Defaults and choices
 
-| Area         | Policy                                                                                                                |
-| ------------ | --------------------------------------------------------------------------------------------------------------------- |
-| Tooling      | pnpm by default; Bun or npm for a single project; strict TypeScript, Oxlint, and Oxfmt.                               |
-| Frontend     | React, Tailwind CSS, and shadcn with Base UI. Framework follows rendering and hosting needs.                          |
-| Layout       | One project unless actual deployables or shared consumers justify pnpm workspaces. Turbo needs a concrete reason.     |
-| Design       | Use `design-system` to preserve or establish conventions from the agreed system or shadcn preset.                     |
-| Conventions  | Use `establish-conventions` to research architecture and engineering rules and create the repo-specific coding skill. |
-| Verification | Checks, build, and a repeatable smoke test; GitHub Actions when GitHub is selected.                                   |
-| Commits      | Explicit requests by default. Offer the `commit` skill and optional automatic local checkpoints.                      |
-| Publication  | Local by default. Choose private/public visibility and optional remote creation and push during the interview.        |
+| Area         | Policy                                                                                                                              |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Tooling      | pnpm by default; Bun or npm for a single project; strict TypeScript, Oxlint, and Oxfmt.                                             |
+| Frontend     | React, Tailwind CSS, and shadcn with Base UI. Framework follows rendering and hosting needs.                                        |
+| Layout       | One project unless actual deployables or shared consumers justify pnpm workspaces. Turbo needs a concrete reason.                   |
+| Design       | Optional. Choose whether `design-system` should establish or adapt the foundation's system. Preserve existing styling when skipped. |
+| Conventions  | Use `establish-conventions` to research architecture and engineering rules and create the repo-specific coding skill.               |
+| Verification | Checks, build, and a repeatable smoke test; GitHub Actions when GitHub is selected.                                                 |
+| Commits      | Explicit requests by default. Offer the `commit` skill and optional automatic local checkpoints.                                    |
+| Publication  | Local by default. Choose private/public visibility and optional remote creation and push during the interview.                      |
 
 The interview ends with an agreed stack, directory tree, and verification plan.
 It also selects Claude Code, Codex, or both, with the appropriate instruction
@@ -59,12 +61,26 @@ and cost expectations. It can configure managed databases or user-selected
 self-hosted Postgres. Git publication, infrastructure creation, and an initial
 deployment are separate choices.
 
+## Optional design-system setup
+
+For a frontend, bootstrap offers to invoke `design-system` to establish a system
+from an approved shadcn preset or adapt an existing one. If selected, it uses
+the accepted project basis to choose tokens, components, motion, documentation,
+and checks. It implements the minimal foundation and records the rules in
+`DESIGN.md` with an agent pointer.
+
+If you skip this work, bootstrap preserves existing styling and builds the
+minimal frontend scaffold. It does not require the companion or add system
+documentation, enforcement, or Storybook. The `design-system` skill remains
+available for automatic and explicit invocation in later work; the choice
+applies to this bootstrap run.
+
 ## Architecture and the custom coding skill
 
-Bootstrap invokes `establish-conventions` to fill engineering gaps in the agreed
-spec. It researches alternatives and interviews you about architecture, complexity,
-documentation, language patterns, testing, tools, and libraries. It reuses decisions
-from discovery and the bootstrap interview.
+Bootstrap invokes `establish-conventions` to establish a missing project basis
+and fill engineering gaps. It researches alternatives and interviews you about
+architecture, complexity, documentation, language patterns, testing, tools, and
+libraries. It reuses decisions from discovery and the bootstrap interview.
 
 The resulting repo-specific skill, usually `code-conventions`, guides later coding
 and review. It includes relevant references, canonical patterns, required checks,
@@ -93,7 +109,7 @@ particular task uncommitted. Local checkpoints do not enable pushing or releases
 
 Include
 [`establish-conventions`](https://github.com/SarthakMishra/skills/tree/main/skills/engineering/establish-conventions)
-for architecture and the custom coding skill. Install it if missing:
+for discovery, architecture, and the custom coding skill. Install it if missing:
 
 ```sh
 pnpm dlx skills add SarthakMishra/skills --skill establish-conventions
@@ -111,11 +127,12 @@ If accepted and missing, install it for the selected agents:
 pnpm dlx skills add SarthakMishra/skills --skill commit
 ```
 
-For a frontend, include
+When frontend design-system setup is selected, include
 [`design-system`](https://github.com/SarthakMishra/skills/tree/main/skills/design/design-system).
-It handles shared tokens, component sourcing and authoring, motion, documentation,
-and enforcement. Bootstrap uses it for the minimal foundation; full product design
-remains a separate task. Install it if missing:
+It handles shared tokens, component sourcing and authoring, motion,
+documentation, and enforcement. Bootstrap uses it for the minimal foundation;
+full product design remains a separate task. Install it if missing for that
+selected work:
 
 ```sh
 pnpm dlx skills add SarthakMishra/skills --skill design-system
@@ -149,11 +166,12 @@ remain separate dependencies; their procedures are not bundled here.
 
 ## Recognize a completed bootstrap
 
-You should be able to install with the chosen package manager, run the documented
-checks, build, and exercise the smoke test without production credentials. The
-directory layout should follow your spec's domain terms. The handoff names what
-passed, whether companion setup and the custom coding skill are complete,
-the convention verification, commit policy, and commits created, and whether
-the repo remains local or was published. It also distinguishes local configuration,
-provisioned resources, and a verified initial deployment. Missing tools, failed
-checks, and pending remote protections are reported explicitly.
+You should be able to install with the chosen package manager, run the
+documented checks, build, and exercise the smoke test without production
+credentials. The directory layout should follow your spec's domain terms. The
+handoff names what passed, whether companion setup and the custom coding skill
+are complete, the convention verification, design-system status, commit policy,
+and commits created, and whether the repo remains local or was published. It
+also distinguishes local configuration, provisioned resources, and a verified
+initial deployment. Missing tools, failed checks, and pending remote protections
+are reported explicitly.

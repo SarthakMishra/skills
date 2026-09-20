@@ -27,6 +27,11 @@ The agent can select this skill for matching work. Invoke it explicitly with
 
 ## What to expect
 
+For a new system without an adequate project basis, the skill grills the missing
+requirements and records a PRD, spec, or architecture document before making
+dependent design choices. It reuses existing decisions and does not require a
+new product spec for a routine component change.
+
 The resulting screens use the shared tokens and components. Documentation
 records conventions and exceptions, and the handoff reports what was tested.
 Existing projects should get an inventory and an explicit migration status.
@@ -47,5 +52,14 @@ the skill alone does not add a lint plugin or enforce these rules.
 
 The agent needs access to the project and its tooling. A running app or preview
 allows visual and interaction checks; unavailable checks must be reported. The
-original books are not required to use the skill. See the
-[source notes](references/sources.md) for attribution and adaptations.
+original books are not required to use the skill. See the [source
+notes](references/sources.md) for attribution and adaptations.
+
+## During bootstrap
+
+[`bootstrap`](../../engineering/bootstrap/README.md) offers design-system setup
+as an option for frontends. If selected, it invokes this skill to establish or
+adapt the minimal system using the accepted project basis and records its rules
+in `DESIGN.md`. If skipped, bootstrap preserves existing styling and keeps the
+scaffold minimal. This choice does not disable automatic invocation of the
+skill.

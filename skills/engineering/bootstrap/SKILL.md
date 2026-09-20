@@ -1,24 +1,26 @@
 ---
 name: bootstrap
-description: Bootstrap a fresh TypeScript repository from an agreed spec, with researched architecture and conventions, a custom coding skill, agent setup, verified tooling, and optional commit checkpoints, publication, and infrastructure provisioning.
+description: Bootstrap a fresh TypeScript repository, using an existing project basis or grilling the user to establish one. Includes researched architecture and conventions, a custom coding skill, agent configuration, verified tooling, and optional design-system setup, commit checkpoints, publication, and infrastructure provisioning.
 disable-model-invocation: true
 compatibility: Requires shell access, Git, a JavaScript toolchain, and current official documentation. Requires establish-conventions for architecture and the custom coding skill, and setup-matt-pocock-skills for the engineering configuration handoff. Optional remote operations require authenticated access to the selected providers.
 ---
 
 # Bootstrap
 
-Create a working repository from an existing PRD or spec. Settle the bootstrap
-choices with the user before writing files. Establish architecture and conventions
-from the spec, create the repo-specific coding skill, run the build and smoke test,
-and verify the development commands and engineering skill configuration.
+Create a working repository from an agreed PRD, spec, or architecture basis. If
+that basis is missing, establish it through grilling and write it down first.
+Settle bootstrap choices with the user before scaffolding. Establish
+architecture and conventions, create the repo-specific coding skill, run the
+build and smoke test, and verify the development commands and engineering skill
+configuration.
 
-Support TypeScript web apps, APIs, CLIs, and libraries. Use React when a frontend
-is needed. Python and Rust bootstrapping are not supported yet; explain that
-boundary instead of generating a guessed setup. Product definition, original
-design, and feature implementation belong outside this skill. Default to local
-configuration. Provision selected infrastructure only when agreed during the
-interview; an initial deployment of the verified foundation is a separate choice
-within that plan.
+Support TypeScript web apps, APIs, CLIs, and libraries. Use React when a
+frontend is needed. Python and Rust bootstrapping are not supported yet; explain
+that boundary instead of generating a guessed setup. Include the discovery
+needed to establish a missing project basis. Full product implementation remains
+outside this skill. Default to local configuration. Provision selected
+infrastructure only when agreed during the interview; an initial deployment of
+the verified foundation is a separate choice within that plan.
 
 ## 1. Establish the starting point
 
@@ -27,26 +29,37 @@ design documents, and domain docs. Read relevant ADRs. Preserve existing work;
 resume a partial bootstrap rather than regenerating over it. An established
 application needs a scoped maintenance or migration task, not a fresh bootstrap.
 
-Accept a spec in a file, a linked issue, or the current conversation. It must
-identify the project type, intended behavior, and constraints well enough to
-choose a foundation. If these are missing, explain the gap and suggest the user
-select `grill-me` or `grill-with-docs` to clarify it, `wayfinder` for work spanning
-many decisions, or `to-spec` to capture an already settled conversation. These
-are [Matt Pocock's skills](https://github.com/mattpocock/skills). Do not invent the
-product or silently invoke these user-invoked workflows. Resume after the spec
-exists.
-
 Check that the model-invoked `establish-conventions` skill is available before
 planning architecture and engineering rules. Install it if missing using the
 [companion guidance](README.md#companion-skills). It researches unresolved choices
 and produces the project-specific skill; do not substitute a generic style list.
 
-Locate an established design system when there is a frontend. Use the
-model-invoked `design-system` skill to establish missing conventions from an
-approved shadcn preset or adapt the existing system to the foundation. Check its
-availability during planning; installation guidance is in
-[companion skills](README.md#companion-skills). Keep this work to the foundation
-and its minimal entry point; product screens and features remain outside bootstrap.
+Look for an existing PRD, spec, or architecture document with enough product
+goals, behavior, and constraints to guide setup. Reuse requirements from linked
+issues or the current conversation. If the basis is missing, incomplete, or only
+exists in conversation, invoke `establish-conventions` for its project-basis
+stage. Grill unresolved requirements and write the appropriate document using
+the project's layout. Confirm its decisions before choosing dependent
+architecture or design-system conventions. Do not send the user away to create a
+spec or require them to invoke `grill-me` or `wayfinder`; reuse those sessions
+when they exist.
+
+Record the accepted document path and use it throughout the remaining interview,
+design-system setup, architecture, and custom coding skill. A technology list or
+folder diagram without product requirements is not an adequate basis.
+
+Locate an established design system when there is a frontend. Offer to use the
+model-invoked `design-system` skill to establish one from an approved shadcn
+preset or adapt the existing system to the foundation. Include this work only
+when the user selects it; an earlier explicit request counts. If not selected,
+preserve existing styling and use the minimal frontend scaffold without starting
+a system or requiring the companion. Keep selected work to the foundation and
+its minimal entry point; product screens and features remain outside bootstrap.
+
+For selected design-system work, check availability during planning and install
+the skill if missing using [companion skills](README.md#companion-skills). Keep
+automatic invocation enabled. Skipping setup for this run does not disable the
+skill or remove existing design conventions.
 
 If per-repo engineering skill configuration is still needed, check whether
 `setup-matt-pocock-skills` is available now. If it is missing, explain the
@@ -80,9 +93,12 @@ Cover the decisions that affect this project:
   Installing the skill does not enable automatic commits. Preserve an existing
   choice and use the [commit policy](references/agent-setup.md#optional-automatic-commits)
   when the user opts in.
-- Existing design system or a shadcn preset, using Base UI and Tailwind CSS for
-  the frontend. Use `design-system` to plan the missing foundations, motion, and
-  documentation. Identify any conflict with an existing component library.
+- Whether to establish or adapt a design system during this run, using the
+  existing system or an approved shadcn preset. If selected, invoke `design-system`
+  to plan foundations, motion, and documentation from the accepted project basis.
+  If skipped, retain existing conventions and the agreed frontend stack without
+  adding system documentation or enforcement. Identify any conflict with the
+  selected Base UI and Tailwind CSS setup.
 - Git hosting, private or public visibility, license when relevant, and whether
   this run includes remote creation and the first push. Recommend private when
   visibility is undecided. Local commit policy, remote creation, and pushing are
@@ -158,10 +174,10 @@ packages, placeholder layers, or speculative APIs.
 
 Present the chosen stack, proposed tree, agent configuration, database/hosting
 choices when relevant, architecture and conventions, custom skill location,
-verification commands, local commit policy, and publication scope together.
-Include the exact provisioning actions when selected.
-Proceed when the user confirms this concrete plan. Prior confirmation still
-counts; revisit only changed decisions.
+design-system choice and scope, verification commands, local commit policy, and
+publication scope together. Include the exact provisioning actions when
+selected. Proceed when the user confirms this concrete plan. Prior confirmation
+still counts; revisit only changed decisions.
 
 ## 3. Build the foundation
 
@@ -189,11 +205,12 @@ Keep examples limited to the foundation or a disposable trial.
 - For a frontend, follow the current [shadcn installation guide](https://ui.shadcn.com/docs/installation)
   and [CLI reference](https://ui.shadcn.com/docs/cli). Select Base UI explicitly,
   preserve existing design tokens, and configure Tailwind and component aliases.
-  Apply `design-system` to the components needed to exercise the foundation,
-  including registry discovery, shadcn authoring, and adaptation to shared tokens
-  and motion. Establish `DESIGN.md` and an agent-instruction pointer; follow the
-  skill's consultation requirement before adding Storybook. Inspect generator
-  output for unwanted Radix dependencies or Turborepo configuration.
+  When design-system setup was selected, invoke `design-system` for the components
+  needed to exercise the foundation, including registry discovery, shadcn authoring,
+  and adaptation to shared tokens and motion. Establish `DESIGN.md` and an agent
+  pointer; follow the skill's consultation requirement before adding Storybook.
+  Otherwise preserve existing styles and keep the entry point minimal. Inspect
+  generator output for unwanted Radix dependencies or Turborepo configuration.
 - Provide `dev` where applicable, `build`, `format`, `format:check`, `lint`,
   `typecheck`, `check`, and `test:smoke`. Make `check` run the non-mutating format,
   lint, and type checks. Keep scripts, documentation, CI, and lockfile consistent
@@ -243,13 +260,14 @@ both agents were selected, and verify both can reach the same engineering
 conventions. A local-only bootstrap can still choose GitHub Issues for a future
 remote; record that dependency without creating a remote or tickets implicitly.
 
-Resume `establish-conventions` to create or update the repo-specific coding skill
-and its references, architecture docs, agreed enforcement, and agent pointers.
-Pass the actual scaffold and companion setup's selected docs layout. Keep existing
-local skill names and canonical documents; do not create duplicate convention,
-glossary, or ADR files. Verify that the local skill explains how to update its
-rules and checks whenever conventions change. Make it available to each selected
-agent alongside the shared engineering skills.
+Resume `establish-conventions` to create or update the repo-specific coding
+skill and its references, architecture docs, agreed enforcement, and agent
+pointers. Pass the actual scaffold, design-system choice, and companion setup's
+selected docs layout. Do not use convention setup to add design-system work that
+was skipped. Keep existing local skill names and canonical documents; do not
+create duplicate convention, glossary, or ADR files. Verify that the local skill
+explains how to update its rules and checks whenever conventions change. Make it
+available to each selected agent alongside the shared engineering skills.
 
 Apply the agreed [commit policy](references/agent-setup.md#optional-automatic-commits)
 to the selected instruction file after companion setup. Verify it survives setup
@@ -259,8 +277,9 @@ must not add an automatic-commit instruction.
 Verify setup's output and preserve its conventions. Record agreed domain terms
 in the selected glossary and bootstrap decisions in the selected ADR layout when
 there is something to record. Workspace membership alone does not require
-multiple domain contexts. Link to the source spec and design system rather than
-rewriting them. Keep private specs and notes out of published docs.
+multiple domain contexts. Link to the project basis and any existing design
+system rather than rewriting them. Keep private specs and notes out of published
+docs.
 
 Write a project README with the actual install, development, check, build, and
 smoke commands. Explain the chosen module boundaries and any required local
@@ -302,6 +321,11 @@ the foundation or temporary examples. Check the generated local skill's routing,
 maintenance instructions, and enforcement. Report proposed rules separately from
 implemented checks and leave unavailable agent trials explicitly unverified.
 
+For selected design-system work, complete its relevant component, motion,
+accessibility, and documentation checks against the foundation. If skipped,
+report it as skipped rather than claiming that the scaffold establishes a
+system.
+
 ## 6. Publish or provision only as agreed
 
 For local-only work, hand off the verified files without creating a remote,
@@ -323,8 +347,8 @@ after the local checks pass. Respect any dependency on remote creation or CI
 without treating that dependency as authorization for an unselected operation.
 
 Report the stack and layout, checks actually passed, agent and companion setup,
-custom coding skill and convention verification, local commit policy, created
-commits, remaining Git changes, and infrastructure state separately. A prepared
-workflow is not a passed CI run; a provisioned host is not a deployed app. Name
-any unverified items. Stop at the foundation; product implementation remains a
-separate task.
+custom coding skill and convention verification, design-system status, local
+commit policy, created commits, remaining Git changes, and infrastructure state
+separately. A prepared workflow is not a passed CI run; a provisioned host is
+not a deployed app. Name any unverified items. Stop at the foundation; product
+implementation remains a separate task.
