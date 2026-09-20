@@ -16,11 +16,15 @@ Use this reference to understand the reasoning behind the skill. It records repr
 
 The principles below were derived from:
 
-- Basecamp's [“Copywriting is Interface Design”](https://basecamp.com/gettingreal/09.7-copywriting-is-interface-design) chapter.
-- Current public [HEY feature explanations](https://www.hey.com/features/) and [Basecamp feature explanations](https://basecamp.com/features).
+- Basecamp's ["Copywriting is Interface Design"](https://basecamp.com/gettingreal/09.7-copywriting-is-interface-design) chapter.
+- Public [HEY feature explanations](https://www.hey.com/features/) and [Basecamp feature explanations](https://basecamp.com/features) consulted during the original research.
 - Representative HEY iOS and Basecamp web interface captures indexed by Mobbin.
 
 Keep observed words separate from proposed copy. Short quoted strings below are evidence of a pattern, not text to reuse by default.
+
+When adding evidence, record the product, platform, screen, source link, capture
+date when known, observed wording, and interaction lesson. Treat undated captures
+as historical examples rather than claims about the current interface.
 
 ## Getting Real principles
 
@@ -31,13 +35,13 @@ The chapter treats decisions about labels, quantities, examples, state names, an
 3. Use the audience's language, not internal or technical jargon.
 4. Keep copy concise and clear, but recognize that forms, buttons, instructions, policies, and examples are functional design elements.
 
-“Short” is therefore not the goal by itself. The goal is the shortest copy that preserves the person's understanding of state, action, and consequence.
+"Short" is therefore not the goal by itself. The goal is the shortest copy that preserves the person's understanding of state, action, and consequence.
 
 ## HEY patterns
 
 ### Build a mental model with named destinations
 
-HEY separates email into memorable, behavior-based places: “Imbox,” “The Feed,” “Paper Trail,” “Screened Out,” and “Everything.” The names are distinctive, but each novel concept receives a plain definition.
+HEY separates email into memorable, behavior-based places: "Imbox," "The Feed," "Paper Trail," "Screened Out," and "Everything." The names are distinctive, but each novel concept receives a plain definition.
 
 - [Paper Trail screen](https://mobbin.com/screens/6e210d14-e18e-40b4-878c-0025782fad07): the title is followed by a one-sentence definition naming receipts, confirmations, and transactional email.
 - [Screened Out screen](https://mobbin.com/screens/bb58d9f1-681a-44ed-97c6-b1b85f9b105b): the copy states both which messages appear and that they are deleted after 90 days.
@@ -47,25 +51,25 @@ Lesson: a coined name is usable when its definition, membership rules, and behav
 
 ### Turn classification into a human decision
 
-The [Screener](https://mobbin.com/screens/04169699-9b3b-455e-98d4-4b315239af16) explains that these are people trying to email the person for the first time. The immediate controls are “Yes” and “No”; choosing yes reveals concrete destinations. A separate [classification prompt](https://mobbin.com/screens/002cbd9e-6966-49bf-be37-7f0b8e51e109) describes three recognizable kinds of email in first-person language: important correspondence, newsletters, and transactional mail.
+The [Screener](https://mobbin.com/screens/04169699-9b3b-455e-98d4-4b315239af16) explains that these are people trying to email the person for the first time. The immediate controls are "Yes" and "No"; choosing yes reveals concrete destinations. A separate [classification prompt](https://mobbin.com/screens/002cbd9e-6966-49bf-be37-7f0b8e51e109) describes three recognizable kinds of email in first-person language: important correspondence, newsletters, and transactional mail.
 
 Lesson: ask the question the person can answer from experience, then map that answer to system behavior. Do not ask them to understand the data model first.
 
 ### Teach one unfamiliar behavior at the moment of use
 
-The [Feed coachmark](https://mobbin.com/screens/71696072-6788-4c79-9713-068f04f43f1c) compares newsletter flow with social feeds, explains that items are not individually archived, and ends with a simple “Next…” action.
+The [Feed coachmark](https://mobbin.com/screens/71696072-6788-4c79-9713-068f04f43f1c) compares newsletter flow with social feeds, explains that items are not individually archived, and ends with a simple "Next…" action.
 
 Lesson: a concrete analogy can replace a tour, but keep it local to the current behavior and provide a clear exit.
 
 ### Name actions by the user's intention
 
-HEY's message actions include short intention labels such as “Reply,” “Later,” and “Aside.” The public feature language expands those ideas as “Reply Later,” “Set Aside,” “Bubble Up,” and “Focus & Reply.” These names describe how a person wants to handle a message, not an email protocol operation.
+HEY's message actions include short intention labels such as "Reply," "Later," and "Aside." The public feature language expands those ideas as "Reply Later," "Set Aside," "Bubble Up," and "Focus & Reply." These names describe how a person wants to handle a message, not an email protocol operation.
 
 Lesson: verbs can encode a workflow. Prefer a meaningful intention over generic storage actions when the product supports that intention consistently.
 
 ### Put consequence into settings and feedback
 
-The [sender settings screen](https://mobbin.com/screens/4d7775bb-5287-4560-b58b-5bc5f75927ff) frames its first choice as “Deliver their emails to…” and its second as how to display those emails. A [saved state](https://mobbin.com/screens/e045a870-07c5-4aca-adeb-66a7792e339d) notes that changes may take a few minutes to complete.
+The [sender settings screen](https://mobbin.com/screens/4d7775bb-5287-4560-b58b-5bc5f75927ff) frames its first choice as "Deliver their emails to…" and its second as how to display those emails. A [saved state](https://mobbin.com/screens/e045a870-07c5-4aca-adeb-66a7792e339d) notes that changes may take a few minutes to complete.
 
 Lesson: organize settings around what will happen, and distinguish saved input from completed processing.
 
@@ -75,10 +79,10 @@ Lesson: organize settings around what will happen, and distinguish saved input f
 
 Basecamp often turns configuration into a series of ordinary questions.
 
-- [Automatic Check-in form](https://mobbin.com/screens/285a5f2b-05bd-4f18-9164-d06d2838fb83): asks what question to ask, how often, at what time, who to ask, and who should see it. The action is “Start collecting answers.”
-- [Invitation role step](https://mobbin.com/screens/25f84b6c-8d34-4a01-a8d8-9b68fccf89f1): asks “Who are you inviting?” and describes each option through relationship, capabilities, and limits.
+- [Automatic Check-in form](https://mobbin.com/screens/285a5f2b-05bd-4f18-9164-d06d2838fb83): asks what question to ask, how often, at what time, who to ask, and who should see it. The action is "Start collecting answers."
+- [Invitation role step](https://mobbin.com/screens/25f84b6c-8d34-4a01-a8d8-9b68fccf89f1): asks "Who are you inviting?" and describes each option through relationship, capabilities, and limits.
 
-Lesson: structure copy around the decisions people already understand. Finish with the real outcome, not a generic “Submit.”
+Lesson: structure copy around the decisions people already understand. Finish with the real outcome, not a generic "Submit."
 
 ### Explain choices beside the choice
 
@@ -88,7 +92,7 @@ Lesson: capability and risk information belongs before commitment, not in docume
 
 ### Make staged actions reveal the next stage
 
-Invitation actions include labels such as “Next, enter their name…” and “Email invitation now…”. After completion, the [success screen](https://mobbin.com/screens/7605dd73-96bb-4f75-8079-be75cf86e10e) says who was emailed and offers the next setup decision—choosing visible projects—alongside an explicit postpone action.
+Invitation actions include labels such as "Next, enter their name…" and "Email invitation now…". After completion, the [success screen](https://mobbin.com/screens/7605dd73-96bb-4f75-8079-be75cf86e10e) says who was emailed. It offers a choice of visible projects as the next setup step, with an option to postpone it.
 
 Lesson: progression labels should reduce uncertainty about what clicking does now and what decision follows.
 
@@ -102,7 +106,7 @@ Lesson: the empty state should teach the feature's purpose through realistic fir
 
 The [account cancellation screen](https://mobbin.com/screens/a7702d8d-d6fe-4e9a-b7e2-be87f2277f24) distinguishes immediate account closure from later deletion windows, offers export before cancellation, links to support, and uses a specific destructive action. The [merge-people confirmation](https://mobbin.com/screens/e0b8288f-3acf-435e-b24b-ba36fdfda53a) itemizes what access and history do or do not move and states that the action cannot be undone.
 
-Lesson: “Are you sure?” is not enough. Name asymmetric effects, timing, recovery, and the exact commitment.
+Lesson: "Are you sure?" is not enough. Name asymmetric effects, timing, recovery, and the exact commitment.
 
 ### Connect labels with small functional descriptions
 

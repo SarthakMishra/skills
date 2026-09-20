@@ -17,7 +17,7 @@ For each check, record flow/node, precondition, action, observable expected outc
 
 ## Observe people completing tasks
 
-Use task prompts that describe a goal without naming the intended control. “Find work assigned to you that needs attention this week” is better than “Click My tasks and select Overdue.” Begin from a plausible context and use realistic content.
+Use task prompts that describe a goal without naming the intended control. "Find work assigned to you that needs attention this week" is better than "Click My tasks and select Overdue." Begin from a plausible context and use realistic content.
 
 Observe first action, hesitation, wrong turns, repeated entry, assistance, recovery, and recognition of completion. Ask what the person expected before teaching the intended behavior. Capture the first cause of difficulty, not just where they finally gave up. Preference and appearance feedback can mask usability failures.
 

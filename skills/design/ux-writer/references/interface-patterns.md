@@ -28,8 +28,8 @@ Use this reference to draft or review a specific surface. The examples are origi
 
 Names create the product's mental model. Use familiar nouns by default. Introduce a branded term only when it names a distinct, repeatable concept and the interface can define it where first encountered.
 
-- Navigation labels identify destinations: nouns such as “Projects” or “Payments.”
-- Action labels change state: verbs such as “Create project” or “Record payment.”
+- Navigation labels identify destinations: nouns such as "Projects" or "Payments."
+- Action labels change state: verbs such as "Create project" or "Record payment."
 - Page titles identify the place or object. They need not repeat the global navigation label.
 - Question headings work well when the page is a single decision.
 - Section headings should help scanning, not merely divide whitespace.
@@ -48,7 +48,7 @@ Good: `Invoice INV-1042`
 
 ## Buttons and links
 
-A button should complete the sentence “I want to …” and predict the immediate outcome.
+A button should complete the sentence "I want to …" and predict the immediate outcome.
 
 | Situation     | Bad      | Good                |
 | ------------- | -------- | ------------------- |
@@ -60,9 +60,12 @@ A button should complete the sentence “I want to …” and predict the immedi
 | Next decision | Continue | Next: choose a plan |
 | Delay         | Later    | Remind me tomorrow  |
 
-Use “Save” only when the object already exists and the meaningful outcome is persistence. Use “Create,” “Send,” “Publish,” “Start,” “Schedule,” or “Pay” when those outcomes matter more.
+Use "Save" only when the object already exists and the meaningful outcome is persistence. Use "Create," "Send," "Publish," "Start," "Schedule," or "Pay" when those outcomes matter more.
 
-Use links for navigation, disclosure, or low-commitment secondary actions. Write them as actions when they act: “View calculation,” “Change recipient,” “Learn how tax is estimated.” Avoid “Click here” and vague “Learn more” when the topic fits.
+Use an ellipsis only when the action opens another decision or needs more input.
+Keep established terms consistent, but choose the verb for the actual outcome.
+
+Use links for navigation, disclosure, or low-commitment secondary actions. Write them as actions when they act: "View calculation," "Change recipient," "Learn how tax is estimated." Avoid "Click here" and vague "Learn more" when the topic fits.
 
 Keep cancel actions contextual:
 
@@ -91,7 +94,7 @@ Good helper text: `15 characters, for example 22AAAAA0000A1Z5.`
 
 Bad helper text: `Enter your GSTIN here.`
 
-Good helper text: `We’ll use this GSTIN on tax invoices.`
+Good helper text: `We'll use this GSTIN on tax invoices.`
 
 Bad placeholder: `Name`
 
@@ -111,9 +114,9 @@ Bad:
 
 Good:
 
-- `Team member — can create projects and invite people`
-- `Contractor — can work in assigned projects only`
-- `Client — can view selected project areas`
+- `Team members can create projects and invite people.`
+- `Contractors can work in assigned projects only.`
+- `Clients can view selected project areas.`
 
 Do not hide a policy in an error that appears only after submission.
 
@@ -126,7 +129,7 @@ An empty state is the first page of the feature, not an apology. Distinguish:
 - **Filtered empty:** explain that filters hide results and offer to clear them.
 - **Search zero:** echo the query and suggest a specific recovery.
 - **Permission empty:** do not imply there is no data if the person cannot see it.
-- **Error empty:** never disguise a failed load as “nothing here.”
+- **Error empty:** never disguise a failed load as "nothing here."
 
 Bad: `No data.`
 
@@ -138,7 +141,7 @@ Good: `No projects yet`
 
 Bad: `Nothing found.`
 
-Good: `No invoices match “April retainer”`
+Good: `No invoices match "April retainer"`
 
 `Try a different term or clear the date filter.`
 
@@ -146,7 +149,7 @@ Good: `No invoices match “April retainer”`
 
 For a completed queue, prefer calm confirmation:
 
-Good: `You’re all caught up.`
+Good: `You're all caught up.`
 
 Do not add a primary action when there is no useful next step.
 
@@ -161,11 +164,11 @@ Effective sequence:
 3. Explain the immediate behavior.
 4. Let the person try it.
 
-Bad: `Welcome to our revolutionary workflow engine. Let’s explore eight powerful capabilities.`
+Bad: `Welcome to our revolutionary workflow engine. Let's explore eight powerful capabilities.`
 
 Good: `Keep receipts out of your main inbox`
 
-`Send order confirmations and receipts to Paperwork. They’ll stay searchable without crowding important messages.`
+`Send order confirmations and receipts to Paperwork. They'll stay searchable without crowding important messages.`
 
 `Choose a sender`
 
@@ -187,7 +190,7 @@ If work is asynchronous, distinguish acceptance from completion:
 
 Bad: `Import complete.`
 
-Good: `Import started. You can leave this page; we’ll notify you when 842 transactions are ready.`
+Good: `Import started. You can leave this page; we'll notify you when 842 transactions are ready.`
 
 For partial success:
 
@@ -216,7 +219,7 @@ Good: `Enter a date on or after 1 April 2026.`
 
 Bad: `Something went wrong. Try again.`
 
-Good: `We couldn’t save this invoice because the connection was lost. Your changes are still here. Reconnect and try again.`
+Good: `We couldn't save this invoice because the connection was lost. Your changes are still here. Reconnect and try again.`
 
 Bad: `User not authorized.`
 
@@ -226,7 +229,7 @@ Use field errors for field problems, a banner for page-level problems, and a dia
 
 Do not invent a cause. If unknown, be honest and offer a meaningful next move:
 
-Good: `We couldn’t upload “receipts.zip”. Try again, or upload files individually.`
+Good: `We couldn't upload "receipts.zip". Try again, or upload files individually.`
 
 ## Confirmations and destructive actions
 
@@ -251,35 +254,36 @@ Bad:
 
 Good:
 
-`Delete “Q2 planning”?`
+`Delete "Q2 planning"?`
 
 `The project and its 14 files will move to Trash for 30 days. Team members will lose access now.`
 
 `Delete project / Keep project`
 
-For irreversible merges or transfers, itemize asymmetric consequences rather than relying on “cannot be undone.”
+For irreversible merges or transfers, itemize asymmetric consequences rather than relying on "cannot be undone."
 
 Good:
 
 `Merge Arun into A. Kumar?`
 
-- `Arun’s assignments and project access will move to A. Kumar.`
-- `Arun’s private messages will not move.`
+- `Arun's assignments and project access will move to A. Kumar.`
+- `Arun's private messages will not move.`
 - `Arun will be removed from the account.`
 
 `Merge people / Never mind`
 
-Avoid softened destructive verbs such as “Deactivate” when data is deleted. Avoid frightening language for routine revocable actions.
+Avoid softened destructive verbs such as "Deactivate" when data is deleted. Avoid frightening language for routine revocable actions.
 
 ## Permissions, privacy, and security
 
-Permissions need a purpose, scope, and fallback—not coercion.
+Explain why a permission is needed, what access it grants, and what the person can
+do if they decline.
 
 Bad: `Allow contacts access to continue.`
 
 Good: `Find teammates in your contacts`
 
-`We’ll compare email addresses to suggest people you know. We won’t message anyone.`
+`We'll compare email addresses to suggest people you know. We won't message anyone.`
 
 `Allow contacts / Enter email instead`
 
@@ -323,7 +327,7 @@ Reflect active constraints in the zero state and make reversal easy:
 
 Good: `No overdue invoices assigned to you.`
 
-`Clear “Assigned to me”`
+`Clear "Assigned to me"`
 
 Use column headings that describe values, not database fields. Include units in headings when every value shares them: `Amount (INR)`. Put action menus under an accessible label such as `Actions for invoice INV-1042`, even if the visible control is an icon.
 
@@ -357,7 +361,7 @@ Do not promise a duration unless reliable. Say whether the person can navigate a
 
 Offline:
 
-Good: `You’re offline. Your draft is saved on this device and will send when you reconnect.`
+Good: `You're offline. Your draft is saved on this device and will send when you reconnect.`
 
 Expired:
 
@@ -373,7 +377,8 @@ State whether retrying may duplicate an action, especially for payments, message
 
 ## Invitations, roles, and admin controls
 
-Describe roles by capabilities and limits rather than rank alone. Use real relationship terms—team member, contractor, client—when those align with permissions.
+Describe roles by capabilities and limits. Use relationship terms such as team
+member, contractor, and client when they match the permissions.
 
 Bad: `Select user type.`
 
@@ -381,13 +386,13 @@ Good: `Who are you inviting?`
 
 Bad option: `External`
 
-Good option: `Client — can view selected projects but can’t create new ones.`
+Good option: `Clients can view selected projects but can't create new ones.`
 
 After an invitation, confirm delivery and offer the next setup task:
 
 Good: `Invitation emailed to Jane Doe.`
 
-`Choose the projects Jane can see / I’ll do this later`
+`Choose the projects Jane can see / I'll do this later`
 
 Be explicit when an invitation grants account-wide access, incurs a seat charge, or exposes existing content.
 

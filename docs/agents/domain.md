@@ -1,13 +1,13 @@
 # Domain docs
 
-This repo uses a single-context layout: `CONTEXT.md` at the root and ADRs in
-`docs/adr/`.
+Keep shared terminology in a root `CONTEXT.md` and architecture decisions in
+`docs/adr/`. Create these only when there is terminology or a decision to record.
 
 ## Before exploring
 
-Read `CONTEXT.md` and any ADRs relevant to the work. If these files do not exist,
-proceed silently. Create them through domain modeling when terminology or
-architectural decisions are resolved, rather than creating empty placeholders.
+Read `CONTEXT.md` and any relevant ADRs when they exist. Otherwise proceed without
+creating placeholders. Use domain modeling when terminology or a decision needs
+to be resolved and recorded.
 
 ## Use the glossary
 

@@ -47,7 +47,7 @@ Keep query scope, active filters, result state, and selection inspectable. Prese
 
 Distinguish visible rows, selected rows, and all matching results. Make expansion of selection explicit. Define selection lifetime across pages, filters, and refresh. Show per-item outcomes for partial completion and retry unresolved items without repeating completed side effects.
 
-**Bad:** “Select all” silently changes twenty visible rows into thousands of matches. **Better:** make the scope expansion a deliberate choice and retain the affected count through commitment.
+**Bad:** "Select all" silently changes twenty visible rows into thousands of matches. **Better:** make the scope expansion a deliberate choice and retain the affected count through commitment.
 
 ## Feedback and long-running work
 

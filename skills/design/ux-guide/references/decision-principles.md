@@ -1,6 +1,9 @@
 # Principles that change design decisions
 
-Use these as diagnostic lenses, not proof that a particular interface will work. The source concepts come from the supplied editions listed below; the web-app instructions and examples are this skill's synthesis. Reading the books is not required to apply this reference.
+Use these principles to investigate a design choice. They do not prove that an
+interface will work. The source map below identifies the books behind the
+principles; the web-app examples are this skill's applications. You can use the
+reference without access to the books.
 
 ## Remove uncertainty before removing clicks
 
@@ -34,7 +37,7 @@ Support interruption: returning users should be able to reconstruct what they we
 
 ## Design for slips and mistaken plans
 
-A person may intend the right action but execute the wrong one, or may faithfully execute an incorrect plan. Different causes need different fixes. A hidden mode, ambiguous selection, and neighboring controls can provoke slips; a false understanding of what “save” commits can provoke a mistaken plan.
+A person may intend the right action but execute the wrong one, or may faithfully execute an incorrect plan. Different causes need different fixes. A hidden mode, ambiguous selection, and neighboring controls can provoke slips; a false understanding of what "save" commits can provoke a mistaken plan.
 
 Reduce confusable actions, show the affected object at commitment, preserve work, and provide genuine recovery. Use reversibility when supported. For irreversible actions, provide proportionate review of consequences; a repeated generic confirmation is weak protection against a mistaken mental model. Sources: Norman, chapter 5.
 
@@ -69,11 +72,11 @@ Use a recurring need, manageable action, valuable reward, and optional investmen
 
 ## Resolve competing principles
 
-Make the tradeoff explicit: “Keeping comparisons together increases density but reduces backtracking and memory work.” Prefer correctness and understandable consequences over shaving a step from a high-stakes flow. Prefer direct reversible interaction over confirmation fatigue for low-risk work. Preserve expert efficiency alongside discoverable beginner paths. Convert uncertain recommendations into testable predictions rather than citing a law as the verdict.
+Make the tradeoff explicit: "Keeping comparisons together increases density but reduces backtracking and memory work." Prefer correctness and understandable consequences over shaving a step from a high-stakes flow. Prefer direct reversible interaction over confirmation fatigue for low-risk work. Preserve expert efficiency alongside discoverable beginner paths. Convert uncertain recommendations into testable predictions rather than citing a law as the verdict.
 
 ## Source map
 
-- **Steve Krug, _Don't Make Me Think, Revisited_, third edition (2014 publication; supplied file labeled 2013):** chapters 1–4 for scanning and decisions, 6–7 for navigation and orientation, 8–9 for observing tasks and prioritizing fixes, 10–12 for mobile, goodwill, and accessibility.
+- **Steve Krug, _Don't Make Me Think, Revisited_, third edition (2014):** chapters 1–4 for scanning and decisions, 6–7 for navigation and orientation, 8–9 for observing tasks and prioritizing fixes, 10–12 for mobile, goodwill, and accessibility.
 - **Don Norman, _The Design of Everyday Things_, revised and expanded (2013):** chapters 1–2 for interaction principles and the action cycle, 3 for externalized knowledge, 4 for constraints and mappings, 5 for error and recovery, 6 for iterative human-centered design.
 - **Jon Yablonski, _Laws of UX_, second edition (2024):** chapters 1–10 for the lenses above, 11 for applying principles to decisions, 12 for responsibility, nonideal scenarios, and purposeful friction.
 - **Nir Eyal, _Hooked_ (2014):** chapters 1–5 for cadence, triggers, ability, rewards, and investment; 6 for evaluating influence; 8 for identifying, codifying, and testing recurring behavior.
