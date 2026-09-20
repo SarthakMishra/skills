@@ -1,28 +1,27 @@
 # Interface copy pattern library
 
-Use this reference to draft or review a specific surface. The examples are original and illustrative; adapt nouns, policy, behavior, and tone to the actual product.
+Choose the pattern for the screen or component you are drafting or reviewing.
+The examples are original and illustrative. Adapt nouns, policy, behavior, and
+tone to the actual product.
 
 ## Contents
 
-- Navigation, names, and headings
-- Buttons and links
-- Forms and input guidance
-- Empty, first-run, and zero-result states
-- Onboarding and just-in-time education
-- Success, status, and progress
-- Validation and errors
-- Confirmations and destructive actions
-- Permissions, privacy, and security
-- Settings and preferences
-- Search, filters, sorting, and tables
-- Notifications and subscriptions
-- Loading, offline, expired, and conflict states
-- Invitations, roles, and admin controls
-- Account, billing, and upgrade flows
-- Data-heavy and professional interfaces
-- AI and automation interfaces
-- Accessibility, localization, and variables
-- Product-wide copy audits
+- Names and input: [navigation](#navigation-names-and-headings),
+  [buttons and links](#buttons-and-links), [forms](#forms-and-input-guidance).
+- First use and results: [empty states](#empty-first-run-and-zero-result-states),
+  [onboarding](#onboarding-and-just-in-time-education),
+  [success and progress](#success-status-and-progress), [errors](#validation-and-errors).
+- Choices and consequences: [confirmations](#confirmations-and-destructive-actions),
+  [permissions](#permissions-privacy-and-security), [settings](#settings-and-preferences),
+  [search and tables](#search-filters-sorting-and-tables).
+- Ongoing work: [notifications](#notifications-and-subscriptions),
+  [loading and conflicts](#loading-offline-expired-and-conflict-states),
+  [invitations and roles](#invitations-roles-and-admin-controls),
+  [accounts and billing](#account-billing-and-upgrade-flows).
+- Specialist review: [professional data](#data-heavy-and-professional-interfaces),
+  [AI and automation](#ai-and-automation-interfaces),
+  [accessibility and localization](#accessibility-localization-and-variables),
+  [copy audits](#product-wide-copy-audits).
 
 ## Navigation, names, and headings
 
@@ -32,7 +31,7 @@ Names create the product's mental model. Use familiar nouns by default. Introduc
 - Action labels change state: verbs such as "Create project" or "Record payment."
 - Page titles identify the place or object. They need not repeat the global navigation label.
 - Question headings work well when the page is a single decision.
-- Section headings should help scanning, not merely divide whitespace.
+- Section headings should help scanning, not just divide whitespace.
 
 Bad: `Management Center`
 
@@ -122,14 +121,16 @@ Do not hide a policy in an error that appears only after submission.
 
 ## Empty, first-run, and zero-result states
 
-An empty state is the first page of the feature, not an apology. Distinguish:
+An empty state should explain what the feature does and what to do next.
+Distinguish these cases:
 
-- **First-run empty:** nothing exists yet; teach the purpose and first action.
-- **User-cleared empty:** acknowledge completion; do not re-onboard.
-- **Filtered empty:** explain that filters hide results and offer to clear them.
-- **Search zero:** echo the query and suggest a specific recovery.
-- **Permission empty:** do not imply there is no data if the person cannot see it.
-- **Error empty:** never disguise a failed load as "nothing here."
+- When nothing exists yet, explain the purpose and first action.
+- When the person cleared the content, acknowledge completion without repeating onboarding.
+- When filters hide results, explain this and offer to clear the filters.
+- When a search has no results, echo the query and suggest a specific recovery.
+- When permission hides data, explain the access limit without implying the data is absent.
+
+When loading fails, report the failure instead of showing "nothing here."
 
 Bad: `No data.`
 
@@ -200,7 +201,7 @@ Good: `18 of 20 invoices sent`
 
 `Review unsent invoices`
 
-Avoid congratulatory noise for routine saves. A quiet `Changes saved` is often enough. If completion may take time, say so without pretending the state is final.
+Avoid congratulations for routine saves. A quiet `Changes saved` is often enough. If completion may take time, say so without pretending the state is final.
 
 ## Validation and errors
 
@@ -241,8 +242,7 @@ A destructive confirmation should include:
 - affected people, access, money, or data;
 - timing and retention;
 - reversibility and available recovery;
-- a specific destructive button;
-- a safe secondary action.
+- a specific destructive button and a safe secondary action.
 
 Bad:
 
@@ -335,7 +335,7 @@ Avoid using copy to compensate for an overloaded table. If people need paragraph
 
 ## Notifications and subscriptions
 
-Answer: what triggers the notification, which channel is used, how often, and who receives it.
+Explain what triggers the notification, which channel sends it, how often it arrives, and who receives it.
 
 Bad: `Notifications: On`
 
@@ -412,7 +412,7 @@ Cancellation copy should be humane but factual. Provide export or migration opti
 
 ## Data-heavy and professional interfaces
 
-Optimize for scanability, exactness, and auditability.
+Make values easy to scan, state them precisely, and show how to verify them.
 
 - Use established domain terms; define uncommon abbreviations once.
 - Put period, currency, tax basis, timezone, and status near the number they qualify.
@@ -434,7 +434,7 @@ Good: `Void journal entry` when the accounting system preserves an audit trail; 
 
 ## AI and automation interfaces
 
-Make agency, inputs, output status, and review responsibility explicit.
+Explain who acts, what data the system uses, whether the output is a draft or final, and who must review it.
 
 Name the action precisely:
 
@@ -454,9 +454,14 @@ For tool-using agents, state what they can access and when approval is required.
 
 ## Accessibility, localization, and variables
 
+### Keep meaning accessible
+
 - Do not rely on icon, color, direction, position, or punctuation alone.
 - Give icon-only controls accessible names that include their object when repeated.
 - Keep link text meaningful out of context.
+
+### Support language and layout differences
+
 - Use plain sentence structure that survives translation.
 - Avoid assembling sentences from fragments; word order and pluralization vary.
 - Allow expansion in controls and navigation.
@@ -473,17 +478,22 @@ Document variables with examples and fallbacks:
 
 ## Product-wide copy audits
 
-Create an inventory by object and state, then look for system problems:
+Create an inventory by object and state, then inspect each group below.
+
+### Naming, outcomes, and context
 
 1. Multiple names for the same object.
 2. One name used for different objects.
 3. Generic action labels with different outcomes.
 4. Missing empty, failure, permission, partial, or destructive states.
 5. Explanations far from the choice they qualify.
-6. Tone that becomes playful at high-stakes moments.
-7. Copy that promises behavior the product does not implement.
-8. Backend language leaking into the interface.
-9. Repeated helper text that adds no information.
-10. Unspecified variables, plural rules, truncation, or localization.
+
+### Trust, precision, and localization
+
+1. Tone that becomes playful at high-stakes moments.
+2. Copy that promises behavior the product does not implement.
+3. Backend language leaking into the interface.
+4. Repeated helper text that adds no information.
+5. Unspecified variables, plural rules, truncation, or localization.
 
 Recommend changes in terms of comprehension, confidence, action, recovery, and operational risk. Prioritize by severity and frequency, not by stylistic preference.

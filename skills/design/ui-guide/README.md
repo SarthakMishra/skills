@@ -18,21 +18,23 @@ The agent can also select this skill automatically when a task fits.
 | Motion and gestures    | Timing, interruption, repeated use, and reduced motion. |
 
 It uses the project's stack, tokens, and components. React and Tailwind are
-optional. Motion is added only when it helps the interaction.
+optional. The agent adds motion only when it helps the interaction.
 
 ## Give it enough context
 
 1. Point to the screen or component and describe the problem.
 2. Say whether you want a review, a fix, or a proposal before implementation.
 
-Include a screenshot for visual issues. Interaction problems need the running
-app, a recording, or a description of what happens. State what should stay unchanged.
+3. Include a screenshot for visual issues. For interaction problems, provide the
+   running app, a recording, or a description of what happens.
+4. State what should stay unchanged.
 
 ## What you get
 
 A review returns prioritized findings and proposed repairs. A fix includes code
-changes and checks of the affected states. A proposal-first request pauses for
-your feedback. Small styling changes stay within the component you named.
+changes and checks of the affected states. If you ask for a proposal before
+implementation, the agent pauses for your feedback. Small styling changes stay
+within the component you named.
 
 ## Check the result
 
