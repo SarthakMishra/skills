@@ -1,15 +1,16 @@
 ---
 name: bootstrap
-description: Bootstrap a fresh TypeScript repository from an agreed spec, with a stack interview, agent setup, verified tooling, and optional commit checkpoints, publication, and infrastructure provisioning.
+description: Bootstrap a fresh TypeScript repository from an agreed spec, with researched architecture and conventions, a custom coding skill, agent setup, verified tooling, and optional commit checkpoints, publication, and infrastructure provisioning.
 disable-model-invocation: true
-compatibility: Requires shell access, Git, a JavaScript toolchain, and current official documentation. Requires setup-matt-pocock-skills for the engineering configuration handoff; optional remote operations require authenticated access to the selected providers.
+compatibility: Requires shell access, Git, a JavaScript toolchain, and current official documentation. Requires establish-conventions for architecture and the custom coding skill, and setup-matt-pocock-skills for the engineering configuration handoff. Optional remote operations require authenticated access to the selected providers.
 ---
 
 # Bootstrap
 
 Create a working repository from an existing PRD or spec. Settle the bootstrap
-choices with the user before writing files. Run the build and smoke test, check
-the development commands, and configure the engineering skills.
+choices with the user before writing files. Establish architecture and conventions
+from the spec, create the repo-specific coding skill, run the build and smoke test,
+and verify the development commands and engineering skill configuration.
 
 Support TypeScript web apps, APIs, CLIs, and libraries. Use React when a frontend
 is needed. Python and Rust bootstrapping are not supported yet; explain that
@@ -34,6 +35,11 @@ many decisions, or `to-spec` to capture an already settled conversation. These
 are [Matt Pocock's skills](https://github.com/mattpocock/skills). Do not invent the
 product or silently invoke these user-invoked workflows. Resume after the spec
 exists.
+
+Check that the model-invoked `establish-conventions` skill is available before
+planning architecture and engineering rules. Install it if missing using the
+[companion guidance](README.md#companion-skills). It researches unresolved choices
+and produces the project-specific skill; do not substitute a generic style list.
 
 Locate an established design system when there is a frontend. Use the
 model-invoked `design-system` skill to establish missing conventions from an
@@ -95,6 +101,26 @@ Cover the decisions that affect this project:
 For a public repository, read [public repository preparation](references/public-repository.md)
 now so its requirements enter the plan before any publication.
 
+### Establish architecture and conventions
+
+Invoke `establish-conventions` for its planning stages with the PRD or spec,
+earlier discovery decisions, existing code and conventions, and the choices
+already settled in this interview. Share one decision record. Let it research
+and grill the remaining architecture, complexity, documentation, code-pattern,
+testing, and tool or library choices. Do not repeat settled questions.
+
+Keep bootstrap's supported languages, selected stack, foundation scope, and
+publication policy as constraints. Use the recommendations below as starting
+points for unresolved choices. Investigate conflicts and alternatives rather
+than silently replacing an accepted decision. Include a custom implementation
+when research shows that it meets the requirement better than a dependency.
+
+Fold the resulting architecture, convention decisions, evidence, and enforcement
+plan into bootstrap's proposal. Agree where the custom coding skill and permanent
+docs will live, coordinating with companion setup's existing domain-doc layout.
+Record artifact creation and validation as pending until step 4 resumes the
+workflow. Research notes alone do not complete convention setup.
+
 ### Choose the stack by its requirements
 
 Check current official documentation and CLI help before choosing versions,
@@ -131,8 +157,8 @@ real consumers. Plan future boundaries in prose rather than creating empty
 packages, placeholder layers, or speculative APIs.
 
 Present the chosen stack, proposed tree, agent configuration, database/hosting
-choices when relevant, verification commands, local commit policy, and publication
-scope together.
+choices when relevant, architecture and conventions, custom skill location,
+verification commands, local commit policy, and publication scope together.
 Include the exact provisioning actions when selected.
 Proceed when the user confirms this concrete plan. Prior confirmation still
 counts; revisit only changed decisions.
@@ -148,6 +174,10 @@ within the agreed publication scope. When automatic checkpoints are enabled,
 use `commit` for complete, checked batches during this work. If the skill is
 missing, install the accepted companion before the first checkpoint. Keep
 dependent setup files together until they can pass their required checks.
+
+Use the accepted architecture and convention decisions from `establish-conventions`
+for module boundaries, code patterns, documentation, and verification configuration.
+Keep examples limited to the foundation or a disposable trial.
 
 - Enable strict TypeScript. Align any aliases across TypeScript, the build tool,
   and tests. In a workspace, define explicit package exports and dependencies;
@@ -213,6 +243,14 @@ both agents were selected, and verify both can reach the same engineering
 conventions. A local-only bootstrap can still choose GitHub Issues for a future
 remote; record that dependency without creating a remote or tickets implicitly.
 
+Resume `establish-conventions` to create or update the repo-specific coding skill
+and its references, architecture docs, agreed enforcement, and agent pointers.
+Pass the actual scaffold and companion setup's selected docs layout. Keep existing
+local skill names and canonical documents; do not create duplicate convention,
+glossary, or ADR files. Verify that the local skill explains how to update its
+rules and checks whenever conventions change. Make it available to each selected
+agent alongside the shared engineering skills.
+
 Apply the agreed [commit policy](references/agent-setup.md#optional-automatic-commits)
 to the selected instruction file after companion setup. Verify it survives setup
 without duplication and that every selected agent can read it. Installation alone
@@ -259,6 +297,11 @@ Verify the selected agents' instruction loading and skill discovery using the
 checks in the agent setup reference. Distinguish a configuration inspection from
 a successful fresh-session check when an agent is unavailable.
 
+Complete the convention workflow's representative and non-triggering trials using
+the foundation or temporary examples. Check the generated local skill's routing,
+maintenance instructions, and enforcement. Report proposed rules separately from
+implemented checks and leave unavailable agent trials explicitly unverified.
+
 ## 6. Publish or provision only as agreed
 
 For local-only work, hand off the verified files without creating a remote,
@@ -280,7 +323,8 @@ after the local checks pass. Respect any dependency on remote creation or CI
 without treating that dependency as authorization for an unselected operation.
 
 Report the stack and layout, checks actually passed, agent and companion setup,
-local commit policy, created commits, remaining Git changes, and infrastructure
-state separately. A prepared workflow is not a
-passed CI run; a provisioned host is not a deployed app. Name any unverified
-items. Stop at the foundation; product implementation remains a separate task.
+custom coding skill and convention verification, local commit policy, created
+commits, remaining Git changes, and infrastructure state separately. A prepared
+workflow is not a passed CI run; a provisioned host is not a deployed app. Name
+any unverified items. Stop at the foundation; product implementation remains a
+separate task.

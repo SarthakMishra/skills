@@ -26,13 +26,18 @@ creation, adoption, and component enforcement examples.
 
 ### Engineering · model-invoked
 
-| Skill                                        | Use it to                                                  |
-| -------------------------------------------- | ---------------------------------------------------------- |
-| [commit](skills/engineering/commit/SKILL.md) | Create focused commits using the repository's conventions. |
+| Skill                                                                      | Use it to                                                                      |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| [commit](skills/engineering/commit/SKILL.md)                               | Create focused commits using the repository's conventions.                     |
+| [establish-conventions](skills/engineering/establish-conventions/SKILL.md) | Research architecture and conventions and create a repo-specific coding skill. |
 
 Use `$commit` in Codex or `/commit` in Claude Code, or ask the agent to commit.
 Automatic checkpoints require an explicit opt-in. See the
 [commit usage guide](skills/engineering/commit/README.md).
+
+Use `establish-conventions` with an agreed PRD or spec when creating or revising
+project rules. See the [conventions usage guide](skills/engineering/establish-conventions/README.md)
+for research, interviews, generated skills, and maintenance.
 
 ### Engineering · user-invoked
 

@@ -70,6 +70,19 @@ example, recommend relevant React skills for a React frontend and
 Cloudflare/Workers/Wrangler skills for a Workers target. Do not install UI or
 cloud skills into every CLI or library.
 
+Use the model-invoked `establish-conventions` skill from
+[SarthakMishra/skills](https://github.com/SarthakMishra/skills) during bootstrap.
+It researches architecture and engineering rules from the agreed spec and creates
+or updates the repo-specific coding skill. Check availability before architecture
+planning; see the [companion installation guidance](../README.md#companion-skills).
+Preserve prior interview decisions and companion setup's domain-document layout.
+
+Install the resulting custom skill for the selected agents from one canonical
+project copy. Keep an existing name such as `code-conventions` or `rust-code-style`.
+Its trigger should cover the project's code, tests, tooling, and technical docs;
+it applies accepted rules without invoking the full establishment workflow for
+every edit. Verify the agent pointer and the custom skill's maintenance procedure.
+
 Also propose the model-invoked `commit` skill from
 [SarthakMishra/skills](https://github.com/SarthakMishra/skills). It groups related
 changes and follows local commit conventions. Accepting this installation is
@@ -156,6 +169,11 @@ For example, ask how to fix a README typo without invoking bootstrap and without
 editing files; it should describe a scoped edit, not start a bootstrap interview.
 If an agent is unavailable, report that live discovery remains unverified;
 configuration inspection alone is not an executed check.
+
+For the custom coding skill, use the convention workflow's trial: a representative
+change, a change needing several references, and a nearby task outside its scope.
+Confirm the agent can find canonical patterns, required checks, and the procedure
+for updating a convention. Verify each selected agent's discovery independently.
 
 Check the chosen commit policy in a temporary repo. With automatic checkpoints
 enabled, a completed unit should produce a local commit before unrelated work

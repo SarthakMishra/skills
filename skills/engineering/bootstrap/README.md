@@ -27,15 +27,16 @@ foundation. Local configuration remains the default.
 
 ## Defaults and choices
 
-| Area         | Policy                                                                                                            |
-| ------------ | ----------------------------------------------------------------------------------------------------------------- |
-| Tooling      | pnpm by default; Bun or npm for a single project; strict TypeScript, Oxlint, and Oxfmt.                           |
-| Frontend     | React, Tailwind CSS, and shadcn with Base UI. Framework follows rendering and hosting needs.                      |
-| Layout       | One project unless actual deployables or shared consumers justify pnpm workspaces. Turbo needs a concrete reason. |
-| Design       | Use `design-system` to preserve or establish conventions from the agreed system or shadcn preset.                 |
-| Verification | Checks, build, and a repeatable smoke test; GitHub Actions when GitHub is selected.                               |
-| Commits      | Explicit requests by default. Offer the `commit` skill and optional automatic local checkpoints.                  |
-| Publication  | Local by default. Choose private/public visibility and optional remote creation and push during the interview.    |
+| Area         | Policy                                                                                                                |
+| ------------ | --------------------------------------------------------------------------------------------------------------------- |
+| Tooling      | pnpm by default; Bun or npm for a single project; strict TypeScript, Oxlint, and Oxfmt.                               |
+| Frontend     | React, Tailwind CSS, and shadcn with Base UI. Framework follows rendering and hosting needs.                          |
+| Layout       | One project unless actual deployables or shared consumers justify pnpm workspaces. Turbo needs a concrete reason.     |
+| Design       | Use `design-system` to preserve or establish conventions from the agreed system or shadcn preset.                     |
+| Conventions  | Use `establish-conventions` to research architecture and engineering rules and create the repo-specific coding skill. |
+| Verification | Checks, build, and a repeatable smoke test; GitHub Actions when GitHub is selected.                                   |
+| Commits      | Explicit requests by default. Offer the `commit` skill and optional automatic local checkpoints.                      |
+| Publication  | Local by default. Choose private/public visibility and optional remote creation and push during the interview.        |
 
 The interview ends with an agreed stack, directory tree, and verification plan.
 It also selects Claude Code, Codex, or both, with the appropriate instruction
@@ -58,6 +59,23 @@ and cost expectations. It can configure managed databases or user-selected
 self-hosted Postgres. Git publication, infrastructure creation, and an initial
 deployment are separate choices.
 
+## Architecture and the custom coding skill
+
+Bootstrap invokes `establish-conventions` to fill engineering gaps in the agreed
+spec. It researches alternatives and interviews you about architecture, complexity,
+documentation, language patterns, testing, tools, and libraries. It reuses decisions
+from discovery and the bootstrap interview.
+
+The resulting repo-specific skill, usually `code-conventions`, guides later coding
+and review. It includes relevant references, canonical patterns, required checks,
+and instructions to update the skill when conventions change. Existing projects
+keep their established skill names and document locations. Architecture decisions
+and executable configuration remain in their own canonical files.
+
+Planning happens before scaffolding. The workflow creates and validates the custom
+skill after the foundation and companion setup establish the files and docs layout.
+It does not implement product features to demonstrate an architecture.
+
 ## Optional automatic commits
 
 During the interview, choose whether the agent should commit only when asked or
@@ -72,6 +90,17 @@ not enable it. You can leave it off, disable it later, or ask to leave a
 particular task uncommitted. Local checkpoints do not enable pushing or releases.
 
 ## Companion skills
+
+Include
+[`establish-conventions`](https://github.com/SarthakMishra/skills/tree/main/skills/engineering/establish-conventions)
+for architecture and the custom coding skill. Install it if missing:
+
+```sh
+pnpm dlx skills add SarthakMishra/skills --skill establish-conventions
+```
+
+It is model-invoked and can run within the accepted bootstrap plan. Its interview
+and research process works without optional companion skills.
 
 The proposed engineering set includes
 [`commit`](https://github.com/SarthakMishra/skills/tree/main/skills/engineering/commit).
@@ -123,7 +152,8 @@ remain separate dependencies; their procedures are not bundled here.
 You should be able to install with the chosen package manager, run the documented
 checks, build, and exercise the smoke test without production credentials. The
 directory layout should follow your spec's domain terms. The handoff names what
-passed, whether companion setup finished, the commit policy and commits created,
-and whether the repo remains local or was published. It also distinguishes local configuration, provisioned resources,
-and a verified initial deployment. Missing tools, failed checks, and pending
-remote protections are reported explicitly.
+passed, whether companion setup and the custom coding skill are complete,
+the convention verification, commit policy, and commits created, and whether
+the repo remains local or was published. It also distinguishes local configuration,
+provisioned resources, and a verified initial deployment. Missing tools, failed
+checks, and pending remote protections are reported explicitly.
