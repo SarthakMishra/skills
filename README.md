@@ -31,6 +31,13 @@ pnpm format
 pnpm check
 ```
 
+After the initial push, updates to `main` require a passing `check` workflow.
+Push changes to a branch and open a pull request. CI runs from external
+contributors require maintainer approval.
+
+See the [security policy](.github/SECURITY.md) for private vulnerability reporting
+and guidance on reviewing skills before installation.
+
 ## License
 
 [MIT](LICENSE). Imported skills retain their own notices.
