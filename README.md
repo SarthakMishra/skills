@@ -3,7 +3,7 @@
 My agent skills that I use every day.
 
 ```sh
-pnpm dlx skills add SarthakMishra/skills
+npx skills add SarthakMishra/skills
 ```
 
 Choose the skills and agents during installation. Add `--list` to preview the collection.
