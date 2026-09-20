@@ -24,6 +24,16 @@ in Claude Code or `$skill-name` in Codex, such as `/ui-guide` or `$ui-guide`.
 See the [design-system usage guide](skills/design/design-system/README.md) for
 creation, adoption, and component enforcement examples.
 
+### Engineering · model-invoked
+
+| Skill                                        | Use it to                                                  |
+| -------------------------------------------- | ---------------------------------------------------------- |
+| [commit](skills/engineering/commit/SKILL.md) | Create focused commits using the repository's conventions. |
+
+Use `$commit` in Codex or `/commit` in Claude Code, or ask the agent to commit.
+Automatic checkpoints require an explicit opt-in. See the
+[commit usage guide](skills/engineering/commit/README.md).
+
 ### Engineering · user-invoked
 
 | Skill                                              | Use it to                                                               |

@@ -1,6 +1,6 @@
 ---
 name: bootstrap
-description: Bootstrap a fresh TypeScript repository from an agreed spec, with a stack interview, agent setup, verified tooling, and optional publication and infrastructure provisioning.
+description: Bootstrap a fresh TypeScript repository from an agreed spec, with a stack interview, agent setup, verified tooling, and optional commit checkpoints, publication, and infrastructure provisioning.
 disable-model-invocation: true
 compatibility: Requires shell access, Git, a JavaScript toolchain, and current official documentation. Requires setup-matt-pocock-skills for the engineering configuration handoff; optional remote operations require authenticated access to the selected providers.
 ---
@@ -68,14 +68,20 @@ Cover the decisions that affect this project:
   project instruction files, the recommended shared skill set, and any necessary
   project-specific skills or rules. Read [agent setup](references/agent-setup.md)
   for the file layout, installation scope, and recommended skills.
+- Include `commit` in the proposed skill set. Choose whether commits require an
+  explicit request or the agent should make automatic local checkpoints after
+  each completed, checked unit. Default to explicit requests for a new repo.
+  Installing the skill does not enable automatic commits. Preserve an existing
+  choice and use the [commit policy](references/agent-setup.md#optional-automatic-commits)
+  when the user opts in.
 - Existing design system or a shadcn preset, using Base UI and Tailwind CSS for
   the frontend. Use `design-system` to plan the missing foundations, motion, and
   documentation. Identify any conflict with an existing component library.
 - Git hosting, private or public visibility, license when relevant, and whether
   this run includes remote creation and the first push. Recommend private when
-  visibility is undecided. Default to local preparation without a commit or push;
-  include those operations only when agreed. Repository visibility and package
-  publication are separate decisions.
+  visibility is undecided. Local commit policy, remote creation, and pushing are
+  separate choices. Default to no commit or push unless authorized. Repository
+  visibility and package publication are also separate decisions.
 - Verification needs beyond the baseline in step 5, and any spec-required local
   service configuration. When persistence or hosting is needed, use the defaults
   and interview criteria in [database and hosting](references/database-and-hosting.md).
@@ -125,7 +131,8 @@ real consumers. Plan future boundaries in prose rather than creating empty
 packages, placeholder layers, or speculative APIs.
 
 Present the chosen stack, proposed tree, agent configuration, database/hosting
-choices when relevant, verification commands, and publication scope together.
+choices when relevant, verification commands, local commit policy, and publication
+scope together.
 Include the exact provisioning actions when selected.
 Proceed when the user confirms this concrete plan. Prior confirmation still
 counts; revisit only changed decisions.
@@ -136,7 +143,11 @@ Use current official generators where they fit the plan. Inspect their output;
 remove unneeded demos and reconcile their defaults with the agreed stack. Keep
 one minimal entry point that can prove the foundation works, without implementing
 product features. Initialize Git if absent, preserving any existing history.
-Keep generator commits and remote setup within the agreed publication scope.
+Keep generator commits within the agreed local commit policy and remote setup
+within the agreed publication scope. When automatic checkpoints are enabled,
+use `commit` for complete, checked batches during this work. If the skill is
+missing, install the accepted companion before the first checkpoint. Keep
+dependent setup files together until they can pass their required checks.
 
 - Enable strict TypeScript. Align any aliases across TypeScript, the build tool,
   and tests. In a workspace, define explicit package exports and dependencies;
@@ -202,6 +213,11 @@ both agents were selected, and verify both can reach the same engineering
 conventions. A local-only bootstrap can still choose GitHub Issues for a future
 remote; record that dependency without creating a remote or tickets implicitly.
 
+Apply the agreed [commit policy](references/agent-setup.md#optional-automatic-commits)
+to the selected instruction file after companion setup. Verify it survives setup
+without duplication and that every selected agent can read it. Installation alone
+must not add an automatic-commit instruction.
+
 Verify setup's output and preserve its conventions. Record agreed domain terms
 in the selected glossary and bootstrap decisions in the selected ADR layout when
 there is something to record. Workspace membership alone does not require
@@ -264,6 +280,7 @@ after the local checks pass. Respect any dependency on remote creation or CI
 without treating that dependency as authorization for an unselected operation.
 
 Report the stack and layout, checks actually passed, agent and companion setup,
-Git status, and infrastructure state separately. A prepared workflow is not a
+local commit policy, created commits, remaining Git changes, and infrastructure
+state separately. A prepared workflow is not a
 passed CI run; a provisioned host is not a deployed app. Name any unverified
 items. Stop at the foundation; product implementation remains a separate task.

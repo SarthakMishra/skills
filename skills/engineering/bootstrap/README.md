@@ -34,6 +34,7 @@ foundation. Local configuration remains the default.
 | Layout       | One project unless actual deployables or shared consumers justify pnpm workspaces. Turbo needs a concrete reason. |
 | Design       | Use `design-system` to preserve or establish conventions from the agreed system or shadcn preset.                 |
 | Verification | Checks, build, and a repeatable smoke test; GitHub Actions when GitHub is selected.                               |
+| Commits      | Explicit requests by default. Offer the `commit` skill and optional automatic local checkpoints.                  |
 | Publication  | Local by default. Choose private/public visibility and optional remote creation and push during the interview.    |
 
 The interview ends with an agreed stack, directory tree, and verification plan.
@@ -57,7 +58,29 @@ and cost expectations. It can configure managed databases or user-selected
 self-hosted Postgres. Git publication, infrastructure creation, and an initial
 deployment are separate choices.
 
+## Optional automatic commits
+
+During the interview, choose whether the agent should commit only when asked or
+commit completed, checked units as it works. Automatic checkpoints avoid a large
+commit containing unrelated work at the end of a session. Related code, tests,
+and documentation stay together.
+
+If you opt in, bootstrap installs or reuses `commit` and records the policy in
+`AGENTS.md`, or the selected `CLAUDE.md` for a Claude-only project. The policy
+applies during bootstrap and future sessions. Installing the skill alone does
+not enable it. You can leave it off, disable it later, or ask to leave a
+particular task uncommitted. Local checkpoints do not enable pushing or releases.
+
 ## Companion skills
+
+The proposed engineering set includes
+[`commit`](https://github.com/SarthakMishra/skills/tree/main/skills/engineering/commit).
+It works with explicit commit requests even when automatic checkpoints are off.
+If accepted and missing, install it for the selected agents:
+
+```sh
+pnpm dlx skills add SarthakMishra/skills --skill commit
+```
 
 For a frontend, include
 [`design-system`](https://github.com/SarthakMishra/skills/tree/main/skills/design/design-system).
@@ -100,7 +123,7 @@ remain separate dependencies; their procedures are not bundled here.
 You should be able to install with the chosen package manager, run the documented
 checks, build, and exercise the smoke test without production credentials. The
 directory layout should follow your spec's domain terms. The handoff names what
-passed, whether companion setup finished, and whether the repo remains local or
-was published. It also distinguishes local configuration, provisioned resources,
+passed, whether companion setup finished, the commit policy and commits created,
+and whether the repo remains local or was published. It also distinguishes local configuration, provisioned resources,
 and a verified initial deployment. Missing tools, failed checks, and pending
 remote protections are reported explicitly.

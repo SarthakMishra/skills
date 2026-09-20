@@ -70,10 +70,56 @@ example, recommend relevant React skills for a React frontend and
 Cloudflare/Workers/Wrangler skills for a Workers target. Do not install UI or
 cloud skills into every CLI or library.
 
+Also propose the model-invoked `commit` skill from
+[SarthakMishra/skills](https://github.com/SarthakMishra/skills). It groups related
+changes and follows local commit conventions. Accepting this installation is
+separate from enabling the automatic-commit policy below. See the
+[companion installation guidance](../README.md#companion-skills).
+
 For a React frontend, include the model-invoked `design-system` skill from
 [SarthakMishra/skills](https://github.com/SarthakMishra/skills). It establishes the
 foundation's design conventions and guides later component changes. Check its
 availability before frontend setup; see the [companion installation guidance](../README.md#companion-skills).
+
+## Optional automatic commits
+
+Ask during the interview whether the agent should commit only on explicit
+request or make automatic local checkpoints. Use explicit requests by default
+for a fresh repo. An accepted automatic policy authorizes checkpoints during
+bootstrap and later work; it does not authorize remote operations. Reuse a
+previously settled choice without asking again.
+
+When enabled, install or reuse the accepted `commit` skill and add this section
+to the selected project instruction file after companion setup:
+
+```markdown
+## Commits
+
+Use the `commit` skill to commit your own work at logical checkpoints while
+working. After a complete unit passes its required checks, commit it before
+starting unrelated work. Keep related code, tests, and documentation together;
+do not wait until the session ends to commit several finished units.
+
+Stage specific paths or hunks and inspect the proposed commit. Preserve
+unrelated staged and unstaged changes. Leave incomplete or failing work
+uncommitted and report what remains. Follow this repository's message format
+and checks. This policy authorizes local commits only. Do not push or rewrite
+history unless requested. An instruction to leave work uncommitted overrides
+these automatic checkpoints.
+```
+
+Use `AGENTS.md` for Codex or the shared dual-agent setup. For Claude-only projects,
+use the chosen `CLAUDE.md`; with both agents, retain the shared `AGENTS.md` rule
+and its Claude import. Merge with an existing commit section instead of adding a
+second policy. Use a link to the installed skill when needed for discovery; do
+not copy its full procedure into the instruction file.
+
+If the user declines or has not decided, do not add the automatic policy. For a
+fresh repo, record "Create commits only when explicitly requested" in the selected
+instruction file. If the user asks to disable an existing policy, replace its
+automatic instruction with that rule. Silence does not revoke a previously
+enabled policy. Do not install hooks, background processes, or Git configuration
+to implement these checkpoints.
 
 ## Install and verify the accepted set
 
@@ -110,3 +156,10 @@ For example, ask how to fix a README typo without invoking bootstrap and without
 editing files; it should describe a scoped edit, not start a bootstrap interview.
 If an agent is unavailable, report that live discovery remains unverified;
 configuration inspection alone is not an executed check.
+
+Check the chosen commit policy in a temporary repo. With automatic checkpoints
+enabled, a completed unit should produce a local commit before unrelated work
+starts. With the policy disabled, the same coding request should leave changes
+uncommitted until asked. A message-only request must not create a commit under
+either policy. Include unrelated staged and unstaged edits in the enabled trial
+and verify they remain intact. Confirm no trial pushes or rewrites history.
