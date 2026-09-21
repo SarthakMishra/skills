@@ -12,17 +12,23 @@ Choose the skills and agents during installation. Add `--list` to preview the co
 
 ### Design · model-invoked
 
-| Skill                                                 | Use it to                                        |
-| ----------------------------------------------------- | ------------------------------------------------ |
-| [design-system](skills/design/design-system/SKILL.md) | Build, adopt, and enforce a React design system. |
-| [ui-guide](skills/design/ui-guide/SKILL.md)           | Design interfaces and component interactions.    |
-| [ux-guide](skills/design/ux-guide/SKILL.md)           | Design or repair user flows.                     |
-| [ux-writer](skills/design/ux-writer/SKILL.md)         | Write labels, errors, and confirmations.         |
+| Skill                                                     | Use it to                                                  |
+| --------------------------------------------------------- | ---------------------------------------------------------- |
+| [design-engineer](skills/design/design-engineer/SKILL.md) | Coordinate design skills to build complete app interfaces. |
+| [design-system](skills/design/design-system/SKILL.md)     | Build, adopt, and enforce a React design system.           |
+| [ui-guide](skills/design/ui-guide/SKILL.md)               | Choose and review UI design fundamentals.                  |
+| [ux-guide](skills/design/ux-guide/SKILL.md)               | Design or repair user flows.                               |
+| [ux-writer](skills/design/ux-writer/SKILL.md)             | Write labels, errors, and confirmations.                   |
 
 The agent uses these when a task fits. To invoke one directly, use `/skill-name`
 in Claude Code or `$skill-name` in Codex, such as `/ui-guide` or `$ui-guide`.
 See the [design-system usage guide](skills/design/design-system/README.md) for
 creation, adoption, and component enforcement examples.
+
+Install all five design skills for the full workflow. Invoke `design-engineer`
+once; it coordinates `design-system`, `ux-guide`, `ui-guide`, and `ux-writer`
+through implementation and verification. The companions also work independently.
+See [design-engineer usage](skills/design/design-engineer/README.md).
 
 ### Engineering · model-invoked
 
@@ -73,4 +79,4 @@ and guidance on reviewing skills before installation.
 ## License
 
 [MIT](LICENSE). Imported skills retain their own notices.
-See [sources and attribution](docs/authoring.md#attribution).
+See [sources and attribution](docs/authoring.md#sources-and-attribution).

@@ -1,61 +1,130 @@
 # React interaction contracts
 
-Specify the behavior first, then use the installed stack's components and APIs. Inspect versions and established router, data, and form conventions before choosing APIs. These are engineering applications of the UX principles, not book prescriptions.
+Read the installed versions and existing router, data, form, and component
+conventions before choosing APIs. Implement the flow's transition contract with
+those mechanisms. These are engineering applications of UX rules, not instructions
+to install another framework, state library, or cache.
 
-## State ownership and lifetime
+## Assign state ownership and lifetime
 
-| State                                 | Typical owner                            | Required decision                                    |
-| ------------------------------------- | ---------------------------------------- | ---------------------------------------------------- |
-| Committed records and job status      | Server plus existing data layer          | What is authoritative, stale, pending, or unknown?   |
-| Shareable view/filter state           | Router or URL, where appropriate         | Should refresh, sharing, and Back reproduce it?      |
-| Unsaved values                        | Form/component or deliberate draft store | What survives panels, steps, navigation, and reload? |
-| Focus, expansion, temporary selection | Local interaction state                  | What event resets or restores it?                    |
-| Reusable preferences                  | Existing persistence                     | Is scope person, device, or workspace?               |
+| State                                 | Default owner                                                       | Specify                                                      |
+| ------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Committed records and job status      | Server plus the existing data layer.                                | Authoritative, stale, pending, failed, and unknown meanings. |
+| Shareable view or filter state        | Existing router/URL mechanism for non-sensitive reproducible views. | Refresh, sharing, history, and Back behavior.                |
+| Unsaved values                        | Form/component state or an explicitly supported draft store.        | Survival across panels, steps, navigation, and reload.       |
+| Focus, expansion, temporary selection | The local component or existing interaction primitive.              | Events that reset, retain, or restore it.                    |
+| Reusable preferences                  | Existing persistence scoped to person, device, or workspace.        | Ownership, reset, and cross-account isolation.               |
 
-Derive values where possible; avoid competing sources of truth. Scope persistence to the correct account and workspace. Do not store sensitive drafts in browser storage by default. Define reset on sign-out, account switching, successful completion, and starting another object.
+1. Derive values from their authoritative owner instead of creating competing copies.
+2. Define reset on sign-out, account/workspace switch, completion, and starting a
+   different object. Do not keep one account's draft in another account's view.
+3. Keep component identity stable within the same task. Reset it deliberately
+   when changing objects and only under the agreed draft-lifetime contract.
+4. Preserve dirty form values during background refetch. Do not store sensitive
+   drafts in browser storage by default.
 
-React state follows component identity and tree position. Keep identity stable within the same task and reset deliberately for another object. Unstable keys or changing component types can discard drafts or put state on the wrong row. Do not overwrite dirty form values on background refetch. See [React: preserving and resetting state](https://react.dev/learn/preserving-and-resetting-state).
+| Bad                                                            | Good                                                                         |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| A changing key remounts the form after every request.          | Keep its identity stable while editing the same object.                      |
+| Refetch replaces fields the user has already changed.          | Update authoritative records without discarding the current dirty draft.     |
+| A workspace switch retains another workspace's unsaved values. | Apply the scoped reset or protected draft mechanism defined by the contract. |
 
-## Async behavior
+See [React state preservation](https://react.dev/learn/preserving-and-resetting-state)
+when implementing identity and reset behavior.
 
-### Keep input and results current
+## Keep async input and results current
 
-- Track pending work at its real scope; saving one row should not automatically freeze the whole page.
-- Keep controlled input immediate. Defer expensive rendering or debounce network work when appropriate, not the visible keystroke.
-- Associate results with request inputs. Abort obsolete requests or ignore obsolete responses; test out-of-order completion.
-- Do not present prior-query results as matches for the latest query. Decide whether stale content is safe to use and make that state perceivable when it matters.
+- Scope pending state to the affected operation. Saving one row does not freeze
+  unrelated controls.
+- Update controlled input immediately. Debounce network requests or defer expensive
+  rendering only when needed; do not delay the visible keystroke.
+- Associate each result and error with its input/request owner. Ignore obsolete
+  completions even if cancellation was requested. Abort obsolete reads when the
+  existing layer supports it.
+- Retain prior results only when safe and label them stale. They must not appear
+  to answer the latest query.
 
-### Preserve mutation correctness
+| Event                                         | Required outcome                                                      |
+| --------------------------------------------- | --------------------------------------------------------------------- |
+| Query changes from `ca` to `cat`.             | Input displays `cat` immediately and the new request owns the result. |
+| The `cat` response finishes first.            | Commit its results as current.                                        |
+| The old `ca` response or error arrives later. | It cannot overwrite the current results or status.                    |
+| The current request fails.                    | Preserve input and expose supported retry for the current query.      |
 
-- Tie save responses to the submitted version. Older acknowledgments must not mark newer edits saved or erase them. Serialize or reconcile overlapping mutations using the actual server version contract.
-- Prevent duplicate consequential effects in both interaction and server semantics. Disabling a button does not guarantee exactly-once behavior.
-- Reconcile uncertain results before retrying operations that may already have happened.
+## Preserve mutation correctness
 
-A transition may keep rendering responsive; it does not establish durable persistence or server ordering. Verify supported React/data-layer APIs before implementation. See [React: useTransition](https://react.dev/reference/react/useTransition).
+- Tie each save acknowledgment to the submitted version. An old response must not
+  mark newer edits saved or erase them.
+- Serialize or reconcile overlapping mutations using the actual server contract.
+  A disabled button alone does not guarantee exactly-once effects.
+- On partial completion, preserve per-item outcomes. Do not repeat confirmed effects;
+  reconcile unknown outcomes before retrying potentially duplicated work.
+- Treat timeout as unknown when the mutation may have committed. A missing record
+  permits retry only if the authoritative contract also rules out late completion.
 
-## Optimism and completion
+A rendering transition does not establish persistence, ordering, or server rollback.
+Check installed React/data-layer capabilities before selecting APIs. See
+[React useTransition](https://react.dev/reference/react/useTransition).
 
-Use optimistic UI for low-risk, likely-successful actions with reliable reconciliation. Define pending state, failure handling, and repeated input before implementation. Rollback must preserve newer user intent rather than restoring an obsolete whole-object snapshot.
+## Use optimism only with recovery
 
-Wait for authoritative confirmation before claiming payments, publication, invitations, or consequential bulk changes completed. Give immediate acknowledgment while distinguishing request acceptance from completed outcome. A frontend-only simulation must not imply backend guarantees.
+Use optimistic UI for a low-risk action only when the system can reconcile it
+reliably. Otherwise show pending until confirmation. Specify failure and repeated
+input before implementing the visual change.
 
-For a reversible saved-item toggle, show the intended selection. Combine repeated changes into the latest requested value or process them in order. Reconcile with the authoritative state and provide recovery without losing focus. If another operation supersedes it, an old response must not replace the latest intent.
+For a reversible saved-item toggle, show the intended selection. Combine repeated
+changes into the latest requested value or process them in order according to the
+server contract. An old response or rollback must not replace newer intent with
+an obsolete whole-object snapshot.
 
-## Browser behavior and focus
+| Bad                                                    | Good                                                                      |
+| ------------------------------------------------------ | ------------------------------------------------------------------------- |
+| Show Invitation sent as soon as the button is pressed. | Acknowledge pending immediately and show sent only after confirmation.    |
+| Roll back the whole record after a failed old toggle.  | Reconcile the failed version while preserving newer user changes.         |
+| A frontend demo claims durable saves and delivery.     | Label simulated behavior and identify the unimplemented backend contract. |
 
-Use links for destinations and buttons for actions. Preserve modified clicks, new tabs, native forms, and expected keyboard activation. Coordinate focus, title, and scroll restoration with the router. Substantive navigation needs an appropriate page orientation strategy; a local fetch should not repeatedly reset focus to the top.
+Wait for authoritative confirmation before claiming payments, publication,
+invitations, or consequential bulk changes completed. Request acceptance and final
+completion can be separate states.
 
-For modal interactions, use an existing accessible component when available. Check initial focus, keyboard containment, a keyboard exit, a noninteractive background, and focus restoration to the trigger or a sensible successor. Verify the [WAI-ARIA dialog pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) when building custom behavior.
+## Preserve browser behavior and focus
 
-After deleting a focused row, focus a sensible neighboring item or list action. After invalid submission, expose the relevant field or error summary. Announce meaningful asynchronous status without narrating every render. Preserve a visible or programmatic connection between controls, errors, and outcomes. Reuse accessible controls before creating custom ARIA widgets.
+### Navigation and dialogs
 
-## Translate maps into verification
+- Use links for destinations and buttons for actions. Preserve modified clicks,
+  new tabs, native forms, and expected keyboard activation.
+- Coordinate title, focus, and scroll with the existing router. A new page needs
+  orientation; a local result refresh must not reset focus to the page top.
+- Use the existing accessible dialog component. Check initial focus, keyboard
+  containment, Escape or another keyboard exit, background inertness, and focus return.
+- When custom modal behavior is necessary, verify the
+  [WAI-ARIA dialog pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
 
-For each changed transition, identify the user-visible invariant and relevant failure mode. Examples:
+### Changes within the task
 
-- `F03/N04`: the results still correspond to the newest query when responses finish out of order.
-- `F02/N05`: a timeout after a successful invitation does not cause a duplicate resend.
-- `F04/N02`: moving between wizard steps preserves entered values and restores a meaningful focus position.
-- `F01/N06`: closing a panel returns focus while preserving the draft according to its stated lifetime.
+- After removing a focused row, focus the equivalent control in the next row,
+  then the previous row if no next row exists. For an empty list, use its remaining
+  task action or a programmatically focusable heading.
+- After invalid submission, expose the error summary or first invalid field
+  according to the established form pattern.
+- If Retry disappears when its request starts, move focus to the relevant input
+  or another persistent task control before hiding it.
+- Associate controls, errors, and outcomes. Announce meaningful async status once,
+  not on every render. Reuse accessible primitives before custom ARIA widgets.
 
-Choose checks that resolve actual risks. Use existing project commands and test entry points. Do not install a state machine, router, data cache, or test library just to conform to this reference. Report browser and assistive-technology checks as unverified when only code inspection was possible.
+## Translate the flow into checks
+
+For each changed transition, record its flow/node ID, invariant, and failure case:
+
+| Transition           | Check                                                                  |
+| -------------------- | ---------------------------------------------------------------------- |
+| Search result update | Out-of-order responses cannot replace the newest query's results.      |
+| Invitation recovery  | A committed invitation with a lost response is not blindly sent again. |
+| Wizard backtracking  | Earlier values survive and focus returns to the current step.          |
+| Panel close/reopen   | Focus returns safely and the draft follows its stated lifetime.        |
+| Save acknowledgment  | Newer dirty edits remain dirty after an older save succeeds.           |
+
+Use the project's existing checks and browser tooling. Add a focused behavioral
+test for a meaningful regression risk; do not install libraries solely to conform
+to this reference. Follow [validation](validation.md) for evidence and mark unavailable
+browser or assistive-technology checks `Not verified`.

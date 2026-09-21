@@ -10,9 +10,11 @@ contracts.
 ## When to choose it
 
 Use this skill for shared tokens, component APIs, system adoption, documentation,
-or enforcement. For local layout and interaction design, use `ui-guide`; use
-`ux-guide` for user flows and `ux-writer` for interface copy. These companion
-skills are optional.
+or enforcement. For local design decisions, use [ui-guide](../ui-guide/README.md).
+For an app interface spanning system work, UX, UI, copy, and implementation, invoke
+[design-engineer](../design-engineer/README.md) once. It uses this skill
+automatically when system guidance is needed. Use `ux-guide` for user flows and
+`ux-writer` for interface copy. Design-system also works independently.
 
 The agent can also select this skill for matching work. Example requests:
 

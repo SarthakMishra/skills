@@ -3,60 +3,111 @@
 Name what the motion should communicate before choosing timing or easing. Use
 the repair table at the end when diagnosing an existing animation.
 
+Read [interaction design](interaction-design.md) first for pending, confirmed,
+error, or unknown state. Use [surfaces](surfaces.md) for the geometry being moved
+and [iconography](iconography.md) for the glyph being swapped. This reference owns
+the design treatment, not animation libraries, request state, or DOM cleanup.
+
 ## Choose what deserves to move
 
-State what the motion should communicate: acknowledged input, a changed state, an object's destination, a relationship, a preview of consequences, or a specific brand quality. "Make it delightful" is an aspiration; convert it into a concrete experience.
+Write one sentence naming what motion communicates: input received, a changed
+state, origin or destination, a preview, or an explicitly requested brand effect.
+If no sentence ties the effect to the task, keep the change instant.
 
-| Context                                                 | Default posture                                                                           |
-| ------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| Typing, keyboard traversal, scrubbing, pointer tracking | Keep input direct and immediate; animate only supporting changes that aid orientation     |
-| Repeated toggles, menus, common navigation              | Small distance, short timing, no ornamental sequence; instant is valid                    |
-| Occasional disclosure, panel, dialog                    | A short transition can establish origin and hierarchy                                     |
-| Reordering, insertion, removal                          | Preserve identity and show where things moved when that helps                             |
-| Rare meaningful success or introductory explanation     | Allow more expression, with a clear end and no blocked next action                        |
-| Live measurements or data being compared                | Keep values truthful and readable; avoid a count-up through fictional intermediate values |
+### Direct input and common changes
 
-Do not infer frequency from input method alone. A keyboard-triggered change may still benefit from orientation cues; it must never delay focus, selection, or the next keystroke. Do not animate every row because a list exists.
+| Context                                                 | Default posture                                                                       |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Typing, keyboard traversal, scrubbing, pointer tracking | Keep input direct and immediate; animate only supporting changes that aid orientation |
+| Repeated toggles and common navigation                  | Change state immediately; no stagger or decorative entrance                           |
+| Menus, disclosures, panels, dialogs                     | Use the corresponding duration and movement defaults below                            |
+| Reordering, insertion, removal                          | Animate displacement after a direct user action; skip it on background refresh        |
+
+### Expression and live data
+
+| Context                                             | Default posture                                                                           |
+| --------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Rare meaningful success or introductory explanation | Allow more expression, with a clear end and no blocked next action                        |
+| Live measurements or data being compared            | Keep values truthful and readable; avoid a count-up through fictional intermediate values |
+
+Do not infer frequency from input method alone. A keyboard-triggered change may
+benefit from orientation cues, but must never delay focus, selection, or the next
+keystroke. Do not animate every row because a list exists.
 
 ## Distinguish time variables
 
-| Term             | Meaning                                           |
-| ---------------- | ------------------------------------------------- |
-| Response latency | Time until the UI first acknowledges input        |
-| Delay            | Time before an animation starts                   |
-| Duration         | How long the animation runs                       |
-| Easing           | How change is distributed through the duration    |
-| Spring settling  | Depends on the simulation and stopping thresholds |
-| Dwell time       | How long a message remains readable               |
+| Term             | Meaning                                        |
+| ---------------- | ---------------------------------------------- |
+| Response latency | Time until the UI first acknowledges input     |
+| Delay            | Time before an animation starts                |
+| Duration         | How long the animation runs                    |
+| Easing           | How change is distributed through the duration |
+| Dwell time       | How long a message remains readable            |
 
-These measurements are not interchangeable.
+Spring settling depends on the simulation and stopping thresholds. These
+measurements are not interchangeable.
 
-A 150ms entrance does not justify dismissing a confirmation after 150ms. A slow request does not justify delaying the pressed state. Starting the operation must not wait for its animation.
+- A 150ms entrance does not justify dismissing a confirmation after 150ms.
+- A slow request does not justify delaying the pressed state. Start the operation
+  without waiting for its animation.
+- Record durations in milliseconds and keep them distinct from feedback dwell
+  time and response latency. Implementation must preserve those values when
+  converting to the receiving API's units.
 
-Keep units explicit: CSS accepts milliseconds or seconds; Motion duration/delay examples use seconds. A CSS token of 180ms becomes 0.18 seconds in such an API, not 180. Verify the receiving API rather than copying numbers blindly.
+### Use exact defaults when tokens are missing
 
-Use existing motion tokens. If there are none, these are starting values for typical web-app components, not laws or timings claimed verbatim from a book:
+Use the equivalent project token first. Otherwise use the values below without
+selecting a new number from a range. These are this guide's design defaults, not
+accessibility thresholds. Depart for an explicit user requirement, an
+accessibility or platform constraint, or a defect reproduced in a preview.
+Record the replacement and reason.
 
-| Interaction                     | Starting range                                 | Useful initial choice              |
-| ------------------------------- | ---------------------------------------------- | ---------------------------------- |
-| Press acknowledgment            | Immediate onset; 80–120ms visual settling      | 100ms                              |
-| Hover/color change              | 100–180ms                                      | 150ms                              |
-| Small anchored menu/popover     | 120–220ms                                      | 180ms                              |
-| Small overlay exit              | 80–180ms                                       | 120ms                              |
-| Accordion or local expansion    | 180–280ms                                      | 220ms                              |
-| Dialog entrance                 | 180–280ms                                      | 220ms                              |
-| Large drawer/spatial relocation | 220–400ms                                      | 280ms                              |
-| Rare expressive moment          | Depends on meaning, distance, and choreography | Prototype a short, finite sequence |
+#### Controls and small overlays
 
-Tune duration together with distance and easing. A full-height drawer needs a different treatment from a 4px hint. If large motion feels slow, shorten its travel or reduce sequential stages before increasing its speed. If it is too fast to read, simplify the motion or allow more time. Long transitions need a reason; a fixed sub-300ms prohibition is not a substitute for judgment.
+| Interaction                             | Duration | Treatment                                                                 |
+| --------------------------------------- | -------- | ------------------------------------------------------------------------- |
+| Press scale, when the component uses it | 100ms    | Scale inner presentation from 1 to 0.98; keep the outer hit target fixed. |
+| Hover or pressed color                  | 150ms    | Transition background color; show focus immediately without a transition. |
+| Anchored menu or popover entrance       | 180ms    | Opacity 0 to 1 and scale 0.98 to 1 from the trigger-side origin.          |
+| Anchored menu or popover exit           | 120ms    | Reverse opacity and scale; reopen interrupts the exit.                    |
 
-Exits often need less time because users are finished with the element, but continuity may justify equal timings. A deliberate hold and its release are a separate interaction; their timing should reflect the decision and recovery, not a general rule that all presses are slow.
+#### Expansion and larger movement
+
+| Interaction                   | Entrance / exit | Treatment                                                                            |
+| ----------------------------- | --------------- | ------------------------------------------------------------------------------------ |
+| Accordion                     | 220ms / 220ms   | Animate measured block size so neighboring content follows.                          |
+| Dialog                        | 220ms / 150ms   | Opacity and scale 0.98 to 1 around the center; reverse on exit.                      |
+| Drawer                        | 280ms / 220ms   | Translate from its off-screen edge to its resting position; reverse on exit.         |
+| User-driven list displacement | 180ms           | Move surviving items from their previous to current positions; keep stable identity. |
+
+Use no entrance delay and no blur for these defaults. For a requested expressive
+sequence, write a separate treatment with exact values, a finite end, and no
+blocked controls. Do not apply it to routine interactions.
+
+### Tune for the actual movement
+
+- Tune duration with distance and easing. A full-height drawer needs a different
+  treatment from a 4px hint.
+- If large motion feels slow, shorten its travel or reduce sequential stages
+  before increasing speed. If it is too fast to read, simplify it or allow more time.
+- Give long transitions a reason. A fixed sub-300ms prohibition does not replace
+  judgment.
+- Use the exit duration in the table. Preserve equal timings for accordion
+  expansion and collapse because the surrounding layout moves in both directions.
+- Treat a deliberate hold and release as a separate interaction. Set its timing
+  for the decision and recovery, not a general rule that all presses are slow.
 
 ## Choose an easing curve
 
-A CSS cubic Bézier has fixed endpoints (0,0) and (1,1), with control points `(x1,y1,x2,y2)`. Horizontal position is normalized time; vertical position is normalized progress. The curve's slope represents rate of change. CSS requires x control values between 0 and 1; y may extend outside that range for overshoot.
+Read a CSS cubic Bézier as follows:
 
-| Intended feel                                     | Curve family              | Starting example                 |
+- Endpoints are fixed at `(0,0)` and `(1,1)`. Control points are `(x1,y1,x2,y2)`.
+- Horizontal position is normalized time; vertical position is normalized progress.
+  The curve's slope represents rate of change.
+- CSS requires x control values between 0 and 1. The y values may extend outside
+  that range for overshoot.
+
+| Intended feel                                     | Curve family              | Default curve                    |
 | ------------------------------------------------- | ------------------------- | -------------------------------- |
 | Start promptly and slow near the end              | Ease-out                  | `cubic-bezier(0.16, 1, 0.3, 1)`  |
 | Move between two visible resting positions        | Ease-in-out               | `cubic-bezier(0.65, 0, 0.35, 1)` |
@@ -64,69 +115,131 @@ A CSS cubic Bézier has fixed endpoints (0,0) and (1,1), with control points `(x
 | Constant rate, e.g. a rotating activity indicator | Linear                    | `linear`                         |
 | Deliberately accelerate out of view               | Ease-in, used selectively | `cubic-bezier(0.4, 0, 1, 1)`     |
 
-Treat these as fallback candidates. Do not replace a cohesive project curve because its numbers differ. Built-in curves are valid; custom curves give more control, not automatic quality.
+Use the matching project curve. Without one, apply the curve in the table.
+Use the ease-out curve for the overlay entrances and exits above, the ease-in-out
+curve for accordion and list displacement, and `ease` for color changes.
 
-Ease-out is a strong default for input-driven entrances. Avoid a long slow start that appears to ignore the action. Ease-in can serve a short departing object; assess its perceived delay. A transition between resting positions often benefits from smooth acceleration and deceleration. Linear spatial motion can feel mechanical but is correct for some continuous processes.
+### Match the curve to the action
 
-Tune in a curve editor or working preview. If adjusting numbers, compare one variable at a time: shape, then duration, then distance. Keep a small set of named curves instead of inventing one for each component.
+- Default to ease-out for input-driven entrances. Avoid a long slow start that
+  appears to ignore the action.
+- Use ease-in selectively for a short departing object. Assess its perceived delay.
+- Use ease-in-out between two visible resting positions.
+- Linear spatial motion can feel mechanical but is correct for some continuous
+  processes.
 
-Do not use an overshooting progress curve for opacity, progress values, or other properties whose meaningful range must remain bounded. Give different properties separate transitions where necessary.
+### Tune and constrain the curve
 
-## Springs
+1. Compare shape, then duration, then distance in a curve editor or working preview.
+   Change one variable at a time.
+2. Keep a small set of named curves instead of inventing one for each component.
+3. Keep opacity, progress values, and other bounded properties free of overshooting
+   progress curves. Give different properties separate transitions where necessary.
 
-Use a spring when continuity of position and velocity matters: drag release, interruption, retargeting, or a tactile response. Use a tween when the precise timeline and choreography matter more. A spring is not synonymous with bounce.
+## Choose spring-like or timed movement
 
-Physical parameters:
+Use spring-like movement when a release or reversal should preserve momentum.
+Keep direct manipulation under the pointer; a decorative trailing effect must not
+make the object being placed lag behind input. Keep routine controls calm, without
+visible bounce. Use an explicitly timed treatment when a sequence needs a fixed
+duration.
 
-- Stiffness controls restoring force. A higher value generally produces a faster response.
-- Damping dissipates motion. A higher value generally reduces oscillation, but excessive damping slows the response.
-- Mass affects inertia. A higher value generally slows the response if stiffness and damping stay unchanged.
-- Initial velocity carries the gesture's direction and speed into release.
-- Rest thresholds decide when the animation can finish. Poorly chosen thresholds can keep it running after visible movement stops.
-
-For an ideal linear spring, the damping ratio is `damping / (2 * sqrt(stiffness * mass))`: below 1 oscillates, 1 is critical, above 1 is overdamped. Libraries use different APIs and stopping criteria; this is a tuning model, not a promise of identical rendered motion.
-
-For Motion for React, an illustrative calm physical starting point is `{ type: "spring", stiffness: 400, damping: 40, mass: 1 }`. A duration-based alternative is `{ type: "spring", duration: 0.28, bounce: 0 }`. Choose one parameterization. In Motion, physical parameters override duration/bounce; do not imply that specifying both guarantees an exact duration. Verify against the installed version. See [Motion transitions](https://motion.dev/docs/react-transitions).
-
-Keep direct manipulation under the pointer. Do not make an object lag behind the pointer while the person is placing it. Use elasticity at boundaries and a spring on release when useful. Preserve current position/velocity when retargeting; do not remount the object to restart its entrance.
+Default to firm boundaries. Preserve an existing elastic gesture when it explains
+the boundary without losing control. An undismissed object returns to its starting
+position. The implementation chooses physics parameters and cancellation mechanics;
+the design specifies the intended response, destination, and interruption behavior.
 
 ## Spatial continuity and choreography
 
-Anchor motion to its cause. A popover should expand from the trigger-side origin, including after collision placement flips. A centered dialog can use a centered origin. Avoid scaling text-heavy surfaces from zero; a tiny scale change such as 0.98 to 1 or a short translation with opacity is usually enough. A pure fade is also valid when spatial information is unnecessary.
+### Establish origin and destination
 
-Use consistent object identities and directional relationships. An overlay that appears above content should not inexplicably exit through an unrelated plane. An exit need not mechanically reverse every entrance, but it should preserve the model or express a meaningful destination.
+- Anchor motion to its cause. A popover should expand from the trigger-side origin,
+  including after collision placement flips. A centered dialog can use a centered
+  origin.
+- Avoid scaling text-heavy surfaces from zero. A scale change such as 0.98 to 1 or
+  a short translation with opacity is usually enough. Use a pure fade when spatial
+  information is unnecessary.
+- Keep object identities and directional relationships consistent. An overlay
+  above content should not exit through an unrelated plane without explanation.
+  An exit can differ from its entrance if it preserves the model or communicates
+  a meaningful destination.
 
-Coordinate with restraint:
+### Coordinate with restraint
 
-- Start with the container's animation. Its content can begin animating before the container finishes.
-- Use stagger only when order/grouping deserves emphasis. A starting offset of 20–40ms with a capped total delay around 120ms can work for a small group. Do not apply index × delay to an unbounded list.
-- Do not defer focus or useful content until the last stagger ends. If visible controls must wait, reconsider the choreography.
-- Avoid shifting targets under a pointer while people try to select them. Keep exits and replacements stable enough to preserve place.
+- Start with the container's animation. Its content can begin animating before the
+  container finishes.
+- Default to no stagger. For an infrequent explanatory sequence where each group
+  introduces the next, use 30ms offsets and cap total delay at 120ms. Do not apply
+  index × delay to an unbounded list.
+- Do not defer focus or useful content until the last stagger ends. If visible
+  controls must wait, reconsider the choreography.
+- Avoid shifting targets under a pointer while people try to select them. Keep
+  exits and replacements stable enough to preserve place.
 
 ### Add expression only when it helps
 
-- Anticipation prepares for an action; do not add theatrical anticipation after input that should respond immediately.
-- Follow-through and a little overshoot can express energy. Reserve squash/stretch for appropriate accents; do not distort readable text or every button.
-- Shared-element transitions must preserve an object's identity and destination. Crossfade unrelated content rather than pretending it is the same object.
+- Anticipation prepares for an action. Do not add theatrical anticipation after
+  input that should receive an immediate response.
+- Follow-through and a little overshoot can express energy. Reserve squash and
+  stretch for appropriate accents. Do not distort readable text or every button.
+- Shared-element transitions must preserve an object's identity and destination.
+  Crossfade unrelated content rather than pretending it is the same object.
 
 ## Reduced motion is a designed variant
 
-Honor the user's reduced-motion preference from the start, including during hydration and preference changes when applicable. Replace large translation, zoom, parallax, rotation, and elastic movement with an instant update or a brief, low-intensity opacity/color change only when helpful. No animation at all is a valid reduced-motion treatment.
+1. Honor the user's preference from the start, including during hydration and
+   preference changes when applicable.
+2. Make the default reduced-motion treatment instant. Remove translation, zoom,
+   parallax, rotation, and elastic movement. Retain a static color or icon cue.
+   Use a fade only if the project's reduced-motion pattern explicitly calls for it.
+3. Preserve feedback, state, focus, and final layout. Completion and input must work without any animation. Shortening a large zoom is not sufficient.
 
-Preserve feedback, state, focus, and final layout. Never make completion depend on `animationend` or `transitionend` firing. Reducing duration while retaining a large zoom is not sufficient.
+Avoid unsolicited continuous motion near reading or working areas. Where automatic
+animation is useful, provide relevant pause and stop controls. Reduced motion does
+not replace them. See
+[W3C animation from interactions](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html)
+and [pause, stop, hide](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html).
 
-Avoid unsolicited continuous motion near reading or working areas. Where automatic animation is useful, provide relevant pause/stop controls; reduced motion is not a substitute for them. See [W3C animation from interactions](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html) and [pause, stop, hide](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html).
+## Example filter-panel treatment
+
+Use the menu/popup defaults above for the panel from
+[interaction design](interaction-design.md#example-filter-panel). Place the origin
+at its trigger and preserve the visual relationship after placement changes.
+Typing and focus remain immediate during entrance, exit, and reversal. Pending
+status is independent of the visual transition.
+
+For a contextual icon, default to a quiet 150ms opacity cross-fade, the ease-out
+curve above, no delay, and a fixed 20px slot. Use no blur, bounce, or scale unless
+the established design calls for that expression. Keep the first visible state
+at rest and swap instantly under reduced motion. The new glyph represents actual
+state; a success glyph requires a confirmed result.
+
+## Good and bad motion decisions
+
+| Bad                                                 | Good                                                                                      |
+| --------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| "Use something between 120 and 220ms for the menu." | "Use the project's menu token; otherwise 180ms, ease-out, no delay, trigger-side origin." |
+| Focus waits for the menu entrance to complete.      | Move focus on open; animate only its presentation.                                        |
+| Add blur and bounce to every settings toggle.       | Update the selected state immediately and use the existing color transition.              |
+| Reduced motion runs the same drawer slide in 20ms.  | Place the drawer at its final position immediately, with focus and dismissal intact.      |
 
 ## Translate vague feedback into a repair
 
-| "Feels…"          | Inspect                                                    | Try                                                   |
-| ----------------- | ---------------------------------------------------------- | ----------------------------------------------------- |
-| Sluggish          | Start delay, slow initial curve, travel, serialized stages | Immediate response, shorter travel, overlap           |
-| Abrupt            | Missing continuity, hard cut, wrong origin                 | Short fade/translation tied to the cause              |
-| Floaty            | Excessively soft spring or long settling tail              | More appropriate stiffness/damping; reduce distance   |
-| Jumpy on reversal | Remounts, stale frames, queued keyframes                   | Retarget from current state; stabilize identity       |
-| Chaotic           | Too many simultaneous focal points                         | Keep one dominant motion; quiet the rest              |
-| Cheap or bouncy   | Overshoot where precision is expected                      | Critically damped response or a tween                 |
-| Lifeless          | Missing state feedback or bland uniformity                 | Strengthen useful feedback, then add a fitting accent |
+### Timing and continuity
+
+| Feels             | Inspect                                                    | Try                                                  |
+| ----------------- | ---------------------------------------------------------- | ---------------------------------------------------- |
+| Sluggish          | Start delay, slow initial curve, travel, serialized stages | Immediate response, shorter travel, overlap          |
+| Abrupt            | Missing continuity, hard cut, wrong origin                 | Short fade/translation tied to the cause             |
+| Floaty            | Excessively soft spring or long settling tail              | More appropriate stiffness/damping; reduce distance  |
+| Jumpy on reversal | Visual resets, delayed reversal, queued movement           | Reverse from the current position; preserve identity |
+
+### Emphasis and expression
+
+| Feels           | Inspect                                    | Try                                                   |
+| --------------- | ------------------------------------------ | ----------------------------------------------------- |
+| Chaotic         | Too many simultaneous focal points         | Keep one dominant motion; quiet the rest              |
+| Cheap or bouncy | Overshoot where precision is expected      | Critically damped response or a tween                 |
+| Lifeless        | Missing state feedback or bland uniformity | Strengthen useful feedback, then add a fitting accent |
 
 Judge the repair at normal speed, with repeated use and realistic workload.
