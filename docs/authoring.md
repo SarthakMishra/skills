@@ -11,10 +11,20 @@ instructions. Start at the stage that matches your change:
 4. [Check compatibility and write the usage docs](#4-check-compatibility-and-write-the-usage-docs).
 5. [Validate the package and test behavior](#5-validate-the-package-and-test-behavior).
 
+The document requirements below apply from the first draft to every authored or
+revised `SKILL.md`, reference, README, and docs page. Apply them without waiting
+for the user to invoke `i-have-adhd` or request a readability pass. Check the whole
+changed package before handoff, not only its entry point or your final response.
+
 Use `unslop` while drafting or revising any Markdown in this repository. This
 includes skills, references, READMEs, and documentation. Review the finished draft
 for remaining patterns. Preserve technical meaning, code examples, and quoted
-source text.
+source text. For an intentionally verbatim import, preserve source wording and
+notices; apply repository formatting without silently adapting its instructions.
+
+These are document-authoring conventions. Do not add an `i-have-adhd` dependency,
+a claim about the reader's diagnosis, or persistent conversation-style rules to
+each generated skill unless that is the skill's requested purpose.
 
 ## 1. Define the job and create the package
 
@@ -113,6 +123,12 @@ A workflow can invoke an available model-invoked skill. If it needs a user-invok
 skill, tell the person which one to select. Keep shared reference material
 accessible without invoking an explicit-only workflow.
 
+An orchestrator should apply its model-invoked companions automatically, carry one
+agreed scope and shared context between them, and finish the integrated task.
+Keep companions independently usable. Resolve them through the host's catalog or
+installed registry, not assumed sibling paths. Document missing-companion behavior
+without pretending the companion was used or silently installing it.
+
 Add a router only when choosing among user-invoked skills becomes difficult. The
 router recommends a skill; it cannot bypass explicit invocation. Use a short
 category index while the choices remain easy to scan.
@@ -140,6 +156,26 @@ when a skill never activates.
 
 ## 3. Write the instructions and completion criteria
 
+### Make SKILL.md an abbreviated guide
+
+For a skill with references, make the entry point a map to the whole skill. Keep:
+
+1. The job, invocation scope, and first action.
+2. A short workflow with checkable completion criteria.
+3. Constraints required on every run, including authorization and evidence limits.
+4. Direct links to guidance references, each naming when to read it and the
+   decision or result it supplies.
+
+Put detailed rules, recipes, examples, and branch-specific checks in their owning
+references. Summarize a reference's purpose in the entry point instead of repeating
+its contents. Keep a small skill self-contained; do not create references
+or a routing table merely to match this shape.
+
+For a multi-mode skill, distinguish the modes and their boundaries. Establish
+material scope and approach choices before dependent work, reuse accepted decisions,
+and ask only about what is unresolved. Do not copy one skill's interview or approval
+process into every skill.
+
 ### Make the next action easy to find
 
 Apply these writing rules throughout skills, READMEs, and documentation. Keep the
@@ -148,11 +184,11 @@ remembering earlier sections.
 
 1. Lead with the action or answer. Put the command, path, or snippet first when
    that is what the reader needs. Make the first action small and specific.
-2. Number multi-step work. Give each step one bounded action. Remove unnecessary
-   steps and fold trivial ones into the action they support.
-3. Aim for at most five items per group. Split longer lists under descriptive
-   headings and put the most relevant group first. Keep all important information
-   available; grouping must not remove requirements, exceptions, or options.
+2. Number sequential work, one bounded action per step. Use bullets for independent
+   rules and tables for comparisons or mappings. Remove unnecessary steps.
+3. Aim for at most five items per group. Split long lists and tables by decision
+   under descriptive headings. Preserve comparisons that need to be seen together;
+   grouping must not remove requirements, exceptions, or options.
 4. Make progress visible. At a handoff or checkpoint, state what now works and
    where work resumes. In interactive workflows, update one checklist with one
    item in progress instead of repeating the full plan in prose.
@@ -166,6 +202,11 @@ For example, replace "Update the skill and check it" with:
 2. Replace the description with the agreed trigger wording.
 3. Run pnpm check from the repository root.
 ```
+
+Give each paragraph one job. Break up paragraphs that mix selection, execution,
+exceptions, and verification. Use sentence-case headings that name the action or
+decision. Keep the rule, its exception, and its example together so the reader
+does not have to reconstruct them from different sections.
 
 ### Keep the reader on the current task
 
@@ -205,6 +246,51 @@ implementation steps.
 
 A reference skill can group rules by the decisions they affect.
 
+### Give a default and an explicit exception
+
+Make advice actionable at the point of use. State what to do by default, the
+condition that changes the choice, and the evidence or check needed to accept it.
+Avoid leaving the agent to interpret "appropriate," "when helpful," or "as needed"
+when a concrete condition can be given.
+
+| Vague instruction               | Actionable instruction                                                                                                                |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Use an appropriate form layout. | Default to one column. Share a row for a composite value; stack it when either field or label stops fitting.                          |
+| Use a short animation.          | Reuse the project's menu timing token. If none exists, use this guide's 180ms menu default and check interruption and reduced motion. |
+| Retry unresolved operations.    | Never repeat confirmed successes. Retry only when the contract establishes safety; reconcile unknown outcomes first.                  |
+| Add more testing if useful.     | Exercise the changed failure path. Repeat passed checks only after a new change, failure, or unresolved concern.                      |
+
+These examples demonstrate instruction wording, not universal rules for every
+skill. Preserve project conventions and explicit user constraints. Label chosen
+defaults as design or workflow decisions; do not present them as standards or
+research findings. Do not invent numeric thresholds merely to sound definitive.
+
+Keep uncertainty that changes correctness: unknown outcomes, unsupported APIs,
+unverified evidence, and standards exceptions. Removing a hedge must not turn a
+hypothesis into a fact. Specify what the agent can inspect, what requires a user
+decision, and which dependent work must wait.
+
+### Show the decision with an example
+
+Give each reference that guides a decision an example that resolves ambiguity. Use
+`Bad`/`Good` or `Before`/`After` labels with a short reason or check. A small rule
+can use paired sentences; a repeated comparison can use a table. Metadata, license,
+and attribution files do not need artificial examples.
+
+- Keep the task and scope comparable so the changed behavior is clear.
+- Label an intentionally bad example and its failure. Do not polish away the bad
+  half or leave an unsafe pattern looking like the recommended recipe.
+- State assumptions about data, capabilities, and outcomes. Distinguish a conceptual
+  snippet from a runnable example, and name omitted setup or dependencies.
+- Use a shared worked example across connected references when it demonstrates
+  the handoff. Keep each rule in its owning reference and link to it elsewhere.
+
+For example:
+
+| Before                                              | After                                                                | Check                                                                                     |
+| --------------------------------------------------- | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Retry disappears while it still has keyboard focus. | Move focus to the persistent search field before starting the retry. | Activate Retry with the keyboard; focus reaches the field and accepts the next keystroke. |
+
 ### Put each rule where it is needed
 
 | Content                                     | Location                                                                |
@@ -214,8 +300,9 @@ A reference skill can group rules by the decisions they affect.
 | Detailed guidance for one branch            | In a reference linked from that branch, with a condition for reading it |
 
 Keep each concept's definition, examples, and exceptions together. Maintain each
-rule in one place. Link references directly from `SKILL.md`, without chains of
-references.
+rule in one place. Link guidance references directly from `SKILL.md`. Sibling
+links can connect related guidance or worked examples, but must not be the only
+way to discover a required reference.
 
 A description or reference link must name the material and say when to use it:
 
@@ -261,6 +348,10 @@ alternative. Cover the requested scope without expanding it.
   short entry point to select the relevant branch.
 - Create a separate skill when it needs its own trigger or another workflow must
   invoke it independently.
+- Split independently useful responsibilities, such as design fundamentals and
+  implementation mechanics. Keep one owner for shared rules; do not duplicate a
+  rule catalog in the consuming skill. Short illustrative code can still explain
+  a fundamental, so a code fence alone is not a reason to move content.
 - If an agent rushes a step, clarify its completion criterion first. Consider a
   separate stage or handoff only if the problem persists and the separation
   actually keeps later work out of context.
@@ -289,10 +380,10 @@ rule's value is uncertain. Shorter text alone does not establish an improvement.
 Revisit instructions after model upgrades; a procedure that helps one model may
 hinder another.
 
-Before handing off a document, read its opening and each procedure's ending. The
-reader should be able to find the starting action, the expected result, and the
-next action if work remains. Remove any opening that merely announces the work,
-closing that repeats it, or sidebar that distracts from it.
+Use the editorial review below before handing off the package. Keep source and
+license attribution in the README or notice files. Keep a technical citation
+beside a rule when the agent needs it to verify that rule; attribution alone does
+not require another runtime decision reference.
 
 ## 4. Check compatibility and write the usage docs
 
@@ -359,16 +450,39 @@ when choosing dependencies:
 
 ## 5. Validate the package and test behavior
 
+### Review the documents before running tooling
+
+Check every new or changed entry point, reference, README, and example:
+
+1. The opening names the first action. For a skill with references, the entry point
+   provides scope, a short workflow, and a usable map instead of duplicating the manual.
+2. Headings separate decisions, paragraphs have one job, and sequences use numbered
+   steps. Long lists and tables are grouped without losing important detail.
+3. Rules supply defaults, exception conditions, and completion checks. Material
+   unknowns remain explicit; vague wording is not doing the work of a missing rule.
+4. References that guide decisions include labeled examples. Values, terminology,
+   transitions, and links agree across the example, spec, and implementation.
+5. The document preserves scope, authorization, accessibility, recovery, and evidence
+   limits. Its ending makes completion clear or names one next action if work remains.
+
+Revise failed items before handoff. `pnpm check` validates repository formatting
+and lint rules; it does not establish readability, reference selection, or useful
+instructions. A shorter file is not proof of an improvement.
+
 ### Run the checks required by the change
 
 1. Run `pnpm check` for formatting and linting.
 2. For skill additions or packaging changes, run `pnpm dlx skills add . --list`.
-   Verify local links after moves.
+   Verify local links and anchors after moves, and check that the entry point maps
+   every guidance reference. Confirm installed packages do not rely on assumed
+   sibling paths for runtime instructions.
 3. For behavior changes, test automatic selection with ordinary requests and nearby
    requests that should not trigger a model-invoked skill. Test explicit invocation
    separately and cover each affected branch.
 4. Check artifacts and execution in each intended agent and model. Exercise every
-   changed executable helper.
+   changed executable helper. When changing a complete implementation example,
+   exercise its meaningful behavior; syntax or rendering alone does not verify
+   request ordering, focus transitions, or failure recovery.
 5. Record which checks ran and which remain proposed. Confirm that the agent reads
    the right references, stays within scope, and meets the completion criteria.
 
