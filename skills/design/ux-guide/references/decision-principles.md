@@ -1,98 +1,126 @@
-# Principles that change design decisions
+# Decision rules for user flows
 
-Identify the design decision and use the relevant principle below to form a
-testable recommendation. A principle does not prove the interface will work. The source map below identifies the books behind the
-principles; the web-app examples are this skill's applications. You can use the
-reference without access to the books.
+Name the decision, apply the matching rule, and state the behavior that should
+improve. These rules guide a proposal; they do not prove that users will succeed.
+Book attribution lives in the skill README.
 
-## Remove uncertainty before removing clicks
+## Remove uncertainty before removing steps
 
-People often scan for a promising next move rather than evaluating every option. At each step, ask what the person must guess: where to start, whether something is actionable, what is selected, or where it will lead. Make those relationships evident. Put information at the decision that needs it. A brief explanation can help a novel task; a tour cannot rescue an incoherent path.
+1. Identify what the person must guess: where to start, what is actionable, what
+   is selected, which object changes, or what comes next.
+2. Put that information beside the decision or action that needs it.
+3. Remove steps that collect redundant information or add no useful decision.
+4. Preserve a step when it makes a consequential choice understandable or lets
+   people review the correct object and scope.
 
-Use familiar conventions for ordinary actions and depart from them when the task benefit outweighs relearning. Preserve clarity when mechanical consistency would obscure a different consequence. Keep the primary job visible without requiring every screen to contain exactly one action.
+Use familiar conventions for ordinary actions. Depart when the familiar pattern
+would conceal a different consequence or a documented task need. Keep the primary
+job visible; do not impose exactly one action on every screen.
 
-A sequence of understandable steps can be easier than one screen full of ambiguous choices. Repeated expert work can still justify shortcuts and fewer steps. Count unnecessary decisions, memory demands, re-entry, and context switches along with clicks. Sources: Krug, chapters 1–4, 6–7; Yablonski, chapters 1 and 4.
+| Bad                                                          | Good                                                                                         |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| Combine a wizard into one crowded page to reduce clicks.     | Use one page for independent choices; keep stages when later choices depend on earlier ones. |
+| Add a tour to explain unclear navigation.                    | Make destinations and the current location understandable without the tour.                  |
+| Hide comparisons in separate tabs to reduce visible choices. | Keep the information needed for the decision together.                                       |
 
-## Bridge intention, action, and understanding
+For repeated expert work, keep shortcuts alongside a discoverable standard path.
+Evaluate memory, repeated entry, context switches, and unnecessary decisions as
+well as clicks.
 
-Norman's action cycle gives a useful inspection sequence: identify the goal, choose a plan, identify an action, execute it, perceive the result, interpret it, and compare it with the goal. If the person stalls before acting, clarify the available actions and their consequences. If they cannot understand the result, improve feedback or explain how the system behaves.
+## Connect intention, action, and result
 
-### Find and operate the action
+Use this sequence to locate a breakdown: goal, plan, action choice, execution,
+perceived result, interpretation, and comparison with the goal.
 
-| Concept         | Actionable test                                     | Web-app application                                                               |
-| --------------- | --------------------------------------------------- | --------------------------------------------------------------------------------- |
-| Discoverability | Can people find possible actions and current state? | Expose the main task and applicable controls without hidden gestures.             |
-| Affordance      | Can the person perform the intended action?         | Make the operation available through appropriate input methods.                   |
-| Signifier       | What tells people the action is possible?           | Make actionable controls distinguishable from static content.                     |
-| Mapping         | Which object and scope does this control affect?    | Keep row actions associated with their row; make workspace-wide actions explicit. |
+### Before the action
 
-### Understand constraints and outcomes
+| Question                               | Required treatment                                                                      |
+| -------------------------------------- | --------------------------------------------------------------------------------------- |
+| Can the person find the action?        | Expose a recognizable control and its current availability.                             |
+| Can they operate it?                   | Provide the relevant keyboard, touch, and non-gesture alternatives.                     |
+| Which object and scope does it affect? | Keep row actions beside their row and distinguish personal from workspace-wide actions. |
+| What will happen?                      | Distinguish draft, save, publish, send, and delete before commitment.                   |
 
-| Concept          | Actionable test                                          | Web-app application                                                       |
-| ---------------- | -------------------------------------------------------- | ------------------------------------------------------------------------- |
-| Conceptual model | Can people predict how the system behaves?               | Distinguish editing a draft from publishing it or sending it externally.  |
-| Constraint       | Does the system prevent an invalid action appropriately? | Require a destination before sending; explain why progression is blocked. |
-| Feedback         | Can people perceive and interpret the result?            | Separate received input, processing, and confirmed completion.            |
+### After the action
 
-Feedback should be timely, informative, and proportional. Too many alerts obscure the important ones. Constraints should prevent real errors without adding irrelevant gates. Sources: Norman, chapters 1–2 and 4.
+| Question                          | Required treatment                                                             |
+| --------------------------------- | ------------------------------------------------------------------------------ |
+| Did the input register?           | Acknowledge it immediately at the action.                                      |
+| Is work pending or complete?      | Show real operation state; acceptance is not completion.                       |
+| What failed or remains unknown?   | Show what is known, retained work, and a supported recovery path.              |
+| Can the person recognize success? | Show the changed object or a durable result that matches the intended outcome. |
+
+A constraint must prevent a real invalid action and explain how to proceed.
+Use one clear feedback location for an ordinary result; duplicated alerts obscure
+what matters.
 
 ## Put memory into the interface
 
-Make the facts needed for a decision available together. Keep prior choices, selection scope, progress, and unfinished work visible or recoverable. Chunk related information by meaning, not an arbitrary item count. Do not turn Miller's discussion of memory into a seven-item navigation limit.
+- Keep prior choices, selection scope, relevant comparisons, and unfinished work
+  visible or recoverable at the decision that needs them.
+- Group information by meaning. Do not use a seven-item limit for every list or
+  navigation merely because a memory principle mentions seven.
+- On return, show the current object, saved or unsaved state, and next useful action.
+- Derive reliable mechanical values from known data. Keep consequential defaults
+  inspectable and correctable; do not guess ambiguous meaning.
 
-Support interruption: returning users should be able to reconstruct what they were doing and what remains. Let the system derive reliable values and handle mechanical work; keep consequential assumptions inspectable. Sources: Norman, chapter 3; Yablonski, chapters 3 and 9.
+| Bad                                                          | Good                                                              |
+| ------------------------------------------------------------ | ----------------------------------------------------------------- |
+| Remember a price from step 1 while choosing terms in step 4. | Show the selected price and terms together before commitment.     |
+| Return from detail to a reset search.                        | Restore the prior query, filters, and list position.              |
+| Automate a destination based on an uncertain guess.          | Present the proposed destination and require the needed decision. |
 
-## Design for slips and mistaken plans
+## Distinguish slips from mistaken plans
 
-A person may intend the right action but execute the wrong one, or may faithfully execute an incorrect plan. Different causes need different fixes. A hidden mode, ambiguous selection, and neighboring controls can provoke slips; a false understanding of what "save" commits can provoke a mistaken plan.
+A slip is an unintended execution of a correct plan. A mistaken plan follows an
+incorrect understanding of the system. Match the repair to the cause:
 
-Reduce confusable actions, show the affected object at commitment, preserve work, and provide genuine recovery. Use reversibility when supported. For irreversible actions, provide proportionate review of consequences; a repeated generic confirmation is weak protection against a mistaken mental model. Sources: Norman, chapter 5.
+| Failure                                                         | Default repair                                                                  |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Neighboring controls or a hidden mode cause accidental actions. | Separate confusable actions, expose mode/scope, and provide supported recovery. |
+| The user believes Save publishes externally.                    | Make the actual save/publish boundary visible before commitment.                |
+| An ordinary reversible mistake occurs.                          | Offer genuine undo or correction without generic confirmation fatigue.          |
+| An irreversible or broad action is about to commit.             | Review the actual object, affected scope, and consequence.                      |
 
-## Apply psychology with its limits
+A warning can catch a slip but does not automatically repair an incorrect mental
+model. Recovery must be supported by the system, not promised by wording alone.
 
-### Familiarity, choices, and input
+## Use psychology as a lens, not a specification
 
-| Lens                    | Use it to                                              | Avoid the misleading shortcut                                                                  |
-| ----------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
-| Jakob's law             | Reduce relearning through familiar behavior            | Copying a familiar product despite a different job or audience.                                |
-| Fitts's law             | Improve acquisition of controls across input methods   | Treating visual size alone as usable hit area or deriving a universal pixel size from the law. |
-| Miller / cognitive load | Externalize memory and group meaningful information    | Limiting every list or navigation to seven items.                                              |
-| Hick's law              | Reduce competing decisions and improve grouping        | Hiding essential choices in extra layers solely to reduce visible count.                       |
-| Postel's law            | Accept harmless variation and produce reliable results | Guessing ambiguous dates, amounts, identities, or units; silently coercing meaning.            |
+### Choice and operation
 
-### Attention, complexity, and response
+| Lens                   | Decision it informs                                          | Do not infer                                                            |
+| ---------------------- | ------------------------------------------------------------ | ----------------------------------------------------------------------- |
+| Familiarity            | Reuse behavior suited to the job and audience.               | A familiar product's flow fits every other product.                     |
+| Target acquisition     | Check operable hit areas and placement across input methods. | A universal pixel size follows from Fitts's law alone.                  |
+| Choice and memory load | Group related choices and expose needed information.         | Fewer visible items or clicks always means easier use.                  |
+| Tolerant input         | Accept harmless variation that preserves meaning.            | Ambiguous dates, amounts, identities, or units may be silently coerced. |
 
-| Lens                       | Use it to                                               | Avoid the misleading shortcut                                                              |
-| -------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Peak–end rule              | Improve stressful moments, useful outcomes, and closure | Adding celebration while leaving the core journey broken.                                  |
-| Aesthetic–usability effect | Separate perceived ease from demonstrated task success  | Treating praise for appearance as evidence of usability.                                   |
-| Von Restorff effect        | Make meaningful differences identifiable                | Making everything compete for attention or relying only on color/motion.                   |
-| Tesler's law               | Move derivable mechanical complexity into the system    | Concealing necessary choices or creating rigid automation with no exception path.          |
-| Doherty threshold          | Treat responsive interaction as part of the experience  | Assuming 400 ms is universal, equating feedback with completion, or introducing fake work. |
+### Attention and control
 
-These correspond to chapters 1–10 of _Laws of UX_, second edition. Apply measurements and accessible component requirements appropriate to the actual product; the principle names do not supply a complete specification.
+| Lens                                | Decision it informs                                    | Do not infer                                                  |
+| ----------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------- |
+| Peak/end and meaningful distinction | Improve stressful moments and recognizable completion. | Celebration compensates for a broken core journey.            |
+| Aesthetic usability                 | Evaluate perceived ease alongside task success.        | Praise for appearance proves usability.                       |
+| Complexity                          | Let the system perform reliable mechanical work.       | Necessary choices can be hidden without an exception path.    |
+| Responsiveness                      | Keep input and feedback timely and truthful.           | 400ms is a universal deadline or fake progress is acceptable. |
 
-## Preserve trust and a sense of control
+## Resolve the tradeoff explicitly
 
-Hiding needed information, asking for unnecessary details, discarding work, and obstructing exits can reduce trust. Make limitations and consequences available when they matter. Keep expert paths reachable and let people correct automated results without losing their work. A sparse screen is not simple if it forces people to remember hidden information or work around the product.
+Default to correctness and understandable consequences before removing a step.
+Default to direct correction for reversible work. Keep expert efficiency and a
+discoverable beginner path together. Explain the tradeoff as a concrete prediction:
 
-Meaningful friction can improve confidence before a consequential commitment. Distinguish it from friction caused by confusing controls or organizational convenience. Sources: Krug, chapters 10–12; Norman, chapters 4–6; Yablonski, chapter 12.
+Bad: "Hick's law says this is too complicated."
 
-## Build recurring value and enjoyment
+Good: "Keep the two plans and their limits on one page. Users can compare them
+without returning to the previous step. Check whether they still backtrack for
+missing information."
 
-Diagnose motivation alongside ability and the cue to act. When a willing person stalls, identify their scarce resource: time, money, physical effort, mental effort, social comfort, or fit with routine. Simplify that obstacle before adding persuasion.
+Preserve exits, necessary details, and work already entered. Useful friction
+supports a deliberate commitment; friction caused by internal organizational needs
+does not earn its place by being familiar.
 
-Use a recurring need, manageable action, valuable reward, and optional investment that improves later use. Offer competence, discovery, connection, or ownership where they fit. Let people choose whether to continue and provide a clear stopping point. For an occasional utility, successful completion and easy re-entry matter more than daily habitual use. See the engagement reference for implementation choices. Source: Eyal, chapters 1–6 and 8.
-
-## Resolve competing principles
-
-Make the tradeoff explicit: "Keeping comparisons together increases density but reduces backtracking and memory work." Prefer correctness and understandable consequences over removing a step from a high-stakes flow. Prefer direct reversible interaction over confirmation fatigue for low-risk work. Preserve expert efficiency alongside discoverable beginner paths. Convert uncertain recommendations into testable predictions rather than treating a law as proof.
-
-## Source map
-
-- Steve Krug, _Don't Make Me Think, Revisited_, third edition (2014): chapters 1–4 for scanning and decisions, 6–7 for navigation and orientation, 8–9 for observing tasks and prioritizing fixes, 10–12 for mobile, goodwill, and accessibility.
-- Don Norman, _The Design of Everyday Things_, revised and expanded (2013): chapters 1–2 for interaction principles and the action cycle, 3 for externalized knowledge, 4 for constraints and mappings, 5 for error and recovery, 6 for iterative human-centered design.
-- Jon Yablonski, _Laws of UX_, second edition (2024): chapters 1–10 for the lenses above, 11 for applying principles to decisions, 12 for responsibility, nonideal scenarios, and purposeful friction.
-- Nir Eyal, _Hooked_ (2014): chapters 1–5 for cadence, triggers, ability, rewards, and investment; 6 for evaluating influence; 8 for identifying, codifying, and testing recurring behavior.
-
-Treat the books' historical products, numerical claims, and proposed tactics in context. Report real progress without artificial delays. Keep consequential results predictable and check assumptions against evidence about the product's users. React state ownership, request ordering, the mapping format, and acceptance contracts are engineering applications, not claims that these books prescribe specific APIs.
+For motivation or recurring use, continue with [engagement](engagement.md).
+Fix an ability or timing obstacle before adding persuasion, and leave a clear
+stopping point when the real task is finished.

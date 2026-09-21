@@ -1,79 +1,173 @@
 # Flow patterns and repair choices
 
-Choose the section matching the current journey: navigation, forms, first use,
-lists, feedback, permissions, or accessible completion. Base the pattern on the
-task, context, frequency, and stakes.
+Choose the pattern for the user's job, then specify its exceptions and recovery.
+Use the project's working convention when it meets the same requirements. If it
+does not, name the observed failure and the replacement.
 
-## Choose a container that fits the job
+## Choose the container
 
-| Need                                        | Starting point                           | Reconsider when                                             |
-| ------------------------------------------- | ---------------------------------------- | ----------------------------------------------------------- |
-| Substantial reading, comparison, or editing | A page with a meaningful address         | Parent context is necessary throughout the task.            |
-| Inspect related detail while keeping a list | A side panel or master-detail view       | Narrow screens or extensive editing need a full page.       |
-| Change a local value                        | Inline editing with a clear commit model | Dependencies or consequences need a separate page or panel. |
-| Make a short blocking decision              | A dialog                                 | It grows into a nested workflow or a substantial workspace. |
-| Complete dependent decisions                | A staged flow with backtracking          | Users need to compare sections or work out of order.        |
-| Choose secondary actions                    | An action menu                           | Hiding a primary or frequent action impairs discovery.      |
+### Reading, editing, and local detail
 
-Do not choose a wizard solely because a form contains many fields. Determine which decisions depend on earlier ones. Avoid nested modal workflows. Preserve the context a person needs while adapting the container across viewports.
+| Need                                        | Default                                   | Change the pattern when                                      |
+| ------------------------------------------- | ----------------------------------------- | ------------------------------------------------------------ |
+| Substantial reading, comparison, or editing | A page with a meaningful address.         | Parent context must stay available throughout the task.      |
+| Inspect related detail beside a list        | A side panel or master-detail view.       | The narrow layout or editing workload needs a full page.     |
+| Change one local value                      | Inline editing with a clear commit model. | Dependencies or consequences need a separate review context. |
+
+### Decisions and secondary actions
+
+| Need                                              | Default                                       | Change the pattern when                                                              |
+| ------------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Make a short blocking decision                    | A dialog.                                     | It grows into substantial work; use a page or panel instead of nested dialogs.       |
+| Complete decisions that depend on earlier answers | Stages with backtracking and retained values. | Users need to compare or edit sections out of order; use a single reviewable layout. |
+| Choose secondary actions                          | An action menu.                               | The action is primary or frequent enough that hiding it impairs discovery.           |
+
+A large field count alone does not justify a wizard. Identify the dependencies
+before splitting the task. Preserve necessary context when adapting the container
+across viewport sizes.
 
 ## Navigation and scope
 
-Separate global destinations, local sections, filters, and object actions. Organize around recognizable user objects and activities, not backend services. Make active workspace, role, and affected object evident when they change the meaning of actions.
+- Separate global destinations, local sections, filters, and object actions.
+  Organize them around recognizable user objects and activities, not backend services.
+- Show the active workspace, role, and affected object where they change an action's
+  meaning. Keep personal and workspace-wide settings distinct.
+- Give meaningful destinations direct links and support refresh, new tabs, and
+  Back/Forward. Preserve query, filters, and list position when opening an item
+  and returning.
+- Use the established history convention. Without one, add a history entry for
+  committed navigation and replace transient live-filter updates rather than adding
+  an entry for every keystroke. Keep secrets and sensitive drafts out of URLs.
 
-Support direct links, refresh, new tabs, and Back/Forward for meaningful destinations. Preserve the search, filter, and list-position context when opening an item and returning. Decide whether a view change should create history; each keystroke usually should not. Keep secrets and sensitive drafts out of URLs.
+If an item disappears while its detail is open, return to the preserved list
+context and explain that it is unavailable. Do not send the person to an unrelated
+home screen or silently clear their search.
 
-If opening a result and returning resets filters and scroll position, restore that context. Define where to return if the result has since been removed.
+| Bad                                                       | Good                                                               |
+| --------------------------------------------------------- | ------------------------------------------------------------------ |
+| A row action changes the whole workspace without warning. | Identify the affected workspace and scope before commitment.       |
+| Back from a result loses filters and selection context.   | Restore the prior view according to its stated selection lifetime. |
 
-## Forms and review
+## Forms and commitment
 
-Ask for information needed now; defer optional details. Use authoritative known values as editable defaults when appropriate and distinguish guesses. Keep dependencies near their cause. Do not require users to translate between the app's internal schema and their task.
+### Collect and validate what is needed
 
-Accept harmless input variation such as spacing where meaning is preserved. Clarify ambiguous units, dates, amounts, and identities. Choose validation timing by when a person can act: avoid errors on unfinished typing, then give prompt correction after an invalid attempt. Associate errors with fields and preserve valid values after failure. A disabled action needs an available reason or route to unblock it.
+1. Ask for the information required for the current outcome. Defer optional details.
+2. Use authoritative known values as editable defaults; mark uncertain suggestions.
+   Keep dependencies beside their cause instead of exposing internal schema details.
+3. Normalize harmless variation, such as spacing that does not change meaning.
+   Ask about ambiguous dates, units, amounts, or identities rather than guessing.
+4. Follow existing validation timing. Without one, validate on submit, then update
+   invalid fields during correction. Do not reject unfinished typing on its first
+   keystroke.
+5. Preserve valid and entered values after failure. Associate errors with fields,
+   expose a route to fix them, and explain why an action is unavailable.
 
-Use explicit submission for a coherent commitment. Use autosave when individual changes can safely persist; define unsaved, saving, saved, and failed states. Distinguish draft persistence from externally visible changes. Review should expose significant assumptions, scope, and consequences, and let people return to edit without losing their work.
+### Distinguish saving from committing
 
-After a form submission fails, retain entered values, identify the relevant error, and let the person retry the intended operation.
+Use explicit submission for a coherent commitment. Use autosave only when individual
+changes can safely persist and the system supports that contract. Make unsaved,
+saving, saved, and failed states visible; keep unknown outcomes distinct from failure.
+
+Separate a persisted draft from externally visible publication, delivery, or
+acceptance. Before a consequential commitment, show significant assumptions, the
+affected scope, and consequences. Let the person return to edit without losing work.
+
+| Bad                                                         | Good                                                                           |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Failed submission resets the form.                          | Retain values, identify the error, and allow the intended correction.          |
+| Autosave is labeled Published.                              | Name the actual persisted state and keep publication as a distinct commitment. |
+| A generic confirmation hides which records will be deleted. | Show the actual object, count, and irreversible consequence.                   |
 
 ## First use, empty states, and return
 
-Distinguish no data, no matches, no permission, failed loading, and completed work. Offer the action that fits the actual state: create/import, adjust filters, request access, retry, or leave with confidence. Do not show an empty state while data is still loading.
+| Actual state   | Show                                                                    |
+| -------------- | ----------------------------------------------------------------------- |
+| No data yet    | A useful create/import action and enough context to begin.              |
+| No matches     | The current query/filters and a way to change or clear them.            |
+| No permission  | What is unavailable and a legitimate request-access or return path.     |
+| Load failed    | An error and supported retry or recovery.                               |
+| Work completed | The result and permission to stop; only relevant optional next actions. |
 
-Teach through a useful first task. Defer optional setup until its benefit is visible. Make sample data identifiable and removable. Allow optional instruction to be skipped and revisited. For re-entry, show where work stands and what remains; avoid replaying onboarding to returning users.
+Keep loading distinct from empty. Teach through a useful first task. Sample data
+must be identifiable and removable; optional instruction must be skippable and
+revisitable. Defer invitations, profile setup, or a tour unless they are necessary
+for that first outcome.
 
-If invitations, profile setup, or a tour block the first useful result, defer them until needed. Let the person complete a small real task first.
+On return, show where work stands and what remains. Do not replay onboarding or
+erase unfinished context. Use [engagement](engagement.md) for cadence and first-value
+decisions.
 
-## Search, lists, and bulk actions
+## Search, lists, and selection
 
-Keep query scope, active filters, result state, and selection inspectable. Preserve input during loading and failure. Avoid unexplained reordering while someone is reading or selecting. Prefer stable pagination or load-more for bounded work where position and completion matter; use infinite scrolling only when the task calls for open-ended browsing.
+### Preserve orientation
 
-Distinguish visible rows, selected rows, and all matching results. Make expansion of selection explicit. Define selection lifetime across pages, filters, and refresh. Show per-item outcomes for partial completion and retry unresolved items without repeating completed side effects.
+- Keep query scope, active filters, result state, and selection visible or inspectable.
+  Preserve input during loading and failure.
+- Do not reorder results without explanation while the person reads or selects.
+- Default to stable pagination or Load more for bounded work where position and
+  completion matter. Use infinite scrolling for an explicitly open-ended browsing task.
+- Label retained results as stale when they could otherwise be mistaken for the
+  current query. Do not present a previous result set as a new answer.
 
-If "Select all" would expand twenty visible rows into thousands of matches, require an explicit choice to expand the selection. Keep the affected count visible through commitment.
+### Make bulk scope explicit
+
+Distinguish visible rows, selected rows, and all matching results. Define whether
+selection persists across pages, filter changes, and refresh. Show the affected
+count through commitment.
+
+Bad: Select all expands 20 visible rows into thousands of matches silently.
+
+Good: select the visible rows first, then offer an explicit action to include all
+matching results with the new count.
+
+Show per-item outcomes after partial completion. Never repeat confirmed successes.
+Retry known failed or non-committed items only when the operation contract makes
+that retry safe. Reconcile unknown outcomes first; "unresolved" does not mean safe
+to send again.
 
 ## Feedback and long-running work
 
-Give acknowledgment at the action and expose the meaningful result near the changed object. Keep important errors and recovery available; a disappearing toast is insufficient for consequential failure. Use blocking feedback when a decision truly requires interruption.
+Acknowledge the action where it happened and show the meaningful result near the
+changed object. Keep consequential errors and recovery available after a toast
+disappears. Use blocking feedback only when the person must make a decision before
+continuing safely.
 
-Distinguish initial load, background refresh, and mutation. Preserve usable content during refresh when safe, showing staleness when it affects decisions. Use measured progress when available and indeterminate status otherwise. Acknowledged input is not a completed transaction.
+| Operation           | Expected feedback                                                              |
+| ------------------- | ------------------------------------------------------------------------------ |
+| Initial load        | Explain pending work without implying that empty data was returned.            |
+| Background refresh  | Preserve usable content when safe and expose staleness that affects decisions. |
+| Mutation            | Distinguish accepted, processing, completed, failed, and unknown outcomes.     |
+| Measurable long job | Show measured progress; otherwise use an indeterminate status.                 |
 
-For long jobs, specify:
+For a long job, explicitly define whether the person can leave and inspect status
+later, what cancellation actually stops, and when retry is safe. Aborting a client
+request does not prove that server work stopped. A lost response can leave an unknown
+outcome; do not infer failure from a timeout.
 
-- Whether users can leave and inspect status later.
-- Whether cancellation stops server work or only the client request.
-- When retry is safe. A timeout may leave an unknown outcome; reconcile before
-  retrying a consequential action.
+## Destruction and permissions
 
-## Destruction, settings, and permissions
+- Prefer supported undo or correction for ordinary reversible mistakes. Verify that
+  its lifetime is long enough to support the promise.
+- For irreversible or broad changes, review the actual object, scope, timing, and
+  consequence. Do not require typed confirmation for every routine deletion.
+- Preview broad setting effects when the system can calculate them reliably. Mark
+  unsupported previews as a dependency, not implemented behavior.
+- On permission changes, preserve eligible work without exposing restricted data.
+  Provide a real next action and trace handoffs to the person's final outcome.
 
-Prefer genuine undo for ordinary reversible mistakes. For irreversible or broad changes, review the actual object, affected scope, and consequence before commitment. Do not require typed confirmation for every routine deletion. Verify that undo is durable enough to support its promise.
+## Accessible completion
 
-Distinguish personal preferences from workspace-wide settings. Preview broad effects where feasible. On permission changes, preserve eligible work and provide a real next action without exposing restricted data. Map handoffs to another person or external service through to the user's final outcome, not just the frontend's success response.
+Keep the same job achievable across viewport sizes and input methods. Provide
+alternatives to hover-only and drag-only actions, recognizable semantic controls,
+and non-color state cues. Keep inputs, errors, and focused elements clear of sticky
+controls and on-screen keyboards.
 
-## Responsive and accessible completion
+Bad: dragging is the only way to reorder a task.
 
-Keep the same job achievable across viewport sizes and input methods. Avoid hover-only actions, drag-only interaction, color-only state, and hidden controls needed for completion. Provide semantic controls and operable alternatives. Keep inputs, errors, and focused elements clear of sticky controls and onscreen keyboards.
+Good: provide move actions that change the same order and can be used with a keyboard
+or single pointer.
 
-If dragging is the only way to reorder tasks, add an accessible move action that changes the same order.
-
-Verify logical reading and focus order, sufficient target acquisition, zoom/reflow, and recovery after interruption. Do not reduce accessibility to checking the opening screen or the existence of ARIA attributes.
+Check logical reading/focus order, target operability, zoom/reflow, and interruption
+recovery across the journey. ARIA attributes or an accessible opening screen alone
+do not prove accessible completion. Use [validation](validation.md) for the checks.

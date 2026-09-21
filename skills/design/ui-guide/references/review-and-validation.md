@@ -1,77 +1,71 @@
-# Review and validation
+# Design review
 
-Inspect the requested component or area and record the evidence before reporting
-a finding. Use the diagnosis order below to prioritize repairs.
+Inspect the requested screen and its surrounding context. Report a visible defect,
+an evidence-supported risk, or a design preference, with a concrete treatment.
+This reference evaluates design; it does not define an implementation test suite.
 
-## Inspect to the requested depth
+## Inspect in order
 
-For a narrow task, inspect the component and its immediate context. For a wider audit, sample representative screens and components and then follow observed inconsistencies to their shared source.
+1. Check whether the primary information and action are recognizable. Inspect
+   hierarchy, grouping, density, and the relationship between content and controls.
+2. Check real text and imagery: long labels, large values, wrapping, missing images,
+   and empty or error states. Use [layout](layout.md) and [typography](typography.md).
+3. Measure changed color pairs using [color](color.md#measure-contrast). Inspect
+   selected and focus cues in both themes and forced colors when available.
+4. Inspect feedback and recovery expectations with [interaction design](interaction-design.md).
+   Judge [motion](motion-design.md) at normal speed and after repeated use.
+5. Finish with [polish](polish.md), including [icons](iconography.md) and
+   [surfaces](surfaces.md), after the task and hierarchy are clear.
 
-Record evidence from the running UI, screenshots/recordings, and relevant code. Note the viewport, theme, input method, and state where a problem appears. A static screenshot cannot establish timing, keyboard behavior, or request handling. A code review can identify risks but cannot prove motion feels good.
+Use screenshots for appearance and a running prototype for dynamic behavior when
+available. A screenshot cannot prove keyboard operation, request handling, or
+animation quality. Name the evidence and any limits.
 
-Useful code searches include `transition`, `animate`, `@keyframes`, `useSpring`, `layout`, `setTimeout`, `aria-`, `data-state`, and theme tokens. Inspect search matches before reporting a defect.
+## Check usability constraints
 
-## Diagnose in a useful order
+- Inspect narrow and wide layouts, long content, supported themes, and 200% zoom.
+  Controls and essential information must remain reachable and readable.
+- Keep visible labels, recognizable actions, and non-color state cues. Focus and
+  selection must remain distinguishable.
+- Default new touch-oriented controls to at least 44×44 CSS px hit targets. Preserve
+  established compact controls only after checking spacing and operability.
+- WCAG 2.2 AA's target-size criterion is 24×24 CSS px with specified exceptions,
+  not a blanket 44px minimum. Consult the [criterion](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
 
-1. Can people perceive and operate the control? Check contrast, affordance, target, focus, and alternative input.
-2. Is the static hierarchy correct? Inspect relative emphasis, grouping, readability, and density.
-3. Does behavior match appearance and intent? Trace trigger, rules, feedback, loops, and modes.
-4. Does motion help? Inspect cause, frequency, timing, direction, origin, and interruption.
-5. Is it cohesive and efficient? Compare shared tokens, geometry, state patterns, and runtime cost.
+Keep feedback understandable under reduced motion. Where automatic motion is used,
+check the need for pause/stop controls. Avoid flashing effects; a warning does not
+make an unsafe effect acceptable. These checks do not certify the entire app.
 
-After these checks, consider expressive improvements only when there is a
-reason tied to the product.
+## Make the critique actionable
 
-Classify separately:
+| Classification | Meaning                                                         |
+| -------------- | --------------------------------------------------------------- |
+| Defect         | Observed usability, accessibility, state, or rendering problem. |
+| Risk           | Credible evidence, but the outcome has not been reproduced.     |
+| Preference     | A design alternative with a stated tradeoff.                    |
 
-- A defect is an observed usability, accessibility, state, or rendering problem.
-- A risk has credible code evidence but has not been reproduced.
-- An enhancement is a design improvement with a contextual tradeoff.
+Prioritize blocked operation, misleading outcomes, lost input, and inaccessible
+controls before hierarchy inconsistencies and isolated polish. A longer duration
+is not automatically a more serious issue than an absent focus cue.
 
-Prioritize blocked operation, misleading outcomes, lost input, and inaccessible controls above subtle easing preferences. A 320ms drawer is not automatically a more serious issue than a missing focus indicator. Do not claim a low frame rate from a property name alone.
+Use one row per root cause, listing each affected location. For one finding, a
+short paragraph with the same fields is enough.
 
-## Make findings implementable
+| Location/state   | Before                                    | After                                             | Why / evidence                                       |
+| ---------------- | ----------------------------------------- | ------------------------------------------------- | ---------------------------------------------------- |
+| Settings actions | Save, Cancel, and Delete compete equally. | Emphasize Save and separate Delete.               | Makes the preferred action identifiable; screenshot. |
+| Search status    | An error is shown only by a red border.   | Add a persistent explanation and recovery action. | Meaning remains clear without color; observed.       |
+| Panel opening    | Focus timing has not been inspected.      | Require immediate access during entrance.         | Proposed behavior, not a reproduced defect.          |
 
-For several findings, use:
-
-| Location/state        | Before                              | After                               | Why                           | Priority/evidence            |
-| --------------------- | ----------------------------------- | ----------------------------------- | ----------------------------- | ---------------------------- |
-| Filter panel, opening | Focus waits for entrance            | Focus on open; visual layer follows | Keyboard use stays responsive | High; reproduced             |
-| Summary card, default | Label competes with value           | Use supporting label role           | Clarifies the scan order      | Medium; screenshot           |
-| Menu, reversal        | Exit callback removes reopened menu | Cancel obsolete removal             | Reopened menu stays open      | High; code risk until tested |
-
-Use actual project locations and values in a real audit. Avoid claiming "before" behavior that was not observed. Deduplicate shared-root-cause findings. Leave well-working areas alone.
-
-## Verify relevant dimensions
-
-Choose checks based on changed behavior; do not run every possible test for every small edit.
-
-### Check layout and content
-
-Inspect default and changed states with narrow and wide content, long strings and numbers, and supported themes. Check 200% zoom and reflow, clear focus and selection, clipping, alignment, overflow, and layout stability.
-
-### Exercise state changes and motion
-
-Test pointer and keyboard activation, rapid double input, opening and closing repeatedly, and interrupted transitions. Check focus restoration, disabled and pending behavior, and slow success, errors, and retry where relevant. Unmount the component during pending work.
-
-Check motion at normal speed, use slow playback to diagnose problems, and verify behavior without animation. Check origins, destinations, total duration, and accidental replay. Cosmetic animation must not delay input or completion.
-
-### Check accessibility and performance
-
-Check accessible names, roles, states, and logical focus order. Keep essential information available and convey status without relying on color. Test reduced motion and alternatives to hover-only or drag-only actions. For touch-oriented controls, aim around 44–48 CSS px targets where practical. WCAG 2.2 AA's target-size criterion is 24×24 CSS px with specified exceptions, not a blanket 44px minimum. See [target-size minimum](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
-
-Profile performance when changes or observed stutter warrant it. Try realistic content and concurrent work. Distinguish layout/paint cost, slow React renders, main-thread contention, and memory-heavy compositing before prescribing a fix.
-
-For autoplaying motion, verify applicable pause/stop controls. Avoid flashing effects; do not rely on a warning to make an unsafe animation acceptable. A component passing these checks is not proof the entire app meets an accessibility standard.
-
-## Test behavior where it matters
-
-Reuse project checks and browser tooling. Add a focused test if a meaningful regression risk exists, such as stale responses overwriting current state, repeated submission, lost focus, or an exit callback deleting a reopened element. Small visual token changes normally need inspection, not bespoke unit tests.
-
-A static snapshot cannot validate interruption or settling. An end-to-end test can verify state/focus but may still miss unpleasant motion. State explicitly if browser, physical-device, screen-reader, or performance testing was unavailable.
-
-When real-user testing is requested, observe an unaided task first, then ask what the person expected and understood. Check confidence, timing, and repeated use as well as completion. Do not claim causal improvement or statistical significance from a few informal reactions.
+Bad: "The panel feels wrong; make it modern."
+Good: "Labels and inputs have the same gap as separate field groups. Use 8px
+within groups and 24px between them, or the equivalent project tokens."
 
 ## Finish with evidence
 
-For implemented work, report the changed behavior, why it helps, what was verified, and any material limit. For an audit, report the highest-impact findings and a concrete next action. Keep unresolved visual preferences separate from functional defects.
+Show the selected treatment, why it helps, and checks actually performed. Use
+`Verified` for inspected evidence, `Not verified` for missing checks, and
+`Proposed` for an acceptance criterion. Leave working areas alone and avoid blanket
+approval of uninspected states. When real-user testing is requested, observe an
+unaided task before asking about expectations; informal reactions do not establish
+causal improvement or statistical significance.

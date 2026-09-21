@@ -1,499 +1,261 @@
-# Interface copy pattern library
+# Write interface patterns in context
 
-Choose the pattern for the screen or component you are drafting or reviewing.
-The examples are original and illustrative. Adapt nouns, policy, behavior, and
-tone to the actual product.
+Choose the section matching the interaction. Examples here are original and
+illustrative; their behavior is a stated assumption, not a promise to import.
+Use the project's vocabulary, voice, and supported capabilities.
 
-## Contents
+## Find the pattern
 
-- Names and input: [navigation](#navigation-names-and-headings),
-  [buttons and links](#buttons-and-links), [forms](#forms-and-input-guidance).
-- First use and results: [empty states](#empty-first-run-and-zero-result-states),
-  [onboarding](#onboarding-and-just-in-time-education),
-  [success and progress](#success-status-and-progress), [errors](#validation-and-errors).
-- Choices and consequences: [confirmations](#confirmations-and-destructive-actions),
-  [permissions](#permissions-privacy-and-security), [settings](#settings-and-preferences),
-  [search and tables](#search-filters-sorting-and-tables).
-- Ongoing work: [notifications](#notifications-and-subscriptions),
-  [loading and conflicts](#loading-offline-expired-and-conflict-states),
-  [invitations and roles](#invitations-roles-and-admin-controls),
-  [accounts and billing](#account-billing-and-upgrade-flows).
-- Specialist review: [professional data](#data-heavy-and-professional-interfaces),
-  [AI and automation](#ai-and-automation-interfaces),
-  [accessibility and localization](#accessibility-localization-and-variables),
-  [copy audits](#product-wide-copy-audits).
+- Orientation and choice: [titles](#titles-and-navigation),
+  [actions](#buttons-links-and-menus), [descriptions](#descriptions-and-instructions).
+- Input: [labels](#labels-and-data), [controls](#controls-and-settings),
+  [fields](#text-input-and-validation).
+- State: [empty states](#empty-states-and-first-use),
+  [progress](#waiting-and-completion), [errors](#errors-and-recovery).
+- Consequences: [confirmation](#confirmation-before-commitment),
+  [access and payment](#access-consent-and-payment), [notifications](#notifications).
+- Cross-cutting checks: [accessibility and localization](#accessibility-localization-and-variables).
 
-## Navigation, names, and headings
+## Titles and navigation
 
-Names create the product's mental model. Use familiar nouns by default. Introduce a branded term only when it names a distinct, repeatable concept and the interface can define it where first encountered.
+Use the words people expect after following the entry link or action. A title
+should establish location, object, task, or result even when the body is skipped.
 
-- Navigation labels identify destinations: nouns such as "Projects" or "Payments."
-- Action labels change state: verbs such as "Create project" or "Record payment."
-- Page titles identify the place or object. They need not repeat the global navigation label.
-- Question headings work well when the page is a single decision.
-- Section headings should help scanning, not just divide whitespace.
+| Context     | Default                                              | Exception or check                                              |
+| ----------- | ---------------------------------------------------- | --------------------------------------------------------------- |
+| Destination | Recognizable noun, such as `Appointments`.           | Preserve an established product term when its meaning is clear. |
+| Task        | Action and object, such as `Reschedule appointment`. | Use a question when the screen asks a real question.            |
+| Result      | Actual outcome, such as `Appointment requested`.     | Do not imply confirmation while approval is pending.            |
+| Section     | Distinguishing topic, such as `Delivery address`.    | Remove a heading that adds no orientation.                      |
 
-Bad: `Management Center`
+Match names across entry points and destinations. Write sibling headings at a
+comparable level of detail. Avoid invented names for ordinary concepts and headings
+that force users to read a paragraph to discover the topic.
 
-Good: `Team members`
+## Buttons, links, and menus
 
-Bad: `Configure`
+Name the immediate outcome using a specific verb and object where useful. Use
+nouns for destinations. Write the options together so their differences are clear.
 
-Good: `Who can see this project?`
+| Actual behavior                            | Label                |
+| ------------------------------------------ | -------------------- |
+| Save a private draft                       | `Save draft`         |
+| Open a review before submission            | `Review application` |
+| Submit the completed application           | `Submit application` |
+| Open the list of submitted applications    | `Applications`       |
+| Abandon edits and retain the saved version | `Discard changes`    |
 
-Bad: `Data object overview`
+A short `Save` or `Continue` can work when the object and next step are unmistakable.
+Add words when they distinguish consequences. A verb alone is not useful if it
+hides the recipient, cost, or scope that matters to this decision.
 
-Good: `Invoice INV-1042`
+Use the project's convention for ellipses, capitalization, and punctuation.
+Punctuation cannot carry the only indication that another step follows. Link text
+should name its destination or purpose outside its surrounding sentence; replace
+`Click here` with something like `View delivery options`.
 
-## Buttons and links
+Make the secondary action precise. `Keep editing` and `Discard changes` describe
+different outcomes; `Cancel` is sufficient only when what gets canceled is clear.
+`Not now` requires a genuine path to defer the task. Do not imply an unsupported reminder.
 
-A button should complete the sentence "I want to …" and predict the immediate outcome.
+## Descriptions and instructions
 
-| Situation     | Bad      | Good                |
-| ------------- | -------- | ------------------- |
-| Create        | Submit   | Create project      |
-| Save edits    | Update   | Save changes        |
-| Send          | Confirm  | Send invitation     |
-| Export        | Proceed  | Download CSV        |
-| Delete        | Yes      | Delete invoice      |
-| Next decision | Continue | Next: choose a plan |
-| Delay         | Later    | Remind me tomorrow  |
+Add only the information the title and action cannot convey: a prerequisite,
+meaningful benefit, constraint, scope, or consequence. Put it beside the decision
+it supports. Choose the opening according to what the person needs to recognize:
 
-Use "Save" only when the object already exists and the meaningful outcome is persistence. Use "Create," "Send," "Publish," "Start," "Schedule," or "Pay" when those outcomes matter more.
+| Need                     | Example                                              |
+| ------------------------ | ---------------------------------------------------- |
+| Reach an outcome         | `To receive delivery updates, add an email address.` |
+| Understand a consequence | `Changing this address affects future deliveries.`   |
+| Follow a requirement     | `Upload a PDF no larger than 10 MB.`                 |
 
-Use an ellipsis only when the action opens another decision or needs more input.
-Keep established terms consistent, but choose the verb for the actual outcome.
+These examples assume the stated rules are true. Avoid repeating `Email address`
+with `Enter your email address here`. Put optional explanation behind a descriptive
+link when it is useful to only some people. Keep commitment-critical facts visible.
 
-Use links for navigation, disclosure, or low-commitment secondary actions. Write them as actions when they act: "View calculation," "Change recipient," "Learn how tax is estimated." Avoid "Click here" and vague "Learn more" when the topic fits.
+Use short paragraphs and ordered steps for an actual sequence. Retain necessary
+explanation even when it exceeds a preferred line count. If a paragraph is needed
+to explain every control, check whether the interaction itself needs repair.
 
-Keep cancel actions contextual:
+## Labels and data
 
-- `Never mind` suits a reversible dialog with no changes committed.
-- `Cancel` suits an in-progress edit whose cancellation is already understood.
-- `Keep editing` is safer when closing would discard work.
-- `Not now` is valid only when the task can genuinely wait; add timing if useful.
+Name the fact, category, quantity, or status. Differentiate adjacent labels and
+supply units or context where needed: `Delivery date`, `Amount paid`, `Pending review`.
 
-## Forms and input guidance
+- Distinguish estimates, recorded values, pending values, and final values.
+- Put currency, period, timezone, or measurement basis beside the value it qualifies.
+- Use the audience's professional terms when precise, and define unfamiliar terms.
+- Keep a stable term for the same concept across labels, feedback, and help.
 
-Use visible labels. A placeholder is an example or format hint, not a replacement label.
+For search and filters, name the searched objects and constrained properties.
+A zero-result message should reflect the active query or filter. For repeated row
+actions, identify the row in the accessible name, such as `Actions for order 1842`.
 
-Form sequence:
+## Controls and settings
 
-1. Ask a human question or name the requested fact.
-2. Explain why it is needed only when unclear.
-3. Show format or constraints before entry.
-4. Validate near the field.
-5. Label the final action with its outcome.
+Name the behavior being configured, then make its current state or range legible.
+A checkbox or switch label should remain understandable when selected and unselected.
 
-Bad label: `Identifier`
+Bad: `Disable nonessential updates`
 
-Good label: `GSTIN`
+Better: `Email me about delivery changes`
 
-Good helper text: `15 characters, for example 22AAAAA0000A1Z5.`
+Use parallel option labels. Explain differences in capability or consequence where
+the label alone cannot do so. For a slider, label the measured property, units, and
+meaningful endpoints. State whether a setting applies immediately, after saving,
+or only to future activity. Avoid double negatives and unexplained internal modes.
 
-Bad helper text: `Enter your GSTIN here.`
+## Text input and validation
 
-Good helper text: `We'll use this GSTIN on tax invoices.`
+Keep the field's purpose visible after entry. Use a persistent label; placeholders
+may provide examples but cannot carry essential labels or requirements alone.
 
-Bad placeholder: `Name`
+1. Label the requested information in the audience's terms.
+2. Explain unfamiliar purpose or use of the information where needed.
+3. State relevant format and limits before entry, using actual validation rules.
+4. Mark optionality consistently and place correction guidance by the affected field.
 
-Good label: `Client name`
+Use distinct jobs for label, hint, example, and error. An example should not look
+like a real saved value. Prefill only from a supported source, and keep corrections
+possible. Do not infer country-specific address or phone constraints from one example.
 
-Good placeholder: `Acme Pvt Ltd`
+Prefer an actionable correction such as `Enter a date after {start_date}` to
+`Invalid date`. If several inputs are wrong, identify them without losing the
+person's entries. A message cannot compensate for code that discards their work.
 
-For optional fields, mark the label `(optional)` instead of explaining absence as an error. Do not mark every required field if nearly all are required; explain once at the form level when necessary.
+## Empty states and first use
 
-For complex choices, describe differences in capability or consequence:
+Identify why content is absent before writing the message.
 
-Bad:
+| State                           | Copy should do                                                        |
+| ------------------------------- | --------------------------------------------------------------------- |
+| Nothing created yet             | Explain the feature's purpose and offer a useful first action.        |
+| Task or queue completed         | Confirm completion; allow the person to stop.                         |
+| Search or filters match nothing | State the constraint and offer a supported way to broaden it.         |
+| Access is restricted            | Explain the access condition without asserting that nothing exists.   |
+| Retrieval failed                | Report the failure and recovery; do not label it an empty collection. |
 
-- `Standard user`
-- `External user`
-- `Restricted user`
+For example, a new reading list might use `No saved articles` with `Save an article
+to read it later`. A finished review queue needs no tutorial or new task merely to
+fill the space.
 
-Good:
+For onboarding, teach the smallest concept needed for the next useful action.
+Keep optional education skippable when the product supports it. Explain required
+setup through its task benefit, not a tour of every feature.
 
-- `Team members can create projects and invite people.`
-- `Contractors can work in assigned projects only.`
-- `Clients can view selected project areas.`
+## Waiting and completion
 
-Do not hide a policy in an error that appears only after submission.
+Use related verbs across the action and its states. In English, `Export report`,
+`Exporting report`, and `Report exported` make the progression recognizable.
+Adapt tense naturally in other languages.
 
-## Empty, first-run, and zero-result states
+- Acknowledge received input separately from work completed. `Request received`
+  does not mean `Appointment confirmed`.
+- Show measurable progress only when the system supplies it. Give duration or
+  permission to leave the page only when supported.
+- Confirm the completed object or scope. For partial success, name what remains,
+  such as `8 of 10 files uploaded`, and offer recovery for the remainder.
+- Omit redundant success text when the result is already clear, including to
+  people using assistive technology. Keep a durable record where later reference matters.
 
-An empty state should explain what the feature does and what to do next.
-Distinguish these cases:
+Do not invent a successful result after a timeout. An unknown state needs its own
+message and a way to verify the outcome before repeating a consequential action.
 
-- When nothing exists yet, explain the purpose and first action.
-- When the person cleared the content, acknowledge completion without repeating onboarding.
-- When filters hide results, explain this and offer to clear the filters.
-- When a search has no results, echo the query and suggest a specific recovery.
-- When permission hides data, explain the access limit without implying the data is absent.
+## Errors and recovery
 
-When loading fails, report the failure instead of showing "nothing here."
+Choose the treatment according to what the person can do.
 
-Bad: `No data.`
+| Failure               | Treatment                                                       |
+| --------------------- | --------------------------------------------------------------- |
+| Correctable input     | State the required correction beside the field.                 |
+| Available alternative | Explain the obstacle and the supported detour.                  |
+| Work is blocked       | State what cannot proceed and the known condition for resuming. |
+| Result is unknown     | Explain the uncertainty and how to check before retrying.       |
 
-Good: `No projects yet`
+Include the failed action, known cause when useful, preserved work when verified,
+and a supported next step. An unknown cause stays unknown. Put reference codes
+beside useful recovery guidance when support needs them, not in place of an explanation.
 
-`Create a project to keep its messages, tasks, files, and dates together.`
+Example, assuming entries remain in the current form and saving is safe to retry:
+`We couldn't save your address. Your changes are still in this form. Try saving again.`
 
-`Create project`
+If retry could duplicate a payment or submission, direct the person to check its
+status or use the supported recovery path. Do not promise `Nothing was charged`
+without confirmation. Apologies may acknowledge disruption when the voice supports
+them; they do not replace recovery or justify blame.
 
-Bad: `Nothing found.`
+## Confirmation before commitment
 
-Good: `No invoices match "April retainer"`
+Distinguish a request to confirm an action from feedback that it already completed.
+Use pre-action confirmation for consequential or hard-to-reverse decisions. For
+ordinary reversible actions, recommend supported undo when changing behavior is in scope.
 
-`Try a different term or clear the date filter.`
+Name the action and object, affected people or data, timing, and reversibility.
+Pair a specific commitment label with a clear safe alternative.
 
-`Clear filters`
+Example, only if deletion is immediate and permanent:
 
-For a completed queue, prefer calm confirmation:
+- Title: `Delete workspace "Archive"?`
+- Description: `This permanently deletes its 12 files for everyone in the workspace.`
+- Actions: `Delete workspace` / `Keep workspace`
 
-Good: `You're all caught up.`
+For archive, suspension, removal, merging, or transfers, describe the actual effect.
+Do not soften deletion into deactivation or hide asymmetric effects in `Are you sure?`.
 
-Do not add a primary action when there is no useful next step.
+## Access, consent, and payment
 
-## Onboarding and just-in-time education
+Explain role, ownership, authentication, and plan restrictions according to their
+actual cause. Name who can unblock a task when that information is safe to disclose.
+Describe roles through capabilities and limits before access is granted.
 
-Teach the smallest concept needed for the current decision. Prefer a concrete analogy or example over a tour of every feature.
+For consent, explain the requested access, purpose, and available alternative if
+the person declines. Keep optional choices understandable. A promise such as
+`We won't contact anyone` requires evidence about the actual data use.
 
-Effective sequence:
+For payments and subscriptions, put amount, billing interval, known taxes, renewal,
+and cancellation effects where they inform commitment. Distinguish a trial from a
+purchase and a scheduled cancellation from immediate closure. Use approved policy
+wording where required; flag contradictions instead of inventing a policy.
 
-1. Name the new concept.
-2. Connect it to something familiar.
-3. Explain the immediate behavior.
-4. Let the person try it.
+## Notifications
 
-Bad: `Welcome to our revolutionary workflow engine. Let's explore eight powerful capabilities.`
+Justify the interruption with timely value to the recipient. Put the essential
+information and relevant action where they survive a collapsed view. Supporting
+text adds context rather than hiding a critical deadline or consequence.
 
-Good: `Keep receipts out of your main inbox`
+Specify the triggering event, audience, channel, and destination when designing
+notification copy. Consider what may appear on a lock screen or shared device.
+Use the product's privacy settings to determine which details can be shown.
 
-`Send order confirmations and receipts to Paperwork. They'll stay searchable without crowding important messages.`
-
-`Choose a sender`
-
-Use examples drawn from the person's likely work. Do not use setup screens as disguised marketing. Allow skipping when the lesson is not required for safe use, and make skipped education discoverable later.
-
-## Success, status, and progress
-
-Success copy should confirm what the system actually completed. Use the object and recipient when useful.
-
-Bad: `Success!`
-
-Good: `Invitation emailed to Priya Shah.`
-
-Bad: `Done.`
-
-Good: `Payment recorded on invoice INV-1042.`
-
-If work is asynchronous, distinguish acceptance from completion:
-
-Bad: `Import complete.`
-
-Good: `Import started. You can leave this page; we'll notify you when 842 transactions are ready.`
-
-For partial success:
-
-Good: `18 of 20 invoices sent`
-
-`Two invoices are missing customer email addresses.`
-
-`Review unsent invoices`
-
-Avoid congratulations for routine saves. A quiet `Changes saved` is often enough. If completion may take time, say so without pretending the state is final.
-
-## Validation and errors
-
-An error should say:
-
-1. What could not happen.
-2. Why, if known and useful.
-3. What was preserved.
-4. How to recover.
-
-Do not blame the person, expose internal codes, or suggest an action that cannot help.
-
-Bad: `Invalid input.`
-
-Good: `Enter a date on or after 1 April 2026.`
-
-Bad: `Something went wrong. Try again.`
-
-Good: `We couldn't save this invoice because the connection was lost. Your changes are still here. Reconnect and try again.`
-
-Bad: `User not authorized.`
-
-Good: `You can view this report, but only account owners can change its settings.`
-
-Use field errors for field problems, a banner for page-level problems, and a dialog only when work must stop. Preserve entered data wherever possible and say when it was not preserved.
-
-Do not invent a cause. If unknown, be honest and offer a meaningful next move:
-
-Good: `We couldn't upload "receipts.zip". Try again, or upload files individually.`
-
-## Confirmations and destructive actions
-
-Ask for confirmation only when the action is hard to reverse, surprising, unusually broad, or costly. Prefer undo for ordinary, reversible actions.
-
-A destructive confirmation should include:
-
-- the exact action and object;
-- affected people, access, money, or data;
-- timing and retention;
-- reversibility and available recovery;
-- a specific destructive button and a safe secondary action.
-
-Bad:
-
-`Are you sure?`
-
-`This action cannot be undone.`
-
-`Yes / No`
-
-Good:
-
-`Delete "Q2 planning"?`
-
-`The project and its 14 files will move to Trash for 30 days. Team members will lose access now.`
-
-`Delete project / Keep project`
-
-For irreversible merges or transfers, itemize asymmetric consequences rather than relying on "cannot be undone."
-
-Good:
-
-`Merge Arun into A. Kumar?`
-
-- `Arun's assignments and project access will move to A. Kumar.`
-- `Arun's private messages will not move.`
-- `Arun will be removed from the account.`
-
-`Merge people / Never mind`
-
-Avoid softened destructive verbs such as "Deactivate" when data is deleted. Avoid frightening language for routine revocable actions.
-
-## Permissions, privacy, and security
-
-Explain why a permission is needed, what access it grants, and what the person can
-do if they decline.
-
-Bad: `Allow contacts access to continue.`
-
-Good: `Find teammates in your contacts`
-
-`We'll compare email addresses to suggest people you know. We won't message anyone.`
-
-`Allow contacts / Enter email instead`
-
-For authorization failures, distinguish role, ownership, subscription, and authentication problems. Name who can unblock the action.
-
-Bad: `Access denied.`
-
-Good: `Only workspace owners can export all customer data. Ask Maya or Rohan to export it.`
-
-For security events, state observed facts and protective action. Do not imply compromise without evidence.
-
-Good: `We signed you out because your password changed. Sign in again to continue.`
-
-## Settings and preferences
-
-Write settings around behavior and consequence. A toggle label must make sense with its current value and should not require interpreting a double negative.
-
-Bad: `Disable non-priority notifications`
-
-Good: `Notify me about priority messages only`
-
-Add helper text when the boundary is not obvious:
-
-Good label: `Bundle messages from this sender`
-
-Good helper: `New messages will appear in one row. Nothing is deleted.`
-
-For grouped settings, use question or outcome headings:
-
-- `Where should these messages go?`
-- `Who should be notified?`
-- `When should this repeat?`
-
-When a change is delayed, say so: `Changes saved. New permissions may take a few minutes to apply.`
-
-## Search, filters, sorting, and tables
-
-Use the object's plural noun in search fields: `Search invoices`, not `Search`. Name filters by the property they change: `Status`, `Owner`, `Date range`.
-
-Reflect active constraints in the zero state and make reversal easy:
-
-Good: `No overdue invoices assigned to you.`
-
-`Clear "Assigned to me"`
-
-Use column headings that describe values, not database fields. Include units in headings when every value shares them: `Amount (INR)`. Put action menus under an accessible label such as `Actions for invoice INV-1042`, even if the visible control is an icon.
-
-Avoid using copy to compensate for an overloaded table. If people need paragraphs to understand each column, recommend progressive detail or a summary view.
-
-## Notifications and subscriptions
-
-Explain what triggers the notification, which channel sends it, how often it arrives, and who receives it.
-
-Bad: `Notifications: On`
-
-Good: `Email me when someone comments on this proposal.`
-
-Bad: `Notify users`
-
-Good: `When I publish this, notify…`
-
-`Everyone following the project / Selected people / No one`
-
-Differentiate a notification preference from an action's recipients. Never silently subscribe someone because they viewed a page.
-
-## Loading, offline, expired, and conflict states
-
-Use specific progress when measurable. Otherwise name the work, not generic waiting.
-
-Bad: `Loading…`
-
-Good: `Preparing 842 transactions…`
-
-Do not promise a duration unless reliable. Say whether the person can navigate away.
-
-Offline:
-
-Good: `You're offline. Your draft is saved on this device and will send when you reconnect.`
-
-Expired:
-
-Good: `This invitation expired on 2 September. Ask the project owner for a new one.`
-
-Conflict:
-
-Good: `Meera saved a newer version while you were editing.`
-
-`Review her changes / Keep my version`
-
-State whether retrying may duplicate an action, especially for payments, messages, and imports.
-
-## Invitations, roles, and admin controls
-
-Describe roles by capabilities and limits. Use relationship terms such as team
-member, contractor, and client when they match the permissions.
-
-Bad: `Select user type.`
-
-Good: `Who are you inviting?`
-
-Bad option: `External`
-
-Good option: `Clients can view selected projects but can't create new ones.`
-
-After an invitation, confirm delivery and offer the next setup task:
-
-Good: `Invitation emailed to Jane Doe.`
-
-`Choose the projects Jane can see / I'll do this later`
-
-Be explicit when an invitation grants account-wide access, incurs a seat charge, or exposes existing content.
-
-## Account, billing, and upgrade flows
-
-State prices, billing period, taxes if known, renewal date, proration behavior, trial effect, and cancellation consequence close to the commitment.
-
-Bad: `Upgrade now`
-
-Good: `Start Pro for ₹1,499/month`
-
-Bad: `Your account will be downgraded.`
-
-Good: `Your Pro plan ends on 30 September. After that, automations will stop and your existing data will remain available.`
-
-Cancellation copy should be humane but factual. Provide export or migration options before deletion. Do not create artificial urgency or hide a secondary exit.
-
-## Data-heavy and professional interfaces
-
-Make values easy to scan, state them precisely, and show how to verify them.
-
-- Use established domain terms; define uncommon abbreviations once.
-- Put period, currency, tax basis, timezone, and status near the number they qualify.
-- Distinguish estimates, reported values, pending values, and final values.
-- Explain calculations through inspectable inputs, not vague assurances.
-- Never collapse uncertainty into a confident action label.
-
-Bad: `Tax due: ₹24,310`
-
-Good: `Estimated tax due for FY 2026–27: ₹24,310`
-
-`Based on income and credits entered through 3 September.`
-
-`View calculation`
-
-Bad: `Delete entry`
-
-Good: `Void journal entry` when the accounting system preserves an audit trail; use `Delete draft entry` only when it truly removes an unposted draft.
-
-## AI and automation interfaces
-
-Explain who acts, what data the system uses, whether the output is a draft or final, and who must review it.
-
-Name the action precisely:
-
-- `Draft reply` if the system creates editable text.
-- `Summarize this thread` if it produces a summary.
-- `Send automatically` only if it will act without review.
-
-Bad: `Ask AI`
-
-Good: `Draft a response from this thread`
-
-Bad success: `Done.`
-
-Good success: `Draft ready. Review names, dates, and amounts before sending.`
-
-For tool-using agents, state what they can access and when approval is required. Distinguish a suggestion from an executed action. Show sources for factual claims when available, and never use confident tone as a substitute for evidence.
+For preferences, explain what will arrive and when. Keep notification subscriptions
+separate from the recipients of an individual action. Avoid manufactured urgency,
+shaming, and recurring prompts after the person has made a clear choice.
 
 ## Accessibility, localization, and variables
 
-### Keep meaning accessible
+### Preserve meaning beyond the visible string
 
-- Do not rely on icon, color, direction, position, or punctuation alone.
-- Give icon-only controls accessible names that include their object when repeated.
-- Keep link text meaningful out of context.
+- Give meaningful controls accessible names, with identifying context for repeated
+  actions. Keep the visible label in the accessible name and avoid duplicated role words.
+- Read text in its actual reading order. Check links independently and verify that
+  field guidance and errors are associated with the correct input.
+- Make essential instructions understandable without color, position, icons, or
+  animation alone. Keep feedback available long enough to use it.
 
-### Support language and layout differences
+### Plan variable and language behavior
 
-- Use plain sentence structure that survives translation.
-- Avoid assembling sentences from fragments; word order and pluralization vary.
-- Allow expansion in controls and navigation.
-- Format dates, times, numbers, currency, and names by locale.
-- Never assume English name order, binary gender, or a single grammatical plural.
+- Preserve structured placeholders such as `{file_name}`. Define their source,
+  empty-value fallback, and long-value behavior without inventing missing facts.
+- Use complete localizable messages and the project's plural rules. Avoid joining
+  sentence fragments or assuming English word order and two plural forms.
+- Format names, numbers, dates, times, currency, and units for the target locale.
+  Test zero, one, many, missing, long, and mixed-direction values where relevant.
+- Allow expansion and reflow. Keep essential distinctions visible instead of
+  shortening every translation to an English character limit.
+- Give translators the state, intended meaning, variables, and any literal meaning
+  behind wordplay. Treat locale-specific writing as a design decision.
 
-Document variables with examples and fallbacks:
-
-`Invitation emailed to {recipient_name}.`
-
-- If name is absent, use the email address.
-- If multiple recipients exist, use a localized count rather than joining an unbounded list.
-- Escape user-provided text and preserve the UI's truncation behavior.
-
-## Product-wide copy audits
-
-Create an inventory by object and state, then inspect each group below.
-
-### Naming, outcomes, and context
-
-1. Multiple names for the same object.
-2. One name used for different objects.
-3. Generic action labels with different outcomes.
-4. Missing empty, failure, permission, partial, or destructive states.
-5. Explanations far from the choice they qualify.
-
-### Trust, precision, and localization
-
-1. Tone that becomes playful at high-stakes moments.
-2. Copy that promises behavior the product does not implement.
-3. Backend language leaking into the interface.
-4. Repeated helper text that adds no information.
-5. Unspecified variables, plural rules, truncation, or localization.
-
-Recommend changes in terms of comprehension, confidence, action, recovery, and operational risk. Prioritize by severity and frequency, not by stylistic preference.
+For `Invitation sent to {recipient_name}`, use the address as fallback only if it
+is available and appropriate to show. Otherwise use a complete alternative such as
+`Invitation sent`. Check that the sending state itself is verified.

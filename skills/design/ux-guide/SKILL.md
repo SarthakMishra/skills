@@ -3,107 +3,65 @@ name: ux-guide
 description: Design, diagnose, and repair web-app user flows. Use for confusing navigation, difficult forms, lost work, unclear feedback or recovery, onboarding and return experiences, new flows, or app-wide UX reviews. Excludes isolated copy edits, visual polish, animation tuning, and backend work without user-facing behavior.
 ---
 
-# Improve user flows
+# Make user flows understandable and recoverable
 
-Identify the person's intended outcome and entry point. Trace where the journey
-breaks, design a better path, and verify the repair when implementation is
-requested. Cover the task through completion,
-including interruptions, recovery, and returning later. Preserve the product's
-visual conventions and vocabulary. This skill works independently of other
-skills and external services.
+Identify the person, intended outcome, and entry point. Define what successful
+completion looks like, then trace the path through commitment, waiting, failure,
+recovery, and returning later. Preserve the product's vocabulary and actual system
+capabilities.
 
-## Choose the scope
+Use the rules below as defaults. Depart for an explicit requirement, supported
+product constraint, or observed failure; state the replacement and reason.
+Distinguish proposed behavior from implemented and exercised behavior.
 
-| Request                 | Scope                                                                                                                                                             |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Repair an existing flow | Reconstruct the journey, diagnose the first breakdown, and check the repair.                                                                                      |
-| Design a new flow       | Define the job, transitions, and connections to the surrounding app.                                                                                              |
-| Audit the app           | Inventory journeys across discovery, first value, recurring work, recovery, account/settings, and exit where they exist. Include roles and external entry points. |
-| Make a narrow change    | Inspect the affected journey and immediate neighbors. Reuse an existing map.                                                                                      |
+## Bound the task
 
-Keep implementation within the user's request. A review or design request alone
-does not authorize changing the app.
+| Request              | Work to cover                                                                                            |
+| -------------------- | -------------------------------------------------------------------------------------------------------- |
+| Repair a flow        | Reconstruct the named journey, find the first breakdown, and repair its cause and affected paths.        |
+| Design a new flow    | Specify the job, transitions, recovery, and connections to the surrounding app.                          |
+| Audit the app        | Inventory journeys, roles, entry points, completion, recovery, and re-entry across the agreed app scope. |
+| Make a narrow change | Inspect the affected journey and immediate dependencies; reuse existing maps and decisions.              |
 
-## Establish the job and evidence
+A review or design request alone does not authorize implementation. When working
+under design-engineer, inherit its agreed mode, intervention approach, readiness,
+and exclusions. Do not restart its interview or expand its scope. This skill also
+works independently.
 
-Read relevant project instructions, domain vocabulary, decisions, routes,
-components, and requirements. Inspect available screens and actual behavior.
-Identify the person, intended outcome, entry point, usage frequency, input
-methods, permissions, and cost of error. Record constraints and unknowns.
+## Work through the journey
 
-Label evidence as observed, code-supported, reported, or inferred. Screenshots
-cannot establish behavior, code cannot prove comprehension, and an agent
-walkthrough is not participant research. Keep usage data, personas, business
-rules, and backend capabilities grounded in evidence. Ask when missing
-information changes the proposal; otherwise state assumptions and proceed.
+1. Read project requirements, routes, components, domain terms, and relevant service
+   contracts. Establish outcome, scope, permissions, and cost of error. Look up
+   facts yourself; ask before a missing product decision changes the proposed flow.
+2. Map current and proposed behavior with the mapping reference. For an existing
+   flow, diagnose the first breakdown before choosing a repair. For a new flow,
+   define the transitions and completion contract directly.
+3. Choose one concrete treatment using the relevant pattern or decision rule.
+   Specify each consequential action's object, scope, effect, feedback, preserved
+   work, recovery, and focus destination. Do not promise unsupported persistence,
+   undo, delivery, cancellation, or safe retry.
+4. Implement only when requested and authorized, using the existing stack. Exercise
+   the original task and changed failure paths with the validation reference.
+   Reconcile the map with the result and report remaining limits.
 
-## Map the journey
+## Map and choose behavior
 
-Read [flow-mapping.md](references/flow-mapping.md) for scope, document storage,
-stable identifiers, and the feedback loop. Keep current and proposed behavior
-separate. Include commitment, waiting, failure, recovery, and re-entry. Mark areas
-that have not been inspected.
+| Reference                                              | Read for and apply                                                                                              |
+| ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| [Flow mapping](references/flow-mapping.md)             | Scope, current/proposed maps, stable IDs, storage, and handoffs. Keep maps and transitions consistent.          |
+| [Diagnosis and repair](references/diagnose-and-fix.md) | Existing confusing or failing flows. Tie each repair to evidence and a root cause.                              |
+| [Flow patterns](references/flow-patterns.md)           | Navigation, forms, containers, lists, permissions, and recovery. Choose the pattern and its explicit exception. |
+| [Decision rules](references/decision-principles.md)    | Competing choices, memory demands, mistakes, or excess friction. Give a testable reason for the treatment.      |
 
-Show the overview and changed branching flows as Mermaid diagrams in the
-conversation. Use a table or prose for trivial linear actions. Explain the change
-and the decisions that affect implementation. Honor a requested review checkpoint;
-otherwise continue already-authorized work without adding an approval gate.
+## Engagement, implementation, and verification
 
-## Diagnose and design
+| Reference                                              | Read for and apply                                                                                               |
+| ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| [Useful engagement](references/engagement.md)          | First value, repeated work, and return use. Improve the real outcome at its natural cadence.                     |
+| [React interactions](references/react-interactions.md) | React implementation of navigation, state, focus, or async behavior. Follow the installed router and data layer. |
+| [Validation](references/validation.md)                 | Every review, proposal, or repair. Match evidence and checks to the claimed result.                              |
 
-For reviews and repairs, read [diagnose-and-fix.md](references/diagnose-and-fix.md).
-Find the first point where the person cannot choose an action, predict its effect,
-execute it, interpret feedback, or recognize completion. Connect the evidence to
-the difficulty, cause, smallest effective change, and verification. Prioritize
-blocked outcomes, lost work, and consequential mistakes.
-
-Remove unnecessary decisions, repeated entry, hidden dependencies, and context
-switching. Keep comparison information together and essential consequences
-visible. Reduce the effort needed to understand and complete the task. Do not
-optimize for a fixed click count.
-
-### Define the action contract
-
-For each consequential action, specify the trigger, affected object and scope,
-state change, feedback, next actions, preserved work, recovery, and focus
-destination. Distinguish draft, saved, submitted, accepted, and completed when
-these differ. Promise undo, autosave, cancellation, and safe retries only when the
-system supports them.
-
-Read the reference that matches the decision:
-
-| Decision                                                    | Reference                                                   |
-| ----------------------------------------------------------- | ----------------------------------------------------------- |
-| Resolve a design tradeoff                                   | [decision-principles.md](references/decision-principles.md) |
-| Choose navigation, form, list, dialog, or recovery behavior | [flow-patterns.md](references/flow-patterns.md)             |
-| Improve first value, engagement, or return use              | [engagement.md](references/engagement.md)                   |
-| Implement React state, navigation, focus, or async behavior | [react-interactions.md](references/react-interactions.md)   |
-| Choose checks or assess evidence                            | [validation.md](references/validation.md)                   |
-
-Match engagement to the user's need and how often it occurs. Useful previews,
-reusable setup, discovery, and growing competence can make a task satisfying.
-Reliable completion may be all an occasional task needs.
-
-## Implement and verify
-
-When requested, implement the scoped behavior with the existing router, data
-layer, components, forms, and task runner. Read the React reference for React
-implementation. Justify any new dependency through a concrete task requirement.
-
-Write acceptance checks for the flow decisions. Preserve completion through
-keyboard, touch, assistive technology, narrow viewports, and interrupted
-sessions. Match client feedback to the real server contract and name any missing
-backend support. Update the map when implementation changes an assumption.
-
-Read the validation reference when planning checks or judging an uncertain design.
-Re-run the original task and the relevant failure, backtracking, or interruption
-path. Use behavioral tests or browser checks proportional to risk. Report the
-checks actually performed; a heuristic recommendation remains a hypothesis.
-
-Match the handoff to the request:
-
-- Audit: prioritized findings and fixes.
-- Design: proposed flow and open decisions.
-- Repair: implemented behavior, verification evidence, and limitations.
-
-Follow the mapping reference's lifetime rules for scratch notes; create external tickets only when explicitly requested.
+Use screenshots for visible structure, code for implementation evidence, and the
+running app for behavior. Neither an agent walkthrough nor attractive output proves
+user comprehension. Mark unavailable checks `Not verified`. Finish with the
+requested flow, findings, or repair and one concrete next action if work remains.

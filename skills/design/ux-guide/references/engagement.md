@@ -1,55 +1,83 @@
-# Engagement through useful interaction
+# Engagement through useful progress
 
-Identify the useful outcome and how often people need it before changing
-onboarding, activation, return use, or core work. Use _Hooked_ to diagnose behavior
-without forcing every product into a habit loop.
+Define the valuable outcome and its natural cadence before changing onboarding,
+activation, or return use. Improve the task people need to complete; do not turn
+an occasional utility into a daily habit requirement.
 
-## Establish value and cadence
+## 1. Establish value and the obstacle
 
-Identify the recurring need, current alternative, smallest meaningful outcome, and natural interval between needs. Daily creative work, weekly planning, and an annual administrative task deserve different return experiences. A session ending quickly can be success. Account creation and notification opens are usually precursors, not the value itself.
+Record the need, current alternative, smallest meaningful outcome, and expected
+interval between needs. Use supplied requirements or observed behavior. If cadence
+is unknown, label it unknown rather than assuming daily use.
 
-If a willing person fails to act, inspect the cue and the resource constraining ability: time, cost, physical effort, cognitive effort, social comfort, or fit with existing routine. Fix that obstacle before adding motivation. A reminder cannot solve a confusing form.
+| Product use                           | Default treatment                                            |
+| ------------------------------------- | ------------------------------------------------------------ |
+| Frequent creative or operational work | Preserve setup and unfinished work; keep routine input fast. |
+| Weekly planning or review             | Resume prior context and support the next planning cycle.    |
+| Annual or occasional administration   | Make completion reliable and re-entry understandable.        |
+| First use                             | Reach one real useful result before optional setup.          |
 
-## Diagnose the loop
+Account creation, notification opens, and time in the app are not the outcome
+unless the person's actual job requires them. A short completed session can be success.
 
-| Element    | Question                                                | Useful application                                        | Failure signal                                           |
-| ---------- | ------------------------------------------------------- | --------------------------------------------------------- | -------------------------------------------------------- |
-| Trigger    | What genuine need or chosen cue brings the person here? | Due work, relevant contribution, user-controlled reminder | Prompts arrive when there is nothing useful to do.       |
-| Action     | What small understandable step starts progress?         | Resume a draft, preview an import, start from prior setup | Setup or uncertainty blocks the first useful result.     |
-| Reward     | What outcome satisfies the need?                        | Finished work, discovery, competence, connection, relief  | Activity increases but the user's problem remains.       |
-| Investment | What optional effort improves later use?                | Save a template, curate a collection, refine preferences  | Work is demanded before value or creates only exit cost. |
+When a willing person stalls, identify the blocking resource: time, cost, physical
+effort, mental effort, social comfort, or fit with routine. Fix that obstacle before
+adding reminders or motivational prompts. A reminder cannot repair a confusing form.
 
-The original Hook Model includes **variable reward**. Preserve that distinction: genuine discovery, new contributions, or growing mastery may vary; save results, access, prices, and other consequential system behavior should be predictable. Do not label a purely deterministic feedback loop a complete implementation of that model. Use the parts relevant to the product.
+## 2. Connect the cue to real value
 
-Reward categories from the book can help generate ideas: connection with people, discovery of useful information/resources, and competence or completion. Choose according to real needs, not a checklist. Let people save useful work, such as templates or preferences, for later reuse.
+| Element    | Specify                                                                        | Reject                                                       |
+| ---------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------ |
+| Trigger    | A real need, due work, relevant contribution, or user-chosen reminder.         | A prompt when there is nothing useful to do.                 |
+| Action     | A small understandable step, such as resuming a draft or previewing an import. | Setup that blocks the first useful result without necessity. |
+| Reward     | The actual completed work, insight, competence, connection, or relief.         | More activity with no progress on the person's problem.      |
+| Investment | Optional saved setup, a template, or useful preferences for later work.        | Effort that only makes leaving harder.                       |
 
-## Design an experience people enjoy
+The Hook Model includes variable rewards. Discovery and contributions can vary;
+save results, access, prices, and other consequential behavior must remain
+predictable. Use the relevant parts of the model without claiming a deterministic
+feedback loop implements all of it.
 
-### Help people make progress
+## 3. Choose a progress mechanism
 
-| Mechanism  | Concrete opportunity                                    | Keep it useful                                               |
-| ---------- | ------------------------------------------------------- | ------------------------------------------------------------ |
-| Agency     | Edit a preview and see consequences before committing   | Clearly distinguish exploration from live changes.           |
-| Competence | Achieve a first result, then reveal helpful shortcuts   | Keep the discoverable standard path; avoid repeated lessons. |
-| Ownership  | Save views, templates, collections, or a personal setup | Provide good defaults before asking for personalization.     |
-| Discovery  | Offer relevant examples or insights during real work    | Keep them optional; explain why they matter.                 |
+### First value and competence
 
-### Support continuation and completion
+| Before                                               | After                                                                       | Check                                                                        |
+| ---------------------------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Invitations are mandatory before trying the product. | Defer invitations unless collaboration is required for the first real task. | The eligible user can reach that first result alone when the task allows it. |
+| A tour blocks the task on every return visit.        | Teach through the task; make optional help skippable and revisitable.       | Returning users can resume without replaying onboarding.                     |
+| An import commits changes before preview.            | Show what will change and allow correction before commitment.               | The preview is clearly distinct from live data.                              |
+| Shortcuts replace visible controls.                  | Keep the standard path and reveal shortcuts after the task is understood.   | New and experienced users can complete the same task.                        |
 
-| Mechanism  | Concrete opportunity                             | Keep it useful                                               |
-| ---------- | ------------------------------------------------ | ------------------------------------------------------------ |
-| Momentum   | Preserve progress and offer a relevant next step | Show honest progress and allow people to stop when finished. |
-| Relief     | Make completion and persistence unmistakable     | Do not refill a completed task with fabricated obligations.  |
-| Connection | Make useful collaboration timely and visible     | Do not require invitations as an unrelated setup gate.       |
+### Reuse and completion
 
-A weekly planning app might support reviewing unfinished work, making next week's plan, and saving a reusable template. An annual filing tool should favor remembered context and reliable re-entry. A frequently used editor should minimize interruptions and keep input responsive.
+| Before                                                      | After                                                              | Check                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------- |
+| Repeat the same setup every visit.                          | Offer a saved template or preference with clear scope.             | Later work reuses it and the user can change or remove it.    |
+| Completion immediately creates more obligations.            | Confirm the result and offer only a relevant optional next action. | The user can stop with confidence.                            |
+| A reminder becomes increasingly urgent despite no due work. | Use truthful, user-controlled reminders tied to actual need.       | Timing, opt-out, and the destination match the promised task. |
 
-Use truthful cues and user-controlled reminders. Avoid punitive streaks, fake urgency, artificial uncertainty, and obstructed exits. Do not manufacture anxiety as a trigger. Introduce meaningful friction when it supports deliberate, consequential choices. These are this skill's applications of autonomy, goodwill, and responsible design, not a claim that all persuasive tactics in the books are mandatory.
+Let people choose whether to continue. Avoid punitive streaks, artificial urgency,
+manufactured uncertainty, obstructed exits, and anxiety as an engagement mechanism.
+Use a review step for a consequential commitment, not to increase time spent.
 
-## Measure the intended benefit
+## 4. Define evidence before claiming improvement
 
-Define the meaningful outcome, eligible users, and observation window. Pair activation or repeat-outcome measures with correctness, effort, satisfaction, unwanted notifications, regret, and ease of opting out. Use the natural cadence rather than daily activity by default.
+Specify the affected flow/node, need, mechanism, expected benefit, eligible users,
+and observation window. Choose a successful outcome at the natural cadence.
 
-Eyal's habit-testing sequence suggests identifying repeated behavior, studying the paths associated with it, and testing changes. Treat the observed path as a hypothesis. Engaged users may differ in role, intent, or tenure, and selection effects may influence the result. Do not force everyone down that path or claim causation from a correlation.
+| Proposed change           | Outcome measure                                   | Unwanted effect to check                                       |
+| ------------------------- | ------------------------------------------------- | -------------------------------------------------------------- |
+| Defer optional onboarding | First meaningful result among eligible new users. | Missing setup later causes rework or incorrect results.        |
+| Save a reusable template  | Repeated successful task with less setup.         | Stale defaults cause mistakes.                                 |
+| Add an opted-in reminder  | Completion of genuinely due work.                 | Fatigue, regret, opt-out difficulty, or irrelevant prompts.    |
+| Preserve drafts           | Resumption and completion without re-entry.       | Sensitive data persists beyond its intended scope or lifetime. |
 
-When proposing an improvement, state the need, mechanism, affected flow/node, expected user benefit, success measure, and a check for unwanted effects. Do not add tracking services or collect data outside the task's authorization.
+Study repeated behavior as evidence for a hypothesis. Role, intent, and tenure can
+explain why an engaged group behaves differently; correlation does not establish
+that the path caused engagement. Do not force everyone through it.
+
+Use [validation](validation.md) for denominators, evidence limits, and task checks.
+Do not add tracking services or collect data outside the task's authorization.
+Finish with the selected change, its expected benefit, and a check that could
+disprove the hypothesis.

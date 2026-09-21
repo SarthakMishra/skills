@@ -1,40 +1,73 @@
-# Transient flow maps
+# Map current and proposed flows
 
-Find the current task's scratch folder and existing flow map before creating
-files. Map current behavior separately from the proposed repair.
+Identify the task's entry, commitment, completion, and recovery before drawing
+arrows. Keep the observed baseline separate from the proposed change. Use stable
+IDs so findings, implementation, and checks refer to the same transition.
+
+## Choose the map size
+
+| Task                                     | Output                                                                          |
+| ---------------------------------------- | ------------------------------------------------------------------------------- |
+| A trivial linear action                  | A short table or prose in the conversation.                                     |
+| A changed branch or multi-screen journey | One flow map with its transition and recovery contract.                         |
+| A whole-app audit                        | An overview of journeys and detailed maps for the consequential paths in scope. |
+
+Render the overview and changed branching flows in the conversation. When working
+files are permitted, use the storage rules below. If the user requested no file
+changes, keep the maps in the conversation.
 
 ## Storage and lifetime
 
-Read project instructions and existing scratch notes first. Reuse the current effort folder and domain terms. Default to `.scratch/<effort-slug>/ux/` inside the application repository:
+1. Read project instructions and existing scratch notes. Reuse the current effort,
+   domain terms, and IDs instead of starting a second set of artifacts.
+2. For working files, default to `.scratch/<effort-slug>/ux/` in the application repo.
+3. Put the journey inventory, overview, coverage, and flow links in `overview.md`.
+   Put a journey's current/proposed maps and checks in `flows/<flow-id>-<slug>.md`.
+4. Use the existing feature slug. For a whole-app audit without an effort folder,
+   use `ux-audit`. Without a repo, use the session's temporary workspace and state
+   what the map covers.
 
-- `overview.md`: app context, journey inventory, overview diagrams, coverage, and named links to detailed flows.
-- `flows/<flow-id>-<slug>.md`: current and proposed behavior, transitions, findings, decisions, and checks for one journey.
-
-For a whole-app effort, a suitable slug is `ux-audit`; for an existing feature, reuse its feature slug. A narrow task can use one flow document without a full overview. When no repository exists, use the session's temporary workspace with the same relative structure and say what context the map covers.
+A narrow task does not need an overview file. Create only the artifacts needed
+for its agreed scope.
 
 ### Preserve adjacent specs and tickets
 
-Keep these separate from existing `.scratch/<feature>/spec.md`, `map.md`, and `issues/<NN>-<slug>.md` conventions. Those may already be canonical specs, decision maps, or tickets. Link to them by descriptive title; do not overwrite them, duplicate their content, reset numbering, or treat UX map files as tickets. If implementation tickets are explicitly requested, follow the project's configured tracker; for local Markdown, use individual numbered issue files and its existing status vocabulary.
+- Keep UX maps separate from existing `.scratch/<feature>/spec.md`, `map.md`, and
+  `issues/<NN>-<slug>.md`.
+- Link to canonical specs and tickets; do not overwrite them, duplicate their
+  content, reset IDs, or treat a flow map as an implementation ticket.
+- Create tickets only when explicitly requested and use the project's tracker
+  conventions. Existing local Markdown tickets retain their numbering and status vocabulary.
 
-### Keep transient files under the existing policy
+### Preserve transient work
 
-Do not create repository configuration or require a setup skill to use these notes. Respect ignore rules; exclude transient maps from product commits by default without silently editing `.gitignore`. Do not assume all of `.scratch/` is disposable. It may contain the project's issue tracker. Retain active maps until the work or handoff is complete; remove only this task's transient files when cleanup is requested or established convention requires it. Do not automatically publish, archive, or commit scratch notes.
+- Follow existing ignore rules without silently editing `.gitignore` or requiring
+  a setup skill. Exclude transient maps from product commits by default.
+- Do not assume everything under `.scratch/` is disposable; it may contain tickets.
+- Retain active maps through the work or handoff. Remove only this task's transient
+  files when cleanup is requested or established convention requires it.
+- Do not automatically publish, archive, or commit scratch notes.
 
 ## Whole-app inventory
 
-Inventory routes and visible navigation, then group them into user journeys. A route list alone is not a flow map. Include direct links, notifications, invited users, returning sessions, role differences, and external handoffs where supported.
+Inventory routes and visible navigation, then group them by the jobs people
+complete. Include direct links, notifications, invitations, role gates, returning
+sessions, and external handoffs supported by the app.
 
-Record:
+| Flow ID / name       | Person and job                     | Entry and return points                      | Completion and connections                  | Evidence / coverage                                                 |
+| -------------------- | ---------------------------------- | -------------------------------------------- | ------------------------------------------- | ------------------------------------------------------------------- |
+| F01: Workspace setup | Owner prepares a usable workspace. | First sign-in or return to unfinished setup. | Workspace ready; continue to the core task. | Label observed, code-supported, reported, inferred, or uninspected. |
 
-| Flow      | Person/role and job | Entry points                  | Outcome and exit      | Connections             | Coverage                                           |
-| --------- | ------------------- | ----------------------------- | --------------------- | ----------------------- | -------------------------------------------------- |
-| F01: Name | Who wants what      | App route or external trigger | Observable completion | Named next/return flows | Observed, code-supported, reported, or uninspected |
-
-At app level, diagram how journeys connect, including re-entry and role gates. Split large apps by activity or role; keep an index linking every area. Use one overview per coherent area so each diagram remains readable. Cover the inspected app in an overview and document important paths in detail. Explicitly name missing areas and access limits before calling an audit complete.
+A route list alone is not a journey inventory. Diagram how journeys connect,
+including role gates and re-entry. Split large overviews by activity or role,
+keeping an index of every agreed area. Name uninspected areas and access limits;
+do not claim an app-wide audit from one happy-path walkthrough.
 
 ## Per-flow document format
 
-Use the following structure, omitting sections only when they do not apply. Fill concrete values rather than leaving template placeholders.
+Use the template below for a working flow document. Fill actual scope and evidence;
+omit a section only when it does not apply. The hypothetical current map deliberately
+shows an unsafe retry. It is a bad example to repair, not an implementation recipe.
 
 ````markdown
 # F02: Invite a teammate
@@ -102,31 +135,72 @@ Feedback: No user feedback received yet.
 - Status: not exercised. Record actual result and evidence after verification.
 ````
 
-The example isolates one failure branch; a real invitation flow also needs its applicable validation, permission, cancellation, and return behavior. Include backend dependencies rather than silently assuming them. A lookup can authorize a new send only when its contract establishes non-commit and rules out a late completion; a temporary missing record is not sufficient.
+The example isolates one failure branch. A real invitation flow also needs its
+validation, permission, cancellation, and return paths. Record backend dependencies.
 
-Use flow status `current`, `proposed`, `agreed`, `implemented`, or `verified` accurately. `Agreed` requires actual user feedback or a cited existing decision; silence is not agreement. `Verified` covers only the scenarios actually exercised, which must be listed. Preserve a useful baseline; do not relabel a proposal as current merely because code was written.
+A status lookup permits another send only if its contract establishes non-commit
+and rules out late completion. A temporarily missing record is not enough. Keep
+the result unknown when that evidence is unavailable.
+
+### Use status labels precisely
+
+| Status        | Evidence required                                           |
+| ------------- | ----------------------------------------------------------- |
+| `current`     | The recorded baseline and its stated evidence source.       |
+| `proposed`    | A future treatment; no claim of approval or implementation. |
+| `agreed`      | Actual user feedback or a cited existing decision.          |
+| `implemented` | The change exists in code; runtime checks may remain.       |
+| `verified`    | Named scenarios were exercised and their results recorded.  |
+
+Silence is not agreement. Preserve the baseline and distinguish an implemented
+proposal from an exercised result. Verification covers only the listed scenarios.
 
 ## Mermaid conventions
 
 ### Name states and transitions
 
-- Prefer `flowchart TD`. Use a state diagram for a local state lifecycle when that is clearer.
-- Represent user-visible states, screens, and real decisions; use edge labels for actions, events, and meaningful conditions. Do not diagram JSX component hierarchy as a user journey.
-- Give flows stable `F01` identifiers and nodes stable `N01` identifiers within each flow. Identify findings and tests with both. Preserve identifiers for the same concept between current and proposed diagrams; allocate new IDs for new concepts.
-- Quote labels, use short human-facing names, and keep implementation details in the transition table. Use `{}` for decisions, `[]` for states, and labeled edges for outcomes.
-- Use solid edges for specified behavior; dotted edges may denote explicitly labeled unknown or conditional links. Do not use color alone to communicate meaning.
+- Default to `flowchart TD` for a journey. Use a state diagram for one object's
+  lifecycle when that is what the task needs.
+- Show user-visible states, screens, and decisions, not JSX hierarchy. Label edges
+  with actions, events, or meaningful conditions.
+- Use stable flow IDs such as `F01` and node IDs such as `N01`. Preserve an ID
+  for the same concept across current and proposed maps; allocate new IDs for new concepts.
+- Quote short human-facing labels. Use braces for decisions and rectangles for
+  states. Keep implementation detail in the transition table.
+- Use solid edges for specified behavior and dotted edges for explicitly labeled
+  conditional or unknown links. Do not use color alone to encode meaning.
 
 ### Keep the map complete and readable
 
-- Include realistic alternate paths, commitment, completion, and return/resume behavior. Do not add impossible recovery just to make the graph tidy.
-- Make diagrams and transition tables agree. Do not use prose to excuse an incorrect edge. A status lookup must branch to the possible authoritative states; do not always route it to processing when it may return completed or failed. Group detail in a named subflow when necessary.
-- Keep diagrams scoped, usually around 5–12 meaningful nodes; split before legibility suffers. Avoid more than five nodes across, use no HTML labels, click directives, or embedded diagram configuration.
-- Use tables or prose for trivial linear actions where a diagram adds no understanding. The overview and changed branching flows still need to be rendered for review.
+1. Include commitment, completion, alternate paths, recovery, and return behavior
+   that the real system supports.
+2. Make every decision branch to its actual possible outcomes. A status lookup
+   must not always route to success or processing.
+3. Check that the diagram and transition table agree. Fix the edge instead of
+   explaining a contradiction in prose.
+4. Keep each diagram focused on one journey or branch. Split when labels or edge
+   crossings are hard to follow; use at most five nodes across. Do not add HTML
+   labels, click directives, or embedded diagram configuration.
+
+| Bad                                                          | Good                                                                       |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------- |
+| A status check always leads to Processing.                   | Branch to confirmed success, confirmed non-commit, or still unknown.       |
+| An error arrow leads to Retry without a safety condition.    | State the condition that makes retry safe and preserve the unknown branch. |
+| A changed node gets a new ID only because its label changed. | Preserve the ID when it represents the same concept.                       |
+| A map is called verified because Mermaid renders.            | Record syntax separately from exercised product behavior.                  |
 
 ## Feedback and implementation loop
 
-1. Show the current map and evidence limits, then the proposed changed path and the few decisions that matter. For large audits, show the overview first and review details in manageable groups.
-2. Render Mermaid in the conversation, not only in a file. Explain why a changed branch addresses a finding. Ask a specific question only when the answer would change behavior; do not ask for blanket approval of obvious repairs already authorized.
-3. Record actual feedback and update the relevant node, transition, and decision. When the user requested a review checkpoint, wait there. Otherwise continue authorized implementation with stated assumptions.
-4. Implement against the transition contract. Link each finding to the proposed node or transition and its acceptance check. Record deviations and backend dependencies as they arise.
-5. Reconcile the map with the implemented flow and mark checks verified only after exercising them. Summarize unresolved paths. Reuse the same documents when resuming the effort; check that they still describe the code.
+1. Show the current map and evidence limits, then the proposed change and the
+   decisions that matter. For a large audit, start with the overview.
+2. Render the branching map in the conversation. Ask only about unresolved product
+   choices that change behavior; do not seek blanket approval for already-authorized repairs.
+3. Record actual feedback against the relevant node or decision. Honor a requested
+   checkpoint. When orchestrated, inherit the agreed scope, approach, and readiness.
+4. If implementation is authorized, connect each repair to its transition and
+   acceptance check. Record deviations and backend dependencies as they appear.
+5. Reconcile the map with implemented behavior. Mark checks verified only after
+   exercising them, and report unresolved paths. Reuse these artifacts when resuming.
+
+A design or audit handoff can finish with a proposed map and evidence limits.
+A requested repair is not complete merely because the proposed map is finished.
