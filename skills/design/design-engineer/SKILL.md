@@ -1,6 +1,6 @@
 ---
 name: design-engineer
-description: Scope app-interface work to creating from scratch, implementing a bounded part of an existing system, or auditing and repairing existing implementation. Coordinate design-system, ux-guide, ui-guide, and ux-writer through implementation and verification. Clarify uncertain requirements before implementation. Excludes backend-only work and marketing or editorial writing.
+description: Scope app-interface work to creating from scratch, implementing a bounded part of an existing system, or auditing and repairing existing implementation. Coordinate design-system, ux-guide, and ux-writer through implementation and verification. Clarify uncertain requirements before implementation. Excludes backend-only work and marketing or editorial writing.
 ---
 
 # Create working app interfaces
@@ -32,14 +32,13 @@ Resolve model-invoked companions through the active catalog or installed registr
 Read each selected entry point and required references; apply its workflow within
 the shared scope. Do not require separate user invocations or fixed sibling paths.
 
-| Companion       | Contribution                                                                                               |
-| --------------- | ---------------------------------------------------------------------------------------------------------- |
-| `ux-guide`      | Understand the user's path, action contract, completion, and recovery; refine in-scope friction.           |
-| `design-system` | Reuse existing foundations and components, establish missing ones, or extend the agreed shared contracts.  |
-| `ui-guide`      | Choose visual fundamentals, interaction feedback, and motion treatment.                                    |
-| `ux-writer`     | Write and review every added or changed interface string, including alternate states and accessible names. |
+| Companion       | Contribution                                                                                                                        |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `ux-guide`      | Understand the user's path, action contract, completion, and recovery; refine in-scope friction.                                    |
+| `design-system` | Reuse existing foundations and components, choose shared visual treatments, establish missing ones, or extend the agreed contracts. |
+| `ux-writer`     | Write and review every added or changed interface string, including alternate states and accessible names.                          |
 
-Use all four for an app or feature interface build; select relevant responsibilities
+Use all three for an app or feature interface build; select relevant responsibilities
 for a narrow repair. Each companion remains independently usable. If one is missing,
 report the coverage limit and continue only work supported by settled decisions.
 Do not claim it was used or silently install it.

@@ -14,8 +14,9 @@ agent can also select the skill for a matching task.
 | Narrow change   | Work limited to the affected journey and its immediate dependencies.            |
 
 Use [design-engineer](../design-engineer/README.md) when one interface task
-needs UX, design-system, UI, copy, and implementation work. Use [ux-writer](../ux-writer/README.md)
-for copy-only work and [ui-guide](../ui-guide/README.md) for visual fundamentals.
+needs UX, design-system, copy, and implementation work. Use
+[ux-writer](../ux-writer/README.md) for copy-only work and
+[design-system](../design-system/README.md) for shared visual-system decisions.
 
 ## Useful requests
 

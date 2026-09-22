@@ -80,6 +80,19 @@ Use native buttons for actions and links for navigation. Preserve native
 attributes, accessible names, and submit behavior. Do not create nested
 interactive elements or public `hovered` and `focused` props for CSS states.
 
+## Keep icons and state cues semantic
+
+Reuse the installed icon family and let monochrome icons inherit `currentColor`.
+Give icon-only controls an accessible name and hide decorative icons from
+assistive technology. Keep unfamiliar or consequential actions labeled, and
+mirror only directional glyphs in RTL. Preserve the control's hit target while
+correcting optical alignment.
+
+| Bad                                                            | Good                                                                      |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Add a second icon library for one toolbar glyph.               | Use the existing family and match its rendered weight and size.           |
+| Use a gray icon with no accessible name for a selected action. | Use the control's semantic state, an accessible name, and `currentColor`. |
+
 ## Keep Tailwind classes inspectable
 
 Use semantic roles and complete class strings. Preserve the project's Tailwind
@@ -110,4 +123,5 @@ Before changing a shared default, token meaning, variant name, or controlled
 behavior, find its consumers. Compile the app and docs examples. Run the
 project's lint rules, including `@shadcn/lint` when configured. Check the
 component alone and in a real page with focus, validation, disabled, pending,
-theme, portal, and content-boundary states.
+theme, portal, content-boundary, icon-only, non-color state, and stable-geometry
+states.

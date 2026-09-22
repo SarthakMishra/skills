@@ -1,17 +1,21 @@
 ---
 name: design-system
-description: Build, adopt, or audit a React design system on top of Tailwind and shadcn/ui. Use for tokens, shadcn components, variants, motion, migration, documentation, or enforcement. Skip isolated page styling, UX flows, copy, and backend work.
+description: Build, adopt, or audit React design systems and component-level visual contracts on Tailwind and shadcn/ui. Use for tokens, layout, typography, icons, color, surfaces, states, motion, variants, migration, documentation, or enforcement. Skip isolated page styling without shared-system impact, product flows, copy, and backend work.
 ---
 
 # Build a shadcn design system
 
 Start with the project's installed shadcn components, Tailwind theme, and
 `components.json`. Keep those defaults unless a real requirement or consumer
-evidence shows a gap. Finish with real consumers, documented exceptions, and
-checks that prevent drift.
+evidence shows a gap. Fix hierarchy and state before adding decoration. Finish
+with real consumers, documented exceptions, and checks that prevent drift.
 
 For an audit-only request, inspect and report findings. Do not edit files unless
 the request includes implementation.
+
+For audit findings, label each result `Defect`, `Risk`, or `Preference`. Include
+the affected location, the observed or proposed treatment, the evidence, and
+any checks that remain unverified.
 
 ## Workflow
 
@@ -55,9 +59,11 @@ the request includes implementation.
 
 5. **Define the component contract.** State each shared component's purpose,
    variants, content limits, responsive behavior, semantic element, keyboard and
-   focus behavior, and supported states. Read [motion.md](references/motion.md)
-   for system motion or animated interactions. Keep feature data and business
-   rules in feature code.
+   focus behavior, visual roles, geometry, feedback, recovery, and supported
+   states. Keep each state understandable without animation or color alone;
+   preserve input and focus, and keep feedback near its cause. Read
+   [motion.md](references/motion.md) for system motion or animated interactions.
+   Keep feature data and business rules in feature code.
 
    Done means the code and project docs describe the same contract.
 
@@ -71,9 +77,10 @@ the request includes implementation.
    Done means the project has a repeatable check for the drift the change could introduce.
 
 7. **Verify the result.** Run the project's format, lint, type, test, and build
-   checks that apply. Exercise changed consumers with real content, supported
-   themes, responsive widths, keyboard input, focus, failure states, and reduced
-   motion. Report unavailable checks as unverified.
+   checks that apply. Exercise changed consumers with real and long content,
+   wrapping or translation, supported themes, narrow and wide widths, text zoom,
+   forced colors, contrast, keyboard input, focus, failure states, stable
+   geometry, and reduced motion. Report unavailable checks as unverified.
 
    Done means required checks pass and the handoff separates verified results from
    unverified work.
@@ -99,4 +106,3 @@ combination in its feature until another consumer proves it should be shared.
 - [registry-discovery](references/registry-discovery.md): read when local and official shadcn components do not fit.
 - [motion](references/motion.md): read for Tailwind or component motion.
 - [adoption-and-enforcement](references/adoption-and-enforcement.md): read for migration, decay prevention, docs, or lint.
-- [sources](references/sources.md): read for the source behind token, shadcn, or enforcement guidance.

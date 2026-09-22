@@ -1,7 +1,7 @@
 # Component patterns
 
 Implement the control's approved interaction contract with the existing accessible
-component. Use `ui-guide` for control choice, visible states, layout, and feedback.
+component. Use `design-system` for control choice, visible states, layout, and feedback.
 This reference owns activation, focus, presence, request ownership, and cleanup.
 
 ## Buttons and toggles
@@ -119,7 +119,7 @@ of the visual entrance and exit.
 - Use a tooltip to supplement an already understandable control. Do not hide
   critical instructions or the only accessible name there.
 - Show tooltips on keyboard focus as well as hover. Apply the library's timing or
-  the chosen `ui-guide` treatment. Clear obsolete timers when focus, hover, or
+  the chosen `design-system` treatment. Clear obsolete timers when focus, hover, or
   visibility changes so a delayed tooltip cannot reopen after dismissal.
 - Keep keyboard feedback prompt. It should not inherit a frustrating pointer delay.
 
@@ -257,7 +257,7 @@ is interrupted, or never emits a completion event.
 ### Avoid flashing busy indicators
 
 1. Acknowledge input immediately.
-2. Apply the busy-indicator delay selected from project conventions or `ui-guide`.
+2. Apply the busy-indicator delay selected from project conventions or `design-system`.
    Delay only the spinner, not the operation, pending semantics, or protection
    against duplicate submissions. The worked example below uses 150ms.
 3. Clear the timer when the operation settles. Never postpone useful content or

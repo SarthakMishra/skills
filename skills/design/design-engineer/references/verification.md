@@ -107,7 +107,8 @@ concern requires another check.
 
 ### Check layout and content
 
-Use `ui-guide`'s layout, typography, iconography, surfaces, and color references
+Use `design-system`'s foundation and component references for layout, typography,
+iconography, surfaces, and color
 for the visual acceptance criteria. Verify their approved treatment in the working
 component; do not create another catalog of design defaults.
 
@@ -178,8 +179,9 @@ exclusions, and completion checks. Unrelated improvements do not count as finish
 the scoped task. If essential work needs a broader change, report that dependency
 and request a scope decision rather than silently expanding the patch.
 
-After behavior checks, use `ui-guide`'s polish reference for a final consistency pass. It
-does not replace the state, accessibility, or performance checks above.
+After behavior checks, use `design-system`'s foundation and component guidance for
+a final consistency pass. It does not replace the state, accessibility, or
+performance checks above.
 
 - For implemented work, report the changed behavior, why it helps, what was
   verified, and any material limit.

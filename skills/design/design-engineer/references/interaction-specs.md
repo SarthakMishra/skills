@@ -40,8 +40,8 @@ or system documents rather than producing competing versions. Each state must
 name the same object, consequence, and recovery in the flow, component, and words.
 The [orchestration workflow](orchestration.md) defines those handoffs.
 
-Load the relevant visual, interaction-design, and motion references through
-`ui-guide`. Record the chosen project tokens or treatment. Then use
+Load the relevant foundation, component, and motion references through
+`design-system`. Record the chosen project tokens or treatment. Then use
 [component patterns](component-patterns.md) for ownership and lifecycle,
 [animation implementation](animation-implementation.md) for motion mechanics,
 and [React/Tailwind](react-tailwind.md) when that stack is involved.
@@ -119,16 +119,16 @@ tokens instead. Reuse the installed accessible overlay and query layer.
 
 ### Choose appearance
 
-| Concern     | Decision                                                                                                       | Source of the rule                 |
-| ----------- | -------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| Layout      | One column; 8px inside the field, 24px between task groups, wrapping actions. Keep filters after zero results. | Layout guidance in `ui-guide`      |
-| Typography  | 20px heading, 16px search input, 14px wrapping status. Preserve result names and units.                        | Typography guidance in `ui-guide`  |
-| Iconography | Decorative 20px search glyph from the existing family; active-filter count remains text.                       | Iconography guidance in `ui-guide` |
+| Concern     | Decision                                                                                                       | Source of the rule                     |
+| ----------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| Layout      | One column; 8px inside the field, 24px between task groups, wrapping actions. Keep filters after zero results. | Foundation guidance in `design-system` |
+| Typography  | 20px heading, 16px search input, 14px wrapping status. Preserve result names and units.                        | Foundation guidance in `design-system` |
+| Iconography | Decorative 20px search glyph from the existing family; active-filter count remains text.                       | Component guidance in `design-system`  |
 
 | Concern | Decision                                                                                                  | Source of the rule                                                |
 | ------- | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Color   | Raised panel, surface input, primary text, muted status, textual error. Use tested pairs for both themes. | Color guidance in `ui-guide`                                      |
-| Surface | 12px panel radius; restrained elevation. Reserve the input's border width in every state.                 | Surfaces guidance in `ui-guide`                                   |
+| Color   | Raised panel, surface input, primary text, muted status, textual error. Use tested pairs for both themes. | Foundation guidance in `design-system`                            |
+| Surface | 12px panel radius; restrained elevation. Reserve the input's border width in every state.                 | Foundation guidance in `design-system`                            |
 | Motion  | Popover defaults from motion; pending and focus never wait for animation.                                 | [Motion](animation-implementation.md#example-filter-panel-motion) |
 
 ### Define behavior and ownership
@@ -178,7 +178,7 @@ checkmark only after confirmation. A known rejection leaves an editable error.
 A lost response produces an unknown state and reconciliation before retry.
 
 Choose persistent feedback from [save states](component-patterns.md#example-save-feedback)
-and the glyph and semantic color pair from `ui-guide`,
+and the glyph and semantic color pair from `design-system`,
 and the optional swap from [motion](animation-implementation.md#example-contextual-icon-change).
 Implement only presentation with the [icon recipe](react-tailwind.md#contextual-icon-recipe);
 the data layer still owns whether a save succeeded.

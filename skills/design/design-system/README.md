@@ -12,10 +12,10 @@ make the smallest documented extension that real product needs require.
 - migrating component families without UI decay
 - enforcing component and token contracts with `@shadcn/lint`
 
-Use [ui-guide](../ui-guide/README.md) for an isolated visual decision,
-[ux-guide](../ux-guide/README.md) for a user flow, and [ux-writer](../ux-writer/README.md)
-for interface copy. Use [design-engineer](../design-engineer/README.md) when one
-feature needs all of those concerns.
+Use [ux-guide](../ux-guide/README.md) for a user flow and
+[ux-writer](../ux-writer/README.md) for interface copy. Use
+[design-engineer](../design-engineer/README.md) when one feature needs all of
+those concerns.
 
 ## Useful requests
 
@@ -23,14 +23,15 @@ feature needs all of those concerns.
 - "Add a pending state to the shared Button with a proper `cva` variant."
 - "Compose a filter toolbar from our existing Input, Button, and Popover."
 - "Migrate duplicate buttons and enforce the contract with `@shadcn/lint`."
+- "Audit component states, icon semantics, contrast, and responsive behavior."
 - "Audit token and component drift without changing product behavior."
 
 ## Result
 
 A useful run leaves React components using the existing shadcn APIs and semantic
-Tailwind roles, new variants only where needed, tokens named by role, and lint or
-tests that catch the relevant decay. It also updates `DESIGN.md` or the existing
-equivalent and reports checks that ran.
+Tailwind roles, readable states and content, new variants only where needed,
+tokens named by role, and lint or tests that catch the relevant decay. It also
+updates `DESIGN.md` or the existing equivalent and reports checks that ran.
 
 ## Reference map
 

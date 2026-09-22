@@ -58,17 +58,15 @@ format. Pause only for a requested checkpoint or a decision that requires input.
 
 Use all three companions for an app or feature interface build:
 
-| Companion       | Input from the shared task                                                     | Required contribution                                                                                            |
-| --------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
-| `design-system` | Existing system, product requirements, and UX states.                          | Retain a usable system; extend missing variants; establish the minimum foundations needed when no system exists. |
-| `ui-guide`      | UX contract, system tokens, real content, and visual constraints.              | A concrete treatment for layout, typography, icons, color, surfaces, feedback, and motion.                       |
-| `ux-writer`     | Actions, consequences, vocabulary, permissions, recovery, and intended layout. | Final in-context copy for the primary path and applicable alternate states.                                      |
+| Companion       | Input from the shared task                                                     | Required contribution                                                                                                                        |
+| --------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `design-system` | Existing system, product requirements, UX states, and visual constraints.      | Retain a usable system; choose concrete treatments; extend missing variants; establish the minimum foundations needed when no system exists. |
+| `ux-writer`     | Actions, consequences, vocabulary, permissions, recovery, and intended layout. | Final in-context copy for the primary path and applicable alternate states.                                                                  |
 
 Have design-system inspect the existing system before choosing new values. Its
-shared tokens and component contracts become the implementation basis. Use
-ui-guide's fundamentals to resolve missing visual decisions, then record shared
-choices through design-system. Reuse an accepted brief when establishing a system;
-do not restart product discovery without a real gap.
+shared tokens, visual treatments, and component contracts become the implementation
+basis. Record shared choices through design-system. Reuse an accepted brief when
+establishing a system; do not restart product discovery without a real gap.
 
 Preserve the installed framework. Scope a companion's stack-specific material to
 the tools actually used. A non-React app does not become a React/Tailwind/shadcn
@@ -130,7 +128,7 @@ with explicit coverage limits.
 
 | Request                                     | Orchestration                                                                                                                   |
 | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| Create from scratch: a new app interface    | Establish the agreed first usable outcome with all four companions. Build only the system and flows needed for that scope.      |
+| Create from scratch: a new app interface    | Establish the agreed first usable outcome with all three companions. Build only the system and flows needed for that scope.     |
 | Bounded implementation: a component or flow | Establish the intervention approach, reuse system contracts, and integrate the named part. Consult companions at that scope.    |
 | Audit and repair: an existing area          | Establish the target, evaluation criteria, and approach, then investigate and implement the authorized repairs.                 |
 | Audit and repair, read-only restriction     | Report findings using the chosen approach; no implementation or system-documentation changes.                                   |

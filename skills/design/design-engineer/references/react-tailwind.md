@@ -3,7 +3,7 @@
 Read the installed React or Tailwind versions and local component conventions
 before choosing an API. Use only the sections relevant to the project's stack.
 
-Use the relevant visual and interaction-design references from `ui-guide`.
+Use the relevant visual and interaction guidance from `design-system`.
 Define operation ownership with [component patterns](component-patterns.md#async-operations)
 and implement the motion treatment with [animation implementation](animation-implementation.md).
 This file translates those decisions into code; it does not replace the app's query,
@@ -184,7 +184,7 @@ toggle's value.
 
 ## Map approved color roles into CSS
 
-Load the color reference through `ui-guide` and use the project's actual palette.
+Load the foundation guidance through `design-system` and use the project's actual palette.
 This concrete example implements the reference's sample light/dark role values;
 it is not a second design-default catalog. Use the app's theme selector rather
 than assuming that it uses `data-theme`.
@@ -229,7 +229,7 @@ than assuming that it uses `data-theme`.
 
 ## Icon semantics
 
-Choose glyphs and visual weight with `ui-guide`; expose the action's name on
+Choose glyphs and visual weight with `design-system`; expose the action's name on
 the control and keep decorative glyphs out of its accessible name.
 
 ```tsx
@@ -259,7 +259,7 @@ reset a pending operation to suppress a visual transition.
 
 Implement the [filter-panel spec](interaction-specs.md#example-filter-panel) as a
 controlled view inside the project's existing accessible overlay. This example
-uses Tailwind layout utilities and the role tokens chosen with `ui-guide`.
+uses Tailwind layout utilities and the role tokens chosen with `design-system`.
 Use equivalent project tokens; the classes assume unmodified Tailwind defaults.
 
 The existing query layer supplies the following contract. Do not invent a hook
@@ -419,7 +419,7 @@ their label and status associations distinct.
 
 The overlay host supplies elevation, constrained viewport placement, transform
 origin, presence, and focus restoration. Reuse its existing recipes and use
-the surfaces reference in `ui-guide` only for missing visual tokens. The view contains
+the foundation guidance in `design-system` only for missing visual tokens. The view contains
 no network or popup lifecycle logic. Verify those integrations with the
 [query event trace](component-patterns.md#example-filter-search) and
 [motion checks](animation-implementation.md#example-filter-panel-motion).

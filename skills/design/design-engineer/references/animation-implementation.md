@@ -1,6 +1,6 @@
 # Animation implementation
 
-Load the design treatment from `ui-guide`'s motion guidance. This reference owns
+Load the design treatment from `design-system`'s motion guidance. This reference owns
 mechanisms, spring parameters, gesture release, and rendering cost. Keep design
 tokens authoritative; the examples below implement a chosen treatment.
 

@@ -8,7 +8,7 @@ Build the workspace invitation interface. Reuse our design system, improve
 the flow where needed, write the interface copy, and implement and verify it.
 ```
 
-The skill coordinates UX, the design system, UI design, UX copy, and implementation.
+The skill coordinates UX, the design system, visual decisions, UX copy, and implementation.
 You do not need to invoke each companion separately. The agent can also select
 design-engineer for matching work. A review-only request produces findings without
 edits.
@@ -38,14 +38,13 @@ waits for that confirmation; read-only investigation can continue.
 
 Install these companions alongside design-engineer for its full workflow:
 
-| Companion                                  | What it contributes                                                             |
-| ------------------------------------------ | ------------------------------------------------------------------------------- |
-| [ux-guide](../ux-guide/SKILL.md)           | User journeys, action contracts, recovery, and UX refinements.                  |
-| [design-system](../design-system/SKILL.md) | Existing-system reuse, missing foundations, shared components, and conventions. |
-| [ui-guide](../ui-guide/SKILL.md)           | Visual fundamentals, interaction design, and motion treatment.                  |
-| [ux-writer](../ux-writer/SKILL.md)         | Final labels, instructions, accessible names, and state-specific feedback.      |
+| Companion                                  | What it contributes                                                            |
+| ------------------------------------------ | ------------------------------------------------------------------------------ |
+| [ux-guide](../ux-guide/SKILL.md)           | User journeys, action contracts, recovery, and UX refinements.                 |
+| [design-system](../design-system/SKILL.md) | Existing-system reuse, visual foundations, shared components, and conventions. |
+| [ux-writer](../ux-writer/SKILL.md)         | Final labels, instructions, accessible names, and state-specific feedback.     |
 
-Select the five design skills when installing this collection. The engineer
+Select the four design skills when installing this collection. The engineer
 discovers them from the skill catalog or installed registry; it does not assume
 fixed sibling paths. If a needed companion is unavailable, it identifies the gap
 and continues work supported by existing decisions. Installation or a product
@@ -75,7 +74,7 @@ reviewed for the actual product.
 
 ## Scope and completion
 
-A new interface uses all four companions. A narrow repair uses only relevant
+A new interface uses all three companions. A narrow repair uses only relevant
 guidance and preserves existing decisions. Reusing a design system does not mean
 rebuilding it, and improving a feature flow does not imply an app-wide UX audit.
 
@@ -95,10 +94,9 @@ their own authorization.
 
 ## Sources
 
-This package separates the engineering material previously maintained in ui-guide.
-Its original interaction and animation foundations include Dan Saffer's
-_Microinteractions_ and Val Head's _Designing Interface Animation_, with source
-context in the [ui-guide README](../ui-guide/README.md#sources).
+Shared visual-system guidance now lives in design-system. This package's original
+interaction and animation foundations include Dan Saffer's _Microinteractions_ and
+Val Head's _Designing Interface Animation_.
 
 The user-provided emil-design-eng reference informed the emphasis on component
 craft, interruptibility, working previews, and concrete before/after review.

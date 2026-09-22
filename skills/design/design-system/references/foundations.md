@@ -1,8 +1,8 @@
 # Choose shadcn foundations
 
 Read this file before changing the Tailwind theme, shadcn roles, radius, spacing,
-or shared tokens. Start with the installed defaults and test the smallest change
-in a real feature.
+typography, elevation, or shared tokens. Start with the installed defaults and
+test the smallest change in a real feature.
 
 ## Start with the installed shadcn system
 
@@ -59,12 +59,30 @@ Bad: `bg-blue-600`, `--card-padding`, and a new raw hex value in each component.
 Good: `bg-primary`, `p-4`, and a shared `--primary` role whose theme value can
 change without editing consumers.
 
+## Keep visual roles and geometry stable
+
+Use semantic roles for type, color, spacing, radius, and elevation. Measure the
+actual foreground/background pair in every supported theme, including overlays
+and forced-colors mode. Pair color with text, shape, an icon, or a semantic state
+attribute so it is not the only state cue.
+
+Use spacing and shared edges to show relationships. Use boundaries for structure
+and elevation for layered surfaces such as menus and dialogs. Reserve border
+space or use an outline when a state changes so labels and controls do not move.
+
+| Bad                                   | Good                                                                       |
+| ------------------------------------- | -------------------------------------------------------------------------- |
+| Show an error with a red border only. | Use the semantic error state, a readable message, and a tested color pair. |
+| Add a border only after selection.    | Reserve the border width or use an outline so geometry stays stable.       |
+
 ## Test the foundation
 
 Use a form, list, dashboard, or dialog with real text. Check a second composition
 and the relevant empty, loading, error, disabled, selected, and long-content
-states. Check every supported theme, text zoom, contrast pairing, and responsive
-width before promoting a value to the shared theme.
+states. Let content wrap rather than clipping it to a fixed height; check
+translated labels, narrow and wide containers, text zoom, DOM and focus order,
+logical direction, every supported theme, forced colors, and contrast pairings
+before promoting a value to the shared theme.
 
 Add a token only when it represents a repeated meaning or an independently
 supported theme choice. Do not create one token for every CSS declaration.

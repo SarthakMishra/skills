@@ -106,6 +106,10 @@ setTimeout(() => setOpen(false), 400);
 Transition named properties. Prefer opacity and transform. Avoid competing CSS
 and JavaScript animations on the same property.
 
+Treat animation as presentation. Application state determines pending, success,
+error, and recovery; a spinner or completed animation never proves an operation
+succeeded. Keep status, focus, and recovery understandable with motion disabled.
+
 If a short crossfade still looks harsh after tuning duration and easing, test a
 small blur as a last resort. Remove it if it reduces text or icon clarity.
 
