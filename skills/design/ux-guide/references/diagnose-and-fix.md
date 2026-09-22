@@ -1,8 +1,7 @@
 # Diagnose and fix flows
 
+Use this reference for an existing flow that is confusing, failing, or exhausting.
 Reproduce the user's task from a realistic entry point before proposing a fix.
-Use this reference even when the flow works technically but remains confusing
-or exhausting.
 
 ## Reconstruct before prescribing
 
@@ -17,6 +16,9 @@ or exhausting.
 
 A high abandonment rate identifies a place to investigate, not why people leave.
 Do not report a reproduced defect from analytics or a static screenshot alone.
+
+Done means the current use case identifies the first mismatch, likely cause,
+confidence, and evidence gap before a treatment is selected.
 
 ## Classify the breakdown
 
@@ -67,7 +69,8 @@ the evidence and proposed repair in a compact table or structured block.
 
 ### Capture the evidence
 
-- Identify the finding and its flow and node, such as `UX-01` and `F02 / N03`.
+- Identify the finding and its flow step or transition, such as `UX-01` and
+  `F02 / M03`.
 - Record the sequence and its screenshot, code location, or reported source.
   Label inferences separately.
 - Describe what the person cannot understand, do, or verify, and the consequence.
@@ -125,3 +128,6 @@ current-state fallback instead of claiming a frontend-only repair supplies it.
 For a review, finish with findings and acceptance checks. For an authorized repair,
 implement the selected behavior and use [validation](validation.md) to exercise
 the original failure and changed recovery paths.
+
+Done means each finding has a stable flow-step or transition ID, evidence, cause,
+priority, status, proposed behavior, and a check that could show the cause remains.

@@ -171,3 +171,9 @@ or single pointer.
 Check logical reading/focus order, target operability, zoom/reflow, and interruption
 recovery across the journey. ARIA attributes or an accessible opening screen alone
 do not prove accessible completion. Use [validation](validation.md) for the checks.
+
+## Finish
+
+Done means the chosen pattern names the job, default, exception, recovery limit,
+and acceptance check. Record why the project's existing pattern was retained or
+why the replacement is necessary.

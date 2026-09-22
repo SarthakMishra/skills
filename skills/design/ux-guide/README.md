@@ -1,99 +1,71 @@
 # UX guide
 
-Use `/ux-guide` in Claude Code or `$ux-guide` in Codex with the task people need
-to complete and the journey that is missing or failing:
+Use `/ux-guide` in Claude Code or `$ux-guide` in Codex when a person's path
+through a web app is confusing, incomplete, risky, or hard to recover. The
+agent can also select the skill for a matching task.
 
-```text
-Review the teammate invitation flow from entry through acceptance.
-Explain failures and recovery with a current/proposed map. Do not change code.
-```
+## When to choose it
 
-The agent can also select the skill for a matching task.
+| Request         | What it delivers                                                                |
+| --------------- | ------------------------------------------------------------------------------- |
+| Review or audit | Evidence-backed findings, causes, proposed repairs, and verification limits.    |
+| New flow design | A textual use case, action contracts, recovery paths, dependencies, and checks. |
+| Flow repair     | A scoped implementation, exercised checks, and remaining unverified paths.      |
+| Narrow change   | Work limited to the affected journey and its immediate dependencies.            |
 
-## What it delivers
+Use [design-engineer](../design-engineer/README.md) when one interface task
+needs UX, design-system, UI, copy, and implementation work. Use [ux-writer](../ux-writer/README.md)
+for copy-only work and [ui-guide](../ui-guide/README.md) for visual fundamentals.
 
-| Request         | Result                                                                     |
-| --------------- | -------------------------------------------------------------------------- |
-| Review or audit | Prioritized findings with evidence and concrete proposed repairs.          |
-| New flow design | A proposed path, action contracts, recovery, and acceptance checks.        |
-| Repair          | Scoped implementation, exercised checks, and explicit verification limits. |
-| Narrow change   | Work limited to the affected journey and its dependencies.                 |
+## Useful requests
 
-The guide makes defaults explicit and uses before/after or good/bad examples.
-It distinguishes received input, pending work, confirmed results, known failure,
-and unknown outcomes. It does not promise persistence, delivery, undo, or safe retry
-without system support.
+- "Review the teammate invitation flow from entry through acceptance. Report
+  failures and recovery. Do not change code."
+- "Design the first-run workspace setup flow. Include validation, cancellation,
+  return behavior, and acceptance checks."
+- "Repair the lost-response path after sending an invitation. Implement the fix
+  and verify that retry cannot create a duplicate."
+- "Audit the checkout journey for scope, commitment, unknown outcomes, and safe
+  recovery."
 
-## Find the relevant guidance
+## Canonical flow format
 
-[SKILL.md](SKILL.md) is a lean map to seven references:
+The source of truth is a textual Cockburn-style use case:
 
-| Decision                              | Reference                                                                                             |
-| ------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| Represent and diagnose a journey      | [Flow mapping](references/flow-mapping.md) and [diagnosis](references/diagnose-and-fix.md).           |
-| Choose behavior and resolve tradeoffs | [Flow patterns](references/flow-patterns.md) and [decision rules](references/decision-principles.md). |
-| Improve first value and return use    | [Engagement](references/engagement.md).                                                               |
-| Implement React behavior              | [React interactions](references/react-interactions.md).                                               |
-| Establish what is verified            | [Validation](references/validation.md).                                                               |
+1. `Intent` names the actor, goal, entry, permissions, commitment, and success.
+2. `Main flow` records one linear Main Success Scenario.
+3. `Extensions` attach branches to the step where they first diverge.
+4. `States and transitions`, `Rules`, and `Scenarios` are added when the flow
+   needs them.
 
-The flow guidance is framework-independent. React guidance applies only when that
-is the installed stack. The source books are not required to use the skill.
+Use stable flow-step and transition IDs. Keep current and proposed behavior
+separate. Mermaid or another diagram is an optional derived view, not the
+canonical artifact.
 
-## Give the task enough context
+## Result
 
-1. Name the person, intended outcome, and flow or app area in scope.
-2. Provide the relevant app, screenshots, code, requirements, or reported failure.
-3. Say whether you want findings, a design, or implementation, and what must stay unchanged.
+A useful run leaves the requested journey documented or repaired, with the
+person's goal, completion contract, failure and recovery paths, preserved work,
+focus behavior, and evidence limits explicit. It does not claim persistence,
+delivery, undo, cancellation, safe retry, or user comprehension without support
+from the product or an exercised check.
 
-The agent looks up repository facts and asks about unresolved product decisions
-that change the flow. A screenshot supports visual inspection; it cannot establish
-what happens after an action or timeout.
+## Reference map
 
-## Maps and checkpoints
+- [Flow mapping](references/flow-mapping.md): use-case structure, Extensions,
+  state tables, stable IDs, storage, and handoffs.
+- [Diagnosis and repair](references/diagnose-and-fix.md): root-cause investigation
+  and scoped repairs.
+- [Flow patterns](references/flow-patterns.md): common navigation, form, list,
+  permission, and recovery treatments.
+- [Decision rules](references/decision-principles.md): testable choices about
+  memory, mistakes, friction, and feedback.
+- [Engagement](references/engagement.md): first value, repeated work, and return use.
+- [Validation](references/validation.md): acceptance checks, evidence, and limits.
 
-Current and proposed branching flows appear as Mermaid diagrams. A trivial linear
-action uses a short table or prose. Working files follow the project's convention,
-defaulting to `.scratch/<effort-slug>/ux/`; a no-file-changes request keeps the
-maps in the conversation. Existing specs, tickets, and identifiers are preserved.
+## Scope and evidence
 
-The agent honors requested review checkpoints and otherwise continues work that is
-already authorized. When design-engineer coordinates the task, UX guide inherits its
-agreed scope, approach, and readiness rather than starting another interview.
-
-## Check the result
-
-- The journey includes entry, commitment, completion, and relevant recovery or return paths.
-- Each finding identifies the cause, affected behavior, proposed change, and evidence.
-- Partial results distinguish confirmed success, known failure, and unknown outcomes.
-- The result names checks actually run and leaves unavailable checks marked Not verified.
-- A review does not silently become implementation or an app-wide redesign.
-
-## Use independently or through the orchestrator
-
-For an app interface spanning UX, system, UI, copy, and implementation, invoke
-[design-engineer](../design-engineer/README.md) once. It uses this skill automatically.
-UX guide also works independently.
-
-Use [ux-writer](../ux-writer/README.md) for copy-only work and
-[ui-guide](../ui-guide/README.md) for visual fundamentals. Neither is required for
-a standalone UX task. See the [design index](../README.md).
-
-## Sources
-
-- Steve Krug, _Don't Make Me Think, Revisited_, third edition, 2014. Chapters 1 to 4
-  cover scanning and decisions; 6 to 7 cover navigation; 8 to 9 cover observing tasks
-  and prioritizing repairs; 10 to 12 cover mobile, goodwill, and accessibility.
-- Don Norman, _The Design of Everyday Things_, revised and expanded, 2013. Chapters
-  1 to 2 cover interaction and the action cycle; 3 covers externalized knowledge;
-  4 covers constraints and mapping; 5 covers recovery; 6 covers iterative design.
-- Jon Yablonski, _Laws of UX_, second edition, 2024. Chapters 1 to 10 supply the
-  psychology lenses; 11 covers their application; 12 covers responsibility,
-  nonideal scenarios, and purposeful friction.
-- Nir Eyal, _Hooked_, 2014. Chapters 1 to 5 cover cadence, triggers, ability,
-  rewards, and investment; 6 covers influence; 8 covers testing recurring behavior.
-
-Historical examples and numerical claims need their original context. The guide
-keeps progress truthful, consequential results predictable, and user assumptions
-testable. React state ownership, request ordering, map formats, and acceptance
-contracts are the guide's engineering applications, not API prescriptions from
-those books.
+Review and design requests do not authorize implementation. The skill reads the
+repository's requirements, routes, components, contracts, and available runtime
+evidence before proposing behavior. It reports unavailable browser,
+device, assistive-technology, or user-research checks as `Not verified`.

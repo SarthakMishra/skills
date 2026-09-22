@@ -1,8 +1,9 @@
 # Engagement through useful progress
 
-Define the valuable outcome and its natural cadence before changing onboarding,
-activation, or return use. Improve the task people need to complete; do not turn
-an occasional utility into a daily habit requirement.
+Use this reference for onboarding, activation, repeated work, or return behavior.
+Define the valuable outcome and its natural cadence before choosing a change.
+Improve the task people need to complete; do not turn an occasional utility into
+a daily habit requirement.
 
 ## 1. Establish value and the obstacle
 
@@ -33,10 +34,8 @@ adding reminders or motivational prompts. A reminder cannot repair a confusing f
 | Reward     | The actual completed work, insight, competence, connection, or relief.         | More activity with no progress on the person's problem.      |
 | Investment | Optional saved setup, a template, or useful preferences for later work.        | Effort that only makes leaving harder.                       |
 
-The Hook Model includes variable rewards. Discovery and contributions can vary;
-save results, access, prices, and other consequential behavior must remain
-predictable. Use the relevant parts of the model without claiming a deterministic
-feedback loop implements all of it.
+Discovery and contributions can vary. Save results, access, prices, and other
+consequential behavior must remain predictable.
 
 ## 3. Choose a progress mechanism
 
@@ -63,8 +62,9 @@ Use a review step for a consequential commitment, not to increase time spent.
 
 ## 4. Define evidence before claiming improvement
 
-Specify the affected flow/node, need, mechanism, expected benefit, eligible users,
-and observation window. Choose a successful outcome at the natural cadence.
+Specify the affected flow step or transition, need, mechanism, expected benefit,
+eligible users, and observation window. Choose a successful outcome at the
+natural cadence.
 
 | Proposed change           | Outcome measure                                   | Unwanted effect to check                                       |
 | ------------------------- | ------------------------------------------------- | -------------------------------------------------------------- |
@@ -79,5 +79,6 @@ that the path caused engagement. Do not force everyone through it.
 
 Use [validation](validation.md) for denominators, evidence limits, and task checks.
 Do not add tracking services or collect data outside the task's authorization.
-Finish with the selected change, its expected benefit, and a check that could
-disprove the hypothesis.
+
+Done means the selected change names the real outcome, cadence, blocking resource,
+expected benefit, eligible users, observation window, and unwanted effect to check.

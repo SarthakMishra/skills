@@ -1,8 +1,9 @@
 # Decision rules for user flows
 
-Name the decision, apply the matching rule, and state the behavior that should
-improve. These rules guide a proposal; they do not prove that users will succeed.
-Book attribution lives in the skill README.
+Use this reference when a flow decision trades task clarity, memory, speed,
+familiarity, or error prevention. Name the decision, apply the matching rule,
+and state the behavior and check that should improve. These rules guide a
+proposal; they do not prove that users will succeed.
 
 ## Remove uncertainty before removing steps
 
@@ -124,3 +125,9 @@ does not earn its place by being familiar.
 For motivation or recurring use, continue with [engagement](engagement.md).
 Fix an ability or timing obstacle before adding persuasion, and leave a clear
 stopping point when the real task is finished.
+
+## Finish
+
+Done means the chosen treatment names the tradeoff, affected flow step, exception,
+and check that could disprove the expected improvement. Mark the prediction as
+heuristic when user evidence is unavailable.

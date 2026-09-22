@@ -1,8 +1,9 @@
 # Validate the experience
 
-Check the task and failure that motivated the change. Separate evidence that the
-implementation behaves correctly from evidence that people understand and can
-complete the task. An agent walkthrough is not participant research.
+Use this reference for every UX proposal, review, or repair. Check the task and
+failure that motivated the change. Separate evidence that the implementation
+behaves correctly from evidence that people understand and can complete the task.
+An agent walkthrough is not participant research.
 
 ## Select checks by the changed contract
 
@@ -28,9 +29,9 @@ to exercise a UX check without authorization.
 
 ## Record evidence against a transition
 
-For each check, record flow/node, precondition, action, expected outcome, actual
-result, and evidence. Reuse a check that covers several concerns rather than running
-the same action once per reference.
+For each check, record the flow step or transition, precondition, action, expected
+outcome, actual result, and evidence. Reuse a check that covers several concerns
+rather than running the same action once per reference.
 
 | Label          | Meaning                                                             |
 | -------------- | ------------------------------------------------------------------- |
@@ -39,12 +40,12 @@ the same action once per reference.
 | Verified       | The named scenario was exercised and its actual result recorded.    |
 | Not verified   | The check was unavailable or was not run.                           |
 
-| Bad check                                       | Good check                                                                                                    |
-| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| "Retry works."                                  | Commit an invitation but lose the response; recovery must not send a duplicate.                               |
-| "The wizard is simpler."                        | Go back from review, edit an earlier answer, and confirm dependent choices and entered values remain correct. |
-| "The flow is verified because Mermaid renders." | Record diagram syntax separately from observed application behavior.                                          |
-| "Users will understand this."                   | State the expected improvement and the task observation that could disprove it.                               |
+| Bad check                                                | Good check                                                                                                    |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| "Retry works."                                           | Commit an invitation but lose the response; recovery must not send a duplicate.                               |
+| "The wizard is simpler."                                 | Go back from review, edit an earlier answer, and confirm dependent choices and entered values remain correct. |
+| "The flow is verified because the document is complete." | Record documentation completeness separately from observed application behavior.                              |
+| "Users will understand this."                            | State the expected improvement and the task observation that could disprove it.                               |
 
 A successful build or snapshot does not establish comprehension, focus behavior,
 request ordering, or recovery. Mark browser, screen-reader, device, and performance
