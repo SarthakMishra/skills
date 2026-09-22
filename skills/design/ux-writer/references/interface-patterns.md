@@ -1,8 +1,11 @@
 # Write interface patterns in context
 
-Choose the section matching the interaction. Examples here are original and
-illustrative; their behavior is a stated assumption, not a promise to import.
-Use the project's vocabulary, voice, and supported capabilities.
+Choose the section matching the interaction after checking the actual behavior,
+vocabulary, voice, and supported capabilities. The examples are conceptual and
+their behavior is a stated assumption, not a promise to import.
+
+Done means each changed pattern has a behavior-based copy choice and a check for
+the states, layout, and audience that can affect its meaning.
 
 ## Find the pattern
 
@@ -15,6 +18,9 @@ Use the project's vocabulary, voice, and supported capabilities.
 - Consequences: [confirmation](#confirmation-before-commitment),
   [access and payment](#access-consent-and-payment), [notifications](#notifications).
 - Cross-cutting checks: [accessibility and localization](#accessibility-localization-and-variables).
+
+For a small edit, read the matching section and the cross-cutting checks. For a
+flow, read every section that covers a changed state or decision.
 
 ## Titles and navigation
 
@@ -99,7 +105,7 @@ A checkbox or switch label should remain understandable when selected and unsele
 
 Bad: `Disable nonessential updates`
 
-Better: `Email me about delivery changes`
+Good: `Email me about delivery changes`
 
 Use parallel option labels. Explain differences in capability or consequence where
 the label alone cannot do so. For a slider, label the measured property, units, and
@@ -177,7 +183,7 @@ Include the failed action, known cause when useful, preserved work when verified
 and a supported next step. An unknown cause stays unknown. Put reference codes
 beside useful recovery guidance when support needs them, not in place of an explanation.
 
-Example, assuming entries remain in the current form and saving is safe to retry:
+Good, assuming entries remain in the current form and saving is safe to retry:
 `We couldn't save your address. Your changes are still in this form. Try saving again.`
 
 If retry could duplicate a payment or submission, direct the person to check its
@@ -194,7 +200,7 @@ ordinary reversible actions, recommend supported undo when changing behavior is 
 Name the action and object, affected people or data, timing, and reversibility.
 Pair a specific commitment label with a clear safe alternative.
 
-Example, only if deletion is immediate and permanent:
+Good, only if deletion is immediate and permanent:
 
 - Title: `Delete workspace "Archive"?`
 - Description: `This permanently deletes its 12 files for everyone in the workspace.`
@@ -256,6 +262,26 @@ shaming, and recurring prompts after the person has made a clear choice.
 - Give translators the state, intended meaning, variables, and any literal meaning
   behind wordplay. Treat locale-specific writing as a design decision.
 
-For `Invitation sent to {recipient_name}`, use the address as fallback only if it
+Good, for `Invitation sent to {recipient_name}`, use the address as fallback only if it
 is available and appropriate to show. Otherwise use a complete alternative such as
 `Invitation sent`. Check that the sending state itself is verified.
+
+## Check the result
+
+Before handing off, verify that:
+
+1. Titles, labels, descriptions, actions, and feedback use the same object, state,
+   and outcome.
+2. Empty, waiting, partial, success, error, permission, and destructive states in
+   scope have a supported next step or a clear endpoint.
+3. Accessible names, reading order, focus-related guidance, variables, empty
+   values, plural forms, and translation expansion preserve the intended meaning.
+4. Claims about saving, delivery, timing, undo, retry, payment, access, and
+   privacy match the supported behavior.
+
+Mark unavailable rendering, behavior, accessibility, translation, and user
+checks `Not verified`. A screenshot cannot prove persistence, delivery, or safe
+retry.
+
+Done means the copy is tied to the real pattern and the handoff distinguishes
+verified behavior from assumptions.

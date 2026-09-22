@@ -1,119 +1,111 @@
 ---
 name: ux-writer
-description: Write or review product-interface copy, including labels, forms, errors, empty states, onboarding, confirmations, and status messages. Use for a single string, a flow's copy, copy audits, or product vocabulary and content systems. Excludes marketing, long-form editorial writing, and general brand voice work unless the text is part of a product flow.
+description: Write or audit product-interface copy for labels, forms, errors, empty states, onboarding, confirmations, status messages, and content systems. Use for a string, a flow's copy, a copy audit, or product vocabulary. Skip marketing, long-form editorial, and standalone brand strategy unless the text belongs to a product flow.
 ---
 
 # Write copy that helps people act
 
-Read the surrounding interface and establish what the person needs to understand
-or do. Write for that purpose, using the product's voice and actual behavior.
-The result should make the action, consequence, and next step understandable.
+Read the relevant interface, behavior, requirements, voice, and terminology
+before drafting. Produce copy whose action, consequence, current state, and next
+step match the evidence.
 
-Use these rules as defaults. Depart for an explicit requirement, supported product
-constraint, audience or language need, or observed failure; state the reason and
-replacement. This skill has no prescribed brand personality and works independently.
+For an audit, report findings without editing. Implementation requires an explicit
+request. This skill does not authorize an interaction redesign. If wording cannot
+fix a behavior problem, name the smallest behavior change required. When the
+writing basis is missing, use plain, respectful, literal wording as a provisional
+default and mark inferences.
 
-## Establish the writing context
-
-1. Identify the person's goal, entry point, knowledge, and current situation.
-   Distinguish the person using the product from the organization buying it.
-2. Name the organization's goal for this interaction and where it conflicts with
-   the person's goal. Preserve understandable choices, costs, and exits.
-3. Read the relevant screen, requirements, and behavior. Establish the action's
-   object, affected scope, timing, reversibility, and supported failure recovery.
-4. Read project voice guidance, terminology, and nearby approved copy. Use existing
-   decisions before proposing new ones. Without voice guidance, use plain,
-   respectful, literal wording as a provisional default.
-
-For one string, keep this context brief and use what is already known. Ask only
-when a missing fact changes meaning, consequence, or the requested voice. Mark
-inferences; a screenshot does not establish persistence, delivery, or safe retry.
+Ask only when a missing fact changes meaning, consequence, or requested voice. If
+another design workflow owns the task, inherit its scope and accepted decisions.
 Continue settled copy work while a consequential product question is unresolved.
 
-When working under another design workflow, inherit its scope and accepted
-decisions. A copy review does not authorize implementation or a broader redesign.
-If words cannot resolve a behavior problem, name the required interaction change.
+## Reference map
 
-## Choose the relevant guidance
+| Reference                                                              | Read when                                                                                        | Decision it supports                                                          |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+| [Voice and terminology](references/voice-and-terminology.md)           | The task establishes voice, adapts tone, names a concept, or resolves inconsistent vocabulary.   | Which writing choices and terms are supported by the product and audience.    |
+| [Interface patterns](references/interface-patterns.md)                 | The copy belongs to a control, screen, notification, or interface state.                         | Which label, explanation, action, and state pattern fits the actual behavior. |
+| [Evaluation and content systems](references/evaluation-and-systems.md) | The task audits copy, proposes research, claims an effect, or creates reusable content guidance. | What evidence supports the finding, measure, system rule, or handoff.         |
+| [Generated content](references/generated-content.md)                   | The product generates text during use.                                                           | What must be fixed, generated, reviewed, verified, or recovered.              |
 
-| Reference                                                              | Read for                                                                                             |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| [Voice and terminology](references/voice-and-terminology.md)           | Establishing or adapting product voice, tone mismatch, naming, or inconsistent vocabulary.           |
-| [Interface patterns](references/interface-patterns.md)                 | Drafting or reviewing a control, screen, notification, or state. Read the matching sections.         |
-| [Evaluation and content systems](references/evaluation-and-systems.md) | Copy audits, research plans, effectiveness claims, or reusable content guidance and handoffs.        |
-| [Generated content](references/generated-content.md)                   | Product experiences that generate text dynamically, including their input, review, and failure copy. |
+Read only the branches that apply. Keep shared workflow rules here and branch
+details in the linked reference.
 
-## Draft the exchange in context
+## Workflow
 
-For a new flow, outline the exchange before fitting words into components. Start
-with what the person wants, the information each side needs, the available choices,
-and the result. For an existing screen, reconstruct that exchange from the UI.
-Conversational means a coherent exchange; it does not require a casual tone,
-greetings, a chatbot, or a question for every heading.
+1. **Establish scope and evidence.** Read repository instructions, the request,
+   the relevant screen or code, requirements, behavior, existing copy, voice
+   guidance, terminology, and supported states. Identify the person's goal,
+   organization's goal, entry point, knowledge, object, affected scope, timing,
+   reversibility, and supported recovery. Record authoritative sources and gaps.
 
-1. Order information by when the person needs it. Put prerequisites before input
-   and material consequences before commitment. Reuse information already given.
-2. Map the product's statements to titles, descriptions, labels, and feedback.
-   Map the person's responses to controls and input. Write related choices as a set.
-3. Draft the primary path and the applicable empty, waiting, partial, success,
-   error, permission, and destructive states within scope. Check interruptions
-   and returning later when the interaction supports them.
-4. Read the title, explanation, actions, and result together. Check whether the
-   actions answer the question or fulfill the expectation the screen creates.
+   Done means you can state what the person needs to understand or do, which
+   behavior the words describe, and which facts remain unverified.
 
-Example: a person wants to share a draft. The interface explains who will receive
-it and whether they can edit. The person chooses access and sends the invitation.
-The result distinguishes an invitation sent from access accepted. A button called
-"Save" would misrepresent that exchange.
+2. **Load the matching branch guidance.** Use the reference map to choose the
+   smallest set of references needed for the request. Read matching sections for
+   interface patterns, voice, evaluation, content systems, or generated output.
 
-Keep draft copy in the design or running interface when available. A copy table
-records decisions, but cannot establish whether the words work in their layout.
+   Done means every requested branch has an owner and unrelated guidance stays
+   out of the working set.
 
-## Edit in four passes
+3. **Reconstruct the exchange.** For a new flow, outline what the person wants,
+   what information each side needs, the available choices, and the result. For
+   an existing screen, reconstruct that exchange from the interface. Map product
+   statements to titles, descriptions, labels, and feedback. Map responses to
+   controls and input. Cover the primary path and applicable empty, waiting,
+   partial, success, error, permission, and destructive states. Check
+   interruptions and returning later when the interaction supports them.
 
-Apply the passes in order; revisit an earlier decision when a later pass reveals
-missing meaning. For a small edit, do this without narrating every pass.
+   Put prerequisites before input and material consequences before commitment.
+   Read the title, explanation, actions, and result together. A copy table records
+   decisions, but the design or running interface is needed to check layout.
+   Conversational means a coherent exchange, not a casual tone, greeting,
+   chatbot, or question for every heading.
 
-| Pass           | Decision                                                                           | Completion check                                                                       |
-| -------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Purposeful     | Identify what this text enables or explains. Remove text with no useful job.       | The person can reach their goal and understand the relevant consequence.               |
-| Concise        | Remove repetition and move optional detail out of the immediate decision.          | Every remaining phrase earns its space; essential scope, timing, and recovery survive. |
-| Conversational | Read the product's statements and the person's possible responses together.        | The exchange follows a useful order in language this audience recognizes.              |
-| Clear          | Resolve ambiguity, check terminology and facts, and restore any necessary context. | The likely interpretation matches the real behavior and the product's voice.           |
+   Done means related choices have distinct outcomes and every in-scope state has
+   either a supported next step or a clear endpoint.
 
-Prefer recognizable words and concrete verbs. Keep professional terms when they
-are the audience's clearest words. Brevity is subordinate to meaning: a longer
-label that distinguishes two outcomes is better than a short ambiguous one.
-English word counts and reading-level scores are diagnostic aids, not universal
-limits or evidence of comprehension.
+4. **Edit in four passes.** Apply these passes in order. Revisit an earlier pass
+   when a later pass reveals missing meaning.
 
-Use personality intentionally. Match warmth, formality, and celebration to the
-project and the moment. In failures or consequential choices, put the facts and
-recovery first. Courtesy may fit the voice; it must not obscure what happened.
+   | Pass           | Decision                                                                  | Completion check                                                         |
+   | -------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+   | Purposeful     | Keep only text that enables an action or explains a necessary constraint. | The person can reach the goal and understand the relevant consequence.   |
+   | Concise        | Remove repetition and move optional detail out of the immediate decision. | Every phrase earns its space; scope, timing, and recovery remain.        |
+   | Conversational | Read product statements with the person's possible responses.             | The exchange follows a useful order in language the audience recognizes. |
+   | Clear          | Resolve ambiguity and check terms, facts, and required context.           | The likely interpretation matches real behavior and the product's voice. |
 
-## Deliver and verify
+   Prefer recognizable words and concrete verbs. Keep professional terms when
+   they are the audience's clearest words. Brevity does not justify hiding scope,
+   timing, consequence, or recovery. Use word counts and readability scores as
+   diagnostics, not universal limits or proof of comprehension. Match personality
+   to the product and moment; put facts and recovery first in failures and
+   consequential choices.
 
-For a small request, give one recommended string with a brief reason. Offer
-alternatives only when they represent a meaningful tradeoff or were requested.
-For a flow, provide the final copy in context and a compact handoff when useful:
+   Done means the copy passes all four checks without unsupported claims or a
+   second term for the same concept.
 
-| Location / ID | State or trigger | Component | Proposed copy | Behavior or constraint |
-| ------------- | ---------------- | --------- | ------------- | ---------------------- |
+5. **Deliver and verify.** For a small request, give one recommended string and
+   a brief reason. Offer alternatives only for a meaningful tradeoff or when
+   requested. For a flow, give final copy in context and use this handoff when
+   locations or states matter:
 
-Keep observed and proposed text distinct. Include variables, missing facts, and
-accessibility or translation notes where they affect the result. For an audit,
-prioritize findings by misunderstanding, blocked work, or harm before style.
+   | Location / ID | State or trigger | Component | Proposed copy | Behavior or constraint |
+   | ------------- | ---------------- | --------- | ------------- | ---------------------- |
 
-Before finishing:
+   Keep observed, proposed, and hypothesized text distinct. Verify actions,
+   affected objects, outcomes, saved work, delivery, timing, undo, retry,
+   accessible names, reading order, variables, empty values, plurals, narrow
+   layouts, and translation expansion against available evidence. For audits,
+   rank misunderstanding, blocked work, and harm before style.
 
-1. Check that actions, affected objects, and outcomes agree across the flow.
-   Verify claims about saved work, delivery, timing, undo, and retry against evidence.
-2. Check names and related choices for consistency and distinguishability.
-   Verify that every changed state offers a supported next step or a clear endpoint.
-3. Check copy in its available layout, including accessible names, reading order,
-   long values, empty values, plurals, narrow screens, and translation expansion.
-4. Report the requested result and the checks actually performed. Mark unavailable
-   rendering, behavior, or user-comprehension checks `Not verified`.
+   Report the checks actually performed. Mark unavailable rendering, behavior,
+   accessibility, translation, or user-comprehension checks `Not verified`.
+
+   Done means the handoff states the requested result, the evidence checked, and
+   every remaining uncertainty.
 
 An expert review predicts problems; observing people use the copy tests that
-prediction. Do not claim improved conversion or comprehension from a rewrite alone.
+prediction. Do not claim improved conversion or comprehension from a rewrite
+alone.

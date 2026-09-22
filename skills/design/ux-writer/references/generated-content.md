@@ -1,54 +1,77 @@
 # Write for generated-content experiences
 
-Use this reference when a product generates text during use. Distinguish fixed
-interface copy from generated output, and define the job of each. Writing a static
-button with an AI assistant does not make the product a generated-content experience.
+Read this file when the product generates text during use. Separate fixed
+interface copy from generated output. Fixed copy names the action and state;
+generated prose does not prove that an action happened. These examples are
+conceptual and assume the stated product behavior.
 
-## Define acceptable output
+## Define the output contract
 
-1. Name the content to generate, its reader, their task, and the source information
-   needed. Explain why generating it helps that task.
+1. Name the content to generate, its reader, their task, and the source
+   information required. State why generation helps that task.
 2. Gather representative examples and counterexamples from permitted product
    material. Record what makes each useful, acceptable, or unacceptable.
-3. Define the content requirements: factual fidelity, relevant detail, product
-   voice, length and structure, and handling of insufficient information.
-4. Identify failures that make an output unacceptable regardless of style, such as
-   invented facts, disclosure of private information, or unsupported commitments.
+3. Define factual fidelity, relevant detail, voice, length, structure, and the
+   response when information is missing or conflicting.
+4. Identify failures that are unacceptable regardless of style, such as invented
+   facts, private-data disclosure, or unsupported commitments.
 
-Prefer fixed copy or templates for stable outcomes that must be exact. A generated
-success message must not determine whether an action actually succeeded.
+Prefer fixed copy or a template when the result must be exact. Do not let a
+generated success message decide whether an operation succeeded.
+
+Bad: let generated text say `Payment sent` and use it as the payment status.
+
+Good: derive the fixed status from the payment result, then show generated text
+as a receipt or explanation that the person can review.
+
+Done means the contract names the reader, task, permitted sources, acceptance
+rules, unacceptable failures, and missing-information behavior.
 
 ## Write the surrounding interaction
 
-| Moment     | Copy should establish                                                                          |
-| ---------- | ---------------------------------------------------------------------------------------------- |
-| Input      | What information is needed, how it will be used, and a useful example or constraint.           |
-| Action     | Whether the product will draft, summarize, recommend, or execute.                              |
-| Output     | What is generated, its relevant source or uncertainty, and what the person can edit or verify. |
-| Commitment | Who acts, what will change, and whether review is still required.                              |
-| Failure    | What is unavailable or incomplete and the supported alternative.                               |
+| Moment     | Copy should establish                                                                  |
+| ---------- | -------------------------------------------------------------------------------------- |
+| Input      | What information is needed, how it will be used, and a useful example or constraint.   |
+| Action     | Whether the product will draft, summarize, recommend, or execute.                      |
+| Output     | What was generated, its source or uncertainty, and what the person can edit or verify. |
+| Commitment | Who acts, what changes, and whether review is still required.                          |
+| Failure    | What is unavailable or incomplete and the supported alternative.                       |
 
-Use `Draft reply` when the result is editable text. Use `Send reply` only for the
-actual sending action. `Draft ready` can confirm generation; it cannot confirm
-accuracy, delivery, or approval.
+Use `Draft reply` for editable text. Use `Send reply` only for the actual send
+operation. `Draft ready` can confirm generation; it cannot confirm accuracy,
+delivery, or approval.
 
-State specific limitations at the decision they affect. For example, if a summary
-covers only selected documents, identify that scope beside the summary. Generic
-warnings cannot repair missing sources or unsupported behavior. Provide correction,
-manual entry, or another recovery only when those paths exist.
+State a limitation beside the decision it affects. If a summary covers selected
+documents, name that scope beside the summary. A generic warning cannot replace a
+missing source or unsupported recovery path. Offer correction, manual entry, or
+another recovery only when the product supports it.
+
+Done means a person can distinguish input, generation, review, commitment, and
+failure without relying on generated wording to infer system state.
 
 ## Evaluate content variability
 
-For a generated-content review, use representative input and output examples.
-Include sparse, conflicting, long, and sensitive inputs appropriate to the product.
-Inspect repeated outputs for the same input; one successful sample does not
-establish reliable behavior.
+1. Test representative sparse, conflicting, long, and sensitive inputs that the
+   product permits.
+2. Review repeated outputs for the same input. One successful sample does not
+   establish reliable behavior.
+3. Keep examples used to tune prompts separate from examples reserved for
+   evaluation.
+4. Evaluate usefulness, factual fidelity, and voice. Report unacceptable outputs
+   even when average quality is high.
+5. Use qualified human review for consequential domain judgments. An LLM's
+   self-rating is not sufficient evidence.
 
-Keep examples used to tune prompts separate from examples reserved for evaluation.
-Evaluate usefulness and factual fidelity alongside voice. Report unacceptable
-outputs explicitly even when average quality is high. Use qualified human review
-for consequential domain judgments; an LLM's self-rating is not sufficient evidence.
+Done means the evaluation set covers the known input risks, the acceptance rules
+are applied to each result, and tuning examples cannot hide failures.
 
-Preserve the source and version information needed to reproduce a result under the
-project's data-handling rules. Keep model architecture, training, deployment, and
-security implementation in their own workstreams unless explicitly in scope.
+## Hand off the result
+
+Preserve the source and version information needed to reproduce a result under
+the project's data-handling rules. Record the fixed state source, generated
+content behavior, review requirement, and supported recovery. Keep model
+architecture, training, deployment, and security implementation in their own
+workstreams unless the request includes them.
+
+Done means the handoff separates fixed copy, generated output, verified behavior,
+and unverified claims.
