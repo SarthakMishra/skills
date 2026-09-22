@@ -1,80 +1,70 @@
-# Establish the foundations
+# Choose shadcn foundations
 
-Choose a representative feature before defining or changing visual foundations.
-These rules adapt _Refactoring UI_ to a reusable system; the source map is in
-[sources.md](sources.md).
+Read this file before changing the Tailwind theme, shadcn roles, radius, spacing,
+or shared tokens. Start with the installed defaults and test the smallest change
+in a real feature.
 
-## Start with a feature
+## Start with the installed shadcn system
 
-Select a feature that tests the system's constraints, such as an editable
-settings form or a searchable list. Use realistic text and the first-use,
-populated, and failure states. Establish hierarchy and grouping before refining
-decoration. Validate shared choices on another relevant composition before
-applying them across the system.
+Read `components.json`, the theme CSS or Tailwind config, and representative
+files in `components/ui`. Preserve the chosen shadcn style, control library,
+semantic roles, radius, and spacing scale.
 
-For selected bootstrap work, use the agreed minimal entry point. Check content,
-density, and state variations in that entry point or a disposable composition
-instead of implementing product screens. Record broader product validation as
-pending; foundation checks do not establish that every future feature will fit.
+Change a default only when a product requirement, accessibility issue, or repeated
+consumer need shows a real gap. Record the reason and affected consumers.
 
-Derive the visual direction from the product and existing brand. Translate words
-like "restrained" or "expressive" into concrete choices for type, density, color,
-shape, imagery, and motion. Preserve established identity during consolidation.
-Uber Base and Dropbox illustrate coherent systems; their appearance is not a
-default theme to copy.
+Good: keep `bg-primary text-primary-foreground` and add one missing semantic
+role that several components need.
 
-## Make a finite set of useful choices
+Bad: replace the shadcn theme with a new palette after viewing one card. It
+creates token churn before the system has a tested requirement.
 
-| Foundation         | Decision to capture                                                                          | Proof in the interface                                                         |
-| ------------------ | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| Color              | Neutral and brand palettes; semantic surface/text, action, border, focus, and feedback roles | Readable foreground/background pairs in each supported theme and state         |
-| Typography         | Families and fallbacks; a small size, weight, leading, and tracking scale; prose width       | Hierarchy, wrapped labels, long headings, and readable dense content           |
-| Spacing and sizing | Approved scale, control sizes, content widths, grouping and density rules                    | Related items group clearly; small screens and zoom remain usable              |
-| Shape and depth    | Radius, border, shadow, and stacking roles                                                   | Consistent containment; overlays remain distinguishable and correctly layered  |
-| Icons and imagery  | Existing icon family, optical sizes, stroke style, crop and fallback rules                   | Balanced icons beside text; missing and user-supplied media behave predictably |
-| Motion             | Shared timing, easing, distance, and interaction recipes                                     | Consistent feedback and continuity, including reduced motion                   |
+## Name tokens by role
 
-Prefer the installed scale or an approved subset when it works. Choose finer steps
-for small spacing and more separated choices for large spacing. A rule that every
-number is divisible by four still leaves too many indistinguishable choices.
-Avoid generating a huge palette or a mathematically perfect type scale without
-testing the values in the feature.
+Use stable names that describe what a value means. Keep primitive values separate
+from semantic aliases. Components consume semantic roles.
 
-Keep base values in one place. Give repeated meanings semantic names such as
-surface, muted text, destructive action, or overlay entry. Add a component-specific
-token only when that component has an independently meaningful decision. Do not
-create aliases for every individual padding declaration.
+| Use     | Good name           | Bad name         |
+| ------- | ------------------- | ---------------- |
+| Surface | `surface-default`   | `gray-50`        |
+| Text    | `text-muted`        | `text-gray-500`  |
+| Action  | `action-primary`    | `button-blue`    |
+| Space   | `space-control-md`  | `card-padding`   |
+| Radius  | `radius-control-md` | `input-radius-7` |
 
-For each new token, establish its role, definition, consumers, and applicable theme
-or density overrides. Separate stable design choices from runtime values such as
-chart data, measured positions, and user-selected colors.
+Use the DTCG convention as a naming idea only. Group tokens in a readable tree
+by category, primitive value, and semantic role. Keep the project's existing CSS
+variable names and Tailwind mapping. Do not write a DTCG file or translate the
+tree into a new token format.
 
-## Turn visual judgment into conventions
+```text
+color
+├── base
+│   └── neutral
+│       └── 0
+└── semantic
+    ├── surface
+    │   └── default
+    ├── text
+    │   └── muted
+    └── action
+        └── primary
+```
 
-### Hierarchy and sizing
+Use semantic roles in shadcn components. A primitive value belongs in the theme
+or token source and flows into roles such as `--primary` and `--muted-foreground`.
+Do not expose the primitive name in component classes.
 
-- Assign emphasis through weight, space, and contrast as well as size. Secondary
-  text must remain readable; lowering opacity is not a substitute for a tested
-  text/background pairing.
-- Separate heading semantics from visual size. Keep labels and accessible names
-  for controls even when surrounding data can be understood without extra labels.
-- Put more space between groups than within a group. Define compact density only
-  where the task benefits from it, preserving usable targets and focus indicators.
-- Tune typography and component padding for each size. Scaling
-  every dimension proportionally rarely produces useful small and large variants.
+Bad: `bg-blue-600`, `--card-padding`, and a new raw hex value in each component.
+Good: `bg-primary`, `p-4`, and a shared `--primary` role whose theme value can
+change without editing consumers.
 
-### Content, surfaces, and states
+## Test the foundation
 
-- Constrain prose width and choose line height for the actual font and line length.
-  Let layouts respond to content; a fixed column count is not a universal rule.
-- Use depth to explain layering and interactivity. Prefer spacing or contrasting
-  surfaces when extra borders repeat the same grouping information.
-- Check palettes in use, including feedback and focus. Retain supported HSL or
-  OKLCH conventions; the book's color-space advice is not a reason to rewrite a
-  working theme. Meaning needs text, shape, or an icon in addition to color.
-- Define useful empty and error states alongside populated examples. Include long
-  translations and unusual image aspect ratios where the product supports them.
+Use a form, list, dashboard, or dialog with real text. Check a second composition
+and the relevant empty, loading, error, disabled, selected, and long-content
+states. Check every supported theme, text zoom, contrast pairing, and responsive
+width before promoting a value to the shared theme.
 
-The result is a small set of implemented decisions with named uses, not a catalog
-of every possible design value. Document which themes and density modes are
-supported; do not invent extra modes to make the system look complete.
+Add a token only when it represents a repeated meaning or an independently
+supported theme choice. Do not create one token for every CSS declaration.

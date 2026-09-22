@@ -1,71 +1,44 @@
 # Design system
 
-Use `$design-system` in Codex or `/design-system` in Claude Code to build a React,
-Tailwind, and shadcn/ui system, formalize an informal one, or keep component changes
-consistent with the existing system.
-The methodology comes from Brad Frost's _Atomic Design_, with visual guidance
-from _Refactoring UI_. Motion is part of the system's foundations and component
-contracts.
+Use `$design-system` in Codex or `/design-system` in Claude Code to build on a
+React project's Tailwind and shadcn/ui defaults. Keep the defaults stable and
+make the smallest documented extension that real product needs require.
 
-## When to choose it
+## Use it for
 
-Use this skill for shared tokens, component APIs, system adoption, documentation,
-or enforcement. For local design decisions, use [ui-guide](../ui-guide/README.md).
-For an app interface spanning system work, UX, UI, copy, and implementation, invoke
-[design-engineer](../design-engineer/README.md) once. It uses this skill
-automatically when system guidance is needed. Use `ux-guide` for user flows and
-`ux-writer` for interface copy. Design-system also works independently.
+- choosing semantic Tailwind and shadcn tokens
+- creating or changing shared React components with `cva` and `cn`
+- composing atoms, molecules, and organisms
+- migrating component families without UI decay
+- enforcing component and token contracts with `@shadcn/lint`
 
-The agent can also select this skill for matching work. Example requests:
+Use [ui-guide](../ui-guide/README.md) for an isolated visual decision,
+[ux-guide](../ux-guide/README.md) for a user flow, and [ux-writer](../ux-writer/README.md)
+for interface copy. Use [design-engineer](../design-engineer/README.md) when one
+feature needs all of those concerns.
 
-- "Build a design system for this React app and implement the account settings
-  feature using it. Include motion and document the conventions in DESIGN.md."
-- "Consolidate our existing buttons, fields, and dialogs into a shared system.
-  Preserve current behavior and migrate their consumers."
-- "Add a pending state to our button using the existing design and motion rules."
-- "Find an existing document viewer in the shadcn registries and adapt it to our
-  design system. Build new components in our shadcn style only where needed."
-- "Audit these components for design-system drift and recommend enforcement."
+## Useful requests
 
-## What to expect
+- "Build the settings feature on top of our existing shadcn components."
+- "Add a pending state to the shared Button with a proper `cva` variant."
+- "Compose a filter toolbar from our existing Input, Button, and Popover."
+- "Migrate duplicate buttons and enforce the contract with `@shadcn/lint`."
+- "Audit token and component drift without changing product behavior."
 
-For a new system without an adequate project basis, the skill grills the missing
-requirements and records a PRD, spec, or architecture document before making
-dependent design choices. It reuses existing decisions and does not require a
-new product spec for a routine component change.
+## Result
 
-The resulting screens use the shared tokens and components. Documentation
-records conventions and exceptions, and the handoff reports what was tested.
-Existing projects should get an inventory and an explicit migration status.
-Small projects use `DESIGN.md`. For larger systems, the agent consults you
-before adding Storybook and its required development workflow.
+A useful run leaves React components using the existing shadcn APIs and semantic
+Tailwind roles, new variants only where needed, tokens named by role, and lint or
+tests that catch the relevant decay. It also updates `DESIGN.md` or the existing
+equivalent and reports checks that ran.
 
-### Reuse before building
+## Reference map
 
-Before creating missing components, the skill searches relevant community
-registries with the shadcn CLI. A [shortlist of 14 specialist
-registries](references/registry-discovery.md) covers documents, AI interfaces,
-tables, charts, maps, editors, and motion. The agent adapts imported source to
-local tokens and behavior and writes new components using the project's shadcn
-conventions. The shortlist includes maintenance evidence and known compatibility
-limits.
+- [foundations](references/foundations.md): shadcn defaults and role-based token naming.
+- [react-tailwind-shadcn](references/react-tailwind-shadcn.md): `cva`, `cn`, composition, extension, and adaptation.
+- [registry-discovery](references/registry-discovery.md): local, official, then community component search.
+- [motion](references/motion.md): Tailwind and shadcn interaction motion.
+- [adoption-and-enforcement](references/adoption-and-enforcement.md): decay prevention and `@shadcn/lint`.
 
-### Enforcement and verification
-
-Enforcement starts with shared APIs and project guidance. The skill can add
-targeted lint or test checks when justified by recurring violations. Installing
-the skill alone does not add a lint plugin or enforce these rules.
-
-The agent needs access to the project and its tooling. A running app or preview
-allows visual and interaction checks; unavailable checks must be reported. The
-original books are not required to use the skill. See the [source
-notes](references/sources.md) for attribution and adaptations.
-
-## During bootstrap
-
-[`bootstrap`](../../engineering/bootstrap/README.md) offers design-system setup
-as an option for frontends. If selected, it invokes this skill to establish or
-adapt the minimal system using the accepted project basis and records its rules
-in `DESIGN.md`. If skipped, bootstrap preserves existing styling and keeps the
-scaffold minimal. This choice does not disable automatic invocation of the
-skill.
+Bootstrap can invoke this skill for selected frontend setup. If setup is skipped,
+bootstrap keeps the existing styling and does not add design-system files.

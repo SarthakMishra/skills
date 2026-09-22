@@ -1,134 +1,98 @@
-# Adopt, document, and enforce the system
+# Prevent decay and enforce the system
 
-Inventory the patterns in scope before adopting a partial system or changing its
-documentation, governance, or enforcement. Keep the process proportional to the
-product and contributors.
+Read this file when formalizing an existing system, migrating consumers, changing
+a shared contract, or adding documentation or checks. Decay starts when pages
+restyle shared components, bypass semantic tokens, or recreate existing patterns.
 
-## Formalize an existing project
+## Inventory before changing shared code
 
-Inventory distinct patterns in the agreed scope from code and rendered screens.
-Include token definitions, repeated utility combinations, competing components,
-local shadcn modifications, motion recipes, and existing docs or tests. Record
-evidence using real paths and consumers, not hypothetical inconsistencies.
+Search the agreed scope for token definitions, repeated classes, shadcn component
+families, local modifications, motion values, consumers, docs, and checks. Record
+real paths and consumers.
 
-Use a compact table to record each component family, its current implementations
-and consumers, their differences, the chosen implementation, and the planned
-action. Mark each family as retain, merge, replace, or retire. Distinguish
-intentional product differences from accidental drift; frequency alone does not
-make a pattern correct.
+| Family | Current source and consumers           | Decision | Action                                                   |
+| ------ | -------------------------------------- | -------- | -------------------------------------------------------- |
+| Button | `components/ui/button.tsx`; 18 imports | keep     | add a `loading` variant and remove three local overrides |
 
-1. Choose canonical patterns using usability, accessibility, existing identity,
-   behavior, and adoption. Record the choice and any needed API changes.
-2. Map legacy tokens and variants to their replacements. Preserve supported themes
-   and behavior. Use temporary aliases or adapters only when consumers need them.
-3. Migrate a representative composition and inspect the result in context. Use its
-   findings to refine the contract before migrating other components.
-4. Complete the remaining in-scope consumers in manageable batches. Track old and
-   new paths so the remaining migration work is visible.
-5. Remove obsolete definitions when consumer searches and relevant checks show
-   they are unused. For separately released consumers, deprecate with a replacement
-   and migration instructions before removal.
+Bad: "Buttons are inconsistent" with no paths, states, or consumer list.
 
-Keep the working app usable through migration. Do not replace all components,
-upgrade dependencies, or rename folders just to make the architecture appear
-uniform. Report adoption by the actual inventory, not an invented coverage score.
+Good: "`components/ui/button.tsx` owns settings and billing buttons. Three
+consumers add padding and raw colors. Add the missing shared variant, replace
+those overrides, and delete them after lint passes."
 
-## Use DESIGN.md as the entry point
+Classify each family as retain, compose, extend, replace, retire, or defer. Keep
+deliberate product differences. Frequency alone does not make a pattern canonical.
 
-For a small project, write a concise root `DESIGN.md`. If equivalent documentation
-already exists, update it and use a pointer instead of creating competing guidance.
-Include decisions readers cannot infer from a component signature.
+## Use `@shadcn/lint` for Tailwind drift
 
-### Describe the system and its behavior
+Use the project's existing ESLint or Oxlint setup and follow the installed
+`@shadcn/lint` setup.
+Configure only rules that match the project's contracts. Start with:
 
-- Product character, supported themes/densities, and scope of the system.
-- Links to canonical tokens, shared components, variant definitions, and examples.
-- Rules for hierarchy, grouping, layout customization, and component composition.
-- Motion recipes with normal, interrupted, and reduced-motion behavior.
-- Accessibility and content requirements for supported states.
+- `shadcn/no-restyle` for component-owned padding, radius, color, and typography
+- `shadcn/no-raw-colors` for semantic theme roles
+- `shadcn/no-arbitrary-values` for the approved Tailwind scales
+- `shadcn/require-static-classes` for classes Tailwind can read
+- `shadcn/no-unknown-classes` for invalid or missing utilities
 
-### Explain contributions and migration
+Allow layout changes where the contract permits them. Keep internal visual
+choices in the shadcn component. Use contracts and custom messages to tell agents
+which variant, token file, or `DESIGN.md` rule fixes a violation.
 
-- How to choose reuse, extension, feature composition, or a new shared pattern.
-- Search-before-build and shadcn authoring conventions, including how imported
-  source is adapted to the project's tokens, controls, and motion.
-- Commands that actually enforce the contract, review expectations, and exceptions.
-- Migration status and deprecations when adopting an existing project.
+```json
+{
+  "shadcn/no-restyle": [
+    "error",
+    {
+      "allow": ["layout"],
+      "contracts": [{ "pattern": "^Button$", "allow": ["layout"] }]
+    }
+  ],
+  "shadcn/no-raw-colors": "error",
+  "shadcn/no-arbitrary-values": "error",
+  "shadcn/require-static-classes": "error"
+}
+```
 
-Link to executable values instead of copying entire token tables into prose.
-Keep rationale and usage guidance beside the canonical code or in this document.
-Update them in the same change that alters the contract.
+Good: `<Button size="lg" className="mt-4 md:w-full" />` changes a named size
+and page layout.
 
-### Connect agent instructions
+Bad: `<Button className="p-4 rounded-full bg-blue-500" />` changes owned
+spacing, shape, and color. It bypasses the component contract.
 
-To make coding agents follow the system, add a short instruction with the
-correct path to the project's existing `AGENTS.md` or equivalent, preserving
-unrelated guidance:
+If the project's Tailwind or linter version cannot use `@shadcn/lint`, record
+the limitation and use existing checks until the supported setup is available.
+Do not build a second custom parser for rules the linter already provides.
 
-> Before creating or changing UI components, read DESIGN.md. Reuse its canonical
-> components, tokens, and motion recipes. Record any required exception and update
-> the contract when shared behavior changes. Before authoring a missing component,
-> follow its registry discovery and shadcn authoring conventions.
+## Migrate in small steps
 
-If no agent instruction file exists, a minimal file with this pointer is enough.
-The pointer must name the actual documentation path. Ordinary component edits
-should follow the existing pointer rather than rewriting project instructions.
+1. Choose the canonical shadcn source using behavior, accessibility, identity, and API fit.
+2. Map old tokens and variants to the new semantic roles. Keep an adapter only while a consumer needs it.
+3. Compose one representative feature and fix the contract from what you learn.
+4. Migrate the remaining in-scope consumers in batches. Track old paths and lint violations.
+5. Delete obsolete definitions after searches and relevant checks show they are unused.
 
-## Offer Storybook when its cost is justified
+Keep the app usable during migration. Do not rename folders, upgrade packages, or
+replace unrelated components to make the tree look uniform.
 
-A large component catalog, many state combinations, or independent contributors
-can justify a separate component preview environment. There is no universal
-component-count threshold. Follow the consultation requirement in `SKILL.md`
-before adopting Storybook. Explain the proposed scope, development dependencies,
-scripts, and CI cost. A pending or declined choice does not block `DESIGN.md` or
-component implementation.
+## Keep one design entry point
 
-When approved or already present:
+Use the existing `DESIGN.md` or equivalent. Create it only when no equivalent
+exists. Include supported themes, semantic roles, canonical components, variant
+rules, composition rules, motion, accessibility, contribution, migration,
+exceptions, and the commands that enforce the contract.
 
-- Use the installed framework and builder integration. Import production components,
-  global styles, fonts, theme providers, and relevant portal setup.
-- Add representative states and meaningful boundary cases. Use controls for real
-  public variants; avoid creating the full Cartesian product of every prop.
-- Include keyboard interactions and motion interruption/reduced-motion examples.
-  Make themes and viewport contexts available where the product supports them.
-- Keep fixtures local and deterministic. Stories must not mutate live user data.
-- Run the Storybook build and available interaction/accessibility checks. Automated
-  accessibility checks supplement keyboard and visual inspection.
+Keep executable values in theme and component files. Link to them instead of
+copying token tables into prose. Add a short pointer in `AGENTS.md` when future
+agents need to read the design entry point.
 
-Keep `DESIGN.md` as a concise navigation and contribution entry point if useful;
-avoid repeating the story catalog in it. Storybook documents and exercises code,
-but does not automatically prevent a consuming page from bypassing the system.
+## Add checks for repeated failures
 
-## Enforce the decisions that can be checked
+Test a real violation, an approved use, and a documented exception. Add the check
+to the command CI runs. Start with adopted paths or a recorded legacy baseline so
+old code does not block unrelated work. New violations must not silently expand
+the baseline.
 
-Start with canonical source, typed component APIs, discoverable guidance, and a
-review of changed consumers. Reuse installed lint rules and test facilities. Add
-a custom rule when existing checks cannot reliably catch a recurring violation.
-
-| Contract                            | Suitable enforcement                                              | Boundary                                                                |
-| ----------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| Supported component variants        | Type checking and representative examples                         | Types cannot establish visual quality                                   |
-| Canonical component imports         | Existing restricted-import rules for deprecated paths             | Permit the shared implementation's underlying library imports           |
-| Semantic visual tokens              | Existing styling rules, then targeted class/CSS parsing if needed | Permit token definitions, runtime data, and documented specialist cases |
-| Shared motion recipes               | Review or lint known duration/easing declarations                 | Inspect library presets and reduced motion behavior as well             |
-| Keyboard, focus, and state behavior | Existing interaction tests and manual checks                      | A screenshot does not cover these behaviors                             |
-| Visual consistency                  | Rendered comparisons in representative pages                      | Review baseline changes; do not accept them automatically               |
-
-Define exactly which paths and values a rule governs before writing it. Tailwind
-contains variants, arbitrary values, CSS variable references, and class
-composition helpers. Inspect grep matches before reporting them as violations.
-Avoid blanket bans on numeric utilities, inline styles, arbitrary values, or
-native elements; legitimate layout, dynamic data, and accessible composition
-need them.
-
-If implementing a custom rule, use the installed linter's supported extension
-mechanism and parser. Test an actual violation, an approved token reference, and
-a legitimate exception. Add it to a command that CI runs. Start with adopted
-paths or a recorded legacy baseline so adoption does not demand unrelated
-rewrites; new violations must not silently expand the baseline.
-
-Record exceptions with location, reason, scope, and a removal or review condition.
-Require evidence before promoting an exception into a shared variant. Keep the
-current maintainer or decision process discoverable; do not invent an approval
-committee for a solo project. Document breaking changes and replacement paths
-when multiple consumers rely on the system.
+Use `DESIGN.md` and the app's preview path for a small catalog. Discuss Storybook
+only when many states or independent contributors justify its setup and CI cost.
+If Storybook already exists, reuse its production components and providers.

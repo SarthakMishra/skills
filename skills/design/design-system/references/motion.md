@@ -1,85 +1,128 @@
-# Make motion a system foundation
+# Use motion in shadcn components
 
-Name the feedback, location, relationship, or progress the motion must explain.
-Use this reference when creating a system or changing an interaction or motion
-contract. An instant
-response is a valid recipe for frequent actions. Decorative movement needs an
-explicit product purpose and must not compete with the task.
+Read this file when creating a motion foundation or changing an animated React
+interaction. Start with the installed shadcn component, Tailwind tokens, and
+state attributes. Keep motion only when it improves the user's task.
 
-## Define shared motion decisions
+## Decide whether motion earns its cost
 
-Keep timing, easing, travel distance, and any spring configurations beside the
-other foundations. Give recipes semantic names such as feedback, disclosure,
-overlay entry, overlay exit, and reorder. Components consume those recipes rather
-than choosing durations independently.
+Ask these questions before writing animation code:
 
-If no convention exists, these are provisional starting values for testing in the
-product, not values prescribed by Atomic Design, Refactoring UI, Uber, or Dropbox:
+1. What state, relationship, or feedback does the movement explain?
+2. How often will the user see it?
+3. Does it make the next action feel faster or slower?
 
-| Role                    | Starting treatment                                 | When to tune                                           |
-| ----------------------- | -------------------------------------------------- | ------------------------------------------------------ |
-| Frequent input feedback | Instant, or a 120 ms color/opacity transition      | Remove animation if repetition makes it distracting    |
-| Small disclosure        | 180 ms with a decelerating entry                   | Tune for size and travel; preserve a clear origin      |
-| Overlay entry           | 220 ms, brief opacity change and small translation | Tune in the page context, including backdrop and focus |
-| Exit                    | 140 ms with acceleration                           | Keep removal responsive and interruption correct       |
+Use instant feedback for keyboard navigation, command menus, repeated list
+selection, and interactions used throughout the day. A rare confirmation or
+feature explanation can use motion for orientation or delight.
 
-A candidate entry curve is `cubic-bezier(0.2, 0, 0, 1)` and a candidate exit curve
-is `cubic-bezier(0.4, 0, 1, 1)`. Choose a small travel distance from the spacing
-scale. Commit only the values the chosen feature uses. Springs are optional;
-document their parameter units and purpose when the existing runtime supports
-them. Avoid applying playful overshoot to every control.
+Bad: animate every hover in a dense table. The repeated delay slows scanning.
 
-Keep one authoritative definition for CSS and JavaScript consumers. Prefer CSS
-transitions and keyframes for simple state changes. Use an existing animation
-library for interruption, gestures, or coordinated layout when it solves a real
-need. Adding motion does not automatically require a dependency.
+Good: animate a dialog entering from its trigger so the user can follow where it
+came from, then make repeated tooltip changes instant after the first tooltip opens.
 
-## Specify a recipe as behavior
+## Use fast, named recipes
 
-For every changed interaction, record:
+Keep UI motion under 300ms unless the movement represents a larger state change.
+Use a named recipe in the Tailwind theme or the component's existing shadcn
+styles. Start UI entry with `ease-out` so the response begins quickly.
 
-- Trigger and state transition, including what happens on rapid repeated input.
-- Animated element and properties, origin, travel, duration, easing or spring.
-- Entry, exit, interruption or reversal, and any coordination with related elements.
-- Reduced-motion treatment and how the same information remains available.
-- Focus, pointer, keyboard, and mounting behavior during the transition.
+| Interaction              | Default                                                    |
+| ------------------------ | ---------------------------------------------------------- |
+| Press feedback           | `:active { transform: scale(0.97); }`                      |
+| Input feedback           | instant or 120ms color/opacity                             |
+| Disclosure               | 180ms with a fast entry                                    |
+| Dialog, popover, or menu | 180ms to 220ms with a small translation and opacity change |
+| Exit                     | about 140ms; keep removal responsive                       |
 
-For a popover, start movement at its trigger and use the shared entry and exit
-recipes. Allow closing or reopening mid-transition. Let the accessible control
-manage focus and open state. If an exiting element remains mounted, ensure
-hidden controls are not still reachable. Reduced motion can make the transition
-instant while preserving the same open state and focus behavior.
+Bad: use a 400ms `ease-in` entry for a menu. It delays the first useful frame.
 
-## Implement reduced motion and interruption
+Good: use a 180ms `ease-out` entry, then check it at normal speed and during
+rapid reopening.
 
-Honor `prefers-reduced-motion` in CSS and the installed library's equivalent for
-JavaScript animation. Remove spatial motion, parallax, repeated pulses, and stagger
-where appropriate. Use an immediate state change or a restrained opacity change
-when it still helps. Loading must remain understandable through text or another
-static cue when a spinner stops.
+Do not add a separate duration for every component. Reuse the project's motion
+tokens and keep the recipe beside the shadcn component contract.
 
-Scope overrides to the affected recipes. Globally setting every animation to zero
-can break libraries that wait for lifecycle events. Application success, cleanup,
-focus restoration, and user input must not depend on a cosmetic timeout or on
-`animationend`/`transitionend` firing. Respect the underlying control's supported
-presence and reduced-motion behavior.
+## Connect movement to its origin
 
-Transition named properties rather than `transition-all`. Prefer transform and
-opacity when they express the intended change. Animate layout only when that
-movement improves understanding, then measure its cost. Avoid competing CSS and
-JavaScript animations on the same property. A long list must not accumulate an
-unbounded stagger before the final items become usable.
+When an overlay opens, make it appear to come from its trigger. Set
+`transform-origin` from the positioning library's variable when available. For
+Radix-backed shadcn components, use the provided origin variable. For Base UI,
+use its equivalent. Do not hardcode `center` when the overlay can open from
+different sides.
 
-## Verify recipes, not just screenshots
+If an element scales, start at `0.9` or higher. Never animate an interface
+control from `scale(0)`, which makes it appear from nowhere.
 
-1. Test at normal speed and with reduced motion.
-2. Toggle or reverse rapidly, provide input during entry and exit, and unmount
-   during animation.
-3. Check keyboard focus and pointer access throughout.
-4. Verify JavaScript motion against server rendering and preference changes when
-   relevant.
-5. Use slow playback to locate discontinuities, then judge at normal speed.
+```css
+/* Good: use the library's origin and named properties. */
+.popover {
+  transform-origin: var(--radix-popover-content-transform-origin, center);
+  transition:
+    opacity 180ms ease-out,
+    transform 180ms ease-out;
+}
 
-Document representative recipes in Storybook when adopted, or link to concrete
-app examples from `DESIGN.md`. Screenshots cover resting states; they cannot prove
-timing, interruption, or reduced-motion behavior.
+/* Bad: every popover grows from the center with an unbounded transition. */
+.popover {
+  transform-origin: center;
+  transition: all 400ms ease-in;
+}
+```
+
+The variable name is illustrative. Use the variable exposed by the installed
+Radix or Base UI component.
+
+## Keep repeated interactions instant
+
+Give a tooltip a small initial delay to avoid accidental activation. Once one
+tooltip in the group is open, remove the delay and animation for the next
+tooltip. Follow the installed library's instant-state attribute when it provides
+one, such as `data-instant`.
+
+Do the same for keyboard-driven state changes. The highlight, selection, or
+menu update should follow the key press without an animated lag.
+
+Bad: animate every arrow-key movement in a command menu.
+
+Good: animate the first menu opening, then update the active item immediately for
+each arrow key.
+
+## Keep state independent of animation
+
+Use CSS transitions or keyframes for simple state changes. Use an installed
+animation library for gestures or coordinated layout when it already solves the
+problem. Change React state immediately. Do not wait for a timeout or animation
+event to complete the user's action.
+
+```tsx
+// Good: state changes now; CSS controls presentation.
+setOpen(false);
+
+// Bad: cosmetic timing controls application state.
+setTimeout(() => setOpen(false), 400);
+```
+
+Transition named properties. Prefer opacity and transform. Avoid competing CSS
+and JavaScript animations on the same property.
+
+If a short crossfade still looks harsh after tuning duration and easing, test a
+small blur as a last resort. Remove it if it reduces text or icon clarity.
+
+## Support reduced motion and interruption
+
+For `prefers-reduced-motion`, remove spatial travel, parallax, repeated pulses,
+and long staggers. Keep the state change and a static cue. Scope the override to
+the affected recipe. Do not globally zero every animation if a component library
+needs lifecycle events.
+
+Check focus, keyboard input, pointer input, rapid reversal, unmounting, and input
+during entry and exit. An exiting control must not remain keyboard reachable.
+
+## Verify the recipe
+
+1. Confirm the animation has a purpose and an appropriate interaction frequency.
+2. Test normal speed, reduced motion, and repeated keyboard input.
+3. Reverse or repeat the action before the first transition finishes.
+4. Check origin, focus, accessible state, and content during entry and exit.
+5. Confirm the component feels responsive in its real layout and theme.
