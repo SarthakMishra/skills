@@ -36,6 +36,7 @@ See [design-engineer usage](skills/design/design-engineer/README.md).
 | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | [commit](skills/engineering/commit/SKILL.md)                               | Create focused commits using the repository's conventions.                     |
 | [establish-conventions](skills/engineering/establish-conventions/SKILL.md) | Research architecture and conventions and create a repo-specific coding skill. |
+| [react-guide](skills/engineering/react-guide/SKILL.md)                     | Guide modern React authoring and review.                                       |
 
 Use `$commit` in Codex or `/commit` in Claude Code, or ask the agent to commit.
 Automatic checkpoints require an explicit opt-in. See the
