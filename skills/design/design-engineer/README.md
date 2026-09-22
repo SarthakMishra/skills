@@ -38,17 +38,24 @@ waits for that confirmation; read-only investigation can continue.
 
 Install these companions alongside design-engineer for its full workflow:
 
-| Companion                                  | What it contributes                                                            |
-| ------------------------------------------ | ------------------------------------------------------------------------------ |
-| [ux-guide](../ux-guide/SKILL.md)           | User journeys, action contracts, recovery, and UX refinements.                 |
-| [design-system](../design-system/SKILL.md) | Existing-system reuse, visual foundations, shared components, and conventions. |
-| [ux-writer](../ux-writer/SKILL.md)         | Final labels, instructions, accessible names, and state-specific feedback.     |
+| Companion       | What it contributes                                                            |
+| --------------- | ------------------------------------------------------------------------------ |
+| `ux-guide`      | User journeys, action contracts, recovery, and UX refinements.                 |
+| `design-system` | Existing-system reuse, visual foundations, shared components, and conventions. |
+| `ux-writer`     | Final labels, instructions, accessible names, and state-specific feedback.     |
+
+Install missing companions from this repository with:
+
+```sh
+npx skills add SarthakMishra/skills --skill ux-guide design-system ux-writer react-guide
+```
 
 Select the four design skills when installing this collection. The engineer
 discovers them from the skill catalog or installed registry; it does not assume
-fixed sibling paths. If a needed companion is unavailable, it identifies the gap
-and continues work supported by existing decisions. Installation or a product
-decision is needed only when the gap blocks dependent work.
+fixed sibling paths. If a required companion is unavailable, ask the user to
+install it before dependent work. If an optional companion is unavailable, report
+the gap and continue only with supported decisions. Do not silently install or
+claim to have used a missing companion.
 
 Each companion remains independently usable for focused tasks. Orchestration is
 the behavior of design-engineer, not a requirement added to the other skills.
@@ -72,6 +79,10 @@ and [controlled view](references/react-tailwind.md#filter-panel-view) illustrate
 implementation connection. Their sample strings must be replaced with the copy
 reviewed for the actual product.
 
+For React implementation rules, use the `react-guide` skill. This package keeps
+only interface-specific React and Tailwind recipes. If `react-guide` is missing,
+install it with the command above before writing React behavior.
+
 ## Scope and completion
 
 A new interface uses all three companions. A narrow repair uses only relevant
@@ -85,8 +96,10 @@ interface, not just independent design documents or copy suggestions.
 
 The `grill-me` wrapper and `grilling` procedure informed the scope interview. The
 engineer resolves `grilling` automatically when needed; if it is unavailable, the
-scoping reference retains the round-based process. You do not need to invoke a
-second skill to clarify the task.
+scoping reference retains the round-based process. Install them with
+`npx skills add mattpocock/skills --skill grilling grill-me` when the full
+workflow is required. You do not need to invoke a second skill to clarify the
+task.
 
 A handoff names the behavior before and after, locations, checks run, and material
 limits. Publication, deployment, external tickets, and unrelated migrations require

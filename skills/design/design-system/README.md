@@ -12,10 +12,17 @@ make the smallest documented extension that real product needs require.
 - migrating component families without UI decay
 - enforcing component and token contracts with `@shadcn/lint`
 
-Use [ux-guide](../ux-guide/README.md) for a user flow and
-[ux-writer](../ux-writer/README.md) for interface copy. Use
-[design-engineer](../design-engineer/README.md) when one feature needs all of
-those concerns.
+Use `ux-guide` for a user flow and `ux-writer` for interface copy. Use
+`design-engineer` when one feature needs all of those concerns. Install a missing
+companion from this repository with:
+
+```sh
+npx skills add SarthakMishra/skills --skill ux-guide ux-writer design-engineer react-guide
+```
+
+Use `react-guide` for React mechanics; this skill keeps only shadcn, Tailwind, and
+design-system contracts. If it is unavailable, install it before changing React
+behavior or report the missing coverage for a design-only task.
 
 ## Useful requests
 

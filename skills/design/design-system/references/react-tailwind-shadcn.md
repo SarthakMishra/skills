@@ -1,5 +1,10 @@
 # Author with React, Tailwind, and shadcn/ui
 
+Read the `react-guide` skill for React render, state, Effects, Actions, data,
+composition, refs, transitions, memoization, and server/client boundaries. This
+reference adds shadcn APIs, `cva` and `cn`, Tailwind classes, token mapping, icon
+semantics, and component adaptation.
+
 Read this file for component implementation. Inspect installed versions,
 `components.json`, the local `components/ui` source, and its consumers first.
 Do not upgrade the stack or replace the chosen control library as a side effect.
@@ -125,3 +130,7 @@ project's lint rules, including `@shadcn/lint` when configured. Check the
 component alone and in a real page with focus, validation, disabled, pending,
 theme, portal, content-boundary, icon-only, non-color state, and stable-geometry
 states.
+
+For React behavior changes, also run the applicable completion check from
+the `react-guide` skill. Done means the shared contract, its real consumers, and
+the relevant React checks are verified or reported as not verified.

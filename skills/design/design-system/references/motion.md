@@ -4,6 +4,10 @@ Read this file when creating a motion foundation or changing an animated React
 interaction. Start with the installed shadcn component, Tailwind tokens, and
 state attributes. Keep motion only when it improves the user's task.
 
+Use the `react-guide` skill for React state, Effects, refs, and cleanup. This file
+owns motion purpose, recipes, interruption, reduced motion, and visual
+verification.
+
 ## Decide whether motion earns its cost
 
 Ask these questions before writing animation code:
@@ -130,3 +134,6 @@ during entry and exit. An exiting control must not remain keyboard reachable.
 3. Reverse or repeat the action before the first transition finishes.
 4. Check origin, focus, accessible state, and content during entry and exit.
 5. Confirm the component feels responsive in its real layout and theme.
+
+Done means the state change works without motion, the motion can be interrupted,
+and the recipe passes the project's reduced-motion and accessibility checks.

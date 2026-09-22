@@ -96,3 +96,7 @@ the baseline.
 Use `DESIGN.md` and the app's preview path for a small catalog. Discuss Storybook
 only when many states or independent contributors justify its setup and CI cost.
 If Storybook already exists, reuse its production components and providers.
+
+Done means every in-scope family has a retain, compose, extend, replace, retire,
+or defer decision, and the selected enforcement check catches a new violation
+without hiding the documented exceptions.

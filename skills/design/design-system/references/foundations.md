@@ -86,3 +86,7 @@ before promoting a value to the shared theme.
 
 Add a token only when it represents a repeated meaning or an independently
 supported theme choice. Do not create one token for every CSS declaration.
+
+Done means the changed role has a named meaning, uses the installed theme
+mechanism, works in two real compositions, and has its supported states and
+contrast checked.

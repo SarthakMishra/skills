@@ -5,13 +5,22 @@ description: Build, adopt, or audit React design systems and component-level vis
 
 # Build a shadcn design system
 
-Start with the project's installed shadcn components, Tailwind theme, and
-`components.json`. Keep those defaults unless a real requirement or consumer
-evidence shows a gap. Fix hierarchy and state before adding decoration. Finish
-with real consumers, documented exceptions, and checks that prevent drift.
+Build or audit the project's shadcn and Tailwind design system so real consumers
+use documented contracts and checks catch drift.
+
+Start with the installed shadcn components, Tailwind theme, and `components.json`.
+Keep those defaults unless a real requirement or consumer evidence shows a gap.
+Fix hierarchy and state before adding decoration.
 
 For an audit-only request, inspect and report findings. Do not edit files unless
 the request includes implementation.
+
+When authoring React, read the `react-guide` skill for render purity, state,
+Effects, Actions, data, composition, refs, transitions, memoization, and
+server/client boundaries. This skill adds shadcn, Tailwind, token,
+component-contract, and visual-state guidance. If `react-guide` is unavailable,
+ask the user to install it before changing React behavior:
+`npx skills add SarthakMishra/skills --skill react-guide`.
 
 For audit findings, label each result `Defect`, `Risk`, or `Preference`. Include
 the affected location, the observed or proposed treatment, the evidence, and
@@ -52,7 +61,8 @@ any checks that remain unverified.
    Read [react-tailwind-shadcn.md](references/react-tailwind-shadcn.md) for
    `cva`, `cn`, component APIs, and Tailwind classes. Read
    [registry-discovery.md](references/registry-discovery.md) only when the local
-   and official shadcn options do not fit.
+   and official shadcn options do not fit. Apply the relevant `react-guide` rules
+   when the change includes React logic.
 
    Done means each missing capability has a composition, extension, adaptation,
    or new-component decision.
@@ -102,7 +112,8 @@ combination in its feature until another consumer proves it should be shared.
 ## Reference map
 
 - [foundations](references/foundations.md): read before changing shadcn theme roles or tokens.
-- [react-tailwind-shadcn](references/react-tailwind-shadcn.md): read when authoring or adapting React components.
+- `react-guide`: read before authoring or refactoring React behavior.
+- [react-tailwind-shadcn](references/react-tailwind-shadcn.md): read for shadcn APIs, `cva`, `cn`, Tailwind classes, and component adaptation.
 - [registry-discovery](references/registry-discovery.md): read when local and official shadcn components do not fit.
 - [motion](references/motion.md): read for Tailwind or component motion.
 - [adoption-and-enforcement](references/adoption-and-enforcement.md): read for migration, decay prevention, docs, or lint.

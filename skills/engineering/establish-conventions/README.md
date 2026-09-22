@@ -62,15 +62,19 @@ The skill works across languages and project types. It preserves an existing
 convention skill's name and ownership. It does not require a universal folder
 structure, a particular architecture pattern, or a new dependency.
 
-## During bootstrap
+## During `bootstrap`
 
-[`bootstrap`](../bootstrap/README.md) uses this skill before scaffolding to
-resolve architecture and convention gaps, establishing the project basis first
-if needed. It passes the document and decisions already made, then uses the
-accepted result for setup. After companion setup chooses the agent and
-domain-document layout, the workflow writes or updates the custom skill and
-verifies it against the foundation. This does not expand bootstrap into product
-implementation or change its supported languages.
+The `bootstrap` skill uses this skill before scaffolding to resolve architecture
+and convention gaps, establishing the project basis first if needed. It passes the
+document and decisions already made, then uses the accepted result for setup.
+After companion setup chooses the agent and domain-document layout, the workflow
+writes or updates the custom skill and verifies it against the foundation. This
+does not expand bootstrap into product implementation or change its supported
+languages. If `bootstrap` is unavailable, install it with:
+
+```sh
+npx skills add SarthakMishra/skills --skill bootstrap
+```
 
 ## Maintenance and checks
 

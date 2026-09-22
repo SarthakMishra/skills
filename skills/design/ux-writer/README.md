@@ -60,12 +60,18 @@ those checks actually happen.
 ## Where it fits
 
 For an app interface spanning UX, system, UI, copy, and implementation, invoke
-[design-engineer](../design-engineer/README.md) once. It uses this skill
-automatically for new or changed interface copy. You can still invoke ux-writer alone.
+`design-engineer` once. It uses this skill automatically for new or changed
+interface copy. You can still invoke ux-writer alone. Install a missing companion
+from this repository with:
 
-Use [ux-guide](../ux-guide/README.md) when the interaction needs to change beyond
-its wording. Marketing pages, long-form editorial work, and standalone brand
-strategy are outside this skill's scope. See the [design index](../README.md).
+```sh
+npx skills add SarthakMishra/skills --skill design-engineer ux-guide
+```
+
+Use `ux-guide` when the interaction needs to change beyond its wording. If it is
+unavailable, keep the work copy-only and report the missing coverage. Marketing
+pages, long-form editorial work, and standalone brand strategy are outside this
+skill's scope.
 
 ## Source and adaptation
 

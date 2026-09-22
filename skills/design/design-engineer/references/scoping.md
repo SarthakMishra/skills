@@ -123,3 +123,6 @@ area, and proposed scope adjustment before making it.
 First-principles reasoning, companion recommendations, and a discovered adjacent
 issue do not expand authorization. A user-requested scope change updates the shared
 brief and mode explicitly. Finish by checking the deliverable against that brief.
+
+Done means the mode, target, outcome, approach, exclusions, and authorization are
+explicit enough that implementation will not require an unapproved scope choice.

@@ -56,3 +56,7 @@ After adding, inspect the diff and follow
 [react-tailwind-shadcn.md](react-tailwind-shadcn.md) to map tokens, controls,
 motion, data, and state. Record substantial local changes for future upstream
 updates.
+
+Done means the selected item is the smallest compatible addition, its source and
+license are recorded when required, and the real consumer passes the component
+and project checks.

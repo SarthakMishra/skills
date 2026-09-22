@@ -4,6 +4,10 @@ Load the design treatment from `design-system`'s motion guidance. This reference
 mechanisms, spring parameters, gesture release, and rendering cost. Keep design
 tokens authoritative; the examples below implement a chosen treatment.
 
+For React state, Effects, refs, and cleanup, read the `react-guide` skill. This
+reference covers motion mechanics and their interface checks, not general React
+authoring.
+
 ## Preserve timing units
 
 CSS accepts milliseconds or seconds. APIs such as Motion express duration and
@@ -167,3 +171,6 @@ See the [CSS icon recipe](react-tailwind.md#contextual-icon-recipe). It starts a
 the correct initial state without playing an entrance. Under reduced motion,
 swap immediately and retain the static state cue. Keep an established expressive
 icon treatment if it passes the same state, focus, and reduced-motion checks.
+
+Done means the chosen mechanism preserves state, focus, interruption, reduced
+motion, and measured rendering cost in the real consumer.

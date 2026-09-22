@@ -61,6 +61,8 @@ name or location.
 ## 2. Grill the unresolved decisions
 
 Use the model-invoked `grilling` skill when available. Otherwise use this process.
+If the full interview workflow is required, ask the user to install it with
+`npx skills add mattpocock/skills --skill grilling` before dependent work.
 Group decisions by dependency and ask independent questions in manageable rounds.
 For each question, explain the consequence, viable choices, and a recommendation
 with its evidence. Wait for answers before asking questions that depend on them.

@@ -4,6 +4,10 @@ Implement the control's approved interaction contract with the existing accessib
 component. Use `design-system` for control choice, visible states, layout, and feedback.
 This reference owns activation, focus, presence, request ownership, and cleanup.
 
+For React render, state, Effects, Actions, refs, and data ownership, read the
+`react-guide` skill. Use this file for the interface behavior that those mechanics
+must support.
+
 ## Buttons and toggles
 
 ### Preserve activation and focus
@@ -349,3 +353,7 @@ presentation only; it cannot establish that a save or toggle succeeded.
 - Decide how new input affects current work. It may reverse a disclosure, update a
   drag target, replace a search request, or guard an irreversible submission.
   Never discard valid input to let a visual sequence finish.
+
+Done means the control has a native or established accessible interaction model,
+an owner for each async or visual state, and a recovery path for every supported
+failure.

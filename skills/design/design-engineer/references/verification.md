@@ -37,7 +37,7 @@ product character or an identified event needs more visible feedback.
 
 - A defect is an observed usability, accessibility, state, or rendering problem.
 - A risk has credible code evidence but has not been reproduced.
-- An enhancement is a design improvement with a contextual tradeoff.
+- A preference is a design improvement with a contextual tradeoff.
 
 Prioritize blocked operation, misleading outcomes, lost input, and inaccessible
 controls above subtle easing preferences. A 320ms drawer is not automatically more
@@ -90,6 +90,9 @@ For an orchestrated interface, combine companion criteria before testing:
 Keep one set of checks when the same observation proves several criteria. Follow
 the [orchestration workflow](orchestration.md) to return a failure to its owning
 concern and reconcile the implementation before repeating the affected check.
+
+For React changes, also run the applicable completion check from
+the `react-guide` skill.
 
 Run the checks in the matching rows, using the detailed instructions below:
 
@@ -191,3 +194,6 @@ performance checks above.
 Use explicit verification labels: `Verified` for an exercised check, `Not verified`
 for an unavailable or unrun check, and `Proposed` for a future acceptance check.
 Do not issue a blanket approval for states or devices that were not inspected.
+
+Done means every applicable check has one of those labels, and each audit finding
+has a location, evidence level, priority, and concrete next action.

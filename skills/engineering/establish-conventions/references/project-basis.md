@@ -22,6 +22,8 @@ writing project files.
 
 Use the model-invoked `grilling` skill when available. Otherwise interview in rounds
 of independent unresolved questions. Explain each recommendation and its tradeoff.
+If the full interview workflow is required, ask the user to install it with
+`npx skills add mattpocock/skills --skill grilling` before dependent work.
 Wait for answers before asking dependent questions. Inspect or research factual
 prerequisites yourself. Preserve decisions already made in `wayfinder`, `grill-me`,
 bootstrap, or another discussion.

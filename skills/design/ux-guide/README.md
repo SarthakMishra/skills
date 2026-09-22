@@ -13,10 +13,17 @@ agent can also select the skill for a matching task.
 | Flow repair     | A scoped implementation, exercised checks, and remaining unverified paths.      |
 | Narrow change   | Work limited to the affected journey and its immediate dependencies.            |
 
-Use [design-engineer](../design-engineer/README.md) when one interface task
-needs UX, design-system, copy, and implementation work. Use
-[ux-writer](../ux-writer/README.md) for copy-only work and
-[design-system](../design-system/README.md) for shared visual-system decisions.
+Use `design-engineer` when one interface task needs UX, design-system, copy, and
+implementation work. Use `ux-writer` for copy-only work and `design-system` for
+shared visual-system decisions. Install missing companions from this repository
+with:
+
+```sh
+npx skills add SarthakMishra/skills --skill design-engineer ux-writer design-system
+```
+
+If a companion is unavailable, continue this standalone flow and report the
+missing coverage instead of reconstructing or claiming to use it.
 
 ## Useful requests
 

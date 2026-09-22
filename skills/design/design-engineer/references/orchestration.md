@@ -91,6 +91,10 @@ Confirm that the selected mode, target, approach, and readiness decision still
 apply. A design companion's recommendation outside that boundary is a proposed
 scope change, not an instruction to implement it. Audit-only work stops at findings.
 
+For React implementation, read
+the `react-guide` skill. Use this workflow for interface integration and use the
+React guide for React mechanics.
+
 Use this skill's component, specification, framework, and animation references to
 implement the integrated decisions. Companions that include implementation steps
 may contribute within this same change; do not implement the same component twice
@@ -111,6 +115,9 @@ existing locations under the same task context. Link the flow's action to its
 component and copy state. Preserve existing artifacts and identifiers. Do not
 create external tickets, publish previews, or deploy merely because the work is
 orchestrated.
+
+Done when the agreed interface is implemented in its real consumer and each
+companion's decision has one owner in code or project documentation.
 
 ## 5. Verify the complete interface
 

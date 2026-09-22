@@ -106,14 +106,40 @@ conventions. Skip isolated page styling and user-flow work."
 
 ### Handle skill dependencies
 
-Reference another skill only when the host can resolve it and the dependency
-changes the result. Keep the shared decision in the current skill. A
-user-invoked companion cannot be silently invoked or installed.
+Reference another skill only when its guidance changes the result. Skills
+installed with the `skills` CLI are isolated packages, so a relative link to a
+sibling package works in this repository but breaks after a user installs only
+one skill.
+
+Use the skill's canonical slug as the runtime pointer, and state the branch that
+needs it:
+
+```markdown
+Read the `react-guide` skill before authoring React behavior. It owns render,
+state, Effects, Actions, data, and server/client boundaries.
+```
+
+If the skill is missing, make the dependency actionable:
+
+1. Check the active skill catalog or installed skill directory for the slug.
+2. If the guidance is required, pause that branch and ask the user to install it
+   with `npx skills add <owner>/<repo> --skill <skill-name>`. In this repository,
+   use `npx skills add SarthakMishra/skills --skill <skill-name>`.
+3. If the guidance is optional, continue with the supported local guidance and
+   report the missing coverage. Do not reconstruct the missing skill or claim it
+   was used.
+4. For a one-off use without installation, offer
+   `npx skills use <owner>/<repo>@<skill-name>`.
+
+Do not link to another skill with `../` paths, add an unsupported dependency field
+to frontmatter, or silently install a missing skill. Use an absolute source or
+skills.sh link only for human navigation; the skill slug and availability rule
+are the runtime contract.
 
 Bad: "Read every skill in this category before starting."
 
-Good: "For a missing project basis, use the project's conventions workflow and
-reuse its accepted document."
+Good: "For a missing project basis, use the `establish-conventions` skill. If it
+is unavailable, ask the user to install it before choosing architecture."
 
 Do not create a separate writing skill dependency for formatting, clarity, or
 anti-filler rules. Those rules live in this guide.
@@ -346,13 +372,17 @@ Check every changed `SKILL.md`, reference, README, and example:
 2. The entry point maps the workflow and branch references without duplicating them.
 3. Each rule has a default, an exception when needed, and a completion check.
 4. Important decisions have clear `Bad`/`Good` examples.
-5. The text contains no unrelated skill dependencies, source appendix, stale background material, or unnecessary external material.
+5. External skill pointers use canonical slugs, name their required branch, and
+   say what happens when the skill is unavailable.
+6. The text contains no unrelated skill dependencies, source appendix, stale background material, or unnecessary external material.
 
 ### Run repository checks
 
 1. Run `pnpm check`.
 2. For skill additions or packaging changes, run `pnpm dlx skills add . --list`.
-3. Verify every local reference link and anchor after a move or rename.
+3. Verify every local reference link and anchor after a move or rename. Within a
+   skill package, every relative link must resolve inside that package; sibling
+   skills use the external-skill rule above.
 4. Exercise every changed executable helper with its meaningful behavior.
 5. Test model-invoked skills with matching and nearby non-matching requests. Test explicit invocation separately when it has a different path.
 

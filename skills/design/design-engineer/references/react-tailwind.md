@@ -1,6 +1,11 @@
-# React and Tailwind implementation
+# Interface implementation with React and Tailwind
 
-Read the installed React or Tailwind versions and local component conventions
+Read the `react-guide` skill for React render, state, Effects, Actions, data,
+composition, refs, transitions, memoization, and server/client boundaries. This
+reference adds interface-specific Tailwind integration and controlled-view
+recipes.
+
+Read the installed React and Tailwind versions and local component conventions
 before choosing an API. Use only the sections relevant to the project's stack.
 
 Use the relevant visual and interaction guidance from `design-system`.
@@ -26,41 +31,6 @@ silently truncating it or changing its consequence.
    across installed versions.
 
 Treat installed versions as authoritative.
-
-## Keep state coherent
-
-### Preserve state and identity
-
-- Represent mutually exclusive operation states with one value or discriminated
-  union. Keep genuinely independent state separate. Use a reducer when several
-  events share transition logic; reuse an installed state machine only when the
-  component already participates in it.
-- Track operation status separately from whether an animated element remains
-  mounted. An operation can succeed while an exit plays. Do not hide a failure
-  because an animation callback says "done."
-- Preserve stable identity and keys. Changing or random keys replay entrances by
-  remounting, which can erase input and focus. Avoid array indices for reorderable
-  items. See [React state preservation](https://react.dev/learn/preserving-and-resetting-state).
-- Read current values in async callbacks. Prevent old requests and timers from
-  updating a newer interaction. Reuse the existing query or mutation layer's contract.
-
-| Bad                                                                        | Good                                                                                  |
-| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| Independent `isLoading`, `isSuccess`, and `isError` flags can all be true. | One `status` value describes the operation; separate data stores the result or error. |
-| A random key remounts a text field to replay its entrance.                 | Keep the field's stable key and animate its presentation without resetting input.     |
-| An exit callback sets the operation status to success.                     | The operation result sets status; animation controls only presentation.               |
-
-### Handle frames, cleanup, and focus
-
-- Keep gesture-frame values out of broad React render state when an imperative ref
-  or existing motion value fits. Keep semantic state in React.
-- Clean up animations, timers, observers, media-query listeners, and pointer
-  handlers. Effect setup and cleanup must tolerate React development checks.
-- Tie focus changes to the interaction, not an arbitrary timeout. Inspect the
-  component's behavior before adding another focus effect.
-- Make completion safe when motion is canceled or disabled. Never rely only on
-  transition or animation end events to commit data, unlock controls, or remove
-  interaction blockers.
 
 ## Tailwind: style roles and states
 
@@ -358,9 +328,9 @@ Use the existing icon family if a decorative search glyph is added; do not chang
 the input's label. Integrate the heading level and accessible overlay name with
 the host component's structure.
 Place interactive recipes inside the framework's client-rendered boundary when
-one is required. The ID comes from React's
-[useId](https://react.dev/reference/react/useId), so multiple mounted views keep
-their label and status associations distinct.
+one is required. `useId` keeps multiple mounted views' label and status
+associations distinct; use the version-compatible API described in
+the `react-guide` skill.
 
 ```css
 .filter-panel {
@@ -527,10 +497,14 @@ For CSS, WAAPI, or library selection and performance diagnosis, read
 
 ## Before finishing
 
-1. Confirm behavior with zero animation duration, rapid reversal, and component
-   unmount.
-2. Check keyboard input, touch input where relevant, and relevant loading and
-   failure states.
-3. Run existing type and build checks when code changes warrant them.
-4. Add focused behavioral tests for meaningful state risks. Do not add tests that
-   only assert a timing token's spelling.
+1. Apply the relevant `react-guide` completion checks for any React behavior you
+   changed.
+2. Confirm the interface with zero animation duration, rapid reversal, component
+   unmount, keyboard input, touch input where relevant, and loading or failure
+   states.
+3. Run the project's existing type and build checks when code changes warrant
+   them. Add one focused behavioral test for a meaningful state risk, not for a
+   timing token's spelling.
+
+Done means the React checks, interface checks, and project checks are either
+verified or reported as not verified.

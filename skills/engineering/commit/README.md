@@ -29,8 +29,12 @@ skill's defaults.
 ## Optional automatic checkpoints
 
 Installing the skill does not enable automatic commits. Opt in through
-[`bootstrap`](../bootstrap/README.md) or explicitly ask the agent to add the policy
-to your project's agent instructions.
+the `bootstrap` skill or explicitly ask the agent to add the policy to your
+project's agent instructions. If `bootstrap` is unavailable, install it with:
+
+```sh
+npx skills add SarthakMishra/skills --skill bootstrap
+```
 
 With that policy enabled, the agent commits completed, checked units as it works.
 Related implementation, tests, and documentation stay together. It does not wait

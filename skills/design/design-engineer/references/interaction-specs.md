@@ -6,6 +6,10 @@ specification file when transitions coordinate multiple components, a sequence h
 multiple stages, the user requests a reviewable spec, or the work is a substantial
 redesign. A one-line styling repair needs no spec.
 
+When the implementation uses React, read
+the `react-guide` skill for component mechanics. This file records interface
+states, ownership, and acceptance checks.
+
 ## Transient file convention
 
 Follow repository instructions first. Otherwise use:
@@ -110,6 +114,9 @@ with animations disabled; the same states and recovery must work.
    relevant failures and alternative inputs.
 2. Record what was shown, user decisions, open assumptions, and implementation
    status.
+
+Done means every transition has an owner, a recovery path where it can fail, and
+an acceptance check that distinguishes proposed, implemented, and verified work.
 
 ## Example filter panel
 
