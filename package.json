@@ -11,7 +11,7 @@
     "check": "pnpm run format:check && pnpm run lint"
   },
   "devDependencies": {
-    "oxfmt": "0.68.0",
+    "oxfmt": "0.71.0",
     "oxlint": "1.83.0"
   },
   "engines": {
