@@ -60,6 +60,22 @@ prerequisites and companion skills.
 Bootstrap can grill missing requirements into a PRD, spec, or architecture
 document. Design-system setup is optional for frontends.
 
+### Marketing · model-invoked
+
+| Skill                                                      | Use it to                                                                    |
+| ---------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [blog-writing](skills/marketing/blog-writing/SKILL.md)     | Find an angle and write or revise opinionated nonfiction blog posts.         |
+| [thread-to-blog](skills/marketing/thread-to-blog/SKILL.md) | Turn the current learning or build session into a blog using `blog-writing`. |
+
+Use `$blog-writing` in Codex or `/blog-writing` in Claude Code, or ask for an
+opinionated blog angle, draft, or edit. See the [blog-writing usage guide](skills/marketing/blog-writing/README.md)
+for examples and the material to supply.
+
+Use `$thread-to-blog` in Codex or `/thread-to-blog` in Claude Code at the end of
+the conversation you want to turn into a post. Install `blog-writing` alongside
+it. See the [thread-to-blog usage guide](skills/marketing/thread-to-blog/README.md)
+for learning and build-session examples.
+
 ## Development
 
 Use Node.js 22.13+ and the pnpm version in `package.json`.
