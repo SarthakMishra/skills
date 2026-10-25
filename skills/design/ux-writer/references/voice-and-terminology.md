@@ -1,7 +1,7 @@
 # Establish product voice and terminology
 
 Read this file when the task establishes product voice, adapts tone, names a
-concept, or resolves inconsistent vocabulary. Start with the project's guidance
+concept, or checks wording consistency. Start with the project's guidance
 and audience evidence. Voice is the stable set of writing choices across a
 product. Tone changes with the situation.
 
@@ -78,6 +78,36 @@ first in failures and consequential choices.
 
 Done means the chosen tone fits the state, preserves meaning, and does not turn an
 unsupported claim into personality.
+
+## Keep small edits consistent
+
+Address the reader directly in instructions where the voice allows it. Use
+possessives when they clarify ownership, and keep perspective consistent for the
+same relationship. A distinction such as `My tasks` and `Team tasks` can be useful;
+switching between `My account` and `Your account` for the same destination is not.
+Keep case consistent within each element type while preserving proper names.
+
+Bad: add `Save Changes` beside the established `Discard changes` merely to give
+the primary action emphasis. Good: use `Save changes` and let the component's
+visual hierarchy express emphasis. Check sibling controls, not only the new string.
+
+Prefer input-neutral instructions such as `Select a file` when pointer, keyboard,
+and touch are supported. Name a gesture only when the task actually requires it.
+Use role or plural wording instead of unnecessary gender assumptions. Replace
+idioms when their meaning or translation is uncertain, while preserving deliberate
+voice choices that remain clear to the audience.
+
+Bad: `Each reviewer should click his approval button` in a multi-input workflow.
+Good: `Select Approve to approve the request`, assuming that is the visible label
+and actual outcome. Check the instruction against the available control.
+
+Remove routine filler only when it adds no meaning: `Report exported successfully`
+can become `Report exported`. Keep courtesy, first-person language, or celebration
+when they serve the established voice and situation; a word's presence alone is
+not a defect.
+
+Done means the edit preserves the product's perspective and case conventions,
+fits supported input methods, and avoids needless assumptions about the reader.
 
 ## Keep terminology stable
 

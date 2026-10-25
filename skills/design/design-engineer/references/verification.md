@@ -17,6 +17,16 @@ a finding. Use the diagnosis order below to prioritize repairs.
 A static screenshot cannot establish timing, keyboard behavior, or request
 handling. A code review can identify risks but cannot prove motion feels good.
 
+For a broad visual audit, include a compact coverage record for typography,
+layout, color, surfaces/icons, and motion. Name the inspected consumers and states
+for each; mark excluded areas `Not reviewed` with the reason and unavailable
+checks `Not verified`. Reuse this evidence in the findings instead of reporting
+the same inspection twice. A narrow repair needs only its affected concerns.
+
+Explain a rejected alternative when it resolves a real tradeoff, such as keeping
+the existing elevation because a stronger shadow reduces cohesion. Do not invent
+rejected candidates or impose a finding quota.
+
 ## Diagnose in a useful order
 
 1. Check whether people can perceive and operate the control. Inspect contrast,

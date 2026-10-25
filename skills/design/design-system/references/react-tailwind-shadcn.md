@@ -98,6 +98,18 @@ assistive technology. Keep unfamiliar or consequential actions labeled, and
 mirror only directional glyphs in RTL. Preserve the control's hit target while
 correcting optical alignment.
 
+Inspect glyphs at their smallest rendered size beside the actual label. SVG
+scaling changes the rendered stroke width; compare visual weight before changing
+it. Use the installed family's supported size or stroke options, preserving its
+native style when it has no variants. An outline/filled pair can communicate
+selection when the family and product already use that convention.
+
+Bad: increase every icon's stroke because one small glyph looks faint.
+Good: inspect that glyph at its real size, choose an appropriate supported size
+or stroke treatment, and compare it with its label and neighboring icons in
+default and selected states. Keep one semantic control and accessible name when
+changing its decorative glyph.
+
 | Bad                                                            | Good                                                                      |
 | -------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | Add a second icon library for one toolbar glyph.               | Use the existing family and match its rendered weight and size.           |

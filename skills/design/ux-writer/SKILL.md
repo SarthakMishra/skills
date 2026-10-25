@@ -23,7 +23,7 @@ Continue settled copy work while a consequential product question is unresolved.
 
 | Reference                                                              | Read when                                                                                        | Decision it supports                                                          |
 | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| [Voice and terminology](references/voice-and-terminology.md)           | The task establishes voice, adapts tone, names a concept, or resolves inconsistent vocabulary.   | Which writing choices and terms are supported by the product and audience.    |
+| [Voice and terminology](references/voice-and-terminology.md)           | The task establishes voice, adapts tone, names a concept, or checks wording consistency.         | Which writing choices and terms are supported by the product and audience.    |
 | [Interface patterns](references/interface-patterns.md)                 | The copy belongs to a control, screen, notification, or interface state.                         | Which label, explanation, action, and state pattern fits the actual behavior. |
 | [Evaluation and content systems](references/evaluation-and-systems.md) | The task audits copy, proposes research, claims an effect, or creates reusable content guidance. | What evidence supports the finding, measure, system rule, or handoff.         |
 | [Generated content](references/generated-content.md)                   | The product generates text during use.                                                           | What must be fixed, generated, reviewed, verified, or recovered.              |
@@ -38,6 +38,16 @@ details in the linked reference.
    guidance, terminology, and supported states. Identify the person's goal,
    organization's goal, entry point, knowledge, object, affected scope, timing,
    reversibility, and supported recovery. Record authoritative sources and gaps.
+
+   Trace the affected copy to its source: component literals, translation calls
+   and locale catalogs, CMS entries, or API responses. Inspect shared-key consumers
+   before editing a reused message. Record the nearby object/action vocabulary
+   and capitalization by element type. Mark inaccessible copy sources `Not verified`;
+   inspecting a component alone does not establish its runtime wording.
+
+   Bad: edit a component fallback while the visible label comes from a locale key.
+   Good: trace that key, inspect its consumers, and update the owning message
+   through the existing content mechanism when implementation is authorized.
 
    Done means you can state what the person needs to understand or do, which
    behavior the words describe, and which facts remain unverified.

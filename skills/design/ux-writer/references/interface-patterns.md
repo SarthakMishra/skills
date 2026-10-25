@@ -60,6 +60,10 @@ Punctuation cannot carry the only indication that another step follows. Link tex
 should name its destination or purpose outside its surrounding sentence; replace
 `Click here` with something like `View delivery options`.
 
+Distinguish repeated help links by topic. Bad: two unrelated `Learn more` links
+in the same settings panel. Good: `About export formats` and `About retention`,
+assuming those are their destinations. Check the links independently of body copy.
+
 Make the secondary action precise. `Keep editing` and `Discard changes` describe
 different outcomes; `Cancel` is sufficient only when what gets canceled is clear.
 `Not now` requires a genuine path to defer the task. Do not imply an unsupported reminder.
@@ -112,6 +116,18 @@ the label alone cannot do so. For a slider, label the measured property, units, 
 meaningful endpoints. State whether a setting applies immediately, after saving,
 or only to future activity. Avoid double negatives and unexplained internal modes.
 
+When recovery or setup refers to a setting, prefer a descriptive direct link if
+the route exists and the person can access it. Bad: `Go to Settings > Delivery >
+Updates` when a supported link is available. Good: `Delivery update settings`,
+linked to that destination. If direct navigation is unavailable, use accurate
+path instructions rather than inventing a route.
+
+For an unavailable action, explain the actual condition that unlocks it beside
+the control, where it remains discoverable without activating the control.
+Bad: show only a disabled `Publish` button. Good: `Add a delivery address to
+publish`, if that is the blocking rule. If the person cannot resolve the
+condition, state the known limitation or supported access path instead.
+
 ## Text input and validation
 
 Keep the field's purpose visible after entry. Use a persistent label; placeholders
@@ -145,6 +161,12 @@ Identify why content is absent before writing the message.
 For example, a new reading list might use `No saved articles` with `Save an article
 to read it later`. A finished review queue needs no tutorial or new task merely to
 fill the space.
+
+Keep information needed after first use available elsewhere. Bad: put the only
+explanation of a storage limit in the empty state, where it disappears after the
+first upload. Good: keep that limit beside the upload action or in reachable help
+and use the empty state for first-use orientation. Check both empty and populated
+states; propose a placement change when wording alone cannot preserve access.
 
 For onboarding, teach the smallest concept needed for the next useful action.
 Keep optional education skippable when the product supports it. Explain required
@@ -255,8 +277,10 @@ shaming, and recurring prompts after the person has made a clear choice.
   empty-value fallback, and long-value behavior without inventing missing facts.
 - Use complete localizable messages and the project's plural rules. Avoid joining
   sentence fragments or assuming English word order and two plural forms.
-- Format names, numbers, dates, times, currency, and units for the target locale.
-  Test zero, one, many, missing, long, and mixed-direction values where relevant.
+- Format names, numbers, dates, times, currency, units, and lists through the
+  project's locale-aware formatters. Preserve required locale, timezone, and
+  currency inputs; do not infer currency from language alone. Test zero, one,
+  many, missing, long, and mixed-direction values where relevant.
 - Allow expansion and reflow. Keep essential distinctions visible instead of
   shortening every translation to an English character limit.
 - Give translators the state, intended meaning, variables, and any literal meaning
@@ -265,6 +289,12 @@ shaming, and recurring prompts after the person has made a clear choice.
 Good, for `Invitation sent to {recipient_name}`, use the address as fallback only if it
 is available and appropriate to show. Otherwise use a complete alternative such as
 `Invitation sent`. Check that the sending state itself is verified.
+
+Bad: join recipient names manually inside a translated invitation message.
+Good: use the existing list formatter for the supported locale and insert its
+result into one complete message. Check one, two, and several recipients, and
+use the established empty-recipient message. Keep the installed message syntax;
+this does not require an i18n-library migration.
 
 ## Check the result
 

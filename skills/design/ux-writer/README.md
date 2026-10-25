@@ -22,7 +22,9 @@ The agent can also select the skill automatically for matching work.
 | Build a content system     | Reusable guidance for voice, patterns, terminology, and maintenance.                   |
 
 [SKILL.md](SKILL.md) defines the writing process and routes to four focused
-references. It covers the user's purpose, the organization's purpose, writing in
+references. It traces copy to its component, locale, CMS, or API source and checks
+unavailable actions, persistent guidance, and locale-aware variable lists. It
+covers the user's purpose, the organization's purpose, writing in
 context, and editing for purpose, concision, conversation, and clarity.
 
 ## How it handles brand voice
@@ -96,3 +98,11 @@ the skill does not reproduce the book's fictional brands or require the PDF at
 runtime. Scope boundaries, evidence labels, and checks against implemented behavior
 are adaptations for this repository. English length and readability heuristics
 remain contextual aids rather than universal rules or proof that copy works.
+
+### Better-writing inspiration
+
+String-source discovery, wording consistency, unavailable-action explanations,
+persistent guidance, locale-aware lists, and audit grouping were inspired by Jakub
+Krehel's [better-writing skill](https://github.com/jakubkrehel/skills/tree/592aedc44d7d5b3e29740984252902f3e5402a1c/skills/better-writing).
+These additions preserve the product's established voice, supported behavior,
+and this package's audit-only and evidence boundaries.

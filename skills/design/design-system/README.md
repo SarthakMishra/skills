@@ -7,6 +7,7 @@ make the smallest documented extension that real product needs require.
 ## Use it for
 
 - choosing semantic Tailwind and shadcn tokens
+- refining shared typography, layout, color, surface, and icon treatments
 - creating or changing shared React components with `cva` and `cn`
 - composing atoms, molecules, and organisms
 - migrating component families without UI decay
@@ -31,6 +32,7 @@ behavior or report the missing coverage for a design-only task.
 - "Compose a filter toolbar from our existing Input, Button, and Popover."
 - "Migrate duplicate buttons and enforce the contract with `@shadcn/lint`."
 - "Audit component states, icon semantics, contrast, and responsive behavior."
+- "Refine our shared card typography and long-label layout using existing tokens."
 - "Audit token and component drift without changing product behavior."
 
 ## Result
@@ -42,7 +44,10 @@ updates `DESIGN.md` or the existing equivalent and reports checks that ran.
 
 ## Reference map
 
-- [foundations](references/foundations.md): shadcn defaults and role-based token naming.
+- [foundations](references/foundations.md): shadcn defaults, token ownership, and surface geometry.
+- [typography](references/typography.md): type roles, fonts, wrapping, and stable numbers.
+- [layout](references/layout.md): grouping, responsive composition, overflow, and content recovery.
+- [color](references/color.md): role use, measured contrast, and supported theme/state pairs.
 - [react-tailwind-shadcn](references/react-tailwind-shadcn.md): `cva`, `cn`, composition, extension, and adaptation.
 - [registry-discovery](references/registry-discovery.md): local, official, then community component search.
 - [motion](references/motion.md): Tailwind and shadcn interaction motion.

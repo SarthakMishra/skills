@@ -99,8 +99,11 @@ their own authorization.
 
 ## Sources
 
-Shared visual-system guidance now lives in design-system. This package's original
-interaction and animation foundations include Dan Saffer's _Microinteractions_ and
+Shared visual-system guidance lives in design-system, including focused
+references for typography, layout, and color. Design-engineer applies those
+choices in real consumers and reports coverage for broader visual audits.
+
+This package's original interaction and animation foundations include Dan Saffer's _Microinteractions_ and
 Val Head's _Designing Interface Animation_.
 
 The user-provided emil-design-eng reference informed the emphasis on component
@@ -112,30 +115,5 @@ the installed stack.
 
 Some examples adapt Jakub Krehel's
 [better-* material](https://github.com/jakubkrehel/skills/tree/267330e1adfc66a718fb65fa6918c1f06d0a689e/skills).
-The following notice travels with those examples.
-
-### License for adapted better-* material
-
-```text
-MIT License
-
-Copyright (c) 2026 Jakub Krehel
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
+The visual-audit coverage guidance was inspired by
+[make-interfaces-feel-better](https://github.com/jakubkrehel/make-interfaces-feel-better/tree/35545ea1512ad59fa463e6b1f95ca9c052981fe6/skills/make-interfaces-feel-better).

@@ -5,6 +5,11 @@ composition, refs, transitions, memoization, and server/client boundaries. This
 reference adds interface-specific Tailwind integration and controlled-view
 recipes.
 
+The snippets are conceptual integration examples, not standalone components.
+They omit the host app, imports and types where noted, and the complete installed
+component contracts. Adapt them through the existing components and verify their
+real consumers; do not copy them as a second control library.
+
 Read the installed React and Tailwind versions and local component conventions
 before choosing an API. Use only the sections relevant to the project's stack.
 
@@ -85,7 +90,7 @@ See [Tailwind theme variables](https://tailwindcss.com/docs/theme).
 ```tsx
 <button
   type="button"
-  className="outline-2 outline-transparent transition-all duration-300 focus-visible:outline-slate-700"
+  className="focus-visible:outline-ring outline-2 outline-transparent transition-all duration-300"
 >
   Apply filters
 </button>
@@ -102,7 +107,7 @@ requested reduction. Substitute the app's own component and color tokens:
 ```tsx
 <button
   type="button"
-  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700 active:bg-slate-950 motion-safe:transition-[background-color] motion-safe:duration-[150ms] motion-safe:ease-[ease]"
+  className="focus-visible:outline-ring bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80 inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 motion-safe:transition-[background-color] motion-safe:duration-[150ms] motion-safe:ease-[ease]"
 >
   Apply filters
 </button>
@@ -127,7 +132,7 @@ For a controlled toggle, connect appearance and semantics to the same value:
   type="button"
   aria-pressed={muted}
   onClick={() => setMuted((value) => !value)}
-  className="rounded-md border px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 aria-pressed:bg-slate-900 aria-pressed:text-white"
+  className="aria-pressed:bg-accent aria-pressed:text-accent-foreground rounded-md border px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2"
 >
   Mute alerts
 </button>
@@ -142,50 +147,23 @@ the accessible name from "Mute alerts" to "Unmute alerts" while also using
 `aria-pressed`. Keep the label stable and let the pressed state communicate the
 toggle's value.
 
-## Map approved color roles into CSS
+## Use the installed color roles
 
-Load the foundation guidance through `design-system` and use the project's actual palette.
-This concrete example implements the reference's sample light/dark role values;
-it is not a second design-default catalog. Use the app's theme selector rather
-than assuming that it uses `data-theme`.
+Load color decisions through `design-system`. The recipes below consume existing
+shadcn roles rather than declaring another palette or theme selector. Map their
+roles to the actual component contract: popovers use the popover pair, controls
+use the installed control treatment, and selection uses the supported selected
+state. Check every changed pair with the color reference.
 
-```css
-:root {
-  --ui-canvas: #f8fafc;
-  --ui-surface: #ffffff;
-  --ui-raised: #ffffff;
-  --ui-text: #0f172a;
-  --ui-muted: #475569;
-  --ui-separator: #e2e8f0;
-  --ui-control-border: #64748b;
-  --ui-action: #1d4ed8;
-  --ui-action-hover: #1e40af;
-  --ui-action-pressed: #1e3a8a;
-  --ui-on-action: #ffffff;
-  --ui-selection: #dbeafe;
-  --ui-on-selection: #1e3a8a;
-  --ui-focus: #1d4ed8;
-  --ui-error: #b91c1c;
-}
+The CSS examples assume theme variables contain complete CSS colors, rather than raw
+channels. For a theme containing HSL channels, use its existing
+`hsl(var(--role))` convention. Keep Tailwind utilities mapped through the installed
+theme; neither example requires changing the theme format.
 
-[data-theme='dark'] {
-  --ui-canvas: #0f172a;
-  --ui-surface: #111827;
-  --ui-raised: #1f2937;
-  --ui-text: #f9fafb;
-  --ui-muted: #cbd5e1;
-  --ui-separator: #334155;
-  --ui-control-border: #94a3b8;
-  --ui-action: #93c5fd;
-  --ui-action-hover: #bfdbfe;
-  --ui-action-pressed: #60a5fa;
-  --ui-on-action: #111827;
-  --ui-selection: #1e3a8a;
-  --ui-on-selection: #dbeafe;
-  --ui-focus: #93c5fd;
-  --ui-error: #fca5a5;
-}
-```
+Bad: introduce `--ui-text` and a second light/dark palette for one filter panel.
+Good: use the installed foreground, popover, input, ring, and status roles and
+verify the actual consumer. If a role is missing or fails contrast, repair the
+owning contract within scope rather than silently substituting a raw color.
 
 ## Icon semantics
 
@@ -197,7 +175,7 @@ the control and keep decorative glyphs out of its accessible name.
 <button type="button"><svg fill="#666" viewBox="0 0 24 24">...</svg></button>
 
 // Good: use the project's SearchIcon and name the action on the control.
-<button type="button" aria-label="Search" className="text-[color:var(--ui-text)]">
+<button type="button" aria-label="Search" className="text-foreground">
   <SearchIcon aria-hidden="true" focusable="false" className="size-5" />
 </button>
 ```
@@ -324,32 +302,32 @@ the `react-guide` skill.
 
 ```css
 .filter-panel {
-  color: var(--ui-text);
-  background: var(--ui-raised);
+  color: var(--popover-foreground);
+  background: var(--popover);
 }
 .filter-panel input {
-  color: var(--ui-text);
-  background: var(--ui-surface);
-  border-color: var(--ui-control-border);
-  outline-color: var(--ui-focus);
+  color: var(--foreground);
+  background: var(--background);
+  border-color: var(--input);
+  outline-color: var(--ring);
 }
 .filter-status {
-  color: var(--ui-muted);
+  color: var(--muted-foreground);
   overflow-wrap: break-word;
 }
 .filter-status[data-error='true'] {
-  color: var(--ui-error);
+  color: var(--destructive);
 }
 .filter-action {
   min-block-size: 2.75rem;
   padding: 0.5rem 1rem;
-  border: 1px solid var(--ui-control-border);
+  border: 1px solid var(--input);
   border-radius: 0.375rem;
-  color: var(--ui-text);
-  background: var(--ui-surface);
+  color: var(--foreground);
+  background: var(--background);
 }
 .filter-action:focus-visible {
-  outline: 2px solid var(--ui-focus);
+  outline: 2px solid var(--ring);
   outline-offset: 2px;
 }
 .filter-spinner {
@@ -433,17 +411,17 @@ export function MuteButton({
   place-items: center;
   min-inline-size: 2.75rem;
   min-block-size: 2.75rem;
-  border: 1px solid var(--ui-control-border);
+  border: 1px solid var(--input);
   border-radius: 0.375rem;
-  color: var(--ui-text);
-  background: var(--ui-surface);
+  color: var(--foreground);
+  background: var(--background);
 }
 .ui-icon-button[aria-pressed='true'] {
-  color: var(--ui-on-selection);
-  background: var(--ui-selection);
+  color: var(--accent-foreground);
+  background: var(--accent);
 }
 .ui-icon-button:focus-visible {
-  outline: 2px solid var(--ui-focus);
+  outline: 2px solid var(--ring);
   outline-offset: 2px;
 }
 .ui-icon-slot {

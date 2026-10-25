@@ -57,7 +57,10 @@ any checks that remain unverified.
 3. **Test foundations in a real feature.** Choose a form, list, dashboard, or
    dialog with real text and relevant empty, loading, error, disabled, selected,
    and long-content states. Read [foundations.md](references/foundations.md)
-   before creating or changing tokens.
+   before creating or changing tokens or surface geometry. Read the matching
+   [typography](references/typography.md), [layout](references/layout.md), or
+   [color](references/color.md) branch before changing that treatment, even when
+   existing tokens suffice.
 
    Done means the choice works in two compositions and the relevant states are visible.
 
@@ -116,7 +119,10 @@ combination in its feature until another consumer proves it should be shared.
 
 ## Reference map
 
-- [foundations](references/foundations.md): read before changing shadcn theme roles or tokens.
+- [foundations](references/foundations.md): read for shared token ownership and surface geometry.
+- [typography](references/typography.md): read for type roles, font rendering, wrapping, and numeric stability.
+- [layout](references/layout.md): read for grouping, responsive composition, overflow, and content recovery.
+- [color](references/color.md): read for color-role use, contrast measurements, or theme/state pairs.
 - `react-guide`: read before authoring or refactoring React behavior.
 - [react-tailwind-shadcn](references/react-tailwind-shadcn.md): read for shadcn APIs, `cva`, `cn`, Tailwind classes, and component adaptation.
 - [registry-discovery](references/registry-discovery.md): read when local and official shadcn components do not fit.

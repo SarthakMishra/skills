@@ -19,8 +19,17 @@ separate from measured user behavior.
 5. Give each repair proposed copy or behavior and an acceptance check. Record
    unresolved product facts without turning guesses into final wording.
 
+Group repeated findings by root cause and list their affected keys or locations,
+current wording, proposed replacement, user impact, and acceptance check. Keep
+uninspected server or CMS wording visible as a coverage limit rather than counting
+it as reviewed.
+
+Bad: report the same misleading shared action label as ten unrelated defects.
+Good: report its owning key once, list the affected contexts, and check whether
+each context supports the same replacement before changing it.
+
 Done means every in-scope string and state has a location, an assessment, and an
-evidence or uncertainty label.
+evidence or uncertainty label, with repeated causes grouped without losing context.
 
 ## Check usability before style
 

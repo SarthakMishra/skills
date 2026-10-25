@@ -113,7 +113,9 @@ framework replacement, deployment, publication, or external actions.
 Read the matching references before changing the affected area. For any control,
 read component patterns; for animation or gestures, read animation implementation
 and `design-system`'s motion guidance. For visible layout or styling changes, read
-`design-system`'s foundations. For coordinated or branching states, read interaction
+`design-system`'s foundations and the matching typography, layout, or color branch,
+even when no shared token changes. Keep local compositions in feature code. For
+coordinated or branching states, read interaction
 specifications. These are required branches, not optional background reading.
 
 | Reference                                                          | Read for                                                                        |
