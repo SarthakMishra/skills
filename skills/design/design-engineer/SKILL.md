@@ -1,13 +1,36 @@
 ---
 name: design-engineer
-description: Scope app-interface work to creating from scratch, implementing a bounded part of an existing system, or auditing and repairing existing implementation. Coordinate design-system, ux-guide, and ux-writer through implementation and verification. Clarify uncertain requirements before implementation. Excludes backend-only work and marketing or editorial writing.
+description: Scope app-interface work to creating from scratch, implementing a bounded part of an existing system, or auditing and repairing existing implementation. Coordinate design-system, ux-guide, and ux-writer through implementation and verification. Refine visual and interaction craft; clarify only material uncertainty before implementation. Excludes backend-only work and marketing or editorial writing.
 ---
 
 # Build and verify app interfaces
 
-Own one bounded app-interface task through an integrated implementation and
-evidence-backed verification. Automatically use the relevant design companions;
-the user invokes this skill once.
+Build an interface that responds immediately, reads clearly, and feels cohesive
+through repeated use. Inspect the existing screen and components first; own the
+bounded task through implementation, rendered refinement, and verification.
+Automatically use the relevant design companions; the user invokes this skill once.
+
+## Craft standard
+
+Use these defaults when the project has no established treatment. Preserve a
+working product language; improve its weakest details within the requested scope.
+
+| Detail            | Default and acceptance check                                                                                                                   |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hierarchy         | Give the primary action and information clear emphasis; supporting labels should not compete at the intended viewport.                         |
+| Geometry          | Align shared edges and optical centers; check icons beside real labels, not only inside their bounding boxes.                                  |
+| Cohesion          | Reuse a small set of type, spacing, radius, surface, and motion treatments across neighboring components.                                      |
+| Content           | Lay out real copy and long values before polishing; keep pending and success states from shifting controls.                                    |
+| Press feedback    | Give pressable controls immediate feedback; a subtle `scale(0.97)` is a starting treatment when scaling fits the control.                      |
+| Motion frequency  | Keep repeated keyboard and list actions instant; use movement to explain a state, relationship, or occasional feedback.                        |
+| Timing            | Start small entrances around 180ms and exits around 120ms; compare at normal speed and keep input immediate.                                   |
+| Easing and origin | Use a fast-starting entry curve and trigger-side origins for anchored overlays; centered dialogs stay centered.                                |
+| Continuity        | Retarget from the current visual state on reversal; preserve focus, input, and layout through state changes.                                   |
+| Character         | Choose restrained or expressive details to fit the product and interaction; accept them only when repetition and reduced motion remain usable. |
+
+Bad: ship a working dialog with shifting button labels and a generic entrance.
+Good: stabilize its geometry, match neighboring controls, and compare its opening,
+closing, and rapid reopening in the rendered interface before handoff.
 
 ## Establish scope before implementation
 
@@ -17,18 +40,12 @@ the user invokes this skill once.
 | Implement a bounded part | Integrate a named component, screen, or flow into a larger system.                     |
 | Audit and repair         | Inspect and fix an agreed existing area; return findings only when edits are excluded. |
 
-Read [scoping and requirements](references/scoping.md) first. Establish the outcome,
-target, exclusions, constraints, and completion checks. For existing work, offer
-reuse/refinement versus first-principles reassessment and wait for the user's choice
-unless it is already explicit. For uncertain requirements, apply `grilling`, the
-workflow behind `grill-me`, until the user confirms shared understanding. If
-those skills are unavailable, use the fallback interview in the scoping
-reference. Install them when the full workflow is needed with
-`npx skills add mattpocock/skills --skill grilling grill-me`.
-
-Read-only investigation can continue while decisions are pending. Neither this
-skill nor a companion may begin implementation before the readiness check passes.
-First-principles reasoning does not authorize a broader rewrite.
+For clear requests, infer the mode, default to reuse and refinement, state the
+bounded outcome, and proceed. Read [scoping and requirements](references/scoping.md)
+when the target, outcome, or a consequential product choice is unclear, or when
+first-principles reassessment is requested. Ask only questions whose answers
+materially change the implementation. Honor explicit checkpoints and audit-only
+requests; unresolved decisions block only dependent work.
 
 ## Coordinate the design skills
 
@@ -79,8 +96,10 @@ recipes.
    Done means the requested interface works in its real consumer, not only in an
    isolated component or design document.
 
-4. Verify the journey, system, visual states, copy, and runtime behavior together.
-   Stop once required checks pass unless a failure or unresolved concern remains.
+4. Read [verification](references/verification.md) and verify the journey, system,
+   visual states, copy, and runtime behavior together. Complete its rendered craft
+   pass: compare the weakest detail before and after refinement, then recheck the
+   affected states. Stop once the checks and craft pass are complete.
 
    Done means the handoff separates verified checks from unavailable or proposed
    checks and names any remaining material limit.
@@ -90,6 +109,12 @@ implementation. Companion recommendations do not authorize unrelated migrations,
 framework replacement, deployment, publication, or external actions.
 
 ## Implementation references
+
+Read the matching references before changing the affected area. For any control,
+read component patterns; for animation or gestures, read animation implementation
+and `design-system`'s motion guidance. For visible layout or styling changes, read
+`design-system`'s foundations. For coordinated or branching states, read interaction
+specifications. These are required branches, not optional background reading.
 
 | Reference                                                          | Read for                                                                        |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------------------- |

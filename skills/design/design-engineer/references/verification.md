@@ -30,8 +30,9 @@ handling. A code review can identify risks but cannot prove motion feels good.
 5. Check consistency and efficiency. Compare shared tokens, geometry, state
    patterns, and runtime cost.
 
-After these checks, propose expressive effects only when the request asks for
-product character or an identified event needs more visible feedback.
+After these checks, choose expressive details when they reinforce the product's
+character or clarify an interaction. A build or polish request permits those
+choices within scope; explain their purpose and compare them in repeated use.
 
 ### Classify and prioritize findings
 
@@ -105,8 +106,34 @@ Run the checks in the matching rows, using the detailed instructions below:
 
 For proposals, list these as acceptance checks. For implementations, run them when
 the environment supports them and mark unavailable checks `Not verified`.
-After the required checks pass, stop unless a new change, failure, or unresolved
-concern requires another check.
+For visible interface work, also complete the rendered craft pass below. Then
+stop unless a new change, failure, or unresolved concern requires another check.
+
+### Complete one rendered craft pass
+
+For builds and visual or interaction changes, inspect the actual consumer after
+functional checks. For audit-only work, record the same observations as proposals.
+
+1. Inspect real content at the target size and a narrow width. Compare hierarchy,
+   shared edges, optical alignment, surface treatment, and state geometry with
+   adjacent components and any supplied visual reference.
+2. Exercise changed interactions at normal speed and in repeated use. Use slow
+   playback to diagnose discontinuities, then judge the result at normal speed.
+3. Identify the weakest in-scope detail with concrete evidence: competing label
+   emphasis, an off-center icon, a jumping action row, or an abrupt transition.
+   Improve it even when it is a preference rather than a functional defect.
+4. Compare before and after under the same content, viewport, and state. Keep the
+   revision only when it improves the stated detail without harming clarity,
+   responsiveness, accessibility, or the product's visual cohesion.
+5. Recheck the affected states. Finish when no identified material craft concern
+   remains; do not invent a cosmetic change merely to satisfy the pass.
+
+Bad: declare polish complete because lint passes and the dialog opens.
+Good: compare the action row in idle, pending, and success states, stabilize its
+width, and verify the labels and focus remain intact through rapid interaction.
+
+If rendering tools are unavailable, review the code and report the craft pass
+`Not verified`; a proposed comparison does not establish visual improvement.
 
 ### Check layout and content
 

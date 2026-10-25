@@ -12,12 +12,12 @@ Choose the skills and agents during installation. Add `--list` to preview the co
 
 ### Design · model-invoked
 
-| Skill                                                     | Use it to                                                  |
-| --------------------------------------------------------- | ---------------------------------------------------------- |
-| [design-engineer](skills/design/design-engineer/SKILL.md) | Coordinate design skills to build complete app interfaces. |
-| [design-system](skills/design/design-system/SKILL.md)     | Build, adopt, and enforce a React design system.           |
-| [ux-guide](skills/design/ux-guide/SKILL.md)               | Design or repair user flows.                               |
-| [ux-writer](skills/design/ux-writer/SKILL.md)             | Write labels, errors, and confirmations.                   |
+| Skill                                                     | Use it to                                                                    |
+| --------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [design-engineer](skills/design/design-engineer/SKILL.md) | Build and refine app interfaces across UX, visual craft, and implementation. |
+| [design-system](skills/design/design-system/SKILL.md)     | Build, adopt, and enforce a React design system.                             |
+| [ux-guide](skills/design/ux-guide/SKILL.md)               | Design or repair user flows.                                                 |
+| [ux-writer](skills/design/ux-writer/SKILL.md)             | Write labels, errors, and confirmations.                                     |
 
 The agent uses these when a task fits. To invoke one directly, use `/skill-name`
 in Claude Code or `$skill-name` in Codex, such as `/design-system` or

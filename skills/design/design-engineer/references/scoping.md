@@ -25,93 +25,53 @@ system-documentation changes unless subsequently requested.
 
 ## 2. Choose an approach for existing work
 
-For work on an existing implementation, including an audit, establish these choices
-before approach-dependent design or code changes. Recommend one using the inspected
-evidence, then wait for the user's choice:
+Default to reuse and refinement for a clear existing-work request. State that
+choice and proceed; the user does not need to select an approach by name.
+Use first-principles reassessment when requested or when the observed problem
+cannot be solved within the current flow. Ask before expanding the agreed scope.
 
-| Approach         | What it permits within the agreed scope                                                                                                                                         |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Reuse and refine | Preserve the existing architecture, components, and working behavior. Make limited interventions or build the requested new version by composing and extending existing pieces. |
-| First principles | Revisit the user's problem, assumptions, and intended outcome. Reassess the flow and component choices, then implement justified corrections within the agreed boundary.        |
+| Approach         | Work within the requested boundary                                                  |
+| ---------------- | ----------------------------------------------------------------------------------- |
+| Reuse and refine | Compose existing components and improve their weakest visual or behavioral details. |
+| First principles | Reassess the problem and flow, then implement justified changes to the named area.  |
 
-Example question:
+Bad: pause a request to polish a settings dialog to ask which methodology to use.
+Good: retain the dialog's flow, inspect its rendered states, and refine its layout
+and feedback. Ask only if the repair would change a consequential product choice.
 
-> How should I approach the invitation flow: reuse the current implementation with
-> limited changes, or reassess the problem and flow from first principles? I recommend
-> reuse and refinement because the observed failure is isolated to retry handling.
+## 3. Resolve material uncertainty
 
-An explicit instruction such as "change only focus restoration; keep the flow"
-already chooses limited intervention. "Rethink this flow from first principles"
-already chooses reassessment. Reuse those choices; do not ask again. A constraint
-such as "keep our design tokens" alone does not settle the approach to the flow.
+Inspect repository facts first. Ask when different plausible answers would change
+the target, user outcome, consequential behavior, or permitted scope. Choose routine
+spacing, easing, composition, and implementation details using the existing system
+and craft guidance; state meaningful assumptions without requiring approval.
 
-Do not silently choose the recommended option if the user has not answered.
-Read-only inspection can proceed while the choice is pending. First-principles
-work questions assumptions, not ownership or authority: it does not authorize a
-new framework, unrelated system migration, backend promises, or a whole-app rewrite.
-It can still conclude that the existing implementation is the best basis.
+For a vague request, ask the smallest useful round of questions, with recommended
+answers and tradeoffs. Continue independent investigation while waiting. Once the
+material decisions are answered, summarize the scope and proceed; request another
+confirmation only when the user asked for a checkpoint or a new decision remains.
+Silence is not an answer to a required question.
 
-## 3. Grill uncertain requirements
+Use `grilling` for an explicitly requested in-depth requirements interview. Resolve
+it through the active catalog; if unavailable, ask dependency-ordered questions
+locally and state the fallback. Installation is optional for this branch:
+`npx skills add mattpocock/skills --skill grilling grill-me`.
 
-The user-invoked `grill-me` skill delegates to the model-invoked `grilling` skill.
-Resolve and apply `grilling` directly through the skill catalog or installed
-registry; do not require the user to invoke the wrapper separately. If it is
-unavailable, use the interview procedure below and state that fallback. Do not
-silently install a skill or treat the missing package as a reason to skip clarification.
-
-Use this procedure when the user is unsure, the outcome is vague, or unresolved
-decisions would materially change the implementation. A complete, explicit brief
-does not require a ceremonial interview.
-
-1. Map the task as a design tree. Record settled decisions and the decisions that
-   depend on them. Keep the tree within the requested problem, not every possible
-   product or implementation preference.
-2. Find facts yourself. Read requirements, routes, components, vocabulary, and
-   contracts. Following `grilling`, delegate bounded read-only fact checks to an
-   available sub-agent; if delegation is unavailable, inspect directly. A pending
-   fact blocks only the questions that depend on it.
-3. Ask the whole current frontier: all user decisions whose prerequisites are
-   settled. Number the questions, give each a title and a recommended answer with
-   its tradeoff, and ask them in one round. Split a long round into labeled groups
-   without hiding ready decisions. Do not ask downstream questions prematurely.
-4. Wait for answers. Update the tree, carry accepted answers forward, and ask the
-   newly unblocked frontier. Recommendations and elapsed time are not answers.
-   Continue until every relevant branch is settled; do not stop after an arbitrary
-   number of rounds or silently fill material gaps with assumptions.
-5. Present the shared-understanding summary below and obtain the user's explicit
-   confirmation before implementation. If the user corrects it, reopen the affected
-   branches and resolve them. Silence is not confirmation.
-
-Use the host's question tool when available; otherwise present numbered questions
-in the conversation. The requirements are complete rounds, visible recommendations,
-dependency-aware sequencing, and waiting for answers. Keep the process consistent
-with the host's rendering and accessibility conventions.
-
-Bad: "Make it better" becomes an unsolicited redesign of the entire app.
-
-Good: first establish whose task is failing, the outcome to improve, the area that
-can change, and the intervention approach. Then ask the newly relevant questions
-about recovery or flow structure. The user does not have to name the right skill.
+Bad: turn "make it better" into a whole-app redesign or an exhaustive preference
+interview. Good: identify the target and desired outcome, then inspect and improve
+that area using established product constraints.
 
 ## 4. Check readiness
 
-Before implementation, state the agreed scope concisely:
+State the mode, target, outcome, constraints, and observable completion checks
+concisely. The user's clear request supplies authorization for the requested work;
+reuse accepted answers and explicit approach choices. Keep routine design decisions
+with the agent. An unresolved material decision blocks its dependent work only.
 
-- Mode and exact target, including affected consumers.
-- User outcome and observable completion checks.
-- Existing-work approach when applicable, and preserved constraints.
-- Exclusions, known dependencies, and unresolved limits.
-- Authorization for implementation or audit-only work, plus requested checkpoints.
-
-For a clear request with an already-selected approach, its explicit instructions
-can supply this agreement; state the scope and proceed without asking for duplicate
-approval. For an interview, the user's confirmation of shared understanding is
-required. Do not implement while the mode, target, outcome, applicable approach,
-or a material product decision remains unsettled. No companion may start edits
-before readiness.
-
-Pass this scope to every design companion. Reuse accepted answers so a design-system
-or UX subtask does not restart the interview or reinterpret the task's limits.
+Pass the same scope to companions so they do not restart discovery. For example,
+"Polish the invitation dialog's layout and feedback; preserve recipients, roles,
+and submission behavior; check long names, pending, error, and completion states"
+is enough to start a bounded polish task.
 
 ## 5. Keep the boundary during work
 

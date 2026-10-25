@@ -283,7 +283,9 @@ Read `components.json`, the theme CSS or Tailwind config, and local
 `components/ui` before proposing new foundations. Reuse the installed shadcn
 component, control library, semantic roles, radius, spacing, and state
 attributes. Change a default only for a product requirement, accessibility need,
-or repeated consumer need.
+or repeated consumer need. A requested polish pass can supply the product
+requirement: name the observed weakness, refine the existing contract, and check
+its consumers. It does not authorize an unrelated theme replacement.
 
 Bad: create `PrimaryButton` because one page wants a different color.
 

@@ -76,8 +76,10 @@ it does not promise identical rendered motion.
 
 Default to the physical spring for drag release and interrupted retargeting.
 Use the duration-based spring for a fixed presentation sequence. Keep bounce at
-zero for routine controls; add overshoot only for an explicitly chosen expressive
-treatment. An exact clock deadline needs a tween, not a spring settling estimate.
+zero for routine controls; choose subtle overshoot when it reinforces a tactile
+or playful treatment and passes repeated-use checks. The agent may select this
+within a build or polish request; it does not require a separate user decision.
+An exact clock deadline needs a tween, not a spring settling estimate.
 
 In Motion, physical parameters override duration and bounce. Specifying both does
 not guarantee an exact duration. Verify against the installed version. See
@@ -86,8 +88,10 @@ not guarantee an exact duration. Verify against the installed version. See
 ### Preserve direct manipulation
 
 - Keep the object under the pointer while the person places it.
-- Default to clamping movement at boundaries. Retain elasticity when the existing
-  gesture pattern uses it; use a spring to return an undismissed object on release.
+- Clamp precision placement, such as dragging a range endpoint. For tactile drawers
+  or dismissible surfaces, consider increasing resistance beyond the boundary and
+  spring return on release. Compare a slow pull and quick reversal; the object
+  should remain controllable and return to a valid position.
 - Preserve current position and velocity when retargeting. Do not remount the
   object to restart its entrance.
 
@@ -155,7 +159,9 @@ focus trapping, collision placement, or an exit lifecycle.
 
 Use a quiet 150ms opacity cross-fade for a user-triggered state change when the
 project has no icon-motion pattern. Keep the 20px icon slot fixed. Use the same
-ease-out default curve for both glyphs and no delay, blur, bounce, or scale.
+ease-out default curve for both glyphs and no delay. This is the restrained
+starting treatment. For a more expressive state change, choose a recipe below
+and verify clarity at normal speed; extra effects are not required for polish.
 
 The new icon represents an actual state, such as muted or unmuted. For a save,
 the checkmark represents server confirmation. Keep the control's accessible name
@@ -171,6 +177,25 @@ See the [CSS icon recipe](react-tailwind.md#contextual-icon-recipe). It starts a
 the correct initial state without playing an entrance. Under reduced motion,
 swap immediately and retain the static state cue. Keep an established expressive
 icon treatment if it passes the same state, focus, and reduced-motion checks.
+
+## Contextual craft recipes
+
+These are conceptual treatments, not drop-in implementations. Reuse project
+recipes first. Choose one that solves an observed visual problem and implement
+it through the mechanisms above; preserve semantics and the installed API's
+lifecycle. Each recipe needs a normal-speed before/after comparison.
+
+| Context                         | Before                                                | Treatment to try                                                                                                                                                                     | Acceptance check                                                                                                                                    |
+| ------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Pointer-selected segmented tabs | Active background and text colors change out of sync. | Clip a decorative active-color copy to the selected tab and move the clipping region with selection. Keep one semantic, focusable tab list; hide the copy from assistive technology. | Measure after resize or font changes; labels align throughout, keyboard selection stays instant, and reduced motion swaps immediately.              |
+| Confirmed save feedback         | The label and icon overlap harshly during a swap.     | Keep the button's geometry fixed; crossfade the content. If easing alone is insufficient, try a brief 2px blur on the decorative content.                                            | Success follows real confirmation, text stays legible, and rapid retry cannot show obsolete success. Retain the simpler fade if blur does not help. |
+| Dismissible drawer              | The surface hits a hard boundary or snaps back.       | Keep direct tracking within bounds, add increasing resistance beyond the edge, and carry recent directional velocity into spring release.                                            | Test slow pull, flick, reversal, cancellation, and a visible non-drag dismissal action.                                                             |
+| Occasional confirmation         | A meaningful completion appears abruptly.             | Coordinate a small icon change with the message's opacity using one short sequence; keep the next action immediately usable.                                                         | It communicates actual completion, fits adjacent motion, and remains understandable without animation.                                              |
+
+Use a fast-starting custom curve when the default ease-out feels too weak. With
+no existing token, `cubic-bezier(0.23, 1, 0.32, 1)` is a starting candidate for
+entry, not a universal requirement. Compare it with the existing curve at the
+same duration; keep the one that gives immediate feedback and a clean settle.
 
 Done means the chosen mechanism preserves state, focus, interruption, reduced
 motion, and measured rendering cost in the real consumer.

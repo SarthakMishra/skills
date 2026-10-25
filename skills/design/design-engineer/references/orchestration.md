@@ -5,9 +5,9 @@ skills yourself through the skill catalog or installed registry. Skill compositi
 does not require separate agents, separate user commands, or a pause after each
 companion's output.
 
-First complete [scoping and requirements](scoping.md). Carry one agreed primary
-mode, a bounded target, and the existing-work approach through this workflow.
-Orchestration starts no implementation until the readiness check passes.
+Carry one mode, bounded target, and approach through this workflow. Default clear
+existing-work requests to reuse and refinement. Use [scoping](scoping.md) for
+material uncertainty; keep independent implementation moving while a decision is pending.
 
 ## 1. Establish shared context
 
@@ -15,24 +15,21 @@ Read the user's request and existing product requirements, routes, system guidan
 components, vocabulary, and backend contracts. Keep these facts available to every
 selected companion:
 
-| Shared input           | What to establish                                                                                              |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------- |
-| Outcome and scope      | The primary mode, person, task, entry point, completion, in-scope targets, and exclusions.                     |
-| Existing constraints   | Stack, design system, tone, accessibility, permissions, and preserved behavior.                                |
-| Evidence               | What was observed, supplied, inferred, or not inspected.                                                       |
-| State and consequences | What changes, who is affected, what survives failure, and supported recovery.                                  |
-| Decisions              | Accepted requirements, chosen approach, interview confirmation when required, open questions, and checkpoints. |
+| Shared input           | What to establish                                                                          |
+| ---------------------- | ------------------------------------------------------------------------------------------ |
+| Outcome and scope      | The primary mode, person, task, entry point, completion, in-scope targets, and exclusions. |
+| Existing constraints   | Stack, design system, tone, accessibility, permissions, and preserved behavior.            |
+| Evidence               | What was observed, supplied, inferred, or not inspected.                                   |
+| State and consequences | What changes, who is affected, what survives failure, and supported recovery.              |
+| Decisions              | Accepted requirements, chosen approach, open questions, and requested checkpoints.         |
 
 Reuse the existing PRD, glossary, DESIGN.md, and task notes. Do not create a new
 document solely to pass context between skills. For a small repair, the working
 context can remain in the conversation. For larger work, follow the companions'
 existing document conventions and link their artifacts rather than duplicating them.
 
-If requirements remain uncertain, follow the scoping reference's grilling rounds.
-Look up environment facts yourself; ask user decisions at the current frontier.
-Carry accepted answers between companions. A companion's design subtask does not
-add another approval gate, but it cannot bypass unresolved scope, approach, or the
-confirmation required after an interview.
+Resolve material uncertainty using the scoping reference. Carry accepted answers
+between companions; a design subtask does not add another approval gate.
 
 ## 2. Understand and refine the UX
 
@@ -128,8 +125,9 @@ the UI at real content lengths, and final copy in the rendered states.
 
 Reuse a check that supplies evidence for several concerns; do not rerun it once
 per skill. If a check fails, revisit the owning concern, apply the correction to
-the implementation, and repeat the affected check. Report one integrated result
-with explicit coverage limits.
+the implementation, and repeat the affected check. Complete the rendered craft
+pass in that reference, including a before/after comparison of any refinement.
+Report one integrated result with explicit coverage limits.
 
 ## Scale the workflow to the request
 

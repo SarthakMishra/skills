@@ -22,7 +22,7 @@ feature explanation can use motion for orientation or delight.
 
 Bad: animate every hover in a dense table. The repeated delay slows scanning.
 
-Good: animate a dialog entering from its trigger so the user can follow where it
+Good: animate an anchored popover entering from its trigger so the user can follow where it
 came from, then make repeated tooltip changes instant after the first tooltip opens.
 
 ## Use fast, named recipes
@@ -49,7 +49,8 @@ tokens and keep the recipe beside the shadcn component contract.
 
 ## Connect movement to its origin
 
-When an overlay opens, make it appear to come from its trigger. Set
+When an anchored overlay opens, make it appear to come from its trigger. Keep
+viewport-centered dialogs centered. Set
 `transform-origin` from the positioning library's variable when available. For
 Radix-backed shadcn components, use the provided origin variable. For Base UI,
 use its equivalent. Do not hardcode `center` when the overlay can open from

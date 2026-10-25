@@ -13,6 +13,11 @@ semantic roles, radius, and spacing scale.
 Change a default only when a product requirement, accessibility issue, or repeated
 consumer need shows a real gap. Record the reason and affected consumers.
 
+A requested polish pass is a product requirement to improve the named area.
+Identify a concrete weakness, such as uneven optical alignment or an abrupt state
+change, and refine it through the existing contract. Record shared changes and
+check affected consumers; one local improvement does not authorize a theme rewrite.
+
 Good: keep `bg-primary text-primary-foreground` and add one missing semantic
 role that several components need.
 

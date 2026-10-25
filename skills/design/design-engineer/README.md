@@ -21,18 +21,17 @@ edits.
 | Implement a bounded part | A specific component, screen, or flow integrated with a larger system.                                |
 | Audit and repair         | Inspection and fixes for a named system, component, or flow; findings only if you requested no edits. |
 
-Before implementation, the agent establishes the intended outcome, exact target,
-constraints, exclusions, and completion checks. For existing work, you choose
-between **reuse and refinement** with limited interventions and **first-principles
-reassessment** of the problem and implementation. An explicit choice in your request
-is reused rather than asked again. First-principles work stays within the agreed
-scope; it does not imply a whole-app rewrite.
+The agent defaults clear existing-work requests to reuse and refinement, states
+the scope, and starts. Ask for first-principles reassessment when you want the
+problem and flow reconsidered. Either approach stays inside the named area.
 
-If you are unsure, the agent follows the `grilling` workflow behind `grill-me`:
-numbered rounds with recommendations, questions ordered by their dependencies,
-and repository facts investigated by the agent. It continues until the relevant
-decisions are settled and you confirm the shared understanding. Implementation
-waits for that confirmation; read-only investigation can continue.
+When material requirements are unclear, the agent investigates repository facts
+and asks focused questions. Routine design decisions stay with the agent. A deeper
+`grilling` interview is available when explicitly requested.
+
+For example: "Polish the invitation dialog's layout and feedback; preserve the
+recipient and role behavior." The result includes a rendered comparison of the
+weakest detail, refinement where justified, and checks of the affected states.
 
 ## Install the design collection together
 
@@ -66,7 +65,7 @@ the behavior of design-engineer, not a requirement added to the other skills.
 2. Understand the user's path and refine in-scope UX problems.
 3. Coordinate system choices, UI treatment, and final copy.
 4. Implement the screens and interactions with the project's stack.
-5. Check the journey, system consistency, visual states, copy, and runtime behavior.
+5. Check behavior and complete a rendered craft pass, comparing refinements before and after.
 
 [SKILL.md](SKILL.md) is the entry-point map. The
 [scoping reference](references/scoping.md) defines the interview and readiness check.
@@ -93,13 +92,6 @@ The skill preserves the installed framework, router, components, data layer, and
 vocabulary. It honors requested review checkpoints and keeps proposed checks
 separate from exercised evidence. A build request finishes with the integrated
 interface, not just independent design documents or copy suggestions.
-
-The `grill-me` wrapper and `grilling` procedure informed the scope interview. The
-engineer resolves `grilling` automatically when needed; if it is unavailable, the
-scoping reference retains the round-based process. Install them with
-`npx skills add mattpocock/skills --skill grilling grill-me` when the full
-workflow is required. You do not need to invoke a second skill to clarify the
-task.
 
 A handoff names the behavior before and after, locations, checks run, and material
 limits. Publication, deployment, external tickets, and unrelated migrations require
