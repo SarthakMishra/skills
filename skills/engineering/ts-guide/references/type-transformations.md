@@ -17,7 +17,11 @@ type LooseAllStrings<T> = T extends string ? true : false;
 const ambiguous: LooseAllStrings<string | number> = true;
 
 // Good: mixed unions fail as a whole; this contract rejects never too.
-type AllStrings<T> = [T] extends [never] ? false : [T] extends [string] ? true : false;
+type AllStrings<T> = [T] extends [never]
+  ? false
+  : [T] extends [string]
+    ? true
+    : false;
 const mixed: AllStrings<string | number> = false;
 const empty: AllStrings<never> = false;
 // @ts-expect-error Not every union member is a string.

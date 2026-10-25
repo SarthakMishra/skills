@@ -52,23 +52,28 @@ defaults and variant definitions in the component source. Use `cn` to merge the
 generated classes with the consumer's allowed classes.
 
 ```tsx
-const buttonVariants = cva("inline-flex items-center rounded-md", {
+const buttonVariants = cva('inline-flex items-center rounded-md', {
   variants: {
     variant: {
-      default: "bg-primary text-primary-foreground",
-      destructive: "bg-destructive text-destructive-foreground",
+      default: 'bg-primary text-primary-foreground',
+      destructive: 'bg-destructive text-destructive-foreground',
     },
     size: {
-      default: "h-9 px-4",
-      sm: "h-8 px-3",
-      lg: "h-10 px-6",
+      default: 'h-9 px-4',
+      sm: 'h-8 px-3',
+      lg: 'h-10 px-6',
     },
   },
-  defaultVariants: { variant: "default", size: "default" },
+  defaultVariants: { variant: 'default', size: 'default' },
 });
 
 function Button({ className, variant, size, ...props }: ButtonProps) {
-  return <button className={cn(buttonVariants({ variant, size, className }))} {...props} />;
+  return (
+    <button
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  );
 }
 ```
 

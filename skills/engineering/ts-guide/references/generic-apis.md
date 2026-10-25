@@ -45,7 +45,10 @@ opaque compatibility trick.
 
 ```ts
 // Bad: fallback participates in inference and admits an unintended choice.
-declare function looseChoice<C extends string>(choices: readonly C[], fallback: C): C;
+declare function looseChoice<C extends string>(
+  choices: readonly C[],
+  fallback: C,
+): C;
 looseChoice(['small', 'large'], 'huge');
 
 // Good: choices alone establish the domain.
@@ -70,7 +73,10 @@ pair for a finite event or command map.
 type Events = { saved: { id: string }; failed: { error: Error } };
 
 // Bad: the name and payload are independent unions.
-declare function looseEmit(name: keyof Events, payload: Events[keyof Events]): void;
+declare function looseEmit(
+  name: keyof Events,
+  payload: Events[keyof Events],
+): void;
 looseEmit('saved', { error: new Error('wrong payload') });
 
 // Good: each tuple is one valid call.
@@ -98,10 +104,14 @@ explicitly when wrapping methods.
 
 ```ts
 // Bad: every call is allowed and every result becomes any.
-declare function looseWrap(fn: (...args: any[]) => any): (...args: any[]) => any;
+declare function looseWrap(
+  fn: (...args: any[]) => any,
+): (...args: any[]) => any;
 
 // Good for a single non-generic call signature without a this requirement.
-function wrap<A extends unknown[], R>(fn: (...args: A) => R): (...args: A) => R {
+function wrap<A extends unknown[], R>(
+  fn: (...args: A) => R,
+): (...args: A) => R {
   return (...args) => fn(...args);
 }
 const length = wrap((value: string, extra: number = 0) => value.length + extra);

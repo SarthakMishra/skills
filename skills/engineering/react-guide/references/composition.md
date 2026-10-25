@@ -19,7 +19,13 @@ Do not add Context or a provider to avoid passing one prop through one component
 Bad:
 
 ```tsx
-<Composer isThread isEditing={false} showAttachments showFormatting={false} channelId={channelId} />
+<Composer
+  isThread
+  isEditing={false}
+  showAttachments
+  showFormatting={false}
+  channelId={channelId}
+/>
 ```
 
 Good:
@@ -73,7 +79,9 @@ A render prop is appropriate when the parent owns the data:
 ```tsx
 <List
   items={items}
-  renderItem={({ item, index }) => <ListRow key={item.id} item={item} index={index} />}
+  renderItem={({ item, index }) => (
+    <ListRow key={item.id} item={item} index={index} />
+  )}
 />
 ```
 
@@ -107,7 +115,9 @@ function Tabs({
   children: React.ReactNode;
 }) {
   return (
-    <TabsContext value={{ state: { selectedId }, actions: { select: onSelect } }}>
+    <TabsContext
+      value={{ state: { selectedId }, actions: { select: onSelect } }}
+    >
       {children}
     </TabsContext>
   );
@@ -120,7 +130,11 @@ function Tab({ id, children }: { id: string; children: React.ReactNode }) {
   } = useTabs();
 
   return (
-    <button type='button' aria-selected={selectedId === id} onClick={() => select(id)}>
+    <button
+      type="button"
+      aria-selected={selectedId === id}
+      onClick={() => select(id)}
+    >
       {children}
     </button>
   );
@@ -158,7 +172,9 @@ function ComposerProvider({ children }: { children: React.ReactNode }) {
   const [text, setText] = useState('');
 
   return (
-    <ComposerContext value={{ state: { text }, actions: { setText } }}>{children}</ComposerContext>
+    <ComposerContext value={{ state: { text }, actions: { setText } }}>
+      {children}
+    </ComposerContext>
   );
 }
 
@@ -182,7 +198,7 @@ share the internal pieces.
 Bad:
 
 ```tsx
-<Composer mode='edit' isThread={false} showMentions showCancel />
+<Composer mode="edit" isThread={false} showMentions showCancel />
 ```
 
 Good:

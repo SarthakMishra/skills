@@ -1,11 +1,7 @@
 {
-  "overrides": [
-    {
-      "files": ["skills/engineering/react-guide/**/*.md", "skills/engineering/ts-guide/**/*.md"],
-      "options": {
-        "singleQuote": true,
-        "jsxSingleQuote": true
-      }
-    }
-  ]
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "singleQuote": true,
+  "printWidth": 80,
+  "sortPackageJson": false,
+  "sortTailwindcss": {}
 }

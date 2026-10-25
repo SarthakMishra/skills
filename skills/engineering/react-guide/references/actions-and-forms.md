@@ -12,7 +12,10 @@ import { useFormStatus } from 'react-dom';
 
 type FormState = { error: string } | null;
 
-async function saveName(_previousState: FormState, formData: FormData): Promise<FormState> {
+async function saveName(
+  _previousState: FormState,
+  formData: FormData,
+): Promise<FormState> {
   const value = formData.get('name');
   if (typeof value !== 'string' || value.trim() === '') {
     return { error: 'Enter a name.' };
@@ -29,10 +32,10 @@ function NameForm() {
     <form action={formAction}>
       <label>
         Name
-        <input name='name' disabled={isPending} />
+        <input name="name" disabled={isPending} />
       </label>
       <SubmitButton />
-      {state?.error && <p role='alert'>{state.error}</p>}
+      {state?.error && <p role="alert">{state.error}</p>}
     </form>
   );
 }
@@ -40,7 +43,7 @@ function NameForm() {
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <button type='submit' disabled={pending}>
+    <button type="submit" disabled={pending}>
       {pending ? 'Saving...' : 'Save'}
     </button>
   );
@@ -95,8 +98,8 @@ function RenameForm({
   return (
     <form action={action}>
       <p>Current name: {optimisticName}</p>
-      <input name='name' defaultValue={currentName} />
-      <button type='submit'>Rename</button>
+      <input name="name" defaultValue={currentName} />
+      <button type="submit">Rename</button>
     </form>
   );
 }

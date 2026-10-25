@@ -16,7 +16,9 @@ Independent runnable type-check fixture, TS 4.9+, `strict`; the ambient
 declaration describes the API under test and has no runtime implementation:
 
 ```ts
-declare function lookup<K extends 'name' | 'age'>(key: K): { name: string; age: number }[K];
+declare function lookup<K extends 'name' | 'age'>(
+  key: K,
+): { name: string; age: number }[K];
 
 // Bad: this is legal whether it evaluates to true or false.
 type Unchecked = ReturnType<typeof lookup> extends string ? true : false;

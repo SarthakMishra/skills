@@ -205,7 +205,7 @@ Server Components are a framework or bundler architecture. In an RSC project,
 keep server-only data and noninteractive UI on the server. Add a Client
 Component boundary for state, event handlers, Effects, or browser APIs.
 
-In a client-only app, do not invent RSC directives. `'use server'` marks a
+In a client-only app, do not invent RSC directives. `"use server"` marks a
 framework Server Function. It does not mark a Server Component.
 
 Use `use(browser())` only for an intentionally browser-only subtree in React

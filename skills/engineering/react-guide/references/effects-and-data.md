@@ -22,7 +22,7 @@ the component.
 **Bad.** An Effect sets `fullName` after `firstName` or `lastName`
 changes.
 
-**Good.** Render `firstName + ' ' + lastName` directly. There is no external
+**Good.** Render `firstName + " " + lastName` directly. There is no external
 system to synchronize.
 
 ## Choose a data source before writing an Effect
@@ -55,7 +55,11 @@ useEffect(() => {
 ```tsx
 import { Suspense, use } from 'react';
 
-function SearchResults({ resultsPromise }: { resultsPromise: Promise<Result[]> }) {
+function SearchResults({
+  resultsPromise,
+}: {
+  resultsPromise: Promise<Result[]>;
+}) {
   const results = use(resultsPromise);
   return results.map((result) => <ResultRow key={result.id} result={result} />);
 }

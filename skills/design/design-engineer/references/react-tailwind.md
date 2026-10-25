@@ -62,7 +62,7 @@ not fade in after focus arrives. See
 A small Tailwind v4 token example, only if equivalent tokens do not already exist:
 
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   --ease-ui-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -102,15 +102,7 @@ requested reduction. Substitute the app's own component and color tokens:
 ```tsx
 <button
   type="button"
-  className="
-    inline-flex min-h-11 items-center justify-center gap-2 rounded-md
-    bg-slate-900 px-4 py-2 text-sm font-semibold text-white
-    hover:bg-slate-800 active:bg-slate-950
-    focus-visible:outline-2 focus-visible:outline-offset-2
-    focus-visible:outline-slate-700
-    motion-safe:transition-[background-color]
-    motion-safe:duration-[150ms] motion-safe:ease-[ease]
-  "
+  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700 active:bg-slate-950 motion-safe:transition-[background-color] motion-safe:duration-[150ms] motion-safe:ease-[ease]"
 >
   Apply filters
 </button>
@@ -135,9 +127,7 @@ For a controlled toggle, connect appearance and semantics to the same value:
   type="button"
   aria-pressed={muted}
   onClick={() => setMuted((value) => !value)}
-  className="rounded-md border px-3 py-2
-    aria-pressed:bg-slate-900 aria-pressed:text-white
-    focus-visible:outline-2 focus-visible:outline-offset-2"
+  className="rounded-md border px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 aria-pressed:bg-slate-900 aria-pressed:text-white"
 >
   Mute alerts
 </button>
@@ -178,7 +168,7 @@ than assuming that it uses `data-theme`.
   --ui-error: #b91c1c;
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   --ui-canvas: #0f172a;
   --ui-surface: #111827;
   --ui-raised: #1f2937;
@@ -246,13 +236,13 @@ with these names and assume the application already implements it:
 ### Good: stable field, separate status, existing controllers
 
 ```tsx
-import { useId, useRef, type ReactNode } from "react";
+import { useId, useRef, type ReactNode } from 'react';
 
 type FilterPanelViewProps = {
   query: string;
   onQueryChange: (query: string) => void;
   state: {
-    status: "idle" | "pending" | "ready" | "error";
+    status: 'idle' | 'pending' | 'ready' | 'error';
     message: string;
     showSpinner: boolean;
   };
@@ -269,7 +259,7 @@ export function FilterPanelView(props: FilterPanelViewProps) {
 
   return (
     <section className="filter-panel grid w-full max-w-lg gap-6 rounded-xl p-4">
-      <h2 className="text-xl font-semibold leading-[1.2]">Filter results</h2>
+      <h2 className="text-xl leading-[1.2] font-semibold">Filter results</h2>
       <div className="grid min-w-0 gap-2">
         <label htmlFor={fieldId}>Search results</label>
         <input
@@ -285,20 +275,20 @@ export function FilterPanelView(props: FilterPanelViewProps) {
           <span
             className="filter-spinner"
             aria-hidden="true"
-            hidden={state.status !== "pending" || !state.showSpinner}
+            hidden={state.status !== 'pending' || !state.showSpinner}
           />
           <p
             id={statusId}
             role="status"
             aria-atomic="true"
-            data-error={state.status === "error"}
+            data-error={state.status === 'error'}
             className="filter-status min-h-6 min-w-0 text-sm leading-normal"
           >
             {state.message}
           </p>
         </div>
       </div>
-      <div aria-busy={state.status === "pending"}>{children}</div>
+      <div aria-busy={state.status === 'pending'}>{children}</div>
       <div className="flex flex-wrap gap-3">
         <button type="button" className="filter-action" onClick={onClear}>
           Clear filters
@@ -306,7 +296,7 @@ export function FilterPanelView(props: FilterPanelViewProps) {
         <button
           type="button"
           className="filter-action"
-          hidden={state.status !== "error"}
+          hidden={state.status !== 'error'}
           onClick={() => {
             inputRef.current?.focus();
             onRetry();
@@ -347,7 +337,7 @@ the `react-guide` skill.
   color: var(--ui-muted);
   overflow-wrap: break-word;
 }
-.filter-status[data-error="true"] {
+.filter-status[data-error='true'] {
   color: var(--ui-error);
 }
 .filter-action {
@@ -405,7 +395,7 @@ slot and derive the pressed state from the controller. Supply icons from the
 project's existing family with `focusable="false"`.
 
 ```tsx
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
 type MuteButtonProps = {
   muted: boolean;
@@ -414,7 +404,12 @@ type MuteButtonProps = {
   mutedIcon: ReactNode;
 };
 
-export function MuteButton({ muted, onMutedChange, unmutedIcon, mutedIcon }: MuteButtonProps) {
+export function MuteButton({
+  muted,
+  onMutedChange,
+  unmutedIcon,
+  mutedIcon,
+}: MuteButtonProps) {
   return (
     <button
       type="button"
@@ -443,7 +438,7 @@ export function MuteButton({ muted, onMutedChange, unmutedIcon, mutedIcon }: Mut
   color: var(--ui-text);
   background: var(--ui-surface);
 }
-.ui-icon-button[aria-pressed="true"] {
+.ui-icon-button[aria-pressed='true'] {
   color: var(--ui-on-selection);
   background: var(--ui-selection);
 }
@@ -471,10 +466,10 @@ export function MuteButton({ muted, onMutedChange, unmutedIcon, mutedIcon }: Mut
 .ui-icon-on {
   opacity: 0;
 }
-.ui-icon-button[aria-pressed="true"] .ui-icon-off {
+.ui-icon-button[aria-pressed='true'] .ui-icon-off {
   opacity: 0;
 }
-.ui-icon-button[aria-pressed="true"] .ui-icon-on {
+.ui-icon-button[aria-pressed='true'] .ui-icon-on {
   opacity: 1;
 }
 @media (prefers-reduced-motion: no-preference) {

@@ -74,7 +74,7 @@ function Panel() {
         {open ? 'Hide' : 'Show'}
       </button>
       {open && (
-        <ViewTransition enter='panel-in' exit='panel-out'>
+        <ViewTransition enter="panel-in" exit="panel-out">
           <aside>Panel</aside>
         </ViewTransition>
       )}
