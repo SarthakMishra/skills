@@ -96,6 +96,13 @@ and evidence from the installed versions. Read relevant sources in depth rather
 than collecting search-result links. The [source guide](references/sources.md)
 provides starting points, not a universal policy.
 
+For architecture or shared code-pattern decisions, research relevant composition
+and decomposition approaches using the maintainability branch in
+[research-and-adoption.md](references/research-and-adoption.md#research-composition-and-decomposition).
+Start from expected changes and observed coupling; compare keeping the current
+boundary with the smallest useful alternative. A targeted revision investigates
+only affected boundaries, not the whole architecture.
+
 Compare existing code, the standard library or platform, installed dependencies,
 new libraries or tools, and a custom implementation where they could meet the
 requirement. Justify the choice with its complete maintenance cost. Prefer the
@@ -123,6 +130,10 @@ ownership, and external boundaries. Trace a representative operation through
 success and failure. For multiple processes, describe deployment and communication;
 for one library or CLI, a module diagram and caller contract may be sufficient.
 Use domain vocabulary and record measurable constraints only when supported.
+For each proposed boundary, trace a likely requirement change and identify what
+callers must understand, which modules change, and what can be tested independently.
+Record the adopted pattern's scope, exceptions, and verification; a folder tree or
+smaller files alone do not demonstrate maintainability.
 
 Define documentation, complexity, code patterns, testing, and tool adoption rules
 using the decision areas. Each rule needs a scope, a reason tied to the project,

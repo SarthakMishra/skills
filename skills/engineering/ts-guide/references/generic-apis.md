@@ -130,3 +130,45 @@ overloaded inputs separately if the wrapper promises to support them. Prefer a
 dedicated signature or explicit overloads to asserting that arbitrary behavior
 returns the original function type. Overloads also need runtime branch tests:
 a permissive implementation signature can hide incorrect branch results.
+
+## Type dependencies as the operations the consumer needs
+
+For a use case that needs a small part of a service, accept function properties
+with the domain inputs and outputs it actually consumes. Use `Pick` when the
+larger interface owns the same contract; define a local port when deriving it
+would couple the domain to infrastructure types. An ordinary object can satisfy
+that port without a class or dependency injection container.
+
+Under `strictFunctionTypes` (included in `strict`), function properties check
+parameter types contravariantly; method declarations retain a bivariance
+exception. Prefer function properties when unsafe substitution must be rejected.
+
+```ts
+type Invoice = { id: string };
+type PaidInvoice = Invoice & { paidAt: Date };
+const savePaid = (invoice: PaidInvoice): void => {
+  invoice.paidAt.toISOString();
+};
+
+// Bad: method syntax accepts a handler that cannot handle every Invoice.
+type MethodPort = { save(invoice: Invoice): void };
+const unsafe: MethodPort = { save: savePaid };
+
+// Good: the function property rejects the narrower input contract.
+type SavePort = { save: (invoice: Invoice) => void };
+// @ts-expect-error A paid-only handler cannot save arbitrary invoices.
+const rejected: SavePort = { save: savePaid };
+const adapter = {
+  save: (invoice: Invoice) => {
+    void invoice.id;
+  },
+} satisfies SavePort;
+adapter.save({ id: 'invoice_1' });
+```
+
+`Pick` and `satisfies` check a static surface; they neither remove runtime
+properties nor create a security boundary. Construct a small adapter object when
+the boundary needs to expose only selected operations. Preserve receivers:
+conceptually, `save: (value) => repository.save(value)` keeps `this`, while
+`save: repository.save` may lose it. Exercise the real adapter as well as its
+substitute when methods depend on instance state.

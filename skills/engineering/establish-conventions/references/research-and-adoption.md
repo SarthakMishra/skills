@@ -35,6 +35,50 @@ Include rejected alternatives and why they fail or cost more. Retain the final
 evidence beside the relevant decision or ADR; follow the project's policy for
 temporary notes. Do not publish a private spec to obtain recommendations.
 
+## Research composition and decomposition
+
+Start with a representative operation and a likely change from the spec or code.
+Identify the coupling that would make that change difficult: shared decisions,
+broad dependencies, invalid states, competing state owners, ordering assumptions,
+or subscriptions that update unrelated consumers. For a new project, label these
+as anticipated pressures rather than measured defects.
+
+Select candidate patterns by the problem and the actual language and framework.
+Use the following as research prompts, not a required pattern inventory:
+
+| Pressure                                           | Candidates to investigate                                                  | Evidence that matters                                                                                                  |
+| -------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Business rules require infrastructure to test      | Pure calculations and transitions, narrow capabilities, ports and adapters | Core behavior runs independently; adapters preserve the real failure contract.                                         |
+| One feature change crosses unrelated layers        | Feature-local modules or vertical slices, explicit public APIs             | Trace the change through callers and allowed dependencies; account for shared invariants.                              |
+| Values permit invalid states or skipped stages     | Discriminated variants, validated constructors, typed stages               | Valid and invalid usage checks, runtime validation, and ordering or stale-state tests.                                 |
+| UI behavior, lifetime, and rendering are entangled | State colocation, cohesive controllers, slots, scoped context              | Preserve state identity, interaction and accessibility behavior; measure subscription costs before adding stores.      |
+| Workflow effects need planning or coordination     | Event or mutation handlers, pure transition models, command interpreters   | Establish ownership of execution, cancellation, retries, and partial failure; test replay before claiming reliability. |
+
+Investigate other approaches when the project's ecosystem or constraints suggest
+them. Verify consequential language, framework, and library claims against their
+primary documentation and installed versions. Distinguish an API guarantee from
+an architectural recommendation: types may constrain callers without validating
+runtime data, a Hook may extract logic without isolating renders, and a loader
+may move code without establishing a server-only boundary.
+
+Compare the current approach, a direct local refactor, and more elaborate
+abstractions only where viable. Account for navigation and indirection, public
+surface area, ownership, migration, debugging, and runtime or build overhead.
+Do not infer improvement from file count, pattern names, or hypothetical reuse.
+
+Bad: prescribe repositories for every query and a controller Hook for every
+component because the stack supports them. Good: isolate a calculation that
+currently requires database mocks, or move an editor's local draft out of shared
+page state, then verify the affected operation and consumers. Keep direct code
+where a new boundary adds no useful independence.
+
+Record adopt, retain, or defer for each investigated candidate, with the relevant
+scope, rejected alternative, evidence limit, and revisit condition. Use the
+[deciding experiment](#run-a-deciding-experiment) when an uncertain assumption
+could change the recommendation. Put accepted usage rules in the project skill
+and their rationale in the existing architecture or decision docs; leave the
+research catalog out of routine coding instructions.
+
 ## Compare complete costs
 
 First check whether the need already has a suitable solution in the repo, standard

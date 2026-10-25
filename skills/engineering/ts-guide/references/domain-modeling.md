@@ -40,6 +40,69 @@ For mutually exclusive object options, `other?: never` can forbid the other
 property; rejecting explicit `other: undefined` requires
 `exactOptionalPropertyTypes`.
 
+## Model stages by the evidence they establish
+
+Use distinct input and output types when a stage establishes an invariant the
+next stage requires. Prefer concrete discriminated states to a generic builder
+or pipeline framework. Different alias names alone do not distinguish identical
+structures; an unused phantom type parameter does not distinguish them either.
+
+```ts
+// Bad: renaming the same shape cannot enforce stage order.
+type Raw = { text: string };
+type Checked = { text: string };
+const raw: Raw = { text: '' };
+const skipped: Checked = raw;
+
+// Good: validation constructs the state consumed by the next operation.
+type Draft = { readonly stage: 'draft'; readonly text: string };
+type Validated = { readonly stage: 'validated'; readonly text: string };
+type Validation =
+  | { ok: true; value: Validated }
+  | { ok: false; error: 'EMPTY' };
+
+function validate(draft: Draft): Validation {
+  const text = draft.text.trim();
+  return text.length === 0
+    ? { ok: false, error: 'EMPTY' }
+    : { ok: true, value: { stage: 'validated', text } };
+}
+function render(value: Validated): string {
+  return value.text;
+}
+const draft: Draft = { stage: 'draft', text: 'Hello' };
+const checked = validate(draft);
+if (checked.ok) render(checked.value);
+// @ts-expect-error A draft has not passed validation.
+render(draft);
+```
+
+A public structural state can still be fabricated. Use the owning module's
+validated constructor and a private brand when construction provenance matters.
+Brands add static distinction, not runtime assurance. Revalidate untrusted or
+deserialized input. Preserve validated facts by copying mutable input or otherwise
+controlling mutation; a readonly view alone does not protect against aliases.
+
+Typestate does not consume the old reference or prevent calling a transition
+twice. Check persisted state atomically when correctness depends on current
+state; types do not establish authorization, transactions, or exactly-once effects.
+Test both rejected stage order and runtime validation failures. Only introduce a
+generic pipeline when real callers need it, preserving each stage's output and
+failure union instead of hiding mismatches with assertions.
+
+## Distinguish expected failures from thrown exceptions
+
+Use a discriminated result for expected failures callers must handle; reuse the
+project's result convention. Keep error variants specific enough for exhaustive
+handling. A `Promise<Result<T, E>>` describes fulfilled values, not every possible
+rejection. TypeScript does not check thrown exception types.
+
+Bad: catch every database error and return `NOT_FOUND`, hiding outages and bugs.
+Good: return `NOT_FOUND` for an actual missing record; map known provider failures
+at the adapter and preserve unexpected failures through the established error
+path. Test an expected failure and an unexpected rejection separately. Do not
+convert every exception into a result merely to make the signature look total.
+
 ## Construct the invariant you consume
 
 Use tuples when position or minimum length matters. Accept readonly inputs when
@@ -125,3 +188,32 @@ const rejected: Patch = { name: undefined };
 Without that flag, use an explicit operation union if the distinction must be
 enforced statically. Finish by checking the parser and update behavior for each
 operation; static optionality cannot establish serialization semantics.
+
+## Let simple checks infer their predicates
+
+On TS 5.5+, prefer an inferred predicate for a simple refinement. Check the
+inferred result at its consumer; annotating the return as `boolean` prevents
+predicate inference. On older supported compilers, use a tested explicit
+predicate when narrowing is required.
+
+Independent runnable type-check fixture, TS 5.5+, `strict`:
+
+```ts
+const values: (number | undefined)[] = [0, 1, undefined];
+// Bad: truthiness drops a valid zero and does not establish number[].
+const loose = values.filter((value) => !!value);
+// @ts-expect-error Truthiness cannot exclude only undefined.
+const stillOptional: number[] = loose;
+
+// Good: remove precisely the absent value and retain zero.
+const present = values.filter((value) => value !== undefined);
+const numbers: number[] = present;
+// @ts-expect-error The result no longer accepts undefined.
+present.push(undefined);
+```
+
+An explicit `value is T` promises both that true establishes T and that false
+excludes T. Test both branches: a check for positive numbers must not claim
+`value is number`, since zero and negative numbers also fail. Use a boolean for
+that policy check or return a validated value instead. Explicit predicates are
+not verified against their implementations.

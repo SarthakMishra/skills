@@ -59,6 +59,12 @@ scores can prompt inspection but are not proof of poor design. Require profiling
 before performance-driven complexity. Preserve necessary validation, diagnostics,
 accessibility, and recovery even when they add code.
 
+Turn observed coupling and likely change scenarios into research questions using
+[composition and decomposition research](research-and-adoption.md#research-composition-and-decomposition).
+Assess locality of change, independent testing, boundary integrity, and how much
+unrelated code a maintainer must understand. Record justified tradeoffs rather
+than imposing numeric modularity targets.
+
 ## Code style and patterns
 
 Research the actual language edition, compiler, formatter, and library versions.

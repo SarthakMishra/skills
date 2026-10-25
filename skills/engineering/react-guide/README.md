@@ -6,8 +6,16 @@ reviewing, refactoring, or upgrading React code.
 It guides everyday choices for render purity, state, Effects, async data,
 Actions, composition, Context, refs, transitions, memoization, and server/client
 boundaries. It includes focused references with Good/Bad examples for forms,
-composition, data, Compiler behavior, concurrent UI, API selection, and React
+composition, state ownership and workflows, data, Compiler behavior, concurrent
+UI, API selection, and React
 19 upgrades.
+
+## Example requests
+
+- “Split this editor without losing its draft on unrelated rerenders.”
+- “Check whether this custom Hook actually isolates table updates.”
+- “Make controlled and uncontrolled ownership explicit in this component.”
+- “Prevent an old save response from replacing a newer editor state.”
 
 ## Check the result
 

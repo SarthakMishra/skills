@@ -41,6 +41,12 @@ Keep the local entry point small enough to read on every matching task. Include:
 5. Canonical implementations and authoritative configuration paths where they
    exist, plus completion checks appropriate to each kind of change.
 
+For adopted composition or decomposition patterns, give the local skill the
+condition that calls for the pattern, the boundary or owner it establishes, a
+canonical example, and the check that protects it. State when direct code is
+preferred. Scope frontend, backend, and language-specific guidance to matching
+work; do not require every feature to reproduce the same layers or abstractions.
+
 Include the maintenance procedure below. It must explain when to return to
 research and grilling instead of changing a convention unilaterally.
 

@@ -9,7 +9,10 @@ conventions change.
 The workflow interviews you about unresolved decisions, researches the actual
 stack, compares alternatives, and verifies uncertain choices. It covers code
 organization, complexity, language patterns, documentation, testing, tooling,
-libraries, and when a custom implementation is justified.
+libraries, and when a custom implementation is justified. It also researches
+composition and decomposition patterns against likely changes and observed
+coupling, checking whether a proposed boundary improves independent testing,
+state ownership, or the locality of a change.
 
 ## When to use it
 
@@ -31,6 +34,12 @@ Use SPEC.md and the ADRs to research and revise that branch. Preserve other rule
 Compare a library with our custom parser against these requirements. Research
 compatibility and maintenance, test the uncertain cases, and propose a decision
 before installing anything.
+```
+
+```text
+Research composition and decomposition conventions for this stack. Compare our
+current boundaries with alternatives using a representative feature change,
+and adopt only patterns whose maintenance benefits justify their complexity.
 ```
 
 ## Bring the existing decisions

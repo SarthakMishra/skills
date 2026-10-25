@@ -41,7 +41,9 @@ function Cart({ items }) {
 ## Keep state minimal
 
 Store the smallest set of values that cannot be calculated from props, state,
-or context.
+or context. Choose the owner by who needs the state and how long it must survive.
+For ownership, headless Hooks, or reducer workflows, read
+[state and workflows](references/state-and-workflows.md).
 
 - Calculate derived values during render.
 - Use functional updates when the next state depends on the previous state.
@@ -168,7 +170,8 @@ Good:
 </ThreadComposer>
 ```
 
-Read `references/composition.md` for the patterns and exceptions.
+Read `references/composition.md` for slots, scoped Context, and controlled or
+uncontrolled component contracts.
 
 ## Defer work deliberately
 
@@ -220,6 +223,7 @@ Use `use(browser())` only for an intentionally browser-only subtree in React
 4. Exercise the changed success, pending, failure, rollback, accessibility, and
    hydration states that apply.
 
-Read `references/effects-and-data.md` for Effects and resources,
+Read `references/effects-and-data.md` for independent synchronization, external
+store subscriptions, route data, and resources,
 `references/api-cheatsheet.md` for version-gated APIs, and
 `references/migration-codemods.md` only for an upgrade.

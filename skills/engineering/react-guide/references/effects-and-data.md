@@ -1,7 +1,8 @@
 # Effects and data
 
 Read this reference when code uses `useEffect`, loads data, reads a Promise
-with `use`, or crosses a Server Component boundary.
+with `use`, subscribes to external stores, integrates route data, or crosses a
+Server Component boundary.
 
 ## Keep Effects for external synchronization
 
@@ -25,13 +26,51 @@ changes.
 **Good.** Render `firstName + " " + lastName` directly. There is no external
 system to synchronize.
 
+## Separate independent synchronization processes
+
+Give each Effect one external relationship with its own dependencies and cleanup.
+Keep setup and teardown for the same resource together. Extract a Hook only when
+it names a cohesive synchronization contract; remove derived-state Effects first.
+
+Bad: one Effect reloads an invoice and subscribes to unload warnings whenever
+`isDirty` changes. Good: keep loading in the resource layer and attach the warning
+only while dirty. Test setup, cleanup, and setup again under Strict Mode, changed
+dependencies, and unmount; do not suppress replay with a run-once ref.
+
+On React 19+, prefer the framework's metadata owner or a single rendered
+`<title>{title}</title>` to a custom document-title Effect. An unload listener
+also does not guard client navigation; use the router's blocker when required
+and test both paths. Browser prompts are not a reliable persistence mechanism.
+
+## Subscribe to external state deliberately
+
+Use React state by default. Reach for the existing external-store integration
+when state already lives outside React or measured subscription costs justify it.
+With `useSyncExternalStore` (React 18+), require stable subscription identity,
+unsubscribe cleanup, and an immutable snapshot whose identity stays unchanged
+until its data changes. Cache snapshots instead of allocating during every read.
+
+Bad: `getSnapshot: () => ({ ...store.state })` creates a fresh object even when
+nothing changed; mutating and returning the same object hides real changes.
+Good: expose the stored immutable snapshot and replace it when its data changes.
+For SSR, provide `getServerSnapshot` with matching server and hydration data;
+keep mutable user stores scoped to the request, not shared across requests.
+
+Selecting one cell's stable snapshot can avoid rendering for other cells' updates
+but does not stop a store-wide listener notification. Use the existing selector
+API or per-key subscriptions when that notification cost matters. Check unchanged
+snapshot identity, changed values, cleanup, and SSR hydration when supported.
+External-store updates cannot be made non-blocking by wrapping them in a React
+Transition; keep input responsiveness decisions explicit.
+
 ## Choose a data source before writing an Effect
 
 Use this order:
 
-1. In a Server Component or framework loader, fetch or await data on the
-   server. Use the framework's cache or React `cache` where its contract
-   applies.
+1. Use the existing framework loader or Server Component for route-owned data.
+   Confirm where it executes: client router loaders can run in the browser,
+   and full-stack loaders may run on both server and client. Keep server-only
+   access behind the framework's server boundary; React `cache` is for RSC.
 2. In a Suspense-enabled client path, pass a cached Promise from a route loader,
    Server Component, or data library and read it with `use(promise)`.
 3. If the project has no Suspense-compatible source, use a data library or a
@@ -49,6 +88,24 @@ useEffect(() => {
     .then(setResults);
 }, [query]);
 ```
+
+## Let routes own navigable state and data dependencies
+
+Keep shareable filters and record identity in validated route parameters; keep
+transient interaction state local. Use the existing query cache as the owner of
+server records instead of mirroring loader results into component state.
+
+For TanStack Router v1, validate search input and select the fields that affect
+loading through `loaderDeps`. Consume those dependencies in the loader, propagate
+its abort signal when that loader owns the request, and use the existing Query
+integration when Query owns caching and cancellation. Confirm installed APIs
+before changing router behavior.
+
+Bad: a list loader closes over an untracked filter while a page Effect maintains
+a second copy of the URL. Good: derive the filter from validated search and
+include it in loader dependencies and the corresponding query key. Test back,
+forward, direct links, rapid filter changes, and pending/error recovery. Keep
+loading and preloading read-only; they may run without a user visiting the page.
 
 ## Read cached Promises with use
 

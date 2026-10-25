@@ -14,6 +14,8 @@ to cast. It does not teach introductory syntax or own framework behavior.
 - “Make this config validate its keys without widening its literal values.”
 - “Make the event name determine which payload this API accepts.”
 - “Replace these optional fields with states that narrow correctly.”
+- “Make this workflow reject skipped validation stages.”
+- “Check that injected callbacks accept every input the use case can send.”
 - “Review this conditional type for union and never edge cases.”
 - “Check that this wrapper preserves inference and rejects invalid calls.”
 

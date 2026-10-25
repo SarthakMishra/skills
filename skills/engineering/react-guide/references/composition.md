@@ -1,7 +1,9 @@
 # Composition patterns
 
 Use this reference when a component API is accumulating structural boolean props,
-render-slot props, or state that several related pieces need to share.
+render-slot props, or state that several related pieces need to share. Existing
+JSX snippets are conceptual and omit imports and application-defined components;
+the ownership type fixture below is self-contained.
 
 ## Choose the lightest pattern
 
@@ -45,8 +47,11 @@ low-level parts can still live in Composer.* components.
 
 ## Use children for structure
 
-Use children when the parent only needs to place caller-provided UI. Use a
-render prop when the parent must provide data or state to each rendered child.
+Use children or named `ReactNode` slots when the parent only places caller-owned
+UI. Choose named slots for fixed regions; nested parts need no Context unless
+they coordinate behavior. Use a render prop when the parent supplies data to the
+rendered child. These callbacks are ordinary functions, so put Hooks in a child
+component, not inside the callback.
 
 Bad:
 
@@ -141,9 +146,24 @@ function Tab({ id, children }: { id: string; children: React.ReactNode }) {
 }
 ```
 
+This sketch demonstrates Context wiring, not an accessible tabs implementation.
+Use the existing accessible primitive for tab roles, panel relationships, focus,
+and keyboard navigation.
+
 The example uses the React 19 Context provider syntax and use(context).
 useContext remains valid for ordinary top-level reads. Add a provider only
 when the parts need shared behavior, not as a default wrapper.
+
+Context reads subscribe to the whole value. Destructuring one property does not
+create a selector; `memo` cannot block updates from consumed Context. Split
+contexts by independent consumers and update frequency when profiling justifies
+it. A stable provider value avoids broadcasts from unrelated parent renders,
+but cannot suppress legitimate changes to the value.
+
+Bad: every table cell reads one context containing selection, draft text, and
+configuration, expecting destructuring to isolate it. Good: keep drafts local
+and separate configuration from shared selection. Test nested roots for isolation
+and missing-provider errors; profile consumers before adding a selector store.
 
 ## Lift state to the common owner
 
@@ -211,3 +231,56 @@ Good:
 Use one component with a prop when the structure stays the same and only a
 genuine value changes. Split only when the separate names make the API or
 rendered structure easier to understand.
+
+## Make state ownership explicit in reusable controls
+
+Reuse the project's controlled-state primitive when both modes are required.
+Controlled props are authoritative; callbacks request a change. Uncontrolled
+state uses the default only at initialization. Keep the mode fixed for a mounted
+instance and define deliberate reset behavior. Do not mirror controlled props
+into local state with an Effect.
+
+Independent runnable type-check fixture, TS 4.9+, `strict` and
+`exactOptionalPropertyTypes`; no React runtime required:
+
+```ts
+// Bad: permits two sources of truth and controlled state without a callback.
+type LooseDisclosure = { open?: boolean; defaultOpen?: boolean };
+const ambiguous: LooseDisclosure = { open: true, defaultOpen: false };
+
+// Good for an interactive control that requires a controlled change handler.
+type DisclosureProps =
+  | {
+      open: boolean;
+      onOpenChange: (open: boolean) => void;
+      defaultOpen?: never;
+    }
+  | {
+      open?: never;
+      defaultOpen?: boolean;
+      onOpenChange?: (open: boolean) => void;
+    };
+const controlled: DisclosureProps = { open: false, onOpenChange: () => {} };
+const uncontrolled: DisclosureProps = { defaultOpen: true };
+// @ts-expect-error Initial and ongoing ownership cannot compete.
+const rejected: DisclosureProps = {
+  open: true,
+  defaultOpen: false,
+  onOpenChange: () => {},
+};
+// @ts-expect-error This interactive controlled API requires a change handler.
+const missingHandler: DisclosureProps = { open: true };
+```
+
+`?: never` rejects explicit undefined only with `exactOptionalPropertyTypes`.
+Types cannot prevent mode changes across renders. If authoring the primitive,
+exercise batched updates, parent-controlled rerenders, reset behavior, and callback
+counts. Keep callbacks out of state updater functions, which must be pure. Define
+how undefined is represented if it is a valid controlled value; it cannot also
+serve as the uncontrolled sentinel.
+
+For other prop unions, encode real semantic incompatibilities. An anchor can
+legitimately have both `href` and `onClick`; do not forbid that combination by
+habit. Prefer explicit native-element contracts before a polymorphic `as` API;
+when polymorphism is needed, check element-specific props, event inference, and
+ref types at actual JSX call sites rather than trusting a generic alias alone.

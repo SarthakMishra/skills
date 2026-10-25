@@ -11,7 +11,9 @@ programs; prove the contract with accepted and rejected usage.
 
 Assume TypeScript basics. Use advanced machinery when it expresses a real
 relationship or removes an unsafe operation, not simply to make types narrower.
-Keep reviews read-only unless implementation is requested.
+Keep reviews read-only unless implementation is requested. Keep architecture
+choices such as feature folders, package splits, and workflow engines outside
+this skill unless a specific type contract needs changing.
 
 ## Establish the contract
 
@@ -71,10 +73,10 @@ registry against the protocol instead, as above.
 
 ## Choose the branch that owns the relationship
 
-- For state variants, validated values, optional fields, and identity, read
+- For state variants, staged workflows, typed failures, and validated values, read
   [domain modeling and boundaries](references/domain-modeling.md). It decides
   what can be constructed and what still needs runtime evidence.
-- For generic functions, wrappers, callbacks, and literal inference, read
+- For generic functions, dependency callbacks, wrappers, and literal inference, read
   [generic APIs and inference](references/generic-apis.md). It keeps inputs,
   outputs, and dependent arguments related at call sites.
 - For mapped, conditional, template literal, and recursive types, read
