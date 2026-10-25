@@ -22,7 +22,7 @@ the component.
 **Bad.** An Effect sets `fullName` after `firstName` or `lastName`
 changes.
 
-**Good.** Render `firstName + " " + lastName` directly. There is no external
+**Good.** Render `firstName + ' ' + lastName` directly. There is no external
 system to synchronize.
 
 ## Choose a data source before writing an Effect
@@ -44,7 +44,7 @@ problem is the incomplete pattern below, not the `useEffect` call itself:
 ```tsx
 // Bad: no race protection, error state, or cache.
 useEffect(() => {
-  fetch("/api/search?q=" + query)
+  fetch('/api/search?q=' + query)
     .then((response) => response.json())
     .then(setResults);
 }, [query]);
@@ -53,7 +53,7 @@ useEffect(() => {
 ## Read cached Promises with use
 
 ```tsx
-import { Suspense, use } from "react";
+import { Suspense, use } from 'react';
 
 function SearchResults({ resultsPromise }: { resultsPromise: Promise<Result[]> }) {
   const results = use(resultsPromise);

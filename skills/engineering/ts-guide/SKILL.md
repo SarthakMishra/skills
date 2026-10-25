@@ -41,23 +41,23 @@ unchanged. Neither operation validates external data or freezes objects at runti
 Runnable type-check example, TS 4.9+, `strict`; no omitted setup:
 
 ```ts
-type Command = "save" | "load";
+type Command = 'save' | 'load';
 type Route = { path: string };
 
 // Bad: the annotation discards the exact path literals.
 const broad: Record<Command, Route> = {
-  save: { path: "/save" },
-  load: { path: "/load" },
+  save: { path: '/save' },
+  load: { path: '/load' },
 };
 // @ts-expect-error The annotation widened path to string.
-const lost: "/save" = broad.save.path;
+const lost: '/save' = broad.save.path;
 
 // Good: check completeness and retain literal paths.
 const routes = {
-  save: { path: "/save" },
-  load: { path: "/load" },
+  save: { path: '/save' },
+  load: { path: '/load' },
 } as const satisfies Record<Command, Route>;
-const saved: "/save" = routes.save.path;
+const saved: '/save' = routes.save.path;
 ```
 
 Derive a type from an existing value or schema when they represent the same

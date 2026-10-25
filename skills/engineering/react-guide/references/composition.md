@@ -93,7 +93,7 @@ const TabsContext = createContext<TabsValue | null>(null);
 
 function useTabs() {
   const value = use(TabsContext);
-  if (!value) throw new Error("Tabs components must be inside <Tabs>");
+  if (!value) throw new Error('Tabs components must be inside <Tabs>');
   return value;
 }
 
@@ -120,7 +120,7 @@ function Tab({ id, children }: { id: string; children: React.ReactNode }) {
   } = useTabs();
 
   return (
-    <button type="button" aria-selected={selectedId === id} onClick={() => select(id)}>
+    <button type='button' aria-selected={selectedId === id} onClick={() => select(id)}>
       {children}
     </button>
   );
@@ -141,7 +141,7 @@ Bad:
 
 ```tsx
 function Composer({ onTextChange }: { onTextChange: (text: string) => void }) {
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
 
   useEffect(() => {
     onTextChange(text);
@@ -155,7 +155,7 @@ Good:
 
 ```tsx
 function ComposerProvider({ children }: { children: React.ReactNode }) {
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
 
   return (
     <ComposerContext value={{ state: { text }, actions: { setText } }}>{children}</ComposerContext>
@@ -182,7 +182,7 @@ share the internal pieces.
 Bad:
 
 ```tsx
-<Composer mode="edit" isThread={false} showMentions showCancel />
+<Composer mode='edit' isThread={false} showMentions showCancel />
 ```
 
 Good:

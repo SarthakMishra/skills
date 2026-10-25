@@ -7,15 +7,15 @@ function-valued `action` or `formAction` prop.
 ## Use form Actions for submissions
 
 ```tsx
-import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 
 type FormState = { error: string } | null;
 
 async function saveName(_previousState: FormState, formData: FormData): Promise<FormState> {
-  const value = formData.get("name");
-  if (typeof value !== "string" || value.trim() === "") {
-    return { error: "Enter a name." };
+  const value = formData.get('name');
+  if (typeof value !== 'string' || value.trim() === '') {
+    return { error: 'Enter a name.' };
   }
 
   await saveNameToServer(value);
@@ -29,10 +29,10 @@ function NameForm() {
     <form action={formAction}>
       <label>
         Name
-        <input name="name" disabled={isPending} />
+        <input name='name' disabled={isPending} />
       </label>
       <SubmitButton />
-      {state?.error && <p role="alert">{state.error}</p>}
+      {state?.error && <p role='alert'>{state.error}</p>}
     </form>
   );
 }
@@ -40,8 +40,8 @@ function NameForm() {
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <button type="submit" disabled={pending}>
-      {pending ? "Saving..." : "Save"}
+    <button type='submit' disabled={pending}>
+      {pending ? 'Saving...' : 'Save'}
     </button>
   );
 }
@@ -74,7 +74,7 @@ domain validation.
 ## Add optimistic UI only for a real mutation
 
 ```tsx
-import { useOptimistic } from "react";
+import { useOptimistic } from 'react';
 
 function RenameForm({
   currentName,
@@ -86,8 +86,8 @@ function RenameForm({
   const [optimisticName, setOptimisticName] = useOptimistic(currentName);
 
   async function action(formData: FormData) {
-    const value = formData.get("name");
-    if (typeof value !== "string" || value.trim() === "") return;
+    const value = formData.get('name');
+    if (typeof value !== 'string' || value.trim() === '') return;
     setOptimisticName(value);
     await rename(value);
   }
@@ -95,8 +95,8 @@ function RenameForm({
   return (
     <form action={action}>
       <p>Current name: {optimisticName}</p>
-      <input name="name" defaultValue={currentName} />
-      <button type="submit">Rename</button>
+      <input name='name' defaultValue={currentName} />
+      <button type='submit'>Rename</button>
     </form>
   );
 }

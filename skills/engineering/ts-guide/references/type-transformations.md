@@ -30,19 +30,19 @@ variant-specific fields.
 
 ```ts
 type Message =
-  | { kind: "text"; body: string; internal: number }
-  | { kind: "image"; url: string; internal: number };
+  | { kind: 'text'; body: string; internal: number }
+  | { kind: 'image'; url: string; internal: number };
 
 // Bad: only the shared surface survives.
-type LoosePublic = Omit<Message, "internal">;
-const missingData: LoosePublic = { kind: "text" };
+type LoosePublic = Omit<Message, 'internal'>;
+const missingData: LoosePublic = { kind: 'text' };
 
 // Good: remove internal from each member separately.
-type PublicMember<T> = T extends unknown ? Omit<T, "internal"> : never;
+type PublicMember<T> = T extends unknown ? Omit<T, 'internal'> : never;
 type PublicMessage = PublicMember<Message>;
-const text: PublicMessage = { kind: "text", body: "Hello" };
+const text: PublicMessage = { kind: 'text', body: 'Hello' };
 // @ts-expect-error The text variant still requires its body.
-const rejected: PublicMessage = { kind: "text" };
+const rejected: PublicMessage = { kind: 'text' };
 ```
 
 Use `infer` to extract information rather than redeclaring it. Match readonly
@@ -79,7 +79,7 @@ const handlers: Changes<Model> = {
 };
 handlers.countChanged(1);
 // @ts-expect-error countChanged accepts numbers only.
-handlers.countChanged("1");
+handlers.countChanged('1');
 ```
 
 This mapping drops number and symbol keys. Test those keys if callers can supply

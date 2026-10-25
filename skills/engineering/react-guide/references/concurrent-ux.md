@@ -16,9 +16,9 @@ React 19 also accepts an `initialValue` as the second argument to
 ## Preserve hidden state with Activity
 
 ```tsx
-import { Activity } from "react";
+import { Activity } from 'react';
 
-<Activity mode={isVisible ? "visible" : "hidden"}>
+<Activity mode={isVisible ? 'visible' : 'hidden'}>
   <Sidebar />
 </Activity>;
 ```
@@ -32,16 +32,16 @@ useful.
 ## Use Effect Events narrowly
 
 ```tsx
-import { useEffect, useEffectEvent } from "react";
+import { useEffect, useEffectEvent } from 'react';
 
 function ChatRoom({ roomId, theme }: { roomId: string; theme: string }) {
   const onConnected = useEffectEvent(() => {
-    showNotification("Connected", theme);
+    showNotification('Connected', theme);
   });
 
   useEffect(() => {
     const connection = createConnection(roomId);
-    connection.on("connected", onConnected);
+    connection.on('connected', onConnected);
     connection.connect();
     return () => connection.disconnect();
   }, [roomId]);
@@ -59,7 +59,7 @@ Effect.
 ## Animate transitions with ViewTransition
 
 ```tsx
-import { ViewTransition, startTransition, useState } from "react";
+import { ViewTransition, startTransition, useState } from 'react';
 
 function Panel() {
   const [open, setOpen] = useState(false);
@@ -71,10 +71,10 @@ function Panel() {
           startTransition(() => setOpen((value) => !value));
         }}
       >
-        {open ? "Hide" : "Show"}
+        {open ? 'Hide' : 'Show'}
       </button>
       {open && (
-        <ViewTransition enter="panel-in" exit="panel-out">
+        <ViewTransition enter='panel-in' exit='panel-out'>
           <aside>Panel</aside>
         </ViewTransition>
       )}
@@ -93,7 +93,7 @@ CSS and keep urgent input updates outside the transition.
 ## Use Fragment refs when a group needs DOM behavior
 
 ```tsx
-import { Fragment, useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef } from 'react';
 
 function PostList({ posts }: { posts: Post[] }) {
   const groupRef = useRef<FragmentInstance | null>(null);
@@ -120,8 +120,8 @@ layout owner. The example assumes a project whose React types expose
 ## Render a subtree only in the browser
 
 ```tsx
-import { Suspense, use } from "react";
-import { browser } from "react-dom";
+import { Suspense, use } from 'react';
+import { browser } from 'react-dom';
 
 function LocalTime() {
   use(browser());

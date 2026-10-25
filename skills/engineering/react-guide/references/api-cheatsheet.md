@@ -57,4 +57,4 @@ framework's supported release.
 | --------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | Fetch in an Effect with no cache, race handling, or error path.       | Use a framework loader or a cached Promise with use and Suspense.               |
 | Add memoization before measuring.                                     | Use the Compiler when enabled, otherwise measure first.                         |
-| Call use(browser("reason")) or hide server content with a mount flag. | Call use(browser()) under Suspense for an intentionally browser-only component. |
+| Call use(browser('reason')) or hide server content with a mount flag. | Call use(browser()) under Suspense for an intentionally browser-only component. |

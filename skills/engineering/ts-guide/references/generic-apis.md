@@ -15,17 +15,17 @@ of all property types discards the relationship that the caller provided.
 ```ts
 // Bad: a known key still returns every possible property type.
 declare function looseGet<T>(value: T, key: keyof T): T[keyof T];
-const row = { name: "Ada", age: 37 };
+const row = { name: 'Ada', age: 37 };
 // @ts-expect-error name is widened to string | number.
-const lost: string = looseGet(row, "name");
+const lost: string = looseGet(row, 'name');
 
 // Good: K connects the argument to the result.
 function get<T, K extends keyof T>(value: T, key: K): T[K] {
   return value[key];
 }
-const name: string = get(row, "name");
+const name: string = get(row, 'name');
 // @ts-expect-error Only existing keys are accepted.
-get(row, "missing");
+get(row, 'missing');
 ```
 
 An unconstrained `parse<T>(text): T` lets the caller choose an unproved result.
@@ -46,7 +46,7 @@ opaque compatibility trick.
 ```ts
 // Bad: fallback participates in inference and admits an unintended choice.
 declare function looseChoice<C extends string>(choices: readonly C[], fallback: C): C;
-looseChoice(["small", "large"], "huge");
+looseChoice(['small', 'large'], 'huge');
 
 // Good: choices alone establish the domain.
 function choose<const C extends readonly string[]>(
@@ -55,9 +55,9 @@ function choose<const C extends readonly string[]>(
 ): C[number] {
   return choices[0] ?? fallback;
 }
-const size: "small" | "large" = choose(["small", "large"], "small");
+const size: 'small' | 'large' = choose(['small', 'large'], 'small');
 // @ts-expect-error fallback cannot expand the choices.
-choose(["small", "large"], "huge");
+choose(['small', 'large'], 'huge');
 ```
 
 ## Keep dependent arguments together
@@ -71,19 +71,19 @@ type Events = { saved: { id: string }; failed: { error: Error } };
 
 // Bad: the name and payload are independent unions.
 declare function looseEmit(name: keyof Events, payload: Events[keyof Events]): void;
-looseEmit("saved", { error: new Error("wrong payload") });
+looseEmit('saved', { error: new Error('wrong payload') });
 
 // Good: each tuple is one valid call.
 type EventArgs = {
   [K in keyof Events]: [name: K, payload: Events[K]];
 }[keyof Events];
 declare function emit(...args: EventArgs): void;
-emit("saved", { id: "1" });
+emit('saved', { id: '1' });
 // @ts-expect-error Payload does not belong to this event.
-emit("saved", { error: new Error("wrong payload") });
+emit('saved', { error: new Error('wrong payload') });
 declare const uncertain: keyof Events;
 // @ts-expect-error An uncertain event needs a correspondingly correlated payload.
-emit(uncertain, { id: "1" });
+emit(uncertain, { id: '1' });
 ```
 
 For the implementation, narrow the discriminant before using its payload.
@@ -105,7 +105,7 @@ function wrap<A extends unknown[], R>(fn: (...args: A) => R): (...args: A) => R 
   return (...args) => fn(...args);
 }
 const length = wrap((value: string, extra: number = 0) => value.length + extra);
-const result: number = length("abc");
+const result: number = length('abc');
 // @ts-expect-error The wrapper retains the argument contract.
 length(123);
 ```

@@ -77,22 +77,22 @@ prove facts such as authorization or database existence.
 // Bad: these aliases cannot prevent swapping identifiers.
 type LooseUserId = string;
 type LooseOrderId = string;
-const swapped: LooseUserId = "order_12" as LooseOrderId;
+const swapped: LooseUserId = 'order_12' as LooseOrderId;
 
 // Good: the constructor owns both the validation and the assertion.
 declare const userIdBrand: unique symbol;
 type UserId = string & { readonly [userIdBrand]: true };
 
 function parseUserId(value: unknown): UserId {
-  if (typeof value !== "string" || !/^user_[0-9]+$/.test(value)) {
-    throw new Error("Invalid user ID");
+  if (typeof value !== 'string' || !/^user_[0-9]+$/.test(value)) {
+    throw new Error('Invalid user ID');
   }
   return value as UserId;
 }
 
-const id: UserId = parseUserId("user_12");
+const id: UserId = parseUserId('user_12');
 // @ts-expect-error Unvalidated strings are not user IDs.
-const unchecked: UserId = "user_12";
+const unchecked: UserId = 'user_12';
 ```
 
 Reuse a schema library already in the project for structured input and derive

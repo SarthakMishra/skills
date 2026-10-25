@@ -16,18 +16,18 @@ Independent runnable type-check fixture, TS 4.9+, `strict`; the ambient
 declaration describes the API under test and has no runtime implementation:
 
 ```ts
-declare function lookup<K extends "name" | "age">(key: K): { name: string; age: number }[K];
+declare function lookup<K extends 'name' | 'age'>(key: K): { name: string; age: number }[K];
 
 // Bad: this is legal whether it evaluates to true or false.
 type Unchecked = ReturnType<typeof lookup> extends string ? true : false;
 
 // Good: valid calls compile and their results retain useful precision.
-const name: string = lookup("name");
-const age: number = lookup("age");
+const name: string = lookup('name');
+const age: number = lookup('age');
 // @ts-expect-error Unknown keys are rejected.
-lookup("email");
+lookup('email');
 // @ts-expect-error The name result must not be any or a number.
-const wrong: number = lookup("name");
+const wrong: number = lookup('name');
 ```
 
 `@ts-expect-error` fails when the next line has no error, but it does not assert
