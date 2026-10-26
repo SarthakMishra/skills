@@ -6,6 +6,7 @@ Choose a skill for the work below. Open its usage guide for invocation and expec
 
 The agent can use these for matching requests or an enabled project policy.
 
+- [code-smell](code-smell/SKILL.md): Audit TypeScript/React code quality with source-backed findings and brief alternatives. [Usage](code-smell/README.md).
 - [commit](commit/SKILL.md): Create focused commits using the repository's conventions. [Usage](commit/README.md).
 - [establish-conventions](establish-conventions/SKILL.md): Research architecture and engineering conventions and create a repo-specific coding skill. [Usage](establish-conventions/README.md).
 - [react-guide](react-guide/SKILL.md): Guide modern React authoring and review. [Usage](react-guide/README.md).

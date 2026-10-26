@@ -34,6 +34,7 @@ See [design-engineer usage](skills/design/design-engineer/README.md).
 
 | Skill                                                                      | Use it to                                                                      |
 | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| [code-smell](skills/engineering/code-smell/SKILL.md)                       | Audit TypeScript/React code quality with findings and brief alternatives.      |
 | [commit](skills/engineering/commit/SKILL.md)                               | Create focused commits using the repository's conventions.                     |
 | [establish-conventions](skills/engineering/establish-conventions/SKILL.md) | Research architecture and conventions and create a repo-specific coding skill. |
 | [react-guide](skills/engineering/react-guide/SKILL.md)                     | Guide modern React authoring and review.                                       |
