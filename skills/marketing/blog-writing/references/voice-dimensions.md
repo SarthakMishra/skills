@@ -183,10 +183,9 @@ Diction decides the words. It carries most of the formal or casual feeling.
   naming of products and concepts.
 - Record three lists: words the author uses that define them, words they never
   use, and fixed spellings ("JavaScript", "Postgres", "email", "open source").
-- Default banned list for generic AI prose, adjusted to the author's corpus:
-  "delve", "leverage" as a verb, "robust", "seamless", "game-changer",
-  "unlock", "elevate", "in today's fast-paced world", "it's important to note",
-  "navigate the complexities", "a testament to".
+- Seed the never-use list from `scripts/tropes-profile.json` and the word-choice
+  tropes in [AI tropes](ai-tropes.md#word-choice), then remove any word the
+  author's approved posts use naturally.
 
 ### Figurative language
 

@@ -182,10 +182,13 @@ unclear reference, approximate wording, or a draft that needs cutting.
    the same rhetorical trick.
 4. Words: mark words that are wrong, vague, or merely adequate and revisit each.
    Choose by exact meaning; keep the original when it is right.
-5. Cut: remove explanation the details already supply, redundant modifiers, and
+5. Tropes: run the [AI tropes pass](references/ai-tropes.md#run-the-pass). Rewrite
+   each trope by stating its point directly, and keep only instances `VOICE.md`
+   allows.
+6. Cut: remove explanation the details already supply, redundant modifiers, and
    recaps after the real ending. Shortening succeeds when meaning, tone, and
    rhythm survive.
-6. Reach: run the [pre-publish check](references/shareability.md#pre-publish-check).
+7. Reach: run the [pre-publish check](references/shareability.md#pre-publish-check).
 
 ### 6. Check what the prose claims
 

@@ -74,6 +74,8 @@ Which post type fits, and what evidence do I need before drafting?
 - The post type matches the reader's question, and the title's promise is paid
   off within the first three sentences.
 - The post has tension: a problem or surprise, and a consequence.
+- `node scripts/voice-metrics.mjs <draft> --profile scripts/tropes-profile.json`
+  flags no stock AI phrasing, and no trope appears more than once.
 - Missing evidence stays visible. First-person authority never comes from an
   invented experience.
 
@@ -86,8 +88,16 @@ Which post type fits, and what evidence do I need before drafting?
 - Craft: [post types](references/post-types.md),
   [narrative mechanics](references/narrative.md),
   [shareability](references/shareability.md),
+  [AI tropes to remove](references/ai-tropes.md),
   [structure examples](references/structure.md), and
   [revision examples](references/revision.md).
+
+The AI tropes catalog adapts the list at [tropes.fyi](https://tropes.fyi) by
+[ossama.is](https://ossama.is) and Frederik Baun's articles
+[AI words to avoid](https://wordssoundsvisuals.com/blog/ai-words-to-avoid/),
+[AI writing tropes](https://wordssoundsvisuals.com/blog/ai-writing-tropes/), and
+[make AI writing sound human](https://wordssoundsvisuals.com/blog/make-ai-writing-sound-human/), with
+its own grouping, fixes, and examples.
 
 The metrics script needs Node.js 18 or later. Sales copy, social posts, SEO
 audits, and publishing are outside its scope.

@@ -79,7 +79,9 @@ inspiration's style on the same passage and ask which to adopt.
 
 Ask about hard lines directly, because a corpus rarely reveals them:
 
-- Words and phrases the author never wants to see under their name.
+- Words and phrases the author never wants to see under their name. Show the
+  [AI tropes](ai-tropes.md) tables and ask which tropes are banned outright and
+  which the author uses on purpose, such as "we" on a team blog or em dashes.
 - Subjects, people, or companies that are off limits for jokes or criticism.
 - Profanity, emoji, exclamation marks.
 - Calls to action: allowed inside the prose, only at the end, or never.

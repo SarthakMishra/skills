@@ -181,7 +181,9 @@ only what is specific to this blog:
 ## Write the metric profile
 
 Copy only the metrics that separated approved from rejected posts, with ranges from
-the approved per-file values:
+the approved per-file values. Seed `flagged_terms` from
+`scripts/tropes-profile.json`, minus words the author uses on purpose, plus the
+author's own never-use list:
 
 ```json voice-profile
 {

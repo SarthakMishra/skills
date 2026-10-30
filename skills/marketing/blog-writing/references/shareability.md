@@ -23,7 +23,10 @@ Check that the post offers at least one of these, and make it explicit:
    tomorrow. Make the reusable part easy to lift: a command, a checklist, a table,
    a code snippet.
 2. **A new name for a known problem.** Readers share words that let them explain
-   a thing they had felt but could not name. Coin the term only when it is exact.
+   a thing they had felt but could not name. Coin at most one term per post, only
+   when it is exact, and define it with the case it came from. A post full of
+   coined labels reads as machine-written; see
+   [invented labels](ai-tropes.md#word-choice).
 3. **Earned surprise.** A result that contradicts what the reader expects, backed
    by evidence. Awe at how something works counts.
 4. **Stakes the reader shares.** Anger or anxiety spread, but only when the facts

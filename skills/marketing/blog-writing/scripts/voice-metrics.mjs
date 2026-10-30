@@ -379,7 +379,8 @@ function findFlaggedTerms(file, source, terms) {
   const hits = [];
   source.split('\n').forEach((line, index) => {
     for (const term of terms) {
-      if (countPhrase(line.toLowerCase(), term.toLowerCase()) > 0) {
+      const normalize = (text) => text.toLowerCase().replaceAll('\u2019', "'");
+      if (countPhrase(normalize(line), normalize(term)) > 0) {
         hits.push(`${file}:${index + 1}: ${term}`);
       }
     }
