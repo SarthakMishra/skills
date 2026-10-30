@@ -12,12 +12,12 @@ Choose the skills and agents during installation. Add `--list` to preview the co
 
 ### Design · model-invoked
 
-| Skill                                                     | Use it to                                                                    |
-| --------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [design-engineer](skills/design/design-engineer/SKILL.md) | Build and refine app interfaces across UX, visual craft, and implementation. |
-| [design-system](skills/design/design-system/SKILL.md)     | Build, adopt, and enforce a React design system.                             |
-| [ux-guide](skills/design/ux-guide/SKILL.md)               | Design or repair user flows.                                                 |
-| [ux-writer](skills/design/ux-writer/SKILL.md)             | Write labels, errors, and confirmations.                                     |
+| Skill                                                     | Use it to                                                 |
+| --------------------------------------------------------- | --------------------------------------------------------- |
+| [design-engineer](skills/design/design-engineer/SKILL.md) | Make a component look designed, inside the design system. |
+| [design-system](skills/design/design-system/SKILL.md)     | Build, adopt, and enforce a React design system.          |
+| [ux-guide](skills/design/ux-guide/SKILL.md)               | Design or repair user flows.                              |
+| [ux-writer](skills/design/ux-writer/SKILL.md)             | Write labels, errors, and confirmations.                  |
 
 The agent uses these when a task fits. To invoke one directly, use `/skill-name`
 in Claude Code or `$skill-name` in Codex, such as `/design-system` or
@@ -25,9 +25,9 @@ in Claude Code or `$skill-name` in Codex, such as `/design-system` or
 See the [design-system usage guide](skills/design/design-system/README.md) for
 creation, adoption, and component enforcement examples.
 
-Install all four design skills for the full workflow. Invoke `design-engineer`
-once; it coordinates `design-system`, `ux-guide`, and `ux-writer` through
-implementation and verification. The companions also work independently.
+Use `design-engineer` when a component looks plain, cluttered, or off. It works
+from a visual design cheat sheet, stays inside the project's design system, and
+fixes each problem at the atomic level that owns it.
 See [design-engineer usage](skills/design/design-engineer/README.md).
 
 ### Engineering · model-invoked

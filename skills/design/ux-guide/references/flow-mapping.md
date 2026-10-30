@@ -400,8 +400,7 @@ use case. Never add a diagram to make a trivial flow look complete.
 2. Add a derived view only when it helps a reader understand connections between
    flows or branches. Ask only about unresolved product choices that change behavior.
 3. Record actual feedback against the relevant step, transition, or decision.
-   Honor a requested checkpoint. When orchestrated, inherit the agreed scope,
-   approach, and readiness.
+   Honor a requested checkpoint.
 4. If implementation is authorized, connect each repair to its step or transition
    ID and acceptance check. Record deviations and backend dependencies as they appear.
 5. Reconcile the use case with implemented behavior. Mark checks verified only

@@ -61,13 +61,11 @@ those checks actually happen.
 
 ## Where it fits
 
-For an app interface spanning UX, system, UI, copy, and implementation, invoke
-`design-engineer` once. It uses this skill automatically for new or changed
-interface copy. You can still invoke ux-writer alone. Install a missing companion
-from this repository with:
+Use `ux-guide` for the flow around the copy and `design-engineer` for how the
+component looks. Install them from this repository with:
 
 ```sh
-npx skills add SarthakMishra/skills --skill design-engineer ux-guide
+npx skills add SarthakMishra/skills --skill ux-guide design-engineer
 ```
 
 Use `ux-guide` when the interaction needs to change beyond its wording. If it is

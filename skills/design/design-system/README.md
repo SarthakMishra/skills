@@ -13,8 +13,8 @@ make the smallest documented extension that real product needs require.
 - migrating component families without UI decay
 - enforcing component and token contracts with `@shadcn/lint`
 
-Use `ux-guide` for a user flow and `ux-writer` for interface copy. Use
-`design-engineer` when one feature needs all of those concerns. Install a missing
+Use `ux-guide` for a user flow, `ux-writer` for interface copy, and
+`design-engineer` to improve how a component looks within this system. Install a missing
 companion from this repository with:
 
 ```sh

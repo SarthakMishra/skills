@@ -22,10 +22,6 @@ behavior separate.
 | Repair a flow        | Find the first breakdown, repair its cause, and check affected paths in the agreed scope. |
 | Make a narrow change | Inspect the named journey and immediate dependencies; preserve adjacent decisions.        |
 
-When `design-engineer` coordinates the work, inherit its scope, approach,
-readiness, and exclusions. Do not restart its requirements interview. Ask only
-when a missing product decision changes the proposed behavior.
-
 ## Workflow
 
 1. **Inspect and bound the job.** Read repository instructions, the accepted
