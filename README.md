@@ -66,11 +66,14 @@ document. Design-system setup is optional for frontends.
 
 | Skill                                                      | Use it to                                                                    |
 | ---------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [blog-writing](skills/marketing/blog-writing/SKILL.md)     | Find an angle and write or revise opinionated nonfiction blog posts.         |
+| [blog-writing](skills/marketing/blog-writing/SKILL.md)     | Write blog posts in a blog's voice and establish that voice as `VOICE.md`.   |
 | [thread-to-blog](skills/marketing/thread-to-blog/SKILL.md) | Turn the current learning or build session into a blog using `blog-writing`. |
 
-Use `$blog-writing` in Codex or `/blog-writing` in Claude Code, or ask for an
-opinionated blog angle, draft, or edit. See the [blog-writing usage guide](skills/marketing/blog-writing/README.md)
+Ask `blog-writing` to establish your blog's voice once. It builds `VOICE.md` from
+your posts and an interview, then reads it for every post.
+
+Use `$blog-writing` in Codex or `/blog-writing` in Claude Code, or ask for a
+blog angle, draft, or edit. See the [blog-writing usage guide](skills/marketing/blog-writing/README.md)
 for examples and the material to supply.
 
 Use `$thread-to-blog` in Codex or `/thread-to-blog` in Claude Code at the end of
